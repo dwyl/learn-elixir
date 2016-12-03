@@ -58,7 +58,7 @@ Elixir has 7 basic types:
 * `lists`
 * `tuples`
 
-#### Working with numbers:
+#### *Working with numbers:*
 
 try typing `1 + 2` into the terminal (after opening `iex`) and it should look like this
 ```elixir
@@ -71,20 +71,107 @@ Some more examples
 ```elixir
 iex> 5 * 5
 10
-
 iex> 10 / 2
 5.0
-```
 
-When using the `/` with two integers this gives a `float` (5.0). If you want to do integer division or get the division remainder you can use the `div` or `rem` functions
-
-```elixir
+# When using the `/` with two integers this gives a `float` (5.0). If you want to do integer division or get the division remainder you can use the `div` or `rem` functions
 iex> div(10, 2)
 5
-
 iex> div 10, 2
 5
-
 iex> rem 10, 3
 1
 ```
+
+#### *Booleans*
+
+Elixir supports `true` and `false` as booleans
+
+```elixir
+iex> true
+true
+iex> false
+false
+
+iex> is_boolean(true)
+true
+iex> is_boolean(1)
+false
+```
+
+#### *Atoms*
+
+Atoms are constants where their name is their own value (Some other languages call these Symbols)
+
+```elixir
+iex> :hello
+:hello
+iex> :hello == :world
+false
+```
+
+`true` and `false` are actually atoms in Elixir
+
+#### *Strings*
+
+Strings are surrounded by double quotes
+
+```elixir
+iex> "Hello World"
+"Hello world"
+
+# You can print a string using the `IO` module
+iex> IO.puts "Hello world"
+"Hello world"
+:ok
+```
+
+#### *Lists*
+
+Elixir uses square brackets to make a list
+
+```elixir
+iex> myList = [1,2,3]
+iex> myList
+[1,2,3]
+
+iex> length(myList)
+3
+
+# adding lists together
+iex> [1, 2, 3] ++ [4, 5, 6]
+[1, 2, 3, 4, 5, 6]
+
+# removing items from a list
+iex> [1, true, 2, false, 3, true] -- [true, false]
+[1, 2, 3, true]
+```
+
+#### *Tuples*
+
+Elixir uses curly brackets to make a tuple
+
+Tuples are similar to lists except the items are stored in order:
+
+```elixir
+iex> tuple = {:ok, "hello"}
+{:ok, "hello"}
+
+# get element at index 1
+iex> elem(tuple, 1)
+"hello"
+
+# get the size of the tuple
+iex> tuple_size(tuple)
+2
+```
+
+#### *Lists or Tuples?*
+
+A long story short, for large lists or tuples:
+* `Updating` a `list` (adding or removing elements) is **fast**
+* `Updating` a `tuple` is **slow**
+
+
+* `Reading` a `list` (getting its length or selecting an element) is **slow**
++ `Reading` a `tuple` is **fast**
