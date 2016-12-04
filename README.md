@@ -175,3 +175,66 @@ A long story short, for large lists or tuples:
 
 * `Reading` a `list` (getting its length or selecting an element) is **slow**
 + `Reading` a `tuple` is **fast**
+
+
+## Functions and Modules
+
+##### Anonymous functions
+
+Anonymous functions start with `fn` and end with `end`.
+
+
+```elixir
+iex> add = fn a, b -> a + b end
+
+iex> add.(1, 2)
+3
+```
+
+Note a dot `.` between the variable and parenthesis is required to invoke an anonymous function.
+
+In Elixir, functions are `first class citizens` meaning that they can be passed as arguments to other functions the same way integers and strings can.
+
+```elixir
+iex> is_function(add)
+true
+```
+
+This uses the inbuilt function `is_function` which checks to see if the parameter passed is a function and returns a bool.
+
+Anonymous functions are closures and as such they can access variables that are in scope when the function is defined. You can define a new anonymous function that uses the `add` anonymous function we have previously defined
+
+```elixir
+iex> double = fn a -> add.(a, a) end
+
+iex> double.(5)
+10
+```
+
+These functions can be useful but will no longer be available to you. If you want to make something more permanent then you can create a `module`.
+
+##### Modules
+With modules you're able to group several functions together. Most of the time it is convenient to write modules into files so they can be compiled and reused.
+
+Get started by creating a file named `math.ex`, open it in your text editor and add the following code
+
+```elixir
+defmodule Math do
+  def sum(a, b) do
+    a + b
+  end
+end
+```
+In order to create your own modules in Elixir, use the `defmodule` macro, then use the `def` macro to define functions in that module. So in this case the module is `Math` and the function is `sum`.
+
+Once this is saved the file can be compiled by typing `elixirc` into the terminal followed by the file name.
+```
+$ elixirc math.ex
+```
+
+This will generate a file named `Elixir.Math.beam` containing the bytecode for the defined module. If we start `iex` again, our module definition will be available (provided that `iex` is started in the same directory the bytecode file is in):
+
+```elixir
+iex> Math.sum(1, 2)
+3
+```
