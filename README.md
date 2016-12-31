@@ -112,6 +112,43 @@ false
 
 `true` and `false` are actually atoms in Elixir
 
+Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+
+```elixir
+iex> is_atom(MyApp.MyModule)
+true
+```
+
+Atoms are also used to reference modules from Erlang libraries, including built in ones.
+
+```elixir
+iex> :crypto.rand_bytes 3
+<<23, 104, 108>>
+```
+
+One popular use of atoms in Elixir is to use them as messages for pattern matching.
+Lets say you have a function which processes an http request. The outcome of this process is either going to be a success or an error. You could therefore use atoms to indicate whether or not this process is successful.
+
+```elixir
+def process(file) do
+  lines = file |> split_lines
+
+  case lines do
+    nil ->
+      {:error, "failed to process file"}
+    lines ->
+      {:ok, lines}
+  end
+end
+```
+Here we are saying that the method, `process/1` will return a tuple response. If the result of our process is successful, it will return `{:ok, lines}`, however if it fails (e.g. returns nil) then it will return an error. This will allows us to *pattern* match on this result.
+
+```elixir
+{:ok, lines} = process('text.txt')
+```
+
+Thus, we can be sure that we will always have the lines returned to us and never a *nil* value (because it will throw an error). This becomes extremely useful when piping multiple methods together.
+
 #### *Strings*
 
 Strings are surrounded by double quotes
