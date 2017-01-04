@@ -175,7 +175,7 @@ iex> myList
 iex> length(myList)
 3
 
-# adding lists together
+# concatinating lists together
 iex> [1, 2, 3] ++ [4, 5, 6]
 [1, 2, 3, 4, 5, 6]
 
@@ -184,11 +184,13 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 [1, 2, 3, true]
 ```
 
+Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html) module provides lots of useful functions.
+
 #### *Tuples*
 
 Elixir uses curly brackets to make a tuple
 
-Tuples are similar to lists except the items are stored in order:
+Tuples are similar to lists but are not suited to modifying sets of data:
 
 ```elixir
 iex> tuple = {:ok, "hello"}
@@ -202,6 +204,8 @@ iex> elem(tuple, 1)
 iex> tuple_size(tuple)
 2
 ```
+
+Tuples are not enumerable and there are far fewer functions available in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. If you must treat your tuple as a list, then convert it using `Tuple.to_list(your_tuple)`
 
 #### *Lists or Tuples?*
 
