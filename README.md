@@ -217,6 +217,7 @@ A long story short, for large lists or tuples:
 * `Reading` a `list` (getting its length or selecting an element) is **slow**
 + `Reading` a `tuple` is **fast**
 
+> source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
 
 ## Functions and Modules
 
