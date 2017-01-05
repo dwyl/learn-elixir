@@ -1,7 +1,7 @@
 # learn-elixir
-Learn Elixir to build dynamic, functional, scalable and maintainable web applications!
+Learn the Elixir language, designed to build dynamic, functional, scalable and maintainable web applications!
 
-<img src="http://elixir-lang.org/images/logo/logo.png" width="70%">
+<img src="http://elixir-lang.org/images/logo/logo.png" width="60%">
 
 ## *Why*?
 Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
