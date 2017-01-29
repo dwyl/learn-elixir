@@ -47,6 +47,13 @@ is Pete Broderick's ***Intro to Elixir***: https://youtu.be/lly-1UYmnFI
 
 [![image](https://cloud.githubusercontent.com/assets/194400/22414349/b41a24f0-e6b6-11e6-8e6e-6eb0c9ad188f.png)](https://youtu.be/lly-1UYmnFI "Click to Watch")
 
+<!-- note we should update this once we have made our *own* intro to Elixir vid! -->
+
+Another _fantastic_ introduction is: Jessica Kerr's
+***Elixir Should Take Over the World***: https://youtu.be/X25xOhntr6s
+
+[![image](https://cloud.githubusercontent.com/assets/194400/22414453/7dad1232-e6b7-11e6-8399-ccac3d1b9446.png)](https://youtu.be/X25xOhntr6s "Why Elixir should take over the World!")
+
 ### Background links:
 
 * [Introduction and Setup](http://elixir-lang.org/getting-started/introduction.html)
