@@ -31,6 +31,7 @@ without any "_downtime_"!
 + **WebSockets & Streaming** are baked-in
 so "**real-time**" web apps are "_easy_"
 (_or at least **easier** than many other languages...!_)
++ ***Zero-Downtime Deployment*** is a _reality_ without any DevOps gymnastics!!!
 
 
 ## *What*?
@@ -354,6 +355,8 @@ iex> Math.sum(1, 2)
 
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
 + Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
++ Lit of _way_ more useful resources and sample apps:
+https://github.com/h4cc/awesome-elixir
 
 ## tl;dr
 
