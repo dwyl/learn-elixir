@@ -42,7 +42,8 @@ so "**real-time**" web apps are "_easy_"
 ### Video Introduction
 
 If you have a few minutes, probably the _easiest_ way to get _up-to-speed_
-with what Elixir is (_and why we are **really excited** about it_),
+with what Elixir is <br />
+(_and why we are **really excited** about it_),
 is Pete Broderick's ***Intro to Elixir***: https://youtu.be/lly-1UYmnFI
 
 <!-- note we should update this once we have
@@ -50,12 +51,13 @@ made our *own* intro to Elixir vid! -->
 
 [![Pete Broderick - Intro to Elixir](https://cloud.githubusercontent.com/assets/194400/22414349/b41a24f0-e6b6-11e6-8e6e-6eb0c9ad188f.png)](https://youtu.be/lly-1UYmnFI "Click to Watch")
 
-Another _fantastic_ introduction is: Jessica Kerr's
+Another _fantastic_ introduction is: Jessica Kerr's <br />
 ***Elixir Should Take Over the World***: https://youtu.be/X25xOhntr6s
 
 [![Jessica Kerr - Elixir Should Take Over the World](https://cloud.githubusercontent.com/assets/194400/22414453/7dad1232-e6b7-11e6-8399-ccac3d1b9446.png)](https://youtu.be/X25xOhntr6s "Why Elixir should take over the World!")
 
-Then it's worth watching ***What's Ahead for Elixir?***
+Then if you want to know what's _next_ it's worth watching  <br />
+***What's Ahead for Elixir?***
 by **José Valim** (_the creator of Elixir_): https://youtu.be/A60nxws_iVs
 
 [![José Valim - What's Ahead for Elixir?](https://cloud.githubusercontent.com/assets/194400/22414818/8ef48248-e6ba-11e6-8b24-6643fc180f72.png)](https://youtu.be/A60nxws_iVs "What's Ahead for Elixir?")
