@@ -45,28 +45,34 @@ so "**real-time**" web apps are "_easy_"
 http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
 
 ## *How*?
-You can see how to install Elixir [here](http://elixir-lang.org/getting-started/introduction.html)
 
-#### Installation basics:
-###### Mac:
+How to install Elixir:
+http://elixir-lang.org/getting-started/introduction.html
+
+### Installation basics:
+
+#### Mac:
+
 `brew install elixir`
 
-###### Ubuntu:
-* **_Add_ Erlang Solutions repo**:
+#### Ubuntu:
+
++ **_Add_ the Erlang Solutions repo**:
+
 ```
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
 ```
-* _**Run**_: `sudo apt-get update`
-* **_Install_ the Erlang/OTP platform and all of its applications**:
++ _**Run**_: `sudo apt-get update`
++ **_Install_ the Erlang/OTP platform and all of its applications**:
 `sudo apt-get install esl-erlang`
-* **_Install_ Elixir**: `sudo apt-get install elixir`
++ **_Install_ Elixir**: `sudo apt-get install elixir`
 
 ## *Handy Tips*
 
-#### Interactive Terminal
+### Interactive Terminal
 After installing Elixir you can open the interactive shell by typing: `iex`
 
-#### Function Documentation
+### Function Documentation
 If you want to see some information about a built in function you can
 just type `h` and the `function` name to get information on how to use it!
 
@@ -75,7 +81,7 @@ something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
-#### Information about values
+### Information about values
 If you want to see some information about a value in your code,
 type `i` followed by the value name:
 
@@ -93,7 +99,7 @@ Elixir has 7 basic types:
 * `lists`
 * `tuples`
 
-#### *Working with numbers:*
+### *Working with numbers:*
 
 try typing `1 + 2` into the terminal (after opening `iex`) and
 it should look like this
@@ -121,7 +127,7 @@ iex> rem 10, 3
 1
 ```
 
-#### *Booleans*
+### *Booleans*
 
 Elixir supports `true` and `false` as booleans
 
@@ -137,7 +143,7 @@ iex> is_boolean(1)
 false
 ```
 
-#### *Atoms*
+### *Atoms*
 
 Atoms are constants where their name is their own value
 (Some other languages call these Symbols)
@@ -199,7 +205,7 @@ Thus, we can be sure that we will always have the lines returned to us
 and never a *nil* value (because it will throw an error).
 This becomes extremely useful when piping multiple methods together.
 
-#### *Strings*
+### *Strings*
 
 Strings are surrounded by double quotes
 
@@ -213,7 +219,7 @@ iex> IO.puts "Hello world"
 :ok
 ```
 
-#### *Lists*
+### *Lists*
 
 Elixir uses square brackets to make a list
 
@@ -237,7 +243,7 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html)
 module provides lots of useful functions.
 
-#### *Tuples*
+### *Tuples*
 
 Elixir uses curly brackets to make a tuple
 
@@ -261,21 +267,21 @@ in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module.
 If you must treat your tuple as a list,
 then convert it using `Tuple.to_list(your_tuple)`
 
-#### *Lists or Tuples?*
+### *Lists or Tuples?*
 
 A long story short, for large lists or tuples:
-* `Updating` a `list` (adding or removing elements) is **fast**
-* `Updating` a `tuple` is **slow**
++ `Updating` a `list` (adding or removing elements) is **fast**
++ `Updating` a `tuple` is **slow**
 
 
-* `Reading` a `list` (getting its length or selecting an element) is **slow**
++ `Reading` a `list` (getting its length or selecting an element) is **slow**
 + `Reading` a `tuple` is **fast**
 
 > source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
 
 ## Functions and Modules
 
-##### Anonymous functions
+### Anonymous functions
 
 Anonymous functions start with `fn` and end with `end`.
 
@@ -316,7 +322,8 @@ iex> double.(5)
 These functions can be useful but will no longer be available to you.
 If you want to make something more permanent then you can create a `module`.
 
-##### Modules
+### Modules
+
 With modules you're able to group several functions together.
 Most of the time it is convenient to write modules into files
 so they can be compiled and reused.
