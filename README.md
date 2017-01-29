@@ -1,12 +1,36 @@
-# learn-elixir
-Learn the Elixir language, designed to build dynamic, functional, scalable and maintainable web applications!
+# Learn Elixir
 
-<img src="http://elixir-lang.org/images/logo/logo.png" width="60%">
+Learn the Elixir _language_, designed to build dynamic, functional, scalable and maintainable web applications!
+
+![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
 
 ## *Why*?
+
 Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
 code, and Elixir provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
+
+There are **_many_ reasons** to learn elixir
+and _use_ it for your next for your next project!
+
+### Key Advantages
+
++ Elixir is ***compiled*** and runs on the **Erlang VM** ("BEAM") which has been
+_demostrated_ to be ***incredibly efficient***! see:
+http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
++ Many tiny processes (_as opposed to "threads"
+which are more difficult to manage..._)
++ Much better "_garbage collection_" than virtually any other "VM"
++ ***Functional*** language with _dynamic_ typing
++ ***Immutable Data*** so "***State***" is ***always predictable***! <br />
+![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
++ ***High Reliability, Availability and Fault Tolerance*** (_because of Erlang_)
+means apps built with elixir are run in production for ***Years***
+without any "_downtime_"!
++ **WebSockets & Streaming** are baked-in
+so "**real-time**" web apps are "_easy_"
+(_or at least **easier** than many other languages...!_)
+
 
 ## *What*?
 [_**"Elixir is a dynamic, functional language designed for building scalable and
@@ -15,6 +39,8 @@ your system when things don't go as planned.
 #### Background links:
 * [Introduction and Setup](http://elixir-lang.org/getting-started/introduction.html)
 * [Getting started](http://elixir-lang.org/getting-started/basic-types.html)
++ What was "_wrong_" with just writing directly in Erlang? read:
+http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
 
 ## *How*?
 You can see how to install Elixir [here](http://elixir-lang.org/getting-started/introduction.html)
@@ -280,3 +306,24 @@ This will generate a file named `Elixir.Math.beam` containing the bytecode for t
 iex> Math.sum(1, 2)
 3
 ```
+
+## Resources
+
++ Crash Course in Elixir: http://elixir-lang.org/crash-course.html
++ Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
+
+## tl;dr
+
+> ***Note***: this is _definately **not**_ a "_reason_" to switch programming
+languages, but _one_ of our (_totally unscientific_) reasons for deciding
+to _investigate_ other options for programming languages was the fact
+that JavaScript (_with the introduction of ES2015_) now has
+***Six Ways to Declare a Function***:
+https://rainsoft.io/6-ways-to-declare-javascript-functions/
+which means that there is _ambiguity_ and "_debate_" as to which is
+"_best practice_", Go, Elixir and Rust don't suffer from this problem.
+Sure there are "_anonymous_" functions in Elixir
+(_required for functional programming_!) but there are still only ***Two Ways***
+to define a `function` (_and both have specific use-cases_),
+which is _way_ easier to explain to a _beginner_ than the JS approach.
+see: http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
