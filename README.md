@@ -35,10 +35,20 @@ so "**real-time**" web apps are "_easy_"
 
 
 ## *What*?
+
 [_**"Elixir is a dynamic, functional language designed for building scalable and
  maintainable applications."**_](http://elixir-lang.org/)
 
-#### Background links:
+### Video Introduction
+
+If you have time to spare, probably the _easiest_ way to get _up-to-speed_
+with what Elixir is and why we are _really_ excited about it,
+is Pete Broderick's ***Intro to Elixir***: https://youtu.be/lly-1UYmnFI
+
+[![image](https://cloud.githubusercontent.com/assets/194400/22414349/b41a24f0-e6b6-11e6-8e6e-6eb0c9ad188f.png)](https://youtu.be/lly-1UYmnFI "Click to Watch")
+
+### Background links:
+
 * [Introduction and Setup](http://elixir-lang.org/getting-started/introduction.html)
 * [Getting started](http://elixir-lang.org/getting-started/basic-types.html)
 + What was "_wrong_" with just writing directly in Erlang? read:
