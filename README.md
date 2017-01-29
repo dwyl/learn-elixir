@@ -326,4 +326,5 @@ Sure there are "_anonymous_" functions in Elixir
 (_required for functional programming_!) but there are still only ***Two Ways***
 to define a `function` (_and both have specific use-cases_),
 which is _way_ easier to explain to a _beginner_ than the JS approach.
-see: http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
+see:
+http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
