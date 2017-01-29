@@ -1,6 +1,7 @@
 # Learn Elixir
 
-Learn the Elixir _language_, designed to build dynamic, functional, scalable and maintainable web applications!
+Learn the Elixir _language_, designed to build dynamic, functional,
+scalable and maintainable web applications!
 
 ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
 
@@ -50,10 +51,14 @@ You can see how to install Elixir [here](http://elixir-lang.org/getting-started/
 `brew install elixir`
 
 ###### Ubuntu:
-* **_Add_ Erlang Solutions repo**: wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-* _**Run**_: sudo apt-get update
-* **_Install_ the Erlang/OTP platform and all of its applications**: sudo apt-get install esl-erlang
-* **_Install_ Elixir**: sudo apt-get install elixir
+* **_Add_ Erlang Solutions repo**:
+```
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+```
+* _**Run**_: `sudo apt-get update`
+* **_Install_ the Erlang/OTP platform and all of its applications**:
+`sudo apt-get install esl-erlang`
+* **_Install_ Elixir**: `sudo apt-get install elixir`
 
 ## *Handy Tips*
 
@@ -61,14 +66,17 @@ You can see how to install Elixir [here](http://elixir-lang.org/getting-started/
 After installing Elixir you can open the interactive shell by typing: `iex`
 
 #### Function Documentation
-If you want to see some information about a built in function you can just type `h` and the `function` name to get information on how to use it!
+If you want to see some information about a built in function you can
+just type `h` and the `function` name to get information on how to use it!
 
-Try typing `h round` into the (iex) terminal and you should see something like this:
+Try typing `h round` into the (iex) terminal and you should see
+something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
 #### Information about values
-If you want to see some information about a value in your code, type `i` followed by the value name:
+If you want to see some information about a value in your code,
+type `i` followed by the value name:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
 
@@ -86,7 +94,8 @@ Elixir has 7 basic types:
 
 #### *Working with numbers:*
 
-try typing `1 + 2` into the terminal (after opening `iex`) and it should look like this
+try typing `1 + 2` into the terminal (after opening `iex`) and
+it should look like this
 ```elixir
 iex> 1 + 2
 3
@@ -100,7 +109,9 @@ iex> 5 * 5
 iex> 10 / 2
 5.0
 
-# When using the `/` with two integers this gives a `float` (5.0). If you want to do integer division or get the division remainder you can use the `div` or `rem` functions
+# When using the `/` with two integers this gives a `float` (5.0).
+If you want to do integer division or get the division remainder
+you can use the `div` or `rem` functions
 iex> div(10, 2)
 5
 iex> div 10, 2
@@ -127,7 +138,8 @@ false
 
 #### *Atoms*
 
-Atoms are constants where their name is their own value (Some other languages call these Symbols)
+Atoms are constants where their name is their own value
+(Some other languages call these Symbols)
 
 ```elixir
 iex> :hello
@@ -138,22 +150,28 @@ false
 
 `true` and `false` are actually atoms in Elixir
 
-Names of modules in Elixir are also atoms. `MyApp.MyModule` is a valid atom, even if no such module has been declared yet.
+Names of modules in Elixir are also atoms. `MyApp.MyModule`
+is a valid atom, even if no such module has been declared yet.
 
 ```elixir
 iex> is_atom(MyApp.MyModule)
 true
 ```
 
-Atoms are also used to reference modules from Erlang libraries, including built in ones.
+Atoms are also used to reference modules from Erlang libraries,
+including built in ones.
 
 ```elixir
 iex> :crypto.rand_bytes 3
 <<23, 104, 108>>
 ```
 
-One popular use of atoms in Elixir is to use them as messages for pattern matching.
-Lets say you have a function which processes an http request. The outcome of this process is either going to be a success or an error. You could therefore use atoms to indicate whether or not this process is successful.
+One popular use of atoms in Elixir is to use them as messages
+for pattern matching.
+Lets say you have a function which processes an http request.
+The outcome of this process is either going to be a success or an error.
+You could therefore use atoms to indicate whether
+or not this process is successful.
 
 ```elixir
 def process(file) do
@@ -167,13 +185,18 @@ def process(file) do
   end
 end
 ```
-Here we are saying that the method, `process/1` will return a tuple response. If the result of our process is successful, it will return `{:ok, lines}`, however if it fails (e.g. returns nil) then it will return an error. This will allows us to *pattern* match on this result.
+Here we are saying that the method, `process/1` will return a tuple response.
+If the result of our process is successful, it will return `{:ok, lines}`,
+however if it fails (e.g. returns nil) then it will return an error.
+This will allows us to *pattern* match on this result.
 
 ```elixir
 {:ok, lines} = process('text.txt')
 ```
 
-Thus, we can be sure that we will always have the lines returned to us and never a *nil* value (because it will throw an error). This becomes extremely useful when piping multiple methods together.
+Thus, we can be sure that we will always have the lines returned to us
+and never a *nil* value (because it will throw an error).
+This becomes extremely useful when piping multiple methods together.
 
 #### *Strings*
 
@@ -210,7 +233,8 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 [1, 2, 3, true]
 ```
 
-Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html) module provides lots of useful functions.
+Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html)
+module provides lots of useful functions.
 
 #### *Tuples*
 
@@ -231,7 +255,10 @@ iex> tuple_size(tuple)
 2
 ```
 
-Tuples are not enumerable and there are far fewer functions available in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. If you must treat your tuple as a list, then convert it using `Tuple.to_list(your_tuple)`
+Tuples are not enumerable and there are far fewer functions available
+in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module.
+If you must treat your tuple as a list,
+then convert it using `Tuple.to_list(your_tuple)`
 
 #### *Lists or Tuples?*
 
@@ -259,18 +286,24 @@ iex> add.(1, 2)
 3
 ```
 
-Note a dot `.` between the variable and parenthesis is required to invoke an anonymous function.
+Note a dot `.` between the variable and parenthesis is required
+to invoke an anonymous function.
 
-In Elixir, functions are `first class citizens` meaning that they can be passed as arguments to other functions the same way integers and strings can.
+In Elixir, functions are `first class citizens` meaning that they can
+be passed as arguments to other functions the same way integers and strings can.
 
 ```elixir
 iex> is_function(add)
 true
 ```
 
-This uses the inbuilt function `is_function` which checks to see if the parameter passed is a function and returns a bool.
+This uses the inbuilt function `is_function` which checks to see if
+the parameter passed is a function and returns a bool.
 
-Anonymous functions are closures and as such they can access variables that are in scope when the function is defined. You can define a new anonymous function that uses the `add` anonymous function we have previously defined
+Anonymous functions are closures and as such they can access variables
+that are in scope when the function is defined.
+You can define a new anonymous function that uses the `add`
+anonymous function we have previously defined
 
 ```elixir
 iex> double = fn a -> add.(a, a) end
@@ -279,12 +312,16 @@ iex> double.(5)
 10
 ```
 
-These functions can be useful but will no longer be available to you. If you want to make something more permanent then you can create a `module`.
+These functions can be useful but will no longer be available to you.
+If you want to make something more permanent then you can create a `module`.
 
 ##### Modules
-With modules you're able to group several functions together. Most of the time it is convenient to write modules into files so they can be compiled and reused.
+With modules you're able to group several functions together.
+Most of the time it is convenient to write modules into files
+so they can be compiled and reused.
 
-Get started by creating a file named `math.ex`, open it in your text editor and add the following code
+Get started by creating a file named `math.ex`,
+open it in your text editor and add the following code
 
 ```elixir
 defmodule Math do
@@ -293,14 +330,20 @@ defmodule Math do
   end
 end
 ```
-In order to create your own modules in Elixir, use the `defmodule` macro, then use the `def` macro to define functions in that module. So in this case the module is `Math` and the function is `sum`.
+In order to create your own modules in Elixir, use the `defmodule` macro,
+then use the `def` macro to define functions in that module.
+So in this case the module is `Math` and the function is `sum`.
 
-Once this is saved the file can be compiled by typing `elixirc` into the terminal followed by the file name.
+Once this is saved the file can be compiled by typing `elixirc`
+into the terminal followed by the file name.
 ```
 $ elixirc math.ex
 ```
 
-This will generate a file named `Elixir.Math.beam` containing the bytecode for the defined module. If we start `iex` again, our module definition will be available (provided that `iex` is started in the same directory the bytecode file is in):
+This will generate a file named `Elixir.Math.beam` containing the bytecode
+for the defined module. If we start `iex` again, our module definition
+will be available (provided that `iex` is started
+  in the same directory the bytecode file is in):
 
 ```elixir
 iex> Math.sum(1, 2)
