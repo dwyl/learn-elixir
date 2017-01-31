@@ -25,7 +25,7 @@ IO.puts fb.(4)
 IO.puts fb.(5)
 IO.puts fb.(6)
 IO.puts fb.(7)
-IO.puts fb.(8)
+IO.puts fb.(8)q
 IO.puts fb.(9)
 IO.puts fb.(10)
 IO.puts fb.(11)
