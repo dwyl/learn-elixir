@@ -1,3 +1,5 @@
+# Exercise: ModulesAndFunctions-5 implement Chop.guess(n, low..range)
+# run the file to see output
 defmodule Chop do
   def guess(n, low..high) do
     number = div(high + low, 2)
