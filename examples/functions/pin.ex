@@ -7,18 +7,15 @@
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
 defmodule Greeter do
-
   def for(name, greeting) do
     fn
       (^name) -> "Hello #{name}!, #{greeting}"
       (_)     -> "I don't know you."
     end
   end
-
 end
 
 mr_valim = Greeter.for("josé", "Oi!")
 
 IO.puts mr_valim.("josé")
 IO.puts mr_valim.("dave")
-
