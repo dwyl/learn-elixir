@@ -55,3 +55,48 @@ just look at the DWYL backlog and you can get paid
 for your knowledge/skills/contributions ***immediately***!
 
 _Happy Elixir Leaning Everyone_! :droplet: :heart: :white_check_mark: :rocket:
+
+## Chapter 6 - Modules and Named Functions
+
+Exercise 7 on page 63: find the library functions to do the following in `iex`:
+
++ [x] Convert a `float` to a `string` with **two decimal places** (Erlang)
+```
+# elixir just references erlang:
+iex(1)> Float.to_string(1492.12345, decimals: 2)
+"1492.12"
+```
+see: http://stackoverflow.com/questions/38734113/elixir-convert-float-to-string
+
++ [x] Get the _value_ of the Operating-System evironment name (Elixir)
+```
+iex(1)> :os.type()
+{:unix, :darwin}
+```
+see: http://stackoverflow.com/questions/33461345/how-can-i-get-the-current-operating-system-name-in-elixir
+
++ [x] Return extension component of a file name (so return `.exs` for a
+  given file `test.exs`) (Elixir)
+```
+Path.extname("test.exs")
+".exs"
+```
+see: https://hexdocs.pm/elixir/Path.html#extname/1
+
++ [x] Return process's current working directory. (Elixir)
+```
+iex(1)> System.cwd()
+"/dwyl/learn-elixir"
+```
+see: https://hexdocs.pm/elixir/System.html#cwd/0
+
++ [x] Convert a string containing JSON into Elixir data structures.
+(_Just find; don't install_)
+see: https://github.com/devinus/poison
+
++ [x] Execute a command in your operating system's shell
+```
+iex(1)> System.cmd("whoami", [])
+{"Nelson\n", 0}
+```
+see: http://stackoverflow.com/questions/22594988/run-shell-commands-in-elixir
