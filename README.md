@@ -68,8 +68,6 @@ https://github.com/dwyl/learn-phoenix-web-development
 
 ### Background links:
 
-* [Introduction and Setup](http://elixir-lang.org/getting-started/introduction.html)
-* [Getting started](http://elixir-lang.org/getting-started/basic-types.html)
 + _Interview_ with **José Valim** (_the creator of Elixir_) on _why_ he made it!
 https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
@@ -130,6 +128,8 @@ Elixir has 7 basic types:
 * `strings`
 * `lists`
 * `tuples`
+
+This section brings together the key information from Elixir's [Getting Started](http://elixir-lang.org/getting-started/basic-types.html) documentation and multiple other sources to further understanding in a concise way.
 
 ### *Working with numbers:*
 
