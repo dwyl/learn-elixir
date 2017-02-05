@@ -101,7 +101,7 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 
 ### Interactive Terminal
 After installing Elixir you can open the interactive shell by typing `iex`.
-You can now type in any elixir expression and see the result right in the terminal.
+You can now type in any elixir expression and see the result in the terminal.
 
 ### Function Documentation
 If you want to see some information about a built-in function you can
@@ -226,7 +226,8 @@ def process(file) do
   end
 end
 ```
-Here we are saying that the method, `process/1` will return a [tuple](#) response.
+Here we are saying that the method,
+`process/1` will return a [tuple](#) response.
 If the result of our process is successful, it will return `{:ok, lines}`,
 however if it fails (e.g. returns nil) then it will return an error.
 This will allows us to *pattern* match on this result.
@@ -281,7 +282,8 @@ module provides lots of useful functions.
 
 Elixir uses curly brackets to make a tuple.
 
-Tuples are similar to lists but are [not suited to data sets that need to be updated or added to regularly](#lists-or-tuples).
+Tuples are similar to lists but are
+[not suited to data sets that need to be updated or added to regularly](#lists-or-tuples).
 
 ```elixir
 iex> tuple = {:ok, "hello"}
@@ -341,7 +343,8 @@ true
 This uses the inbuilt function `is_function` which checks to see if
 the parameter passed is a function and returns a bool.
 
-Anonymous functions are closures (_named_ functions are not) and as such they can access variables
+Anonymous functions are closures (_named_ functions are not)
+and as such they can access variables
 that are in scope when the function is defined.
 You can define a new anonymous function that uses the `add`
 anonymous function we have previously defined:
