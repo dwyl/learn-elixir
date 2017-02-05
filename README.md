@@ -100,7 +100,8 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 ## *Handy Tips*
 
 ### Interactive Terminal
-After installing Elixir you can open the interactive shell by typing `iex`. You can now type in any elixir expression and see the result right  in the terminal.
+After installing Elixir you can open the interactive shell by typing `iex`.
+You can now type in any elixir expression and see the result right in the terminal.
 
 ### Function Documentation
 If you want to see some information about a built-in function you can
