@@ -100,7 +100,8 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 ## *Handy Tips*
 
 ### Interactive Terminal
-After installing Elixir you can open the interactive shell by typing `iex`. You can now type in any elixir expression and see the result right  in the terminal.
+After installing Elixir you can open the interactive shell by typing `iex`.
+You can now type in any elixir expression and see the result right in the terminal.
 
 ### Function Documentation
 If you want to see some information about a built-in function you can
@@ -129,7 +130,9 @@ Elixir has 7 basic types:
 * `lists`
 * `tuples`
 
-This section brings together the key information from Elixir's [Getting Started](http://elixir-lang.org/getting-started/basic-types.html) documentation and multiple other sources to further understanding in a concise way.
+This section brings together the key information from Elixir's
+[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
+documentation and multiple other sources to further understanding.
 
 ### *Working with numbers:*
 
