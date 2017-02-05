@@ -10,7 +10,7 @@ code, and Elixir provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
 
 There are **_many_ reasons** to learn elixir
-and _use_ it for your next for your next project!
+and _use_ it for your next project!
 
 ### Key Advantages
 
@@ -18,8 +18,8 @@ and _use_ it for your next for your next project!
 _demostrated_ to be ***incredibly efficient***! see:
 http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
 + Many tiny processes (_as opposed to "threads"
-which are more difficult to manage..._)
-+ Much better "_garbage collection_" than virtually any other "VM"
+which are more difficult to manage_)
++ Much better "_garbage collection_" than virtually any other VM
 + ***Functional*** language with _dynamic_ typing
 + ***Immutable Data*** so "***State***" is ***always predictable***! <br />
 ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
@@ -28,7 +28,7 @@ means apps built with elixir are run in production for ***Years***
 without any "_downtime_"!
 + **WebSockets & Streaming** are baked-in
 so "**real-time**" web apps are "_easy_"
-(_or at least **easier** than many other languages...!_)
+(_or at least **easier** than many other languages!_)
 + ***Zero-Downtime Deployment*** is a _reality_ without any DevOps gymnastics!!!
 
 
@@ -102,10 +102,10 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 ## *Handy Tips*
 
 ### Interactive Terminal
-After installing Elixir you can open the interactive shell by typing: `iex`
+After installing Elixir you can open the interactive shell by typing `iex`. You can now type in any elixir expression and see the result right  in the terminal.
 
 ### Function Documentation
-If you want to see some information about a built in function you can
+If you want to see some information about a built-in function you can
 just type `h` and the `function` name to get information on how to use it!
 
 Try typing `h round` into the (iex) terminal and you should see
@@ -133,14 +133,13 @@ Elixir has 7 basic types:
 
 ### *Working with numbers:*
 
-try typing `1 + 2` into the terminal (after opening `iex`) and
-it should look like this
+Try typing `1 + 2` into the terminal (after opening `iex`):
 ```elixir
 iex> 1 + 2
 3
 ```
 
-Some more examples
+Some more examples:
 
 ```elixir
 iex> 5 * 5
@@ -149,8 +148,8 @@ iex> 10 / 2
 5.0
 
 # When using the `/` with two integers this gives a `float` (5.0).
-If you want to do integer division or get the division remainder
-you can use the `div` or `rem` functions
+# If you want to do integer division or get the division remainder
+# you can use the `div` or `rem` functions
 iex> div(10, 2)
 5
 iex> div 10, 2
@@ -161,7 +160,7 @@ iex> rem 10, 3
 
 ### *Booleans*
 
-Elixir supports `true` and `false` as booleans
+Elixir supports `true` and `false` as booleans.
 
 ```elixir
 iex> true
@@ -178,7 +177,7 @@ false
 ### *Atoms*
 
 Atoms are constants where their name is their own value
-(Some other languages call these Symbols)
+(some other languages call these Symbols).
 
 ```elixir
 iex> :hello
@@ -189,7 +188,7 @@ false
 
 `true` and `false` are actually atoms in Elixir
 
-Names of modules in Elixir are also atoms. `MyApp.MyModule`
+Names of _modules_ in Elixir are also atoms. `MyApp.MyModule`
 is a valid atom, even if no such module has been declared yet.
 
 ```elixir
@@ -198,7 +197,7 @@ true
 ```
 
 Atoms are also used to reference modules from Erlang libraries,
-including built in ones.
+including built-in ones.
 
 ```elixir
 iex> :crypto.rand_bytes 3
@@ -207,7 +206,7 @@ iex> :crypto.rand_bytes 3
 
 One popular use of atoms in Elixir is to use them as messages
 for pattern matching.
-Lets say you have a function which processes an http request.
+Let's say you have a function which processes an `http` request.
 The outcome of this process is either going to be a success or an error.
 You could therefore use atoms to indicate whether
 or not this process is successful.
@@ -224,7 +223,7 @@ def process(file) do
   end
 end
 ```
-Here we are saying that the method, `process/1` will return a tuple response.
+Here we are saying that the method, `process/1` will return a [tuple](#) response.
 If the result of our process is successful, it will return `{:ok, lines}`,
 however if it fails (e.g. returns nil) then it will return an error.
 This will allows us to *pattern* match on this result.
@@ -239,7 +238,7 @@ This becomes extremely useful when piping multiple methods together.
 
 ### *Strings*
 
-Strings are surrounded by double quotes
+Strings are surrounded by double quotes.
 
 ```elixir
 iex> "Hello World"
@@ -253,7 +252,7 @@ iex> IO.puts "Hello world"
 
 ### *Lists*
 
-Elixir uses square brackets to make a list
+Elixir uses square brackets to make a list.
 
 ```elixir
 iex> myList = [1,2,3]
@@ -263,7 +262,7 @@ iex> myList
 iex> length(myList)
 3
 
-# concatinating lists together
+# concatenating lists together
 iex> [1, 2, 3] ++ [4, 5, 6]
 [1, 2, 3, 4, 5, 6]
 
@@ -277,9 +276,9 @@ module provides lots of useful functions.
 
 ### *Tuples*
 
-Elixir uses curly brackets to make a tuple
+Elixir uses curly brackets to make a tuple.
 
-Tuples are similar to lists but are not suited to modifying sets of data:
+Tuples are similar to lists but are [not suited to data sets that need to be updated or added to regularly](#lists-or-tuples).
 
 ```elixir
 iex> tuple = {:ok, "hello"}
@@ -325,7 +324,7 @@ iex> add.(1, 2)
 3
 ```
 
-Note a dot `.` between the variable and parenthesis is required
+Note a dot `.` between the variable `add` and parenthesis is required
 to invoke an anonymous function.
 
 In Elixir, functions are `first class citizens` meaning that they can
@@ -339,10 +338,10 @@ true
 This uses the inbuilt function `is_function` which checks to see if
 the parameter passed is a function and returns a bool.
 
-Anonymous functions are closures and as such they can access variables
+Anonymous functions are closures (_named_ functions are not) and as such they can access variables
 that are in scope when the function is defined.
 You can define a new anonymous function that uses the `add`
-anonymous function we have previously defined
+anonymous function we have previously defined:
 
 ```elixir
 iex> double = fn a -> add.(a, a) end
