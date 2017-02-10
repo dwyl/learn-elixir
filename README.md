@@ -630,6 +630,8 @@ load takes filename and returns a list of animals if the file exists
 
     iex> Animals.load("my_animals")
     ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+    iex> Animals.load("aglkjhdfg")
+    "File does not exist"
 
 """
 def load(filename) do
