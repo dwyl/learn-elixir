@@ -493,7 +493,75 @@ Call the `hello-world` function given to us by Elixir. It should print out the
 # :world
 ```
 
+4. Let's start to create our own methods in the `Animals` module. Replace the
+`hello-world` method with the following:
+```elixir
+@doc """
+create_zoo returns a list of zoo animals
 
+## Examples
+
+    iex> Animals.create_zoo
+    ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+
+"""
+def create_zoo do
+  ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+end
+```
+To run our new code we will first have to recompile our `iex`. This can be done
+by typing:  
+```bash
+> recompile()
+```
+Now we will have access to the `create_zoo` method. Try it out in the command line:
+```bash
+> Animals.create_zoo
+# ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+```
+
+4. Let's extend the `Animals` module. Let's say that you're visiting the zoo but
+you can't decide which order to view the animals. We can create a `randomise` function
+that takes a list of animals and returns a new list with a random order:
+
+```elixir
+@doc """
+randomise takes a list of zoo animals and returns a new randomised list with
+the same elements as the first.
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.randomise(zoo)
+    ["monkey", "tiger", "elephant", "gorilla", "giraffe", "lion"]
+
+"""
+def randomise(zoo) do
+  Enum.shuffle(zoo)
+end
+```
+Note we are making use of a pre-built module called `Enum` which has a list of
+methods that you can use on enumerables such as lists. Documentation for `Enum`
+methods can be found [here](https://hexdocs.pm/elixir/Enum.html)
+
+5. Let's add another method to the `Animals` module. Let's say that we want to
+find out if our zoo contains an animal:
+
+```elixir
+@doc """
+contains? takes a list of zoo animals and a single animal and returns a boolean
+as to whether or not the list contains the given animal
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.contains(zoo, "gorilla")
+    true
+"""
+def contains?(zoo, animal) do
+  Enum.member?(zoo, animal)
+end
+```
 
 ## Resources
 
