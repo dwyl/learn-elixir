@@ -395,6 +395,61 @@ iex> Math.sum(1, 2)
 3
 ```
 
+## Generating your first Elixir project
+
+To get started with your first Elixir project you need to make use of the [Mix](https://hexdocs.pm/mix/Mix.html) build tool that comes straight out of the box. Mix allows you to do a number of things including:
+
+- Create projects
+- Compile projects
+- Run tasks
+  - Testing
+  - Generate documentation
+- Manage dependencies
+
+To generate a new project follow these steps:
+
+1. Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
+
+```bash
+> mix new [project_name]
+```
+This will create a new folder with the given name of your project and should also print something that looks like this to the command line:
+
+```bash
+* creating README.md
+* creating .gitignore
+* creating mix.exs
+* creating config
+* creating config/config.exs
+* creating lib
+* creating lib/[project_name].ex
+* creating test
+* creating test/test_helper.exs
+* creating test/[project_name]_test.exs
+
+Your Mix project was created successfully.
+You can use "mix" to compile it, test it, and more:
+
+    cd animals
+    mix test
+
+Run "mix help" for more commands.
+```
+Navigate to your newly created directory:
+
+```bash
+> cd [project_name]
+```
+Open the directory in your text editor. You will be able to see that Elixir has
+generated a few files for us that are specific to our project:
+
+- `lib/[project_name].ex`
+- `test/[project_name]_test.ex`
+
+2. Open up the `[project_name].ex` file in the lib directory
+
+
+
 ## Resources
 
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
