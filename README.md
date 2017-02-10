@@ -550,16 +550,45 @@ find out if our zoo contains an animal:
 ```elixir
 @doc """
 contains? takes a list of zoo animals and a single animal and returns a boolean
-as to whether or not the list contains the given animal
+as to whether or not the list contains the given animal.
 
 ## Examples
 
     iex> zoo = Animals.create_zoo
-    iex> Animals.contains(zoo, "gorilla")
+    iex> Animals.contains?(zoo, "gorilla")
     true
 """
 def contains?(zoo, animal) do
   Enum.member?(zoo, animal)
+end
+```
+**NOTE: It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.**
+
+6. Pattern matching example: Let's create a function that takes a list of animals and
+the number of animals you've seen and then returns the list of animals you have
+still to see.
+
+```elixir
+@doc """
+remaining takes a list of zoo animals and the number of animals that
+have already been viewed and returns a list of animals that you have left
+to see
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.remaining(zoo, 2)
+    ["gorilla", "elephant", "monkey", "giraffe"]
+"""
+def remaining(zoo, count) do
+  # Enum.split returns a tuple so we have to pattern match on the result
+  # to get the value we want out
+  # The underscore before the "seen" means that we don't care about the value
+  # If this was left out then elixir would give a warning saying "seen" has
+  # not been used
+  {_seen, to_see} = Enum.split(zoo, count)
+  to_see
 end
 ```
 
