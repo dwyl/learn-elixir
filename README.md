@@ -413,6 +413,8 @@ To generate a new project follow these steps:
 ```bash
 > mix new [project_name]
 ```
+We have chosen to call our project 'animals'
+
 This will create a new folder with the given name of your project and should also print something that looks like this to the command line:
 
 ```bash
@@ -422,10 +424,10 @@ This will create a new folder with the given name of your project and should als
 * creating config
 * creating config/config.exs
 * creating lib
-* creating lib/[project_name].ex
+* creating lib/animals.ex
 * creating test
 * creating test/test_helper.exs
-* creating test/[project_name]_test.exs
+* creating test/animals_test.exs
 
 Your Mix project was created successfully.
 You can use "mix" to compile it, test it, and more:
@@ -438,15 +440,58 @@ Run "mix help" for more commands.
 Navigate to your newly created directory:
 
 ```bash
-> cd [project_name]
+> cd animals
 ```
 Open the directory in your text editor. You will be able to see that Elixir has
 generated a few files for us that are specific to our project:
 
-- `lib/[project_name].ex`
-- `test/[project_name]_test.ex`
+- `lib/animals.ex`
+- `test/animals_test.ex`
 
-2. Open up the `[project_name].ex` file in the lib directory
+2. Open up the `animals.ex` file in the lib directory. You should already
+see some `hello-world` boilerplate like this:
+```elixir
+defmodule Animals do
+  @moduledoc """
+  Documentation for Animals.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Animals.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
+```
+Elixir has created a module with the name of your project along with a function
+that prints out a `:world` atom when called. It's also added boilerplate for
+module and function documentation. (*we will go into more detail about
+  documentation later*)
+
+3. Let's test out the boilerplate code. In your project directory type the following
+command:
+
+```bash
+> iex -S mix
+```
+What this basically means is, "Start the elixir interactive terminal and compile
+with the context of my current project". This allows you to access modules and
+functions created within the file tree.
+
+Call the `hello-world` function given to us by Elixir. It should print out the
+`:world` atom to the command line:
+
+```bash
+> Animals.hello
+# :world
+```
 
 
 
