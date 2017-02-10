@@ -669,6 +669,68 @@ def selection(number_of_animals) do
 end
 ```
 
+Now that we have the functionality for our module, let's take a look at the documentation
+that we have written and how we can maximise its use.
+
+## Documentation
+
+When we created a new project with mix, it created a file for us called `mix.exs`
+which is referred to as the 'MixFile'. This file holds information about our
+project and its dependencies.
+
+At the bottom of the file it gives us a function called `deps` which manages all
+of the dependencies in our project. To install a third party package we need to
+manually write it in the deps function (*accepts a tuple of the package name and
+the version*) and then install it in the command line. Let's install `ex_doc` as
+an example:
+
+Add the following to the deps function in your `mix.exs` file:
+
+```elixir
+defp deps do
+  [
+    {:ex_doc, "~> 0.12"}
+  ]
+end
+```
+
+Then in the command line quit your `iex` shell and enter the following to install
+the `ex_docs` dependency:
+
+```bash
+> mix deps.get
+```
+
+You might receive an error saying: `Could not find Hex, which is needed to build dependency :ex_doc
+Shall I install Hex? (if running non-interactively, use: "mix local.hex --force") [Yn]`.
+If you do then just enter `y` and then press enter. This will install the
+dependencies that you need.
+
+Once `ex_docs` has been installed then run the following command to generate
+documentation (*make sure you're not in `iex`*):
+
+```bash
+> mix docs
+```
+
+This will generate documentation that can be viewed if you copy the file path of
+the `index.html` file within the newly created `doc` folder and then paste it in
+your browser. You should see something like the following:
+
+![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
+
+It looks exactly like the format of the official Elixir docs because they used the
+same tool to create theirs. Here is what the method documentation should look like
+if you click on `Animals`:
+
+![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
+![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
+
+This is an incredibly powerful tool that comes baked-in with elixir. It means that
+other developers who are joining the project can be brought up to speed incredibly
+quickly!
+
+
 ## Resources
 
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
