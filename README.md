@@ -408,7 +408,7 @@ To get started with your first Elixir project you need to make use of the [Mix](
 
 To generate a new project follow these steps:
 
-1. Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
+#### Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
 
 ```bash
 > mix new [project_name]
@@ -448,8 +448,8 @@ generated a few files for us that are specific to our project:
 - `lib/animals.ex`
 - `test/animals_test.ex`
 
-2. Open up the `animals.ex` file in the lib directory. You should already
-see some `hello-world` boilerplate like this:
+#### Open up the `animals.ex` file in the lib directory. You should already see some `hello-world` boilerplate like this:
+
 ```elixir
 defmodule Animals do
   @moduledoc """
@@ -475,26 +475,22 @@ that prints out a `:world` atom when called. It's also added boilerplate for
 module and function documentation. (*we will go into more detail about
   documentation later*)
 
-3. Let's test out the boilerplate code. In your project directory type the following
-command:
-
+#### Let's test out the boilerplate code. In your project directory type the following command:
 ```bash
 > iex -S mix
 ```
 What this basically means is, "Start the elixir interactive terminal and compile
 with the context of my current project". This allows you to access modules and
-functions created within the file tree.
-
+functions created within the file tree.  
 Call the `hello-world` function given to us by Elixir. It should print out the
 `:world` atom to the command line:
-
 ```bash
 > Animals.hello
 # :world
 ```
 
-4. Let's start to create our own methods in the `Animals` module. Replace the
-`hello-world` method with the following:
+#### Let's start to create our own methods in the `Animals` module. Replace the `hello-world` method with the following:
+
 ```elixir
 @doc """
 create_zoo returns a list of zoo animals
@@ -520,9 +516,7 @@ Now we will have access to the `create_zoo` method. Try it out in the command li
 # ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
 ```
 
-4. Let's extend the `Animals` module. Let's say that you're visiting the zoo but
-you can't decide which order to view the animals. We can create a `randomise` function
-that takes a list of animals and returns a new list with a random order:
+#### Let's extend the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function that takes a list of animals and returns a new list with a random order:
 
 ```elixir
 @doc """
@@ -544,8 +538,7 @@ Note we are making use of a pre-built module called `Enum` which has a list of
 methods that you can use on enumerables such as lists. Documentation for `Enum`
 methods can be found [here](https://hexdocs.pm/elixir/Enum.html)
 
-5. Let's add another method to the `Animals` module. Let's say that we want to
-find out if our zoo contains an animal:
+#### Let's add another method to the `Animals` module. Let's say that we want to find out if our zoo contains an animal:
 
 ```elixir
 @doc """
@@ -565,8 +558,7 @@ end
 **NOTE: It's convention when writing a function that returns a boolean to add a question
 mark after the name of the method.**
 
-6. Pattern matching example: Let's create a function that takes a list of animals and
-the number of animals that you'd like to see and then returns a list of animals.
+#### Pattern matching example: Let's create a function that takes a list of animals and the number of animals that you'd like to see and then returns a list of animals.
 
 ```elixir
 @doc """
@@ -587,8 +579,7 @@ def see_animals(zoo, count) do
 end
 ```
 
-7. What if we want to save our list of animals to a file? Let's write a function
-that will do this for us:
+#### What if we want to save our list of animals to a file? Let's write a function that will do this for us:
 
 ```elixir
 @doc """
@@ -620,7 +611,7 @@ is what gets returned for our animals file:
 
 `�l   m   lionm   tigerm   gorillam   elephantm   monkeym   giraffej`
 
-8. Now let's write a function that will allow us to access that information again:
+#### Now let's write a function that will allow us to access that information again:
 
 ```elixir
 @doc """
@@ -630,6 +621,8 @@ load takes filename and returns a list of animals if the file exists
 
     iex> Animals.load("my_animals")
     ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+    iex> Animals.load("aglkjhdfg")
+    "File does not exist"
 
 """
 def load(filename) do
@@ -643,7 +636,7 @@ def load(filename) do
 end
 ```
 
-9. Pipe Operator. What if we wanted to call some of our functions in succession
+#### Pipe Operator. What if we wanted to call some of our functions in succession
 to another. Let's create a function that creates a zoo, randomises it and then
 returns a selected number of animals to go and see:
 
@@ -668,6 +661,68 @@ def selection(number_of_animals) do
   |> Animals.see_animals(number_of_animals)
 end
 ```
+
+Now that we have the functionality for our module, let's take a look at the documentation
+that we have written and how we can maximise its use.
+
+## Documentation
+
+When we created a new project with mix, it created a file for us called `mix.exs`
+which is referred to as the 'MixFile'. This file holds information about our
+project and its dependencies.
+
+At the bottom of the file it gives us a function called `deps` which manages all
+of the dependencies in our project. To install a third party package we need to
+manually write it in the deps function (*accepts a tuple of the package name and
+the version*) and then install it in the command line. Let's install `ex_doc` as
+an example:
+
+Add the following to the deps function in your `mix.exs` file:
+
+```elixir
+defp deps do
+  [
+    {:ex_doc, "~> 0.12"}
+  ]
+end
+```
+
+Then in the command line quit your `iex` shell and enter the following to install
+the `ex_docs` dependency:
+
+```bash
+> mix deps.get
+```
+
+You might receive an error saying: `Could not find Hex, which is needed to build dependency :ex_doc
+Shall I install Hex? (if running non-interactively, use: "mix local.hex --force") [Yn]`.
+If you do then just enter `y` and then press enter. This will install the
+dependencies that you need.
+
+Once `ex_docs` has been installed then run the following command to generate
+documentation (*make sure you're not in `iex`*):
+
+```bash
+> mix docs
+```
+
+This will generate documentation that can be viewed if you copy the file path of
+the `index.html` file within the newly created `doc` folder and then paste it in
+your browser. You should see something like the following:
+
+![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
+
+It looks exactly like the format of the official Elixir docs because they used the
+same tool to create theirs. Here is what the method documentation should look like
+if you click on `Animals`:
+
+![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
+![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
+
+This is an incredibly powerful tool that comes baked-in with elixir. It means that
+other developers who are joining the project can be brought up to speed incredibly
+quickly!
+
 
 ## Resources
 

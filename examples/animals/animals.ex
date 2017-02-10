@@ -84,6 +84,8 @@ defmodule Animals do
 
       iex> Animals.load("my_animals")
       ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+      iex> Animals.load("aglkjhdfg")
+      "File does not exist"
 
   """
   def load(filename) do
