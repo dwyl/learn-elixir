@@ -395,6 +395,280 @@ iex> Math.sum(1, 2)
 3
 ```
 
+## Generating your first Elixir project
+
+To get started with your first Elixir project you need to make use of the [Mix](https://hexdocs.pm/mix/Mix.html) build tool that comes straight out of the box. Mix allows you to do a number of things including:
+
+- Create projects
+- Compile projects
+- Run tasks
+  - Testing
+  - Generate documentation
+- Manage dependencies
+
+To generate a new project follow these steps:
+
+1. Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
+
+```bash
+> mix new [project_name]
+```
+We have chosen to call our project 'animals'
+
+This will create a new folder with the given name of your project and should also print something that looks like this to the command line:
+
+```bash
+* creating README.md
+* creating .gitignore
+* creating mix.exs
+* creating config
+* creating config/config.exs
+* creating lib
+* creating lib/animals.ex
+* creating test
+* creating test/test_helper.exs
+* creating test/animals_test.exs
+
+Your Mix project was created successfully.
+You can use "mix" to compile it, test it, and more:
+
+    cd animals
+    mix test
+
+Run "mix help" for more commands.
+```
+Navigate to your newly created directory:
+
+```bash
+> cd animals
+```
+Open the directory in your text editor. You will be able to see that Elixir has
+generated a few files for us that are specific to our project:
+
+- `lib/animals.ex`
+- `test/animals_test.ex`
+
+2. Open up the `animals.ex` file in the lib directory. You should already
+see some `hello-world` boilerplate like this:
+```elixir
+defmodule Animals do
+  @moduledoc """
+  Documentation for Animals.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Animals.hello
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
+```
+Elixir has created a module with the name of your project along with a function
+that prints out a `:world` atom when called. It's also added boilerplate for
+module and function documentation. (*we will go into more detail about
+  documentation later*)
+
+3. Let's test out the boilerplate code. In your project directory type the following
+command:
+
+```bash
+> iex -S mix
+```
+What this basically means is, "Start the elixir interactive terminal and compile
+with the context of my current project". This allows you to access modules and
+functions created within the file tree.
+
+Call the `hello-world` function given to us by Elixir. It should print out the
+`:world` atom to the command line:
+
+```bash
+> Animals.hello
+# :world
+```
+
+4. Let's start to create our own methods in the `Animals` module. Replace the
+`hello-world` method with the following:
+```elixir
+@doc """
+create_zoo returns a list of zoo animals
+
+## Examples
+
+    iex> Animals.create_zoo
+    ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+
+"""
+def create_zoo do
+  ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+end
+```
+To run our new code we will first have to recompile our `iex`. This can be done
+by typing:  
+```bash
+> recompile()
+```
+Now we will have access to the `create_zoo` method. Try it out in the command line:
+```bash
+> Animals.create_zoo
+# ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+```
+
+4. Let's extend the `Animals` module. Let's say that you're visiting the zoo but
+you can't decide which order to view the animals. We can create a `randomise` function
+that takes a list of animals and returns a new list with a random order:
+
+```elixir
+@doc """
+randomise takes a list of zoo animals and returns a new randomised list with
+the same elements as the first.
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.randomise(zoo)
+    ["monkey", "tiger", "elephant", "gorilla", "giraffe", "lion"]
+
+"""
+def randomise(zoo) do
+  Enum.shuffle(zoo)
+end
+```
+Note we are making use of a pre-built module called `Enum` which has a list of
+methods that you can use on enumerables such as lists. Documentation for `Enum`
+methods can be found [here](https://hexdocs.pm/elixir/Enum.html)
+
+5. Let's add another method to the `Animals` module. Let's say that we want to
+find out if our zoo contains an animal:
+
+```elixir
+@doc """
+contains? takes a list of zoo animals and a single animal and returns a boolean
+as to whether or not the list contains the given animal.
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.contains?(zoo, "gorilla")
+    true
+"""
+def contains?(zoo, animal) do
+  Enum.member?(zoo, animal)
+end
+```
+**NOTE: It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.**
+
+6. Pattern matching example: Let's create a function that takes a list of animals and
+the number of animals that you'd like to see and then returns a list of animals.
+
+```elixir
+@doc """
+see_animals takes a list of zoo animals and the number of animals that
+you want to see and then returns a list
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.see_animals(zoo, 2)
+    ["monkey", "giraffe"]
+"""
+def see_animals(zoo, count) do
+  # Enum.split returns a tuple so we have to pattern match on the result
+  # to get the value we want out
+  {_seen, to_see} = Enum.split(zoo, -count)
+  to_see
+end
+```
+
+7. What if we want to save our list of animals to a file? Let's write a function
+that will do this for us:
+
+```elixir
+@doc """
+save takes a list of zoo animals and a filename and saves the list to that file
+
+## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.save(zoo, "my_animals")
+    :ok
+"""
+def save(zoo, filename) do
+  # erlang is converting the zoo list to something that can be written to the
+  # file system
+  binary = :erlang.term_to_binary(zoo)
+  File.write(filename, binary)
+end
+```
+
+In your command line run the following:
+
+```bash
+> zoo = Animals.create_zoo
+> Animals.save(zoo, "my_animals")
+```
+This will create a new file in your file tree with the name of the file that
+you specified in the function. It will contain some odd characters for example this
+is what gets returned for our animals file:
+
+`�l   m   lionm   tigerm   gorillam   elephantm   monkeym   giraffej`
+
+8. Now let's write a function that will allow us to access that information again:
+
+```elixir
+@doc """
+load takes filename and returns a list of animals if the file exists
+
+## Examples
+
+    iex> Animals.load("my_animals")
+    ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+
+"""
+def load(filename) do
+  # here we are running a case expression on the result of File.read(filename)
+  # if we receive an :ok then we want to return the list
+  # if we receive an error then we want to give the user an error-friendly message
+  case File.read(filename) do
+    {:ok, binary} -> :erlang.binary_to_term(binary)
+    {:error, _reason} -> "File does not exist"
+  end
+end
+```
+
+9. Pipe Operator. What if we wanted to call some of our functions in succession
+to another. Let's create a function that creates a zoo, randomises it and then
+returns a selected number of animals to go and see:
+
+```elixir
+@doc """
+selection takes a number, creates a zoo, randomises it and then returns a list
+of animals of length selected
+
+## Examples
+
+    iex> Animals.selection(2)
+    ["gorilla", "giraffe"]
+
+"""
+def selection(number_of_animals) do
+  # We are using the pipe operator here. It takes the value returned from
+  # the expression and passes it down as the first argument in the expression
+  # below. see_animals takes two arguments but only one needs to be specified
+  # as the first is provided by the pipe operator
+  Animals.create_zoo
+  |> Animals.randomise
+  |> Animals.see_animals(number_of_animals)
+end
+```
+
 ## Resources
 
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
