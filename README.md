@@ -3,6 +3,17 @@
 Learn the Elixir _language_, designed to build dynamic, functional,
 scalable and maintainable web applications!
 
+## Contents
+- [Why?](#why)
+- [What?](#what)
+- [How?](#how)
+- [Handy Tips](#handy-tips)
+- [Basic Types](#basic-types)
+- [Functions and Modules](#functions-and-modules)
+- [Generate an Elixir Project](#generating-your-first-elixir-project)
+- [Documentation](#documentation)
+- [Testing](#testing)
+
 ## *Why*?
 
 Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
@@ -31,6 +42,7 @@ so "**real-time**" web apps are "_easy_"
 (_or at least **easier** than many other languages!_)
 + ***Zero-Downtime Deployment*** is a _reality_ without any DevOps gymnastics!!!
 
+***
 
 ## *What*?
 
@@ -73,6 +85,7 @@ https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
 http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
 
+***
 
 ## *How*?
 
@@ -117,6 +130,9 @@ If you want to see some information about a value in your code,
 type `i` followed by the value name:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
+
+***
+
 
 ## *Basic Types*
 
@@ -315,7 +331,10 @@ A long story short, for large lists or tuples:
 
 > source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
 
-## Functions and Modules
+***
+
+
+## *Functions and Modules*
 
 ### Anonymous functions
 
@@ -394,8 +413,10 @@ will be available (provided that `iex` is started
 iex> Math.sum(1, 2)
 3
 ```
+***
 
-## Generating your first Elixir project
+
+## *Generating your first Elixir project*
 
 To get started with your first Elixir project you need to make use of the [Mix](https://hexdocs.pm/mix/Mix.html) build tool that comes straight out of the box. Mix allows you to do a number of things including:
 
@@ -665,7 +686,10 @@ end
 Now that we have the functionality for our module, let's take a look at the documentation
 that we have written and how we can maximise its use.
 
-## Documentation
+***
+
+
+## *Documentation*
 
 When we created a new project with mix, it created a file for us called `mix.exs`
 which is referred to as the 'MixFile'. This file holds information about our
@@ -724,7 +748,10 @@ This is an incredibly powerful tool that comes baked-in with elixir. It means th
 other developers who are joining the project can be brought up to speed incredibly
 quickly!
 
-## Testing
+***
+
+
+## *Testing*
 
 When you generate a project with Elixir it automatically gives you a number of
 files and directories. One of these directories is called `test` and it holds two
@@ -768,9 +795,9 @@ test "randomise" do
 end
 ```
 
-**NOTE: you do not need to install and require any external testing frameworks.
+**NOTE:** you do not need to install and require any external testing frameworks.
 It all comes with the Elixir package. Simply write `test` followed by a string
-representing what you are trying to test and then write your assertion.**
+representing what you are trying to test and then write your assertion.
 
 The test above isn't completely air-tight. Elixir provides you with assertions that
 can help deal with things like this. The test could be re-written like so:
@@ -784,6 +811,7 @@ end
 
 This is basically saying "prove to be false that zoo is equal to Animals.randomise(zoo)"
 
+***
 
 ## Resources
 
