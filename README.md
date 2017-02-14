@@ -636,7 +636,9 @@ def load(filename) do
 end
 ```
 
-#### Pipe Operator. What if we wanted to call some of our functions in succession to another. Let's create a function that creates a zoo, randomises it and then returns a selected number of animals to go and see:
+#### Pipe Operator
+
+What if we wanted to call some of our functions in succession to another. Let's create a function that creates a zoo, randomises it and then returns a selected number of animals to go and see:
 
 ```elixir
 @doc """
