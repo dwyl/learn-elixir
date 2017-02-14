@@ -723,6 +723,83 @@ This is an incredibly powerful tool that comes baked-in with elixir. It means th
 other developers who are joining the project can be brought up to speed incredibly
 quickly!
 
+## Data Structures
+
+### Maps
+Maps are very similar to Object literals in JavaScript. They have almost the same
+syntax except for a `%` sign. They look like this:
+
+```elixir
+animal = %{
+  name: "Rex",
+  type: "dog",
+  legs: 4
+}
+```
+Values can be accessed in a couple of ways. The first is by dot notation just
+like JavaScript:
+
+```elixir
+name = animal.name
+# Rex
+```
+The second way values can be accessed is by pattern matching. Let's say we wanted
+to assign values to variables for each of the key-value pairs in the map. We
+would write something that looks like this:
+
+```elixir
+iex> %{
+  name: name,
+  type: type,
+  legs: legs
+} = animal
+# we now have access to the values by typing the variable names
+iex> name
+# "Rex"
+iex> type
+# "dog"
+iex> legs
+# 4
+```
+#### Updating a value inside a map
+Due to the immutability of Elixir, you cannot update a map using dot notation for
+example:
+
+```elixir
+iex> animal = %{
+  name: "Rex",
+  type: "dog",
+  legs: 4
+}
+iex> animal.name = "Max" # this cannot be done!
+```
+In Elixir we can only create new data structures as opposed to manipulating existing
+ones. So when we *update* a map, we are creating a new map with our new values.
+This can be done in a couple of ways:
+
+- Function
+- Syntax
+
+1. Using a function  
+We can update a map using `Map.put(map, key, value)`. This takes the map you want
+to update followed by the key we want to reassign and lastly the value that we want
+to reassign to the key:
+```elixir
+iex> updatedAnimal = Map.put(animal, :name, "Max")
+iex> updatedAnimal
+# %{legs: 4, name: "Max", type: "dog"}
+```
+
+2. Using syntax  
+We can use a special syntax for updating a map in Elixir. It looks like this:
+```elixir
+iex> %{animals | name: "Max"}
+# %{legs: 4, name: "Max", type: "dog"}
+```
+**NOTE: Unlike the function method above, this syntax can only be used to UPDATE
+a current key-value pair inside the map, it cannot add a new key value pair**
+
+
 
 ## Resources
 
