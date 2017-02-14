@@ -555,8 +555,8 @@ def contains?(zoo, animal) do
   Enum.member?(zoo, animal)
 end
 ```
-**NOTE: It's convention when writing a function that returns a boolean to add a question
-mark after the name of the method.**
+**NOTE:** It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.
 
 #### Pattern matching example: Let's create a function that takes a list of animals and the number of animals that you'd like to see and then returns a list of animals.
 
@@ -743,9 +743,9 @@ defmodule AnimalsTest do
   end
 end
 ```
-**NOTE: It automatically includes a line called `doctest Animals`. What this means
+**NOTE:** It automatically includes a line called `doctest Animals`. What this means
 is that it can run tests from the examples in the documentation that you write for
-your functions**
+your functions
 
 To run the tests enter the following in your terminal:
 `mix test`  
