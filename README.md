@@ -555,8 +555,8 @@ def contains?(zoo, animal) do
   Enum.member?(zoo, animal)
 end
 ```
-**NOTE: It's convention when writing a function that returns a boolean to add a question
-mark after the name of the method.**
+**NOTE:** It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.
 
 #### Pattern matching example: Let's create a function that takes a list of animals and the number of animals that you'd like to see and then returns a list of animals.
 
@@ -796,8 +796,8 @@ We can use a special syntax for updating a map in Elixir. It looks like this:
 iex> %{animals | name: "Max"}
 # %{legs: 4, name: "Max", type: "dog"}
 ```
-**NOTE: Unlike the function method above, this syntax can only be used to UPDATE
-a current key-value pair inside the map, it cannot add a new key value pair**
+**NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
+a current key-value pair inside the map, it cannot add a new key value pair
 
 
 
