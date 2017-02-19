@@ -3,6 +3,17 @@
 Learn the Elixir _language_, designed to build dynamic, functional,
 scalable and maintainable web applications!
 
+## Contents
+- [Why?](#why)
+- [What?](#what)
+- [How?](#how)
+- [Handy Tips](#handy-tips)
+- [Basic Types](#basic-types)
+- [Functions and Modules](#functions-and-modules)
+- [Generate an Elixir Project](#generating-your-first-elixir-project)
+- [Documentation](#documentation)
+- [Testing](#testing)
+
 ## *Why*?
 
 Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
@@ -97,7 +108,7 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 `sudo apt-get install esl-erlang`
 + **_Install_ Elixir**: `sudo apt-get install elixir`
 
-## *Handy Tips*
+## Handy Tips
 
 ### Interactive Terminal
 After installing Elixir you can open the interactive shell by typing `iex`.
@@ -118,7 +129,9 @@ type `i` followed by the value name:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
 
-## *Basic Types*
+
+
+## Basic Types
 
 Elixir has 7 basic types:
 
@@ -161,7 +174,7 @@ iex> rem 10, 3
 1
 ```
 
-### *Booleans*
+### Booleans
 
 Elixir supports `true` and `false` as booleans.
 
@@ -315,6 +328,8 @@ A long story short, for large lists or tuples:
 
 > source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
 
+
+
 ## Functions and Modules
 
 ### Anonymous functions
@@ -394,6 +409,7 @@ will be available (provided that `iex` is started
 iex> Math.sum(1, 2)
 3
 ```
+
 
 ## Generating your first Elixir project
 
@@ -555,8 +571,8 @@ def contains?(zoo, animal) do
   Enum.member?(zoo, animal)
 end
 ```
-**NOTE: It's convention when writing a function that returns a boolean to add a question
-mark after the name of the method.**
+**NOTE:** It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.
 
 #### Pattern matching example: Let's create a function that takes a list of animals and the number of animals that you'd like to see and then returns a list of animals.
 
@@ -636,9 +652,9 @@ def load(filename) do
 end
 ```
 
-#### Pipe Operator. What if we wanted to call some of our functions in succession
-to another. Let's create a function that creates a zoo, randomises it and then
-returns a selected number of animals to go and see:
+#### Pipe Operator
+
+What if we wanted to call some of our functions in succession to another? Let's create a function that creates a zoo, randomises it and then returns a selected number of animals to go and see:
 
 ```elixir
 @doc """
@@ -664,6 +680,8 @@ end
 
 Now that we have the functionality for our module, let's take a look at the documentation
 that we have written and how we can maximise its use.
+
+
 
 ## Documentation
 
@@ -708,7 +726,8 @@ documentation (*make sure you're not in `iex`*):
 
 This will generate documentation that can be viewed if you copy the file path of
 the `index.html` file within the newly created `doc` folder and then paste it in
-your browser. You should see something like the following:
+your browser. If you have added documentation to your module and functions as per
+the examples above, you should see something like the following:
 
 ![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
 
@@ -722,6 +741,68 @@ if you click on `Animals`:
 This is an incredibly powerful tool that comes baked-in with elixir. It means that
 other developers who are joining the project can be brought up to speed incredibly
 quickly!
+
+
+
+## Testing
+
+When you generate a project with Elixir it automatically gives you a number of
+files and directories. One of these directories is called `test` and it holds two
+files like should have names like:
+- `[project_name]_test.exs`
+- `test_helper.exs`
+
+Our first file was called `animals_test.exs` and it contained some boilerplate that
+looks like:
+
+```elixir
+defmodule AnimalsTest do
+  use ExUnit.Case
+  doctest Animals
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+end
+```
+**NOTE:** It automatically includes a line called `doctest Animals`. What this means
+is that it can run tests from the examples in the documentation that you write for
+your functions
+
+To run the tests enter the following in your terminal:
+`mix test`  
+It should print out whether the tests pass or fail.
+
+Let's add some tests of our own. Firstly let's write a test for the `Animals.randomise`
+function. The reason why we wouldn't want to write a doctest for this is because
+the output value changes everytime you call it. Here's how we would write a test
+for that type of function:
+
+In the `animals_test.exs` file, remove the boilerplate "the truth" test and then
+add this:
+
+```elixir
+test "randomise" do
+  zoo = Animals.create_zoo
+  assert zoo != Animals.randomise(zoo)
+end
+```
+
+**NOTE:** you do not need to install and require any external testing frameworks.
+It all comes with the Elixir package. Simply write `test` followed by a string
+representing what you are trying to test and then write your assertion.
+
+The test above isn't completely air-tight. Elixir provides you with assertions that
+can help deal with things like this. The test could be re-written like so:
+
+```elixir
+test "randomise" do
+  zoo = Animals.create_zoo
+  refute zoo == Animals.randomise(zoo)
+end
+```
+
+This is basically saying "prove to be false that zoo is equal to Animals.randomise(zoo)"
 
 
 ## Resources
