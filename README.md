@@ -4,7 +4,7 @@
 - [What?](#what)
 - [Why?](#why)
 - [How?](#how)
-- [Handy Tips](#handy-tips)
+- [Getting Started](#getting-started)
 - [Basic Types](#basic-types)
 - [Functions and Modules](#functions-and-modules)
 - [Generate an Elixir Project](#generating-your-first-elixir-project)
@@ -54,10 +54,12 @@ your system when things don't go as planned.
 
 ## *How*?
 
-How to install Elixir:
-http://elixir-lang.org/getting-started/introduction.html
+Before you learn Elixir as a language you will need to have it installed on your machine.
 
-### Installation basics:
+To do so you can go to
+http://elixir-lang.org/install.html or follow our guide here:
+
+### Installation:
 
 #### Mac:
 
@@ -65,17 +67,17 @@ http://elixir-lang.org/getting-started/introduction.html
 
 #### Ubuntu:
 
-+ **_Add_ the Erlang Solutions repo**:
++ **Add the Erlang Solutions repo**:
 
 ```
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
 ```
-+ _**Run**_: `sudo apt-get update`
-+ **_Install_ the Erlang/OTP platform and all of its applications**:
++ **Run**: `sudo apt-get update`
++ **Install the Erlang/OTP platform and all of its applications**:
 `sudo apt-get install esl-erlang`
-+ **_Install_ Elixir**: `sudo apt-get install elixir`
++ **Install Elixir**: `sudo apt-get install elixir`
 
-## Handy Tips
+## Getting Started
 
 ### Interactive Terminal
 After installing Elixir you can open the interactive shell by typing `iex`.
