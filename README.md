@@ -5,7 +5,7 @@
 - [Why?](#why)
 - [How?](#how)
 - [Learn Elixir](#learn-elixir)
-- [Commands]](#commands)
+- [Commands](#commands)
 - [Basic Types](#basic-types)
 - [Functions and Modules](#functions-and-modules)
 - [Generate an Elixir Project](#generating-your-first-elixir-project)
@@ -85,9 +85,7 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 + After installing Elixir you can open the interactive shell by typing `iex`.
 This allows you to type in any elixir expression and see the result in the terminal.
 
-+ Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it.
-
-E.g If you type `h round` into the (iex) terminal you should see
++ Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
 something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
@@ -112,7 +110,9 @@ This section brings together the key information from Elixir's
 [Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
 documentation and multiple other sources to further understanding.
 
-### *Working with numbers:*
+It will take you through some basic examples to practice using and familiarise yourself with Elixir's 7 basic types.
+
+### Numbers
 
 Try typing `1 + 2` into the terminal (after opening `iex`):
 ```elixir
@@ -155,7 +155,7 @@ iex> is_boolean(1)
 false
 ```
 
-### *Atoms*
+### Atoms
 
 Atoms are constants where their name is their own value
 (some other languages call these Symbols).
@@ -218,7 +218,7 @@ Thus, we can be sure that we will always have the lines returned to us
 and never a *nil* value (because it will throw an error).
 This becomes extremely useful when piping multiple methods together.
 
-### *Strings*
+### Strings
 
 Strings are surrounded by double quotes.
 
@@ -232,7 +232,7 @@ iex> IO.puts "Hello world"
 :ok
 ```
 
-### *Lists*
+### Lists
 
 Elixir uses square brackets to make a list.
 
@@ -256,7 +256,7 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html)
 module provides lots of useful functions.
 
-### *Tuples*
+### Tuples
 
 Elixir uses curly brackets to make a tuple.
 
@@ -281,7 +281,7 @@ in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module.
 If you must treat your tuple as a list,
 then convert it using `Tuple.to_list(your_tuple)`
 
-### *Lists or Tuples?*
+### Lists or Tuples?
 
 A long story short, for large lists or tuples:
 + `Updating` a `list` (adding or removing elements) is **fast**
