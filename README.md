@@ -12,6 +12,7 @@
 - [Testing](#testing)
 - [Data Structures](#data-structures)
   - [Maps](#maps)
+- [Further Resources](#further-resources)
 
 
 ## *What*?
@@ -19,30 +20,15 @@
 [_"Elixir is a dynamic, functional language designed for building scalable and
  maintainable applications."_](http://elixir-lang.org/)
 
-### Video Resources
+### Video Introductions
 
-These videos introduce Elixir nicely:
+If you have the time, these videos give a nice contextual introduction into what Elixir is, what it's used for and how it works:
 
 <!-- note we should update this once we have
 made our *own* intro to Elixir vid! -->
 
 - Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins)
-- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s)(58 mins)
-
-#### Further resources:
-
-- Then if you want to know what's _next_ it's worth watching [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
-by **José Valim** (the creator of Elixir)
-
-+ _Interview_ with **José Valim** (_the creator of Elixir_) on _why_ he made it!
-https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
-+ What was "_wrong_" with just writing directly in Erlang? read:
-http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
-
-> While Elixir by _itself_ is pretty _amazing_,
-where the **_language_ really _shines_** is in the Phoenix Web Framework!!
-So _once_ you know the _basics_ of the _language_,
-https://github.com/dwyl/learn-phoenix-web-development
+- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins)
 
 ## *Why*?
 
@@ -892,3 +878,18 @@ to define a `function` (_and both have specific use-cases_),
 which is _way_ easier to explain to a _beginner_ than the JS approach.
 see:
 http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
+
+## Further resources:
+
+- Then if you want to know what's _next_ it's worth watching [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
+by **José Valim** (the creator of Elixir)
+
++ _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
+https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
++ What was "_wrong_" with just writing directly in Erlang? read:
+http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
+
++ While Elixir by _itself_ is pretty _amazing_,
+where the language really shines is in the **Phoenix Web Framework**!!
+So once you know the basics of the language take a look at:
+https://github.com/dwyl/learn-phoenix-web-development
