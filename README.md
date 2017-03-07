@@ -32,31 +32,25 @@ made our *own* intro to Elixir vid! -->
 
 ## *Why*?
 
-Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
+### Key Advantages
++ Scalable
++ **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
++ Much better "_garbage collection_" than virtually any other VM
++ Many tiny processes (as opposed to "threads"
+which are more difficult to manage)
++ **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
++ [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
+![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
++ **High reliability, availability and fault tolerance** (_because of Erlang_)
+means apps built with elixir are run in production for **years**
+without any "_downtime_"!
++ **Zero-downtime deployment** is a _reality_ without any DevOps gymnastics!!!
++ Real-time web apps are "_easy_"
+(_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
+
+Things *will* go wrong with
 code, and Elixir provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
-
-There are **_many_ reasons** to learn elixir
-and _use_ it for your next project!
-
-### Key Advantages
-
-+ Elixir is ***compiled*** and runs on the **Erlang VM** ("BEAM") which has been
-_demostrated_ to be ***incredibly efficient***! see:
-http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
-+ Many tiny processes (_as opposed to "threads"
-which are more difficult to manage_)
-+ Much better "_garbage collection_" than virtually any other VM
-+ ***Functional*** language with _dynamic_ typing
-+ ***Immutable Data*** so "***State***" is ***always predictable***! <br />
-![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
-+ ***High Reliability, Availability and Fault Tolerance*** (_because of Erlang_)
-means apps built with elixir are run in production for ***Years***
-without any "_downtime_"!
-+ **WebSockets & Streaming** are baked-in
-so "**real-time**" web apps are "_easy_"
-(_or at least **easier** than many other languages!_)
-+ ***Zero-Downtime Deployment*** is a _reality_ without any DevOps gymnastics!!!
 
 ## *How*?
 
