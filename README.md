@@ -4,7 +4,8 @@
 - [What?](#what)
 - [Why?](#why)
 - [How?](#how)
-- [Getting Started](#getting-started)
+- [Learn Elixir](#learn-elixir)
+- [Commands]](#commands)
 - [Basic Types](#basic-types)
 - [Functions and Modules](#functions-and-modules)
 - [Generate an Elixir Project](#generating-your-first-elixir-project)
@@ -77,28 +78,23 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 `sudo apt-get install esl-erlang`
 + **Install Elixir**: `sudo apt-get install elixir`
 
-## Getting Started
+## Learn Elixir
 
-### Interactive Terminal
-After installing Elixir you can open the interactive shell by typing `iex`.
-You can now type in any elixir expression and see the result in the terminal.
+## Commands
 
-### Function Documentation
-If you want to see some information about a built-in function you can
-just type `h` and the `function` name to get information on how to use it!
++ After installing Elixir you can open the interactive shell by typing `iex`.
+This allows you to type in any elixir expression and see the result in the terminal.
 
-Try typing `h round` into the (iex) terminal and you should see
++ Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it.
+
+E.g If you type `h round` into the (iex) terminal you should see
 something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
-### Information about values
-If you want to see some information about a value in your code,
-type `i` followed by the value name:
++ Typing `i` followed by the value name will give you information about a value in your code:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
-
-
 
 ## Basic Types
 
