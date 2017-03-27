@@ -34,7 +34,8 @@ made our *own* intro to Elixir vid! -->
 ## *Why*?
 
 ### Key Advantages
-+ Scalable
++ **Scalability**
++ **Speed**
 + **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
 + Much better "_garbage collection_" than virtually any other VM
 + Many tiny processes (as opposed to "threads"
