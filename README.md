@@ -184,7 +184,7 @@ iex> :crypto.rand_bytes 3
 ```
 
 One popular use of atoms in Elixir is to use them as messages
-for pattern matching.
+for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
 Let's say you have a function which processes an `http` request.
 The outcome of this process is either going to be a success or an error.
 You could therefore use atoms to indicate whether
