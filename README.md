@@ -96,7 +96,11 @@ something like this:
 
 ## Basic Types
 
-Elixir has 7 basic types:
+This section brings together the key information from Elixir's
+[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
+documentation and multiple other sources. It will take you through some examples to practice using and familiarise yourself with Elixir's 7 basic types.
+
+Elixir's 7 basic types:
 
 * `integers`
 * `floats`
@@ -105,12 +109,6 @@ Elixir has 7 basic types:
 * `strings`
 * `lists`
 * `tuples`
-
-This section brings together the key information from Elixir's
-[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
-documentation and multiple other sources to further understanding.
-
-It will take you through some basic examples to practice using and familiarise yourself with Elixir's 7 basic types.
 
 ### Numbers
 
