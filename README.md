@@ -588,7 +588,7 @@ This will create a new file in your file tree with the name of the file that
 you specified in the function. It will contain some odd characters for example this
 is what gets returned for our animals file:
 
-`�l   m   lionm   tigerm   gorillam   elephantm   monkeym   giraffej`
+�l\\&#0;&#0;&#0;&#6;m&#0;&#0;&#0;&#4;lionm&#0;&#0;&#0;&#5;tigerm&#0;&#0;&#0;&#7;gorillam&#0;&#0;&#0;&#8;elephantm&#0;&#0;&#0;&#6;monkeym&#0;&#0;&#0;&#7;giraffej
 
 #### Now let's write a function that will allow us to access that information again:
 
