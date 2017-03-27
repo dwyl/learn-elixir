@@ -321,7 +321,7 @@ true
 This uses the inbuilt function `is_function` which checks to see if
 the parameter passed is a function and returns a bool.
 
-Anonymous functions are closures (_named_ functions are not)
+Anonymous functions are [closures](https://developer.mozilla.org/en/docs/Web/JavaScript/Closures) (_named_ functions are not)
 and as such they can access variables
 that are in scope when the function is defined.
 You can define a new anonymous function that uses the `add`
@@ -353,7 +353,7 @@ defmodule Math do
   end
 end
 ```
-In order to create your own modules in Elixir, use the `defmodule` macro,
+In order to create your own modules in Elixir, use the `defmodule` [macro](https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=what+is+a+macro&*),
 then use the `def` macro to define functions in that module.
 So in this case the module is `Math` and the function is `sum`.
 
