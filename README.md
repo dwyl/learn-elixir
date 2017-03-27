@@ -37,7 +37,7 @@ made our *own* intro to Elixir vid! -->
 + **Scalability**
 + **Speed**
 + **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
-+ Much better "_garbage collection_" than virtually any other VM
++ Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
 + Many tiny processes (as opposed to "threads"
 which are more difficult to manage)
 + **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
