@@ -46,7 +46,6 @@ which are more difficult to manage)
 + **High reliability, availability and fault tolerance** (_because of Erlang_)
 means apps built with elixir are run in production for **years**
 without any "_downtime_"!
-+ **Zero-downtime deployment** is a _reality_ without any DevOps gymnastics!!!
 + Real-time web apps are "_easy_"
 (_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
 
