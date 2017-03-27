@@ -112,13 +112,13 @@ Elixir's 7 basic types:
 
 ### Numbers
 
-Try typing `1 + 2` into the terminal (after opening `iex`):
+Type `1 + 2` into the terminal (after opening `iex`):
 ```elixir
 iex> 1 + 2
 3
 ```
 
-Some more examples:
+More examples:
 
 ```elixir
 iex> 5 * 5
