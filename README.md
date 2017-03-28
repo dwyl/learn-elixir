@@ -251,8 +251,8 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 [1, 2, 3, true]
 ```
 
-Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html)
-module provides lots of useful functions.
+Lists are [enumerable](https://github.com/dwyl/learn-elixir/issues/39) and can use the [Enum](https://hexdocs.pm/elixir/Enum.html)
+module to perform iterative functions such as mapping.
 
 ### Tuples
 
@@ -274,8 +274,8 @@ iex> tuple_size(tuple)
 2
 ```
 
-Tuples are not enumerable and there are far fewer functions available
-in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module.
+Tuples are [not enumerable](https://github.com/dwyl/learn-elixir/issues/39) and there are far fewer functions available
+in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but you cannot iterate over them.
 If you must treat your tuple as a list,
 then convert it using `Tuple.to_list(your_tuple)`
 
