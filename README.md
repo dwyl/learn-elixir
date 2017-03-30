@@ -13,6 +13,7 @@
 - [Testing](#testing)
 - [Data Structures](#data-structures)
   - [Maps](#maps)
+- [Elixir Resources](#elixir-resources)
 - [Further Resources](#further-resources)
 
 
