@@ -275,13 +275,15 @@ iex> tuple_size(tuple)
 ```
 
 Tuples are [not enumerable](https://github.com/dwyl/learn-elixir/issues/39) and there are far fewer functions available
-in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but you cannot iterate over them.
+in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but [you cannot iterate over them](https://github.com/dwyl/learn-elixir/issues/39).
 If you must treat your tuple as a list,
 then convert it using `Tuple.to_list(your_tuple)`
 
 ### Lists or Tuples?
 
-A long story short, for large lists or tuples:
+If you need to iterate over the values use a list.
+
+When dealing with **large** lists or tuples:
 + `Updating` a `list` (adding or removing elements) is **fast**
 + `Updating` a `tuple` is **slow**
 
