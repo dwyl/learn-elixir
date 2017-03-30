@@ -28,9 +28,11 @@ If you have the time, these videos give a nice contextual introduction into what
 <!-- note we should update this once we have
 made our *own* intro to Elixir vid! -->
 
-+ Code School's free [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins of videos plus exercises, totalling 90mins).
-- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins)
-- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins)
+- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
+- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
+- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+
+Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things Elixir :book: :heart:.
 
 ## *Why*?
 
