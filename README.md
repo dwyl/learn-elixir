@@ -28,6 +28,7 @@ If you have the time, these videos give a nice contextual introduction into what
 <!-- note we should update this once we have
 made our *own* intro to Elixir vid! -->
 
++ Code School's free [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins of videos plus exercises, totalling 90mins).
 - Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins)
 - Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins)
 
@@ -848,7 +849,6 @@ a current key-value pair inside the map, it cannot add a new key value pair.
 
 ## Elixir Resources
 
-+ An introduction to Elixir: https://www.codeschool.com/courses/try-elixir
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
 + Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
 + Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
