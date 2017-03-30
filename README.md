@@ -13,7 +13,6 @@
 - [Testing](#testing)
 - [Data Structures](#data-structures)
   - [Maps](#maps)
-- [Elixir Resources](#elixir-resources)
 - [Further Resources](#further-resources)
 
 
@@ -850,14 +849,6 @@ iex> %{animals | name: "Max"}
 **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
 a current key-value pair inside the map, it cannot add a new key value pair.
 
-## Elixir Resources
-
-+ Crash Course in Elixir: http://elixir-lang.org/crash-course.html
-+ Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
-+ Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
-+ List of _way_ more useful resources and sample apps:
-https://github.com/h4cc/awesome-elixir
-
 ## tl;dr
 
 > ***Note***: this is _definately **not**_ a "_reason_" to switch programming
@@ -877,15 +868,16 @@ http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions
 
 ## Further resources:
 
-- Then if you want to know what's _next_ it's worth watching [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
++ [Crash Course in Elixir](http://elixir-lang.org/crash-course.html)
++ [Explanation video of **Pattern Matching** in Elixir](http://worldwide.chat/)
++ Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
++ List of more [useful resources and sample apps](https://github.com/h4cc/awesome-elixir)
++ If you want to know what's _next_ it's worth check out [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
 by **José Valim** (the creator of Elixir)
-
 + _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
 https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
 http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
-
 + While Elixir by _itself_ is pretty _amazing_,
 where the language really shines is in the **Phoenix Web Framework**!!
-So once you know the basics of the language take a look at:
-https://github.com/dwyl/learn-phoenix-web-development
+So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
