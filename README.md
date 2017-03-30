@@ -846,8 +846,9 @@ iex> %{animals | name: "Max"}
 **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
 a current key-value pair inside the map, it cannot add a new key value pair.
 
-## Resources
+## Elixir Resources
 
++ An introduction to Elixir: https://www.codeschool.com/courses/try-elixir
 + Crash Course in Elixir: http://elixir-lang.org/crash-course.html
 + Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
 + Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
