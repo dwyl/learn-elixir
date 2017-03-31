@@ -16,24 +16,6 @@
 - [Further Resources](#further-resources)
 
 
-## *What*?
-
-[_"Elixir is a dynamic, functional language designed for building scalable and
- maintainable applications."_](http://elixir-lang.org/)
-
-### Video Introductions
-
-If you have the time, these videos give a nice contextual introduction into what Elixir is, what it's used for and how it works:
-
-<!-- note we should update this once we have
-made our *own* intro to Elixir vid! -->
-
-- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
-- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
-- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
-
-Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things Elixir :book: :heart:.
-
 ## *Why*?
 
 ### Key Advantages
@@ -55,6 +37,24 @@ without any "_downtime_"!
 Things *will* go wrong with
 code, and Elixir provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
+
+## *What*?
+
+[_"Elixir is a dynamic, functional language designed for building scalable and
+ maintainable applications."_](http://elixir-lang.org/)
+
+### Video Introductions
+
+If you have the time, these videos give a nice contextual introduction into what Elixir is, what it's used for and how it works:
+
+<!-- note we should update this once we have
+made our *own* intro to Elixir vid! -->
+
+- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
+- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
+- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+
+Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things Elixir :book: :heart:.
 
 ## *How*?
 
