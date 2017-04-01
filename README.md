@@ -1,13 +1,11 @@
 # Learn ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
 
-Learn the Elixir _language_, designed to build dynamic, functional,
-scalable and maintainable web applications!
-
 ## Contents
 - [Why?](#why)
 - [What?](#what)
 - [How?](#how)
-- [Handy Tips](#handy-tips)
+- [Learn Elixir](#learn-elixir)
+- [Commands](#commands)
 - [Basic Types](#basic-types)
 - [Functions and Modules](#functions-and-modules)
 - [Generate an Elixir Project](#generating-your-first-elixir-project)
@@ -15,84 +13,57 @@ scalable and maintainable web applications!
 - [Testing](#testing)
 - [Data Structures](#data-structures)
   - [Maps](#maps)
+- [Further Resources](#further-resources)
+
 
 ## *Why*?
 
-Elixir is scalable, efficient, and fault-tolerant. Things *will* go wrong with
+### Key Advantages
++ **Scalability**
++ **Speed**
++ **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
++ Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
++ Many tiny processes (as opposed to "threads"
+which are more difficult to manage)
++ **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
++ [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
+![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
++ **High reliability, availability and fault tolerance** (_because of Erlang_)
+means apps built with elixir are run in production for **years**
+without any "_downtime_"!
++ Real-time web apps are "_easy_"
+(_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
+
+Things *will* go wrong with
 code, and Elixir provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
 
-There are **_many_ reasons** to learn elixir
-and _use_ it for your next project!
-
-### Key Advantages
-
-+ Elixir is ***compiled*** and runs on the **Erlang VM** ("BEAM") which has been
-_demostrated_ to be ***incredibly efficient***! see:
-http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
-+ Many tiny processes (_as opposed to "threads"
-which are more difficult to manage_)
-+ Much better "_garbage collection_" than virtually any other VM
-+ ***Functional*** language with _dynamic_ typing
-+ ***Immutable Data*** so "***State***" is ***always predictable***! <br />
-![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
-+ ***High Reliability, Availability and Fault Tolerance*** (_because of Erlang_)
-means apps built with elixir are run in production for ***Years***
-without any "_downtime_"!
-+ **WebSockets & Streaming** are baked-in
-so "**real-time**" web apps are "_easy_"
-(_or at least **easier** than many other languages!_)
-+ ***Zero-Downtime Deployment*** is a _reality_ without any DevOps gymnastics!!!
-
-
 ## *What*?
 
-[_**"Elixir is a dynamic, functional language designed for building scalable and
- maintainable applications."**_](http://elixir-lang.org/)
+[_"Elixir is a dynamic, functional language designed for building scalable and
+ maintainable applications."_](http://elixir-lang.org/)
 
-### Video Introduction
+### Video Introductions
 
-If you have a few minutes, probably the _easiest_ way to get _up-to-speed_
-with what Elixir is <br />
-(_and why we are **really excited** about it_),
-is Pete Broderick's ***Intro to Elixir***: https://youtu.be/lly-1UYmnFI
+If you have the time, these videos give a nice contextual introduction into what Elixir is, what it's used for and how it works:
 
 <!-- note we should update this once we have
 made our *own* intro to Elixir vid! -->
 
-[![Pete Broderick - Intro to Elixir](https://cloud.githubusercontent.com/assets/194400/22414349/b41a24f0-e6b6-11e6-8e6e-6eb0c9ad188f.png)](https://youtu.be/lly-1UYmnFI "Click to Watch")
+- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
+- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
+- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
 
-Another _fantastic_ introduction is: Jessica Kerr's <br />
-***Elixir Should Take Over the World***: https://youtu.be/X25xOhntr6s
-
-[![Jessica Kerr - Elixir Should Take Over the World](https://cloud.githubusercontent.com/assets/194400/22414453/7dad1232-e6b7-11e6-8399-ccac3d1b9446.png)](https://youtu.be/X25xOhntr6s "Why Elixir should take over the World!")
-
-Then if you want to know what's _next_ it's worth watching  <br />
-***What's Ahead for Elixir?***
-by **José Valim** (_the creator of Elixir_): https://youtu.be/A60nxws_iVs
-
-[![José Valim - What's Ahead for Elixir?](https://cloud.githubusercontent.com/assets/194400/22414818/8ef48248-e6ba-11e6-8b24-6643fc180f72.png)](https://youtu.be/A60nxws_iVs "What's Ahead for Elixir?")
-
-> While Elixir by _itself_ is pretty _amazing_,
-where the **_language_ really _shines_** is in the Phoenix Web Framework!!
-So _once_ you know the _basics_ of the _language_,
-https://github.com/dwyl/learn-phoenix-web-development
-
-
-### Background links:
-
-+ _Interview_ with **José Valim** (_the creator of Elixir_) on _why_ he made it!
-https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
-+ What was "_wrong_" with just writing directly in Erlang? read:
-http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
-
+Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things Elixir :book: :heart:.
 
 ## *How*?
 
-How to install Elixir:
-http://elixir-lang.org/getting-started/introduction.html
+Before you learn Elixir as a language you will need to have it installed on your machine.
 
-### Installation basics:
+To do so you can go to
+http://elixir-lang.org/install.html or follow our guide here:
+
+### Installation:
 
 #### Mac:
 
@@ -100,42 +71,39 @@ http://elixir-lang.org/getting-started/introduction.html
 
 #### Ubuntu:
 
-+ **_Add_ the Erlang Solutions repo**:
++ **Add the Erlang Solutions repo**:
 
 ```
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
 ```
-+ _**Run**_: `sudo apt-get update`
-+ **_Install_ the Erlang/OTP platform and all of its applications**:
++ **Run**: `sudo apt-get update`
++ **Install the Erlang/OTP platform and all of its applications**:
 `sudo apt-get install esl-erlang`
-+ **_Install_ Elixir**: `sudo apt-get install elixir`
++ **Install Elixir**: `sudo apt-get install elixir`
 
-## Handy Tips
+## Learn Elixir
 
-### Interactive Terminal
-After installing Elixir you can open the interactive shell by typing `iex`.
-You can now type in any elixir expression and see the result in the terminal.
+## Commands
 
-### Function Documentation
-If you want to see some information about a built-in function you can
-just type `h` and the `function` name to get information on how to use it!
++ After installing Elixir you can open the interactive shell by typing `iex`.
+This allows you to type in any elixir expression and see the result in the terminal.
 
-Try typing `h round` into the (iex) terminal and you should see
++ Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
 something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
-### Information about values
-If you want to see some information about a value in your code,
-type `i` followed by the value name:
++ Typing `i` followed by the value name will give you information about a value in your code:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
 
-
-
 ## Basic Types
 
-Elixir has 7 basic types:
+This section brings together the key information from Elixir's
+[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
+documentation and multiple other sources. It will take you through some examples to practice using and familiarise yourself with Elixir's 7 basic types.
+
+Elixir's 7 basic types:
 
 * `integers`
 * `floats`
@@ -145,19 +113,15 @@ Elixir has 7 basic types:
 * `lists`
 * `tuples`
 
-This section brings together the key information from Elixir's
-[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
-documentation and multiple other sources to further understanding.
+### Numbers
 
-### *Working with numbers:*
-
-Try typing `1 + 2` into the terminal (after opening `iex`):
+Type `1 + 2` into the terminal (after opening `iex`):
 ```elixir
 iex> 1 + 2
 3
 ```
 
-Some more examples:
+More examples:
 
 ```elixir
 iex> 5 * 5
@@ -192,7 +156,7 @@ iex> is_boolean(1)
 false
 ```
 
-### *Atoms*
+### Atoms
 
 Atoms are constants where their name is their own value
 (some other languages call these Symbols).
@@ -223,7 +187,7 @@ iex> :crypto.rand_bytes 3
 ```
 
 One popular use of atoms in Elixir is to use them as messages
-for pattern matching.
+for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
 Let's say you have a function which processes an `http` request.
 The outcome of this process is either going to be a success or an error.
 You could therefore use atoms to indicate whether
@@ -255,7 +219,7 @@ Thus, we can be sure that we will always have the lines returned to us
 and never a *nil* value (because it will throw an error).
 This becomes extremely useful when piping multiple methods together.
 
-### *Strings*
+### Strings
 
 Strings are surrounded by double quotes.
 
@@ -269,7 +233,7 @@ iex> IO.puts "Hello world"
 :ok
 ```
 
-### *Lists*
+### Lists
 
 Elixir uses square brackets to make a list.
 
@@ -290,10 +254,10 @@ iex> [1, true, 2, false, 3, true] -- [true, false]
 [1, 2, 3, true]
 ```
 
-Lists are enumerable, the [Enum](https://hexdocs.pm/elixir/Enum.html)
-module provides lots of useful functions.
+Lists are [enumerable](https://github.com/dwyl/learn-elixir/issues/39) and can use the [Enum](https://hexdocs.pm/elixir/Enum.html)
+module to perform iterative functions such as mapping.
 
-### *Tuples*
+### Tuples
 
 Elixir uses curly brackets to make a tuple.
 
@@ -313,14 +277,16 @@ iex> tuple_size(tuple)
 2
 ```
 
-Tuples are not enumerable and there are far fewer functions available
-in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module.
+Tuples are [not enumerable](https://github.com/dwyl/learn-elixir/issues/39) and there are far fewer functions available
+in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but [you cannot iterate over them](https://github.com/dwyl/learn-elixir/issues/39).
 If you must treat your tuple as a list,
 then convert it using `Tuple.to_list(your_tuple)`
 
-### *Lists or Tuples?*
+### Lists or Tuples?
 
-A long story short, for large lists or tuples:
+If you need to iterate over the values use a list.
+
+When dealing with **large** lists or tuples:
 + `Updating` a `list` (adding or removing elements) is **fast**
 + `Updating` a `tuple` is **slow**
 
@@ -360,7 +326,7 @@ true
 This uses the inbuilt function `is_function` which checks to see if
 the parameter passed is a function and returns a bool.
 
-Anonymous functions are closures (_named_ functions are not)
+Anonymous functions are [closures](https://developer.mozilla.org/en/docs/Web/JavaScript/Closures) (_named_ functions are not)
 and as such they can access variables
 that are in scope when the function is defined.
 You can define a new anonymous function that uses the `add`
@@ -392,7 +358,7 @@ defmodule Math do
   end
 end
 ```
-In order to create your own modules in Elixir, use the `defmodule` macro,
+In order to create your own modules in Elixir, use the `defmodule` [macro](https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=what+is+a+macro&*),
 then use the `def` macro to define functions in that module.
 So in this case the module is `Math` and the function is `sum`.
 
@@ -883,14 +849,6 @@ iex> %{animals | name: "Max"}
 **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
 a current key-value pair inside the map, it cannot add a new key value pair.
 
-## Resources
-
-+ Crash Course in Elixir: http://elixir-lang.org/crash-course.html
-+ Explanation video of Pattern Matching in Elixir: http://worldwide.chat/
-+ Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
-+ List of _way_ more useful resources and sample apps:
-https://github.com/h4cc/awesome-elixir
-
 ## tl;dr
 
 > ***Note***: this is _definately **not**_ a "_reason_" to switch programming
@@ -907,3 +865,19 @@ to define a `function` (_and both have specific use-cases_),
 which is _way_ easier to explain to a _beginner_ than the JS approach.
 see:
 http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
+
+## Further resources:
+
++ [Crash Course in Elixir](http://elixir-lang.org/crash-course.html)
++ [Explanation video of **Pattern Matching** in Elixir](http://worldwide.chat/)
++ Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
++ List of more [useful resources and sample apps](https://github.com/h4cc/awesome-elixir)
++ If you want to know what's _next_ it's worth check out [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
+by **José Valim** (the creator of Elixir)
++ _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
+https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
++ What was "_wrong_" with just writing directly in Erlang? read:
+http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
++ While Elixir by _itself_ is pretty _amazing_,
+where the language really shines is in the **Phoenix Web Framework**!!
+So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
