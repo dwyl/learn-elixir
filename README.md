@@ -1,8 +1,8 @@
 # Learn ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
 
 ## Contents
-- [What?](#what)
 - [Why?](#why)
+- [What?](#what)
 - [How?](#how)
 - [Learn Elixir](#learn-elixir)
 - [Commands](#commands)
