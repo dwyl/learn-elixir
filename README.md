@@ -878,6 +878,12 @@ by **José Valim** (the creator of Elixir)
 https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
 http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
++ [The Complete Phoenix and Elixir Bootcamp](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/)
+on udemy is a great video series for learning and reinforcing the basics of
+Elixir. The Elixir sections (1-6) are really useful, but for Phoenix it may
+be better to start with our
+[learn-phoenix-framework](https://github.com/dwyl/learn-phoenix-framework)
+repo as the udemy tutorial uses an older version of Phoenix
 + While Elixir by _itself_ is pretty _amazing_,
 where the language really shines is in the **Phoenix Web Framework**!!
 So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
