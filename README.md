@@ -113,22 +113,16 @@ Elixir's 7 basic types:
 * `lists`
 * `tuples`
 
-### Truthiness in Elixir
+### Truthiness
 
 All values / types in Elixir apart from `nil` and `false` are truthy:
 
 ```ex
-if 0 do
-  "This is happening" 
-end # "This is happening"
+if 0 do "This is happening" end # "This is happening"
 
-if "False" do
-  "This is still happening"
-end # "This is still happening"
+if "False" do "This is still happening" end # "This is still happening"
 
-if false do
-  "Not happening"
-end # nil
+if false do "Not happening" end # nil
 ```
 
 ### Numbers
