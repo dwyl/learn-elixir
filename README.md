@@ -137,7 +137,7 @@ More examples:
 
 ```elixir
 iex> 5 * 5
-10
+25
 iex> 10 / 2
 5.0
 
