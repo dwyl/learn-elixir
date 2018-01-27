@@ -83,8 +83,14 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 
 #### Windows:
 
-+ Using Chocolatey: `choco install elixir`
-+ [Download Installer](https://repo.hex.pm/elixir-websetup.exe)
++ **Web installer**
+  + [Download the installer](https://repo.hex.pm/elixir-websetup.exe)
+  + Click next, next, ..., finish
+
++ **Chocolatey** (_Package Manager_)
+```
+choco install elixir
+```
 
 ## Learn Elixir
 
