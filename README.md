@@ -81,6 +81,11 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 `sudo apt-get install esl-erlang`
 + **Install Elixir**: `sudo apt-get install elixir`
 
+#### Windows:
+
++ Using Chocolatey: `choco install elixir`
++ [Download Installer](https://repo.hex.pm/elixir-websetup.exe)
+
 ## Learn Elixir
 
 ## Commands
