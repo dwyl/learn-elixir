@@ -906,4 +906,4 @@ http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.
 + While Elixir by _itself_ is pretty _amazing_,
 where the language really shines is in the **Phoenix Web Framework**!!
 So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
-+ Want to contribute to the Elixir ecosystem? Try to find a good place to dive in with [Extracurricular](extracurricular.elixirschool.com), which highlights issues for Elixir projects across all skill levels.
++ Want to contribute to the Elixir ecosystem? Try to find a good place to dive in with [Extracurricular](https://extracurricular.elixirschool.com/), which highlights issues for Elixir projects across all skill levels.
