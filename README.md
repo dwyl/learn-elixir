@@ -11,6 +11,7 @@
 - [Generate an Elixir Project](#generating-your-first-elixir-project)
 - [Documentation](#documentation)
 - [Testing](#testing)
+- [Formatting](#formatting )
 - [Data Structures](#data-structures)
   - [Maps](#maps)
 - [Further Resources](#further-resources)
@@ -794,6 +795,63 @@ end
 ```
 
 This is basically saying "prove to be false that zoo is equal to Animals.randomise(zoo)"
+
+## Formatting
+
+In Elixir version 1.6 the `mix format` task was introduced.
+It is a _built-in_ way to format your Elixir code
+according to the community-agreed standard.
+Which means _all_ code will look consistent across projects
+(_personal, "work" & hex.pm packages_)
+which makes learning faster and maintainability easier!
+At present, using the formatter is _optional_,
+however _most_ Elixir projects have adopted it.
+
+To _use_ the mix task in your project,
+you can either check files _individually_, e.g:
+```sh
+mix format path/to/file.ex
+```
+
+Or you can define a _pattern_ for types of files
+you want to check the format of:
+```sh
+mix format "lib/**/*.{ex,exs}"
+```
+To check all the `.ex` and `.exs` files in the `lib/` directory.
+Having to type this pattern each time
+you want to check the files is _tedious_.
+Thankfully you can define the pattern in a config file
+and then simply run `mix format`
+and the pattern is read from the file.
+
+In the root of your Elixir project, create a `.formatter.exs`
+config file and paste the following:
+```elixir
+[
+  inputs: ["mix.exs", "{config,lib,test}/**/*.{ex,exs}"]
+]
+```
+Now when you run `mix format` it will check the `mix.exs` file
+and _all_ `.ex` and `.exs` files in the `config`, `lib/` and `test` directories.
+
+This is the most common pattern for running mix format.
+Unless you have a _reason_ to "deviate" from it, it's a good practice to follow.
+
+There is an easy way to "_fix_" any Elixir code
+that does not meet the formatting guidelines,
+simply run:
+```sh
+mix format
+```
+And your code will be cleaned up.
+
++ Read the source:
+https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.ex
++ https://hashrocket.com/blog/posts/format-your-elixir-code-now
++ https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
+
+
 
 
 ## Data Structures
