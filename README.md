@@ -799,9 +799,11 @@ This is basically saying "prove to be false that zoo is equal to Animals.randomi
 ## Formatting
 
 In Elixir version 1.6 the `mix format` task was introduced.
-It is a _built-in_ way to format your Elixir code
-according to the community-agreed standard.
-Which means _all_ code will look consistent across projects
+see: https://github.com/elixir-lang/elixir/issues/6643
+
+`mix format` a _built-in_ way to format your Elixir code
+according to the community-agreed consistent style.
+This means _all_ code will look consistent across projects
 (_personal, "work" & hex.pm packages_)
 which makes learning faster and maintainability easier!
 At present, using the formatter is _optional_,
@@ -846,7 +848,14 @@ mix format
 ```
 And your code will be cleaned up.
 
-+ Read the source:
+We recommend installing a plugin in your Text Editor to auto-format:
++ **Atom** Text Editor Auto-formatter:
+https://atom.io/packages/atom-elixir-formatter
++ Vim Elixir Fomatter: https://github.com/mhinz/vim-mix-format
++ VSCode:
+https://marketplace.visualstudio.com/items?itemName=sammkj.vscode-elixir-formatter
+
++ Read the `mix/tasks/format.ex` source to _understand_ how it works:
 https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.ex
 + https://hashrocket.com/blog/posts/format-your-elixir-code-now
 + https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
