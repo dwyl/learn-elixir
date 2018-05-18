@@ -801,7 +801,7 @@ This is basically saying "prove to be false that zoo is equal to Animals.randomi
 In Elixir version 1.6 the `mix format` task was introduced.
 see: https://github.com/elixir-lang/elixir/issues/6643
 
-`mix format` a _built-in_ way to format your Elixir code
+`mix format` is a _built-in_ way to format your Elixir code
 according to the community-agreed consistent style.
 This means _all_ code will look consistent across projects
 (_personal, "work" & hex.pm packages_)
@@ -820,7 +820,8 @@ you want to check the format of:
 ```sh
 mix format "lib/**/*.{ex,exs}"
 ```
-To check all the `.ex` and `.exs` files in the `lib/` directory.
+will check all the `.ex` and `.exs` files in the `lib/` directory.
+
 Having to type this pattern each time
 you want to check the files is _tedious_.
 Thankfully you can define the pattern in a config file
