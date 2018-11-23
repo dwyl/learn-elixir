@@ -15,6 +15,9 @@
 - [Data Structures](#data-structures)
   - [Maps](#maps)
 - [Processes](#processes)
+  - [Spawning a process](#spawning-a-process)
+  - [Sending messages between processes](#Sending-messages-between-processes)
+  - [Concurrency](#concurrency)
 - [Further Resources](#further-resources)
 
 
@@ -941,7 +944,7 @@ iex> %{animals | name: "Max"}
 **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
 a current key-value pair inside the map, it cannot add a new key value pair.
 
-## Processes:
+## Processes
 When looking into Elixir you may have heard about its
 [processes](https://elixir-lang.org/getting-started/processes.html) and its
 support for concurrency. In fact we even mention processes as one of the key
@@ -1058,7 +1061,7 @@ You should see
 VERY COOL. We just spawned a process which did a task for us and returned the
 data.
 
-### Concurreny
+### Concurrency
 Now that we can create processes that can send messages to each other, let's see
 if we can use them for something a little more intensive than doubling an
 integer.
