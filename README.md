@@ -14,6 +14,10 @@
 - [Formatting](#formatting )
 - [Data Structures](#data-structures)
   - [Maps](#maps)
+- [Processes](#processes)
+  - [Spawning a process](#spawning-a-process)
+  - [Sending messages between processes](#Sending-messages-between-processes)
+  - [Concurrency](#concurrency)
 - [Further Resources](#further-resources)
 
 
@@ -940,9 +944,266 @@ iex> %{animals | name: "Max"}
 **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
 a current key-value pair inside the map, it cannot add a new key value pair.
 
+## Processes
+When looking into Elixir you may have heard about its
+[processes](https://elixir-lang.org/getting-started/processes.html) and its
+support for concurrency. In fact we even mention processes as one of the key
+advantages elixir offers in this README. If you're anything like me then you
+are probably wondering what this actually means for you and your code. This
+section aims to help you understand what they are and how they can help improve
+your Elixir projects.
+
+Elixir-lang describes processes well with the following...
+```
+In Elixir, all code runs inside processes. Processes are isolated from each
+other, run concurrent to one another and communicate via message passing.
+Processes are not only the basis for concurrency in Elixir, but they also
+provide the means for building distributed and fault-tolerant programs.
+```
+
+Now that we have a description out of the way, let's start by spawning our first
+process.
+
+### Spawning a process
+
+Create a file called `math.exs` and put the following in...
+```elixir
+defmodule Math do
+  def add(a, b) do
+    a + b
+    |> IO.inspect()
+  end
+end
+```
+Now head over to your terminal and enter the following, `iex math.exs`. This
+will load your `Math` module into your `iex` session. Now in `iex` type
+`spawn(Math, :add, [1,2])`. You will see something that looks like this...
+```
+3
+#PID<0.118.0>
+```
+This is your log followed by a `process identifier`, PID for short. A PID is a
+unique id for a process. It could be unique among all processes in the world,
+but here it's just unique for your application.
+
+So what just happened here. We called the
+[spawn/3](https://hexdocs.pm/elixir/Kernel.html#spawn/3) function and passed it
+3 arguments. The module name, the function name (as an atom), and a list of the
+arguments that we want to give to our function. This one line of code spawned
+a process for us 🎉 🥳
+
+Normally we would not see the result of the function (3 in this case). The only
+reason we have is because of the `IO.inspect` in the add function.
+If we removed this the only log we would have is the PID itself.
+
+This might make you wonder, what good is spawning a process if I can't get
+access to the data it returns. This is where messages come in.
+
+### Sending messages between processes
+
+Let's start by exiting `iex` and removing the the `IO.inspect` line from our
+code. Now that that is done let's get our add function to send its result in a
+message.
+
+Update your file to the following...
+```elixir
+defmodule Math do
+  def add(a, b) do
+    receive do
+      senders_pid ->
+        send(senders_pid, a + b)
+    end
+  end
+
+  def double(n) do
+    spawn(Math, :add, [n,n])
+    |> send(self())
+
+    receive do
+      doubled ->
+        doubled
+    end
+  end
+end
+```
+
+Let's go through all the new code.
+We have added a new function called double. This function spawns the `Math.add/2`
+function (as we did in the `iex` shell in the previous example). Remember the
+spawn function returned a PID. We use this PID on the next line with
+`|> send(self())`. [send/2](https://hexdocs.pm/elixir/Kernel.html#send/2) takes
+two arguments, a destination and a message. For us the destination is the PID
+created by the `spawn` function on the line above. The message is [`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0) which returns the PID
+of the calling process (the PID of double).
+
+We then call
+[receive](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#receive/1) which
+checks if there is a message matching the clauses in the current process. It
+works very similarly to a `case` statement. Our `message` is simple and just
+returns whatever the message was.
+
+We have also updated our `add/2` function so that it also contains a `receive`
+and a `send`. This `receive`, receives the PID of the sender. Once
+it has that message it calls the send function to send a message back to the
+sender. The message it sends is `a+b`.
+
+This will trigger the receive block in our double function. As mentioned
+above, it simply returns the message it receives which is the answer from add.
+
+Let's test this code in `iex`. Change to your terminal and type
+`iex math.exs` again. In `iex` type `Math.double(5)`.
+
+You should see
+```elixir
+10
+```
+
+VERY COOL. We just spawned a process which did a task for us and returned the
+data.
+
+### Concurrency
+Now that we can create processes that can send messages to each other, let's see
+if we can use them for something a little more intensive than doubling an
+integer.
+
+In this example we will aim to see exactly how concurrency can be used to
+speed up a function (and in turn, hopefully a project).
+
+We are going to do this by solving factorials using two different approaches.
+One will solve them on a single process and the other will solve them using
+multiple processes.
+
+(A factorial is the product of an integer and all the integers below it;
+e.g. `factorial(4) (4!)` is equal to `1 * 2 * 3 * 4` or `24`.)
+
+Create a new file called `factorial.exs` and add the following code...
+```elixir
+defmodule Factorial do
+  def spawn(n) when n < 4 do
+    calc_product(n)
+  end
+
+  def spawn(n) do
+    1..n
+    |> Enum.chunk_every(4)
+    |> Enum.map(fn(list) ->
+      spawn(Factorial, :_spawn_function, [list])
+      |> send(self())
+
+      receive do
+        n -> n
+      end
+    end)
+    |> calc_product()
+  end
+
+  def _spawn_function(list) do
+    receive do
+      sender ->
+        product = calc_product(list)
+        send(sender, product)
+    end
+  end
+
+  # used on the single process
+  def calc_product(n) when is_integer(n) do
+    Enum.reduce(1..n, 1, &(&1 * &2))
+  end
+
+  # used with multiple processes
+  def calc_product(list) do
+    Enum.reduce(list, 1, &(&1 * &2))
+  end
+end
+```
+
+Before we go any further let's take a quick look at the `calc_product` function.
+You will see that there are 2 definitions for this function. One which takes a
+list and another which takes an integer and turns it into a range. Other than
+this, the functions work in exactly the same way. They both call reduce on an
+enumerable and multiply the current value with the accumulator.
+
+(The reason both work the same way is so that we could see the effect multiple
+  processes running concurrently have on how long it takes for us to get the
+  results of our factorial. I didn't want differences in a functions approach
+  to be the reason for changes in time. Also these factorial functions are not
+  perfect and do not need to be. That is not what we are testing here.)
+
+Now we can test if our `calc_product` function works as expected. In your `iex`
+shell load the `Factorial` module with `c("factorial.exs")`. Now type
+`Factorial.calc_product(5)`. If you get an output of `120` then everything is
+working as expected and you just solved a factorial on a single process.
+
+This works well on a smaller scale but what if we need/want to work out
+`factorial(100_000)`. If we use this approach it will take quite some time
+before it we get the answer returned (something we will log a little later).
+The reason for this is because this massive sum is being run on a single
+process.
+
+This is where spawning multiple processes comes in. By spawning multiple
+processes, instead of giving all of the work to a single process, we can share
+the load between any number of processes. This way each process is only handling
+a portion of the work and we should be able to get our solution faster.
+
+This sounds good in theory but let's see if we can put it into practice.
+
+First, let's look through the `spawn` function and try to work out what it is
+doing exactly.
+
+It starts by converting and integer into a range which it then 'chunks' into a
+list of 4 lists (unless `n` < 4, in which case it just runs on a single process).
+The number 4 itself is not important, it could have been 5, 10 or 1000. What is
+important about it, is that it is the number of Processes we will be spawning.
+(Yes we could have spawned 1000 processes if we wanted to)
+
+Next we map over the now 'chunked' range and call the spawn function. This
+spawns 4 new processes running the `_spawn_function/1`, sends them each a
+message and waits for a response message.
+
+The `_spawn_function` function is pretty simple. It uses the exact same pattern
+we used in our `add` function earlier. It receives a message with the senders
+PID and then sends a message back to them. The message it sends back is the
+result of the `calc_product` function.
+
+Once each process in the map function has receive a result back we then call the
+`calc_product` once more to turn the list of results from map into one integer,
+the factorial. In total the `spawn/1` function will end up calling,
+`calc_product` 5 times.
+
+Now that we have been through the code the only things left are to run the code
+and to time the code.
+
+To time the code add the following to your `factorial.exs` file...
+```elixir
+  # just a helper function used to time the other functions
+  def run(f_name, args) do
+    :timer.tc(Factorial, f_name, args)
+    |> elem(0) # only displays the time as I didn't want to log numbers that could have thousands of digits
+    |> IO.inspect(label: "----->")
+  end
+```
+
+You can feel free to comment out the `|> elem(0)` line. I left it in because we
+are about to have a MASSIVE number log in our terminal and we don't really need
+to see it.
+
+Now we have all the code we will need. All that's left is to call the code.
+
+Let's go back to our `iex` shell and retype the `c("factorial.exs")` command.
+Now type the following `Factorial.run(:calc_product, [10_000])`. You should get
+a log of the number of milliseconds it took to run the function.
+
+Next type `Factorial.run(:spawn, [10_000])`. Compare to two logs. You should
+have something that looks like this...
+
+![image](https://user-images.githubusercontent.com/15571853/48916327-aadf1400-ee79-11e8-87be-185f8171d478.png).
+
+Feel free to try this test again with even larger numbers (if you don't mind the
+wait of course).
+
 ## tl;dr
 
-> ***Note***: this is _definately **not**_ a "_reason_" to switch programming
+> ***Note***: this is _definitely **not**_ a "_reason_" to switch programming
 languages, but _one_ of our (_totally unscientific_) reasons for deciding
 to _investigate_ other options for programming languages was the fact
 that JavaScript (_with the introduction of ES2015_) now has
