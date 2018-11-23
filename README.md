@@ -942,8 +942,8 @@ iex> %{animals | name: "Max"}
 a current key-value pair inside the map, it cannot add a new key value pair.
 
 ## Processes:
-When looking into Elixir you may have heard about it's
-[processes](https://elixir-lang.org/getting-started/processes.html) and it's
+When looking into Elixir you may have heard about its
+[processes](https://elixir-lang.org/getting-started/processes.html) and its
 support for concurrency. In fact we even mention processes as one of the key
 advantages elixir offers in this README. If you're anything like me then you
 are probably wondering what this actually means for you and your code. This
@@ -958,7 +958,7 @@ Processes are not only the basis for concurrency in Elixir, but they also
 provide the means for building distributed and fault-tolerant programs.
 ```
 
-Now that we have a description out of the way, let's start be spawning our first
+Now that we have a description out of the way, let's start by spawning our first
 process.
 
 ### Spawning a process
@@ -989,8 +989,8 @@ So what just happened here. We called the
 arguments that we want to give to our function. This one line of code spawned
 a process for us 🎉 🥳
 
-Normally we would not see the result of the function (3 in this case).The only
-reason we have in this case is because of the `IO.inspect` in the add function.
+Normally we would not see the result of the function (3 in this case). The only
+reason we have is because of the `IO.inspect` in the add function.
 If we removed this the only log we would have is the PID itself.
 
 This might make you wonder, what good is spawning a process if I can't get
@@ -999,7 +999,7 @@ access to the data it returns. This is where messages come in.
 ### Sending messages between processes
 
 Let's start by exiting `iex` and removing the the `IO.inspect` line from our
-code. Now that that is done let's get our add function to send it's result in a
+code. Now that that is done let's get our add function to send its result in a
 message.
 
 Update your file to the following...
@@ -1026,12 +1026,11 @@ end
 
 Let's go through all the new code.
 We have added a new function called double. This function spawns the `Math.add/2`
-function as we did in our previous example. Remember the spawn function returned
-a PID. We use this PID on the next line with `|> send(self())`.
-[send/2](https://hexdocs.pm/elixir/Kernel.html#send/2) takes two arguments, a
-destination and a message. For us the destination is the PID created by the
-`spawn` function on the line above. The message is
-[`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0) which returns the PID
+function (as we did in the `iex` shell in the previous example). Remember the
+spawn function returned a PID. We use this PID on the next line with
+`|> send(self())`. [send/2](https://hexdocs.pm/elixir/Kernel.html#send/2) takes
+two arguments, a destination and a message. For us the destination is the PID
+created by the `spawn` function on the line above. The message is [`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0) which returns the PID
 of the calling process (the PID of double).
 
 We then call
@@ -1041,13 +1040,12 @@ works very similarly to a `case` statement. Our `message` is simple and just
 returns whatever the message was.
 
 We have also updated our `add/2` function so that it also contains a `receive`
-and a `send`. This `receive` receives the PID of the sender. Once
+and a `send`. This `receive`, receives the PID of the sender. Once
 it has that message it calls the send function to send a message back to the
-sender. The message it sends is now a+b.
+sender. The message it sends is `a+b`.
 
-This will trigger the receive block in our double function. As I mentioned
-above, this just returns the message it receives which is the
-answer from add.
+This will trigger the receive block in our double function. As mentioned
+above, it simply returns the message it receives which is the answer from add.
 
 Let's test this code in `iex`. Change to your terminal and type
 `iex math.exs` again. In `iex` type `Math.double(5)`.
@@ -1117,11 +1115,10 @@ end
 ```
 
 Before we go any further let's take a quick look at the `calc_product` function.
-Go back to your text editor and find the function `calc_product`. You will see
-that there are 2 definitions for this function. One which takes a list and
-another which takes an integer and turns it into a range. Other than this, the
-functions work in exactly the same way. They both call reduce on an enumerable
-and multiply the current value with the accumulator.
+You will see that there are 2 definitions for this function. One which takes a
+list and another which takes an integer and turns it into a range. Other than
+this, the functions work in exactly the same way. They both call reduce on an
+enumerable and multiply the current value with the accumulator.
 
 (The reason both work the same way is so that we could see the effect multiple
   processes running concurrently have on how long it takes for us to get the
@@ -1131,7 +1128,7 @@ and multiply the current value with the accumulator.
 
 Now we can test if our `calc_product` function works as expected. In your `iex`
 shell load the `Factorial` module with `c("factorial.exs")`. Now type
-`Factorial.calc_product(5)`. If you get an output of 120 then everything is
+`Factorial.calc_product(5)`. If you get an output of `120` then everything is
 working as expected and you just solved a factorial on a single process.
 
 This works well on a smaller scale but what if we need/want to work out
@@ -1150,7 +1147,7 @@ This sounds good in theory but let's see if we can put it into practice.
 First, let's look through the `spawn` function and try to work out what it is
 doing exactly.
 
-It starts by converting and integer into a range which it then 'chucks' into a
+It starts by converting and integer into a range which it then 'chunks' into a
 list of 4 lists (unless `n` < 4, in which case it just runs on a single process).
 The number 4 itself is not important, it could have been 5, 10 or 1000. What is
 important about it, is that it is the number of Processes we will be spawning.
@@ -1158,7 +1155,7 @@ important about it, is that it is the number of Processes we will be spawning.
 
 Next we map over the now 'chunked' range and call the spawn function. This
 spawns 4 new processes running the `_spawn_function/1`, sends them each a
-message, and waits for a response message.
+message and waits for a response message.
 
 The `_spawn_function` function is pretty simple. It uses the exact same pattern
 we used in our `add` function earlier. It receives a message with the senders
@@ -1167,23 +1164,24 @@ result of the `calc_product` function.
 
 Once each process in the map function has receive a result back we then call the
 `calc_product` once more to turn the list of results from map into one integer,
-the factorial.
+the factorial. In total the `spawn/1` function will end up calling,
+`calc_product` 5 times.
 
 Now that we have been through the code the only things left are to run the code
 and to time the code.
 
 To time the code add the following to your `factorial.exs` file...
 ```elixir
-  # just a helper function used to tome the other functions
+  # just a helper function used to time the other functions
   def run(f_name, args) do
     :timer.tc(Factorial, f_name, args)
-    |> elem(0) # only displays the time as I didn't want to log numbers that could have 1000 digits
+    |> elem(0) # only displays the time as I didn't want to log numbers that could have thousands of digits
     |> IO.inspect(label: "----->")
   end
 ```
 
 You can feel free to comment out the `|> elem(0)` line. I left it in because we
-are about to have a MASSIVE digit log in our terminal and we don't really need
+are about to have a MASSIVE number log in our terminal and we don't really need
 to see it.
 
 Now we have all the code we will need. All that's left is to call the code.
@@ -1192,8 +1190,8 @@ Let's go back to our `iex` shell and retype the `c("factorial.exs")` command.
 Now type the following `Factorial.run(:calc_product, [10_000])`. You should get
 a log of the number of milliseconds it took to run the function.
 
-Next type Factorial.run(:spawn, [10_000]). Compare to two logs. You should have
-something that looks like this...
+Next type `Factorial.run(:spawn, [10_000])`. Compare to two logs. You should
+have something that looks like this...
 
 ![image](https://user-images.githubusercontent.com/15571853/48916327-aadf1400-ee79-11e8-87be-185f8171d478.png).
 
@@ -1202,7 +1200,7 @@ wait of course).
 
 ## tl;dr
 
-> ***Note***: this is _definately **not**_ a "_reason_" to switch programming
+> ***Note***: this is _definitely **not**_ a "_reason_" to switch programming
 languages, but _one_ of our (_totally unscientific_) reasons for deciding
 to _investigate_ other options for programming languages was the fact
 that JavaScript (_with the introduction of ES2015_) now has
