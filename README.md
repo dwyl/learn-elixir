@@ -12,6 +12,7 @@
 - [Documentation](#documentation)
 - [Testing](#testing)
 - [Formatting](#formatting )
+- [Publishing](#publishing)
 - [Data Structures](#data-structures)
   - [Maps](#maps)
 - [Processes](#processes)
@@ -865,8 +866,36 @@ https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.e
 + https://hashrocket.com/blog/posts/format-your-elixir-code-now
 + https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
 
+## Publishing
 
+To publish your Elixir package to [Hex.pm](https://hex.pm/):
+- Check the version in `mix.exs` is up to date and that it follows the [sementic versioning format](https://semver.org/):
+>   MAJOR.MINOR.PATCH  where  
+      MAJOR version when you make incompatible API changes
+      MINOR version when you add functionality in a backwards-compatible manner
+      PATCH version when you make backwards-compatible bug fixes
 
+- Check that the main properties of the project are defined in `mix.exs`
+  - name: The name of the package
+  - description: A short description of the package
+  - licenses: The names of the licenses of the package
+
+- Make sure that [ex_doc](https://hex.pm/packages/ex_doc) is added as a dependency in you project
+  ```
+  defp deps do
+  [
+    {:ex_doc, "~> 0.19.3", only: :dev}
+  ]
+end
+  ```
+ When publishing a package the documentation will be automatically generated.
+ So if the dependency ex_doc is not declared, the package won't be able to be published
+
+- Run `mix hex.publish` and if all the information are correct reply `Y`
+
+- Now that your package is published you can create a new git tag with the name of the version:
+  - `git tag -a 0.1.0 -m "my 0.1.0 release"`
+  - `git push --tags`
 
 ## Data Structures
 
