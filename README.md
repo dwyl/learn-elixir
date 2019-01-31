@@ -890,7 +890,7 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
   [
     {:ex_doc, "~> 0.19.3", only: :dev}
   ]
-end
+  end
   ```
  When publishing a package the documentation will be automatically generated.
  So if the dependency ex_doc is not declared, the package won't be able to be published
