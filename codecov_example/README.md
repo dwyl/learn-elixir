@@ -315,3 +315,58 @@ COV    FILE                                        LINES RELEVANT   MISSED
 You can now see that we have 100% code coverage 🎉🎉🎉🎉🎉🎉🎉
 
 We have now shown that our tests test every line of our code.
+
+## Badges
+
+Now that we have covered all the code let's show this off to the world by adding
+a badge to our application.
+
+We are going to get [travis-ci](https://travis-ci.org/) to check our tests
+online for us when we commit our code to github (this section assumes you are
+going to be pushing your code, so if you are nor planning to then feel free to
+skip this it).
+
+In order to get travis to run our tests we need to create a `.travis.yml` file.
+I am not going to go into any detail on the travis-ci steps as there in an
+amazing readme that will teach you all about it
+[here](https://github.com/dwyl/learn-travis). If you don't already have an
+account with travis, then check out the travis readme.
+
+For the online coverage tool we will be using codecov (the app name I chose may
+have given this away 😉). Go to https://codecov.io/ and log in/sign up with your
+github account (it really is that simple).
+
+Now that you are set up create a file called `.travis.yml` in the root of your
+project and add the following code...
+```yml
+language: elixir
+elixir:
+  - 1.8
+env:
+  - MIX_ENV=test
+script:
+  - mix coveralls.json
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+```
+
+This will handle the travis set up and also tells travis which commands to run.
+You can see that we have told travis to run `mix coveralls.json`. This is one of
+the extra commands that excoveralls has that I mentioned earlier. This command
+generates a folder and file in the root of your app. This is what codecov will
+use to check your overall coverage and create a badge you can show off to the
+world.
+
+The file will be called `cover/excoveralls.json`. By default, new elixir apps
+ignore the `cover` directory. This is good for us as we do not need to push this
+file to github.
+
+All that's left for us to do is add the badges to our readme 👍
+
+Open your readme and add the following lines to the top (but underneath the
+main title)...
+
+
+![Build Status](https://travis-ci.org/dwyl/learn-elixir.svg?branch=master)
+
+![codecov](https://codecov.io/gh/dwyl/learn-elixir/branch/master/graph/badge.svg)
