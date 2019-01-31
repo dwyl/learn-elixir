@@ -177,7 +177,7 @@ To do this open your `mix.exs` file and add the following line to your `list` of
 Next, in the terminal, run the command `mix deps.get`. This will add
 `excoveralls` as a dependency to our project. The `only: :test` part of the
 command is to say that we will only be using this dependency in our test
-environment.
+environment. You should see this in your terminal:
 
 ```sh
 mix deps.get
