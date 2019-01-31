@@ -170,7 +170,7 @@ in our example it's fairly easy to do an eyeball test and see that we are
 missing a test, but imaging you are in a project with 100 functions all spread
 out over different modules. The eyeball test isn't so reliable anymore.
 
-That's where code coverage tools can come into handy. So let's add one to our
+That's where code coverage tools can come in handy. So let's add one to our
 app.
 
 To do this open your `mix.exs` file and add the following line to your `list` of
@@ -183,7 +183,7 @@ To do this open your `mix.exs` file and add the following line to your `list` of
 Next, in the terminal, run the command `mix deps.get`. This will add
 `excoveralls` as a dependency to our project. The `only: :test` part of the
 command is to say that we will only be using this dependency in our test
-environment.
+environment. You should see this in your terminal:
 
 ```sh
 mix deps.get
@@ -329,11 +329,11 @@ a badge to our application.
 
 We are going to get [travis-ci](https://travis-ci.org/) to check our tests
 online for us when we commit our code to github (this section assumes you are
-going to be pushing your code, so if you are nor planning to then feel free to
-skip this it).
+going to be pushing your code, so if you are not planning to then feel free to
+skip this bit).
 
 In order to get travis to run our tests we need to create a `.travis.yml` file.
-I am not going to go into any detail on the travis-ci steps as there in an
+I am not going to go into any detail on the travis-ci steps as there is an
 amazing readme that will teach you all about it
 [here](https://github.com/dwyl/learn-travis). If you don't already have an
 account with travis, then check out the travis readme.
@@ -375,8 +375,8 @@ readme file (but underneath the main title)...
 ![Build Status](https://travis-ci.org/dwyl/learn-elixir.svg?branch=master)
 ![codecov](https://codecov.io/gh/dwyl/learn-elixir/branch/master/graph/badge.svg)
 
-The format of the links are as links that display the badge images are as
-follows...
+The format of the links that display the badge images are as
+follows (so customise yours with the appropriate details from your project)...
 
 #### Travis build badge
 https://travis-ci.org/ + org_name + / + repo_name + .svg?branch=master
