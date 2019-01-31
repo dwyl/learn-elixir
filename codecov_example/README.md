@@ -369,7 +369,7 @@ readme file (but underneath the main title)...
 ![Build Status](https://travis-ci.org/dwyl/learn-elixir.svg?branch=master)
 ![codecov](https://codecov.io/gh/dwyl/learn-elixir/branch/master/graph/badge.svg)
 
-The format of the links are as links that display the badge images are as
+The format of the links that display the badge images are as
 follows...
 
 #### Travis build badge
