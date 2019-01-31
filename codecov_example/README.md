@@ -327,7 +327,7 @@ going to be pushing your code, so if you are not planning to then feel free to
 skip this bit).
 
 In order to get travis to run our tests we need to create a `.travis.yml` file.
-I am not going to go into any detail on the travis-ci steps as there in an
+I am not going to go into any detail on the travis-ci steps as there is an
 amazing readme that will teach you all about it
 [here](https://github.com/dwyl/learn-travis). If you don't already have an
 account with travis, then check out the travis readme.
