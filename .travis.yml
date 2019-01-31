@@ -1,0 +1,11 @@
+language: elixir
+elixir:
+  - 1.8
+env:
+  - MIX_ENV=test
+before_install:
+  - cd codecov_example
+script:
+  - mix coveralls.json
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
