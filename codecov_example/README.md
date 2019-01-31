@@ -26,6 +26,12 @@ new project in.
 
 Once there, run the `mix new` command with the name of your app. Mine is called
 codecov_example so the command would be...
+```
+mix new codecov_example
+```
+
+Now write that command in your terminal. You should get an output similar to
+this...
 ```sh
 mix new codecov_example
 * creating README.md
@@ -52,7 +58,7 @@ Run "mix help" for more commands.
 Now let's follow the on screen instructions and `cd` into the directory.
 
 Something I personally think is pretty cool is that this app will already have
-a function and a tests for that function. We can run the tests with `mix test`
+a function and a test for that function. We can run the tests with `mix test`
 (as our terminal said above)...
 
 ```sh
@@ -159,10 +165,10 @@ Finished in 0.03 seconds
 ```
 
 As you can see our tests are passing and all is looking good. However, as you
-have probably seen, we do not have a test for our add three function. Now, in
-our example it's fairly easy to do an eyeball test and see that we are missing
-a test, but imaging you are in a project with 100 functions all spread out over
-different modules. The eyeball test isn't so reliable anymore.
+have probably seen, we do not have a test for our `add_three/1` function. Now,
+in our example it's fairly easy to do an eyeball test and see that we are
+missing a test, but imaging you are in a project with 100 functions all spread
+out over different modules. The eyeball test isn't so reliable anymore.
 
 That's where code coverage tools can come into handy. So let's add one to our
 app.
