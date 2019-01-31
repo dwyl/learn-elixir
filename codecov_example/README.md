@@ -323,7 +323,7 @@ a badge to our application.
 
 We are going to get [travis-ci](https://travis-ci.org/) to check our tests
 online for us when we commit our code to github (this section assumes you are
-going to be pushing your code, so if you are nor planning to then feel free to
+going to be pushing your code, so if you are not planning to then feel free to
 skip this it).
 
 In order to get travis to run our tests we need to create a `.travis.yml` file.
