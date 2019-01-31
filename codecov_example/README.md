@@ -363,10 +363,20 @@ file to github.
 
 All that's left for us to do is add the badges to our readme 👍
 
-Open your readme and add the following lines to the top (but underneath the
-main title)...
-
+Open your readme and add links SIMILAR to the ones below, to the top of your
+readme file (but underneath the main title)...
 
 ![Build Status](https://travis-ci.org/dwyl/learn-elixir.svg?branch=master)
-
 ![codecov](https://codecov.io/gh/dwyl/learn-elixir/branch/master/graph/badge.svg)
+
+The format of the links are as links that display the badge images are as
+follows...
+
+#### Travis build badge
+https://travis-ci.org/ + org_name + / + repo_name + .svg?branch=master
+
+#### Codecov badge
+https://codecov.io/gh/ + org_name + / + repo_name + /branch/master/graph/badge.svg
+
+Now all that's left is to push your code to github and get it merged into
+master 😁.
