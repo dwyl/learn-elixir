@@ -16,6 +16,11 @@ errors. They also may highlight the fact that some of the code that was written
 is not even needed, for example a clause in a function that can never be
 reached.
 
+It's a useful tool to have integrated from the beginning of your project because
+it encourages good practices from the beginning. Plus, it's easier to write
+tests as you write new code rather than trying to retrospectively write them
+later on (when everything is broken and you have no idea why 🔥🔥🔥🔥🔥🔥🔥🔥).
+
 Now that that's out of the way let's set up a simple mix project and add code
 coverage to it.
 
