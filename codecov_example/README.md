@@ -164,7 +164,7 @@ our example it's fairly easy to do an eyeball test and see that we are missing
 a test, but imagine you are in a project with 100 functions all spread out over
 different modules. The eyeball test isn't so reliable anymore.
 
-That's where code coverage tools can come into handy. So let's add one to our
+That's where code coverage tools can come in handy. So let's add one to our
 app.
 
 To do this open your `mix.exs` file and add the following line to your `list` of
