@@ -800,6 +800,10 @@ end
 
 This is basically saying "prove to be false that zoo is equal to Animals.randomise(zoo)"
 
+If you want to learn about code coverage then check out the following
+tutorial,
+https://github.com/dwyl/learn-elixir/blob/master/codecov-example/codecov_example/README.md
+
 ## Formatting
 
 In Elixir version 1.6 the `mix format` task was introduced.
