@@ -161,7 +161,7 @@ Finished in 0.03 seconds
 As you can see our tests are passing and all is looking good. However, as you
 have probably seen, we do not have a test for our add three function. Now, in
 our example it's fairly easy to do an eyeball test and see that we are missing
-a test, but imaging you are in a project with 100 functions all spread out over
+a test, but imagine you are in a project with 100 functions all spread out over
 different modules. The eyeball test isn't so reliable anymore.
 
 That's where code coverage tools can come into handy. So let's add one to our
