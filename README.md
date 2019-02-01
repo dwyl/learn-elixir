@@ -884,6 +884,8 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
   - description: A short description of the package
   - licenses: The names of the licenses of the package
 
+- Create a [Hex.pm](https://hex.pm/) account if you do not have one already.
+
 - Make sure that [ex_doc](https://hex.pm/packages/ex_doc) is added as a dependency in you project
   ```
   defp deps do
@@ -896,6 +898,19 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
  So if the dependency ex_doc is not declared, the package won't be able to be published
 
 - Run `mix hex.publish` and if all the information are correct reply `Y`
+
+If you have not logged into your Hex.pm account in your command line before
+running the above command, you will be met with the following...
+```sh
+No authenticated user found. Do you want to authenticate now? [Yn]
+```
+You will need to reply `Y` and follow the on screen instructions to enter your
+Hex.pm username and password.
+
+After you have been authenticated, Hex will ask you for a local password that
+applies only to the machine you are using for security purposes.
+
+Create a password for this and follow the onscreen instructions to enter it.
 
 - Now that your package is published you can create a new git tag with the name of the version:
   - `git tag -a 0.1.0 -m "my 0.1.0 release"`
