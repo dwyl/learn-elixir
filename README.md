@@ -1279,7 +1279,7 @@ by **José Valim** (the creator of Elixir)
 + _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
 https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
-http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.tml
+http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
 + While Elixir by _itself_ is pretty _amazing_,
 where the language really shines is in the **Phoenix Web Framework**!!
 So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
