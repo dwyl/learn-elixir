@@ -803,7 +803,7 @@ This is basically saying "prove to be false that zoo is equal to Animals.randomi
 
 If you want to learn about code coverage then check out the following
 tutorial,
-https://github.com/dwyl/learn-elixir/blob/master/codecov-example/codecov_example/README.md
+https://github.com/dwyl/learn-elixir/tree/master/codecov_example
 
 ## Formatting
 
