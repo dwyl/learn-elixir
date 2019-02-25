@@ -861,7 +861,7 @@ And your code will be cleaned up.
 We recommend installing a plugin in your Text Editor to auto-format:
 + **Atom** Text Editor Auto-formatter:
 https://atom.io/packages/atom-elixir-formatter
-+ Vim Elixir Fomatter: https://github.com/mhinz/vim-mix-format
++ Vim Elixir Formatter: https://github.com/mhinz/vim-mix-format
 + VSCode:
 https://marketplace.visualstudio.com/items?itemName=sammkj.vscode-elixir-formatter
 
