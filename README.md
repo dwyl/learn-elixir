@@ -130,18 +130,6 @@ Elixir's 7 basic types:
 * `lists`
 * `tuples`
 
-### Truthiness
-
-All values / types in Elixir apart from `nil` and `false` are truthy:
-
-```ex
-if 0 do "This is happening" end # "This is happening"
-
-if "False" do "This is still happening" end # "This is still happening"
-
-if false do "Not happening" end # nil
-```
-
 ### Numbers
 
 Type `1 + 2` into the terminal (after opening `iex`):
@@ -184,6 +172,43 @@ true
 iex> is_boolean(1)
 false
 ```
+
+### Truthiness: truthy and falsy values
+
+Besides the booleans `true` and `false` Elixir also has the
+concept of a "truthy" or "falsy" value.
+
+  *  a value is truthy when it is neither `false` nor `nil`
+  *  a value is falsy when it is `false` or `nil`
+
+Elixir has functions, like `and/2`, that *only* work with
+booleans, but also functions that work with these
+truthy/falsy values, like `&&/2` and `!/1`.
+
+We can check the truthiness of a value by using the `!/1`
+function twice.
+
+Truthy values:
+
+```elixir
+iex> !!true
+true
+iex> !!5
+true
+iex> !![1,2]
+true
+iex> !!"foo"
+true
+```
+
+Falsy values (of which there are exactly two):  
+```elixir 
+iex> !!false
+false
+iex> !!nil
+false
+```
+
 
 ### Atoms
 
