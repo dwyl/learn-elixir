@@ -73,6 +73,7 @@ http://elixir-lang.org/install.html or follow our guide here:
 
 #### Mac:
 
+Using the [Homebrew](https://brew.sh/) package manager:
 `brew install elixir`
 
 #### Ubuntu:
