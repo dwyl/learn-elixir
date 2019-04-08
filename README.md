@@ -1296,6 +1296,7 @@ http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions
 
 + [Crash Course in Elixir](http://elixir-lang.org/crash-course.html)
 + [Elixir School](https://elixirschool.com/), which is available translated at least partially in over 20 languages and functions as a great succinct guide to core concepts.
++ [30 Days of Elixir](https://github.com/seven1m/30-days-of-elixir) is a walk through the Elixir language in 30 exercises.
 + [Learn Elixir - List of Curated Resources](https://hackr.io/tutorials/learn-elixir)
 + [Explanation video of **Pattern Matching** in Elixir](http://worldwide.chat/)
 + Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
@@ -1309,4 +1310,3 @@ http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.
 + While Elixir by _itself_ is pretty _amazing_,
 where the language really shines is in the **Phoenix Web Framework**!!
 So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
-+ Want to contribute to the Elixir ecosystem? Try to find a good place to dive in with [Extracurricular](https://extracurricular.elixirschool.com/), which highlights issues for Elixir projects across all skill levels.
