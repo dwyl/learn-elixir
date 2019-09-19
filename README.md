@@ -203,7 +203,7 @@ true
 ```
 
 Falsy values (of which there are exactly two):  
-```elixir 
+```elixir
 iex> !!false
 false
 iex> !!nil
@@ -458,10 +458,9 @@ This will create a new folder with the given name of your project and should als
 
 ```bash
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/animals.ex
 * creating test
@@ -500,7 +499,7 @@ defmodule Animals do
 
   ## Examples
 
-      iex> Animals.hello
+      iex> Animals.hello()
       :world
 
   """
@@ -511,8 +510,8 @@ end
 ```
 Elixir has created a module with the name of your project along with a function
 that prints out a `:world` atom when called. It's also added boilerplate for
-module and function documentation. (*we will go into more detail about
-  documentation later*)
+module and function documentation - the first part of the file.
+(*we will go into more detail about documentation later*)
 
 #### Let's test out the boilerplate code. In your project directory type the following command:
 ```bash
@@ -821,7 +820,7 @@ can help deal with things like this. The test could be re-written like so:
 ```elixir
 test "randomise" do
   zoo = Animals.create_zoo
-  refute zoo == Animals.randomise(zoo)
+s   refute zoo == Animals.randomise(zoo)
 end
 ```
 
