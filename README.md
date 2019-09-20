@@ -554,7 +554,7 @@ Now we will have access to the `create_zoo` method. Try it out in the command li
 # ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
 ```
 
-#### Let's extend the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function that takes a list of animals and returns a new list with a random order:
+#### Let's _extend_ the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function before the final `end` that takes a list of animals and returns a new list with a random order:
 
 ```elixir
 @doc """
