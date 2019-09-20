@@ -637,7 +637,7 @@ def save(zoo, filename) do
 end
 ```
 
-In your command line run the following:
+In your command line run the following after recompiling:
 
 ```bash
 > zoo = Animals.create_zoo
@@ -673,6 +673,8 @@ def load(filename) do
   end
 end
 ```
+
+The [`case` expression](https://elixir-lang.org/getting-started/case-cond-and-if.html) here allows us to pattern match against various options and react accordingly.
 
 #### Pipe Operator
 
