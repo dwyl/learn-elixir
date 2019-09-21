@@ -724,7 +724,7 @@ Add the following to the deps function in your `mix.exs` file:
 ```elixir
 defp deps do
   [
-    {:ex_doc, "~> 0.12"}
+    {:ex_doc, "~> 0.21"}
   ]
 end
 ```
@@ -762,7 +762,7 @@ if you click on `Animals`:
 ![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
 ![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
 
-This is an incredibly powerful tool that comes baked-in with elixir. It means that
+This is an incredibly powerful tool that comes 'baked in' with elixir. It means that
 other developers who are joining the project can be brought up to speed incredibly
 quickly!
 
@@ -784,8 +784,8 @@ defmodule AnimalsTest do
   use ExUnit.Case
   doctest Animals
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Animals.hello() == :world
   end
 end
 ```
@@ -802,8 +802,8 @@ function. The reason why we wouldn't want to write a doctest for this is because
 the output value changes everytime you call it. Here's how we would write a test
 for that type of function:
 
-In the `animals_test.exs` file, remove the boilerplate "the truth" test and then
-add this:
+In the `animals_test.exs` file, remove the boilerplate "greets the world" test and then
+add this to test that the order of the animals in `zoo` changes (is randomised):
 
 ```elixir
 test "randomise" do
@@ -812,7 +812,7 @@ test "randomise" do
 end
 ```
 
-**NOTE:** you do not need to install and require any external testing frameworks.
+**NOTE: You do not need to install and require any external testing frameworks**.
 It all comes with the Elixir package. Simply write `test` followed by a string
 representing what you are trying to test and then write your assertion.
 
@@ -822,7 +822,7 @@ can help deal with things like this. The test could be re-written like so:
 ```elixir
 test "randomise" do
   zoo = Animals.create_zoo
-s   refute zoo == Animals.randomise(zoo)
+  refute zoo == Animals.randomise(zoo)
 end
 ```
 
