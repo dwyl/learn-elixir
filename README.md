@@ -897,7 +897,7 @@ https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.e
 ## Publishing
 
 To publish your Elixir package to [Hex.pm](https://hex.pm/):
-- Check the version in `mix.exs` is up to date and that it follows the [sementic versioning format](https://semver.org/):
+- Check the version in `mix.exs` is up to date and that it follows the [semantic versioning format](https://semver.org/):
 >   MAJOR.MINOR.PATCH  where  
       MAJOR version when you make incompatible API changes
       MINOR version when you add functionality in a backwards-compatible manner
@@ -914,12 +914,12 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
   ```
   defp deps do
   [
-    {:ex_doc, "~> 0.19.3", only: :dev}
+    {:ex_doc, "~> 0.21", only: :dev}
   ]
   end
   ```
- When publishing a package the documentation will be automatically generated.
- So if the dependency ex_doc is not declared, the package won't be able to be published
+ When publishing a package, the documentation will be automatically generated.
+ So if the dependency `ex_doc` is not declared, the package won't be able to be published
 
 - Run `mix hex.publish` and if all the information are correct reply `Y`
 
@@ -928,7 +928,7 @@ running the above command, you will be met with the following...
 ```sh
 No authenticated user found. Do you want to authenticate now? [Yn]
 ```
-You will need to reply `Y` and follow the on screen instructions to enter your
+You will need to reply `Y` and follow the on-screen instructions to enter your
 Hex.pm username and password.
 
 After you have been authenticated, Hex will ask you for a local password that
@@ -937,8 +937,14 @@ applies only to the machine you are using for security purposes.
 Create a password for this and follow the onscreen instructions to enter it.
 
 - Now that your package is published you can create a new git tag with the name of the version:
-  - `git tag -a 0.1.0 -m "my 0.1.0 release"`
+  - `git tag -a 0.1.0 -m "0.1.0 release"`
   - `git push --tags`
+
+#### And that's it, you've generated, formatted and published your first Elixir project :tada:
+
+If you want to keep learning more Elixir, read on.
+
+<hr/>
 
 ## Data Structures
 
