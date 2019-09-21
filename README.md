@@ -203,7 +203,7 @@ true
 ```
 
 Falsy values (of which there are exactly two):  
-```elixir 
+```elixir
 iex> !!false
 false
 iex> !!nil
@@ -458,10 +458,9 @@ This will create a new folder with the given name of your project and should als
 
 ```bash
 * creating README.md
+* creating .formatter.exs
 * creating .gitignore
 * creating mix.exs
-* creating config
-* creating config/config.exs
 * creating lib
 * creating lib/animals.ex
 * creating test
@@ -500,7 +499,7 @@ defmodule Animals do
 
   ## Examples
 
-      iex> Animals.hello
+      iex> Animals.hello()
       :world
 
   """
@@ -511,8 +510,8 @@ end
 ```
 Elixir has created a module with the name of your project along with a function
 that prints out a `:world` atom when called. It's also added boilerplate for
-module and function documentation. (*we will go into more detail about
-  documentation later*)
+module and function documentation - the first part of the file.
+(*we will go into more detail about documentation later*)
 
 #### Let's test out the boilerplate code. In your project directory type the following command:
 ```bash
@@ -555,7 +554,7 @@ Now we will have access to the `create_zoo` method. Try it out in the command li
 # ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
 ```
 
-#### Let's extend the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function that takes a list of animals and returns a new list with a random order:
+#### Let's _extend_ the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function before the final `end` that takes a list of animals and returns a new list with a random order:
 
 ```elixir
 @doc """
@@ -638,7 +637,7 @@ def save(zoo, filename) do
 end
 ```
 
-In your command line run the following:
+In your command line run the following after recompiling:
 
 ```bash
 > zoo = Animals.create_zoo
@@ -674,6 +673,8 @@ def load(filename) do
   end
 end
 ```
+
+The [`case` expression](https://elixir-lang.org/getting-started/case-cond-and-if.html) here allows us to pattern match against various options and react accordingly.
 
 #### Pipe Operator
 
@@ -723,7 +724,7 @@ Add the following to the deps function in your `mix.exs` file:
 ```elixir
 defp deps do
   [
-    {:ex_doc, "~> 0.12"}
+    {:ex_doc, "~> 0.21"}
   ]
 end
 ```
@@ -761,7 +762,7 @@ if you click on `Animals`:
 ![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
 ![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
 
-This is an incredibly powerful tool that comes baked-in with elixir. It means that
+This is an incredibly powerful tool that comes 'baked in' with elixir. It means that
 other developers who are joining the project can be brought up to speed incredibly
 quickly!
 
@@ -783,8 +784,8 @@ defmodule AnimalsTest do
   use ExUnit.Case
   doctest Animals
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "greets the world" do
+    assert Animals.hello() == :world
   end
 end
 ```
@@ -801,8 +802,8 @@ function. The reason why we wouldn't want to write a doctest for this is because
 the output value changes everytime you call it. Here's how we would write a test
 for that type of function:
 
-In the `animals_test.exs` file, remove the boilerplate "the truth" test and then
-add this:
+In the `animals_test.exs` file, remove the boilerplate "greets the world" test and then
+add this to test that the order of the animals in `zoo` changes (is randomised):
 
 ```elixir
 test "randomise" do
@@ -811,7 +812,7 @@ test "randomise" do
 end
 ```
 
-**NOTE:** you do not need to install and require any external testing frameworks.
+**NOTE: You do not need to install and require any external testing frameworks**.
 It all comes with the Elixir package. Simply write `test` followed by a string
 representing what you are trying to test and then write your assertion.
 
@@ -859,30 +860,27 @@ will check all the `.ex` and `.exs` files in the `lib/` directory.
 
 Having to type this pattern each time
 you want to check the files is _tedious_.
-Thankfully you can define the pattern in a config file
-and then simply run `mix format`
-and the pattern is read from the file.
+Thankfully, Elixir has you covered.
 
-In the root of your Elixir project, create a `.formatter.exs`
-config file and paste the following:
+In the root of your Elixir project, you will find a `.formatter.exs`
+config file with the following code:
 ```elixir
+# Used by "mix format"
 [
-  inputs: ["mix.exs", "{config,lib,test}/**/*.{ex,exs}"]
+  inputs: ["{mix,.formatter}.exs", "{config,lib,test}/**/*.{ex,exs}"]
 ]
 ```
-Now when you run `mix format` it will check the `mix.exs` file
+This means that if you run `mix format` it will check the `mix.exs` file
 and _all_ `.ex` and `.exs` files in the `config`, `lib/` and `test` directories.
 
 This is the most common pattern for running mix format.
-Unless you have a _reason_ to "deviate" from it, it's a good practice to follow.
+Unless you have a _reason_ to "deviate" from it, it's a good practice to keep it as it is.
 
-There is an easy way to "_fix_" any Elixir code
-that does not meet the formatting guidelines,
-simply run:
+Simply run:
 ```sh
 mix format
 ```
-And your code will be cleaned up.
+And your code will now follow Elixir's formatting guidelines.
 
 We recommend installing a plugin in your Text Editor to auto-format:
 + **Atom** Text Editor Auto-formatter:
@@ -899,7 +897,7 @@ https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.e
 ## Publishing
 
 To publish your Elixir package to [Hex.pm](https://hex.pm/):
-- Check the version in `mix.exs` is up to date and that it follows the [sementic versioning format](https://semver.org/):
+- Check the version in `mix.exs` is up to date and that it follows the [semantic versioning format](https://semver.org/):
 >   MAJOR.MINOR.PATCH  where  
       MAJOR version when you make incompatible API changes
       MINOR version when you add functionality in a backwards-compatible manner
@@ -916,12 +914,12 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
   ```
   defp deps do
   [
-    {:ex_doc, "~> 0.19.3", only: :dev}
+    {:ex_doc, "~> 0.21", only: :dev}
   ]
   end
   ```
- When publishing a package the documentation will be automatically generated.
- So if the dependency ex_doc is not declared, the package won't be able to be published
+ When publishing a package, the documentation will be automatically generated.
+ So if the dependency `ex_doc` is not declared, the package won't be able to be published
 
 - Run `mix hex.publish` and if all the information are correct reply `Y`
 
@@ -930,7 +928,7 @@ running the above command, you will be met with the following...
 ```sh
 No authenticated user found. Do you want to authenticate now? [Yn]
 ```
-You will need to reply `Y` and follow the on screen instructions to enter your
+You will need to reply `Y` and follow the on-screen instructions to enter your
 Hex.pm username and password.
 
 After you have been authenticated, Hex will ask you for a local password that
@@ -939,8 +937,14 @@ applies only to the machine you are using for security purposes.
 Create a password for this and follow the onscreen instructions to enter it.
 
 - Now that your package is published you can create a new git tag with the name of the version:
-  - `git tag -a 0.1.0 -m "my 0.1.0 release"`
+  - `git tag -a 0.1.0 -m "0.1.0 release"`
   - `git push --tags`
+
+#### And that's it, you've generated, formatted and published your first Elixir project :tada:
+
+If you want to keep learning more Elixir, read on.
+
+<hr/>
 
 ## Data Structures
 

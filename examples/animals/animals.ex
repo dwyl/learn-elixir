@@ -19,6 +19,13 @@ defmodule Animals do
   @doc """
   randomise takes a list of zoo animals and returns a new randomised list with
   the same elements as the first.
+
+  ## Examples
+
+    iex> zoo = Animals.create_zoo
+    iex> Animals.randomise(zoo)
+    ["monkey", "tiger", "elephant", "gorilla", "giraffe", "lion"]
+    
   """
   def randomise(zoo) do
     Enum.shuffle(zoo)
