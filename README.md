@@ -860,30 +860,27 @@ will check all the `.ex` and `.exs` files in the `lib/` directory.
 
 Having to type this pattern each time
 you want to check the files is _tedious_.
-Thankfully you can define the pattern in a config file
-and then simply run `mix format`
-and the pattern is read from the file.
+Thankfully, Elixir has you covered.
 
-In the root of your Elixir project, create a `.formatter.exs`
-config file and paste the following:
+In the root of your Elixir project, you will find a `.formatter.exs`
+config file with the following code:
 ```elixir
+# Used by "mix format"
 [
-  inputs: ["mix.exs", "{config,lib,test}/**/*.{ex,exs}"]
+  inputs: ["{mix,.formatter}.exs", "{config,lib,test}/**/*.{ex,exs}"]
 ]
 ```
-Now when you run `mix format` it will check the `mix.exs` file
+This means that if you run `mix format` it will check the `mix.exs` file
 and _all_ `.ex` and `.exs` files in the `config`, `lib/` and `test` directories.
 
 This is the most common pattern for running mix format.
-Unless you have a _reason_ to "deviate" from it, it's a good practice to follow.
+Unless you have a _reason_ to "deviate" from it, it's a good practice to keep it as it is.
 
-There is an easy way to "_fix_" any Elixir code
-that does not meet the formatting guidelines,
-simply run:
+Simply run:
 ```sh
 mix format
 ```
-And your code will be cleaned up.
+And your code will now follow Elixir's formatting guidelines.
 
 We recommend installing a plugin in your Text Editor to auto-format:
 + **Atom** Text Editor Auto-formatter:
