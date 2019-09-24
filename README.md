@@ -696,8 +696,8 @@ def selection(number_of_animals) do
   # the expression and passes it down as the first argument in the expression
   # below. see_animals takes two arguments but only one needs to be specified
   # as the first is provided by the pipe operator
-  Animals.create_zoo
-  |> Animals.randomise
+  Animals.create_zoo()
+  |> Animals.randomise()
   |> Animals.see_animals(number_of_animals)
 end
 ```
