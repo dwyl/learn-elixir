@@ -907,6 +907,9 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
   - name: The name of the package
   - description: A short description of the package
   - licenses: The names of the licenses of the package
+  - NB. dwyl's `cid` repo contains an [example of a more advanced
+   `mix.exs` file](https://github.com/dwyl/cid/blob/master/mix.exs) where
+   you can see this in action
 
 - Create a [Hex.pm](https://hex.pm/) account if you do not have one already.
 
