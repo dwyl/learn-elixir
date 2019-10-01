@@ -1,9 +1,31 @@
-# Reusing Elixir Code - How to Publish Packages to Hex.pm
+# Reusing Elixir Code - How to Publish & Use Packages on Hex.pm
 
-Once you understand the basic syntax of Elixir
+Once you understand basic Elixir syntax
 you may be wondering how to re-use
 both your own code across projects
-and other people's code in your projects.
+and other people's code in your projects ...
+That's what we are going to learn today!
+
+If you are rewriting the same code
+("_reinventing the wheel_")
+in each new project
+you have not understood
+a fundamental goal of software engineering:
+reuse code.
+
+> "_Code reuse is the Holy Grail of Software Engineering._"
+~ Douglas Crockford
+
+If you aren't reusing code (_both your own and other people's_),
+you're doing it wrong.
+
+![grumpy-cat-you-re-doing-it-wrong](https://user-images.githubusercontent.com/194400/65946493-30363c00-e42e-11e9-81c7-7267ac7ab47b.png)
+
+The more code you are able to reuse,
+the more creative and interesting work you can do
+because you aren't wasting time on
+["boilerplate code"](https://en.wikipedia.org/wiki/Boilerplate_code).
+
 
 # Why?
 
@@ -13,18 +35,17 @@ Great ones know what
 to rewrite (and reuse).". <br />
 ~ Eric S. Raymond - "The Cathedral and the Bazaar"
 
-> "_Code reuse is the Holy Grail of Software Engineering._"
-~ 
-
 The biggest advantages of code reuse are:
 + Independently tested small pieces of code
 that do only one thing.
 ([Curly's Law](https://blog.codinghorror.com/curlys-law-do-one-thing))
-+ Work can be subdivided into teams with clear responsibilities.
++ Work can be subdivided among people/teams with clear responsibilities. <br />
 Or if you are solo developer,
 having small chunks of code helps you bitesize your work
-so you can check things off a bigger list faster.
-+ You can use other people's code to reduce your own efforts and ship faster.
+so it is more manageable.
++ You can use other people's code
+to reduce your own efforts
+and ship faster.
 
 
 # What?
@@ -47,33 +68,11 @@ Quotes are usually an expression of wisdom in a concise form.
 
 
 In our example we will be focussing on
-a subset of quotes; the motivational kind. e.g:
+a subset of quotes; the inspirational/motivational kind. e.g:
 
-![inspirational-quote-tony-robbins](https://user-images.githubusercontent.com/194400/65891570-a68a5e00-e39c-11e9-8cfd-d6fcaeea242f.png)
-
-
-If you are sceptical of motivational quotes,
-or "self-help" in general,
-remember that words have motivated many masses.
-
-> “_I am not young enough to know everything_.”
-~ [Oscar Wilde]()
-
-You might not think that motivational quotes _work_ on _you_
-in the same way that _most_ people
-feel they aren't _influenced_ to advertising.
-
-
-
-
-
-Examples of popular quotes
-(_as upvoted or "liked" by the users of goodreads.com_):
-[goodreads.com/quotes](https://www.goodreads.com/quotes)
-
-
-![inspirational-quotes-motivating-helpful](https://user-images.githubusercontent.com/194400/65878472-0f1a1080-e386-11e9-92b5-8337c581d825.png)
-
+> "_“If you think you are too small to make a difference,
+try sleeping with a mosquito._”
+~ [Dalai Lama](https://www.goodreads.com/quotes/7777-if-you-think-you-are-too-small-to-make-a)
 
 
 Our objective with this code is
@@ -100,24 +99,14 @@ For example
 
 
 
-## 1. Write Useable Code
+## 1. Write _Useable_ Code
 
 > "_Before software can be reusable,
 it first has to be usable._"
 ~ Ralph Johnson
 
 
-Our _first step_ is always to write reuseable code.
-If you are rewriting the same code
-("_reinventing the wheel_")
-in each new project
-you have not understood a
-basic principal of software engineering:
-reuse code.
-
-
-The more code you are able to reuse,
-the more creative and interesting work you can do.
+Our _first step_ is always to write useable code.
 
 
 
@@ -186,3 +175,44 @@ http://quotes.rest
 ## References and Further Reading
 
 + Good background on code reuse: https://en.wikipedia.org/wiki/Code_reuse
+
+
+
+## Notes
+
+
+![inspirational-quote-tony-robbins](https://user-images.githubusercontent.com/194400/65891570-a68a5e00-e39c-11e9-8cfd-d6fcaeea242f.png)
+
+
+If you are sceptical of motivational quotes,
+or "self-help" in general,
+remember that words have motivated many masses.
+
+
+> “_“Of course motivation is not permanent.
+But then, neither is bathing;
+but it is something you should do on a regular basis_.”
+~ [Zig Ziglar](https://www.goodreads.com/author/quotes/50316.Zig_Ziglar)
+
+> “_I am not young enough to know everything_.”
+~ [Oscar Wilde](https://www.goodreads.com/author/quotes/3565.Oscar_Wilde)
+
+You might not think that motivational quotes _work_ on _you_
+in the same way that _most_ people
+feel they aren't _influenced_ to advertising.
+
+
+
+
+
+Examples of popular quotes
+(_as upvoted or "liked" by the users of goodreads.com_):
+[goodreads.com/quotes](https://www.goodreads.com/quotes)
+
+
+![inspirational-quotes-motivating-helpful](https://user-images.githubusercontent.com/194400/65878472-0f1a1080-e386-11e9-92b5-8337c581d825.png)
+
+
+![words-dont-have-power](https://user-images.githubusercontent.com/194400/65902305-03dcda00-e3b2-11e9-9574-5c0a01f3bd21.png)
+
+![trump-make-america-great-again](https://user-images.githubusercontent.com/194400/65902858-35a27080-e3b3-11e9-9dbd-b39a0e63f76d.png)
