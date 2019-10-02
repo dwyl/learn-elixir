@@ -1,4 +1,4 @@
-# Reusing Elixir Code - How to Publish & Use Packages on Hex.pm
+# Reusing Elixir - How to Publish & Use Code on Hex.pm 📦
 
 Once you understand basic Elixir syntax
 you may be wondering how to re-use
@@ -6,25 +6,29 @@ both your own code across projects
 and other people's code in your projects ...
 That's what we are going to learn today!
 
+<!--
 If you are rewriting the same code
 ("_reinventing the wheel_")
 in each new project
 you have not understood
 a fundamental goal of software engineering:
 reuse code.
+-->
 
 > "_Code reuse is the Holy Grail of Software Engineering._"
 ~ Douglas Crockford
 
+<!--
 If you aren't reusing code (_both your own and other people's_),
 you're doing it wrong.
 
 ![grumpy-cat-you-re-doing-it-wrong](https://user-images.githubusercontent.com/194400/65946493-30363c00-e42e-11e9-81c7-7267ac7ab47b.png)
+-->
 
-The more code you are able to reuse,
+The more (_high quality_) code you are able to reuse,
 the more creative and interesting work you can do
 because you aren't wasting time on
-["boilerplate code"](https://en.wikipedia.org/wiki/Boilerplate_code).
+["boilerplate"](https://en.wikipedia.org/wiki/Boilerplate_code).
 
 
 # Why?
@@ -33,7 +37,7 @@ because you aren't wasting time on
 know what to write.
 Great ones know what
 to rewrite (and reuse).". <br />
-~ Eric S. Raymond - "The Cathedral and the Bazaar"
+~ Eric S. Raymond (The Cathedral and the Bazaar)
 
 The biggest advantages of code reuse are:
 + Independently tested small pieces of code
@@ -61,40 +65,44 @@ Along the way we will demonstrate how to:
 
 ## Quotes?
 
-A quotation or quote
-is the repetition of someone else's statement or thoughts.
+A quotation often abbreviated to quote
+is the repetition of someone else's statement or thought.
 Quotes are usually an expression of wisdom in a concise form.
-
 
 
 In our example we will be focussing on
 a subset of quotes; the inspirational/motivational kind. e.g:
 
-> "_“If you think you are too small to make a difference,
-try sleeping with a mosquito._”
+> "_If you think you are too small to make a difference,
+try sleeping with a mosquito._"
 ~ [Dalai Lama](https://www.goodreads.com/quotes/7777-if-you-think-you-are-too-small-to-make-a)
 
-
-Our objective with this code is
-to create an Elixir module that returns
-a random quote when `Quotes.random()` is invoked.
-
-# How?
+## Use Case?
 
 > “First, solve the problem. Then, write the code.” ~ John Johnson
-
-Imagine you have a personal home defined for your web browser
-that displays a different inspiring/motivating/uplifting quote
-each time you visit it to remind you
-
-
 
 The problem we are solving in this example
 is creating a module,
 that when invoked
 returns a random
-quote (_e.g a "quote of the day"_).
-For example
+quote to display.
+
+There are _many_ uses for quotes.
+If you're having trouble thinking of how/why this is useful.
+Imagine a browser home page
+that displays a different inspiring/motivating/uplifting quote
+each time you view it
+to remind you
+to stay focussed/motivated
+on your goal for the day.<sup>1</sup>
+
+Our objective with the code is
+to create an Elixir module that returns
+a random quote when `Quotes.random()` is invoked.
+
+# How?
+
+
 
 
 
@@ -215,4 +223,35 @@ Examples of popular quotes
 
 ![words-dont-have-power](https://user-images.githubusercontent.com/194400/65902305-03dcda00-e3b2-11e9-9574-5c0a01f3bd21.png)
 
-![trump-make-america-great-again](https://user-images.githubusercontent.com/194400/65902858-35a27080-e3b3-11e9-9dbd-b39a0e63f76d.png)
+
+[![trump-make-america-great-again](https://user-images.githubusercontent.com/194400/66102197-66e49180-e5a9-11e9-87cf-05d3416d7120.png)](https://en.wikipedia.org/wiki/Make_America_Great_Again)
+
+
+
+Landscape photos: https://unsplash.com/s/photos/landscape
+
+## Example Use Case: Momentum Dashboard
+
+
+[Momentum](https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca) is an example
+of where inspiring quotes are used. https://momentumdash.com
+
+![momentumdash-homepage](https://user-images.githubusercontent.com/194400/66111636-2db81b80-e5c1-11e9-92b8-c2836ea7b48d.png)
+
+<div align="center">
+  <a href="https://momentumdash.com">
+    <img src="https://user-images.githubusercontent.com/194400/66111279-728f8280-e5c0-11e9-9bd0-de6811e7d5f4.png" "momentum dashboard example">
+  </a>
+</div>
+
+
+Even if you feel that the idea
+of having a person homepage/dashboard -
+that reminds you to stay focussed - is not for you,
+you can at least acknowledge that there is a "market" for it:
+
+<div align="center">
+  <a href="https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca">
+    <img src="https://user-images.githubusercontent.com/194400/66111552-04978b00-e5c1-11e9-8eff-dd7d9153bb23.png" "3.4 Million Chrome Users!">
+  </a>
+</div>
