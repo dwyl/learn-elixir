@@ -151,14 +151,40 @@ run the following command:
 mix new quotes
 ```
 
-That will create all the files needed for our **`quotes`** package.
-
-Using the [`tree`] command:
-We see
-
-The code created by this command is:
+That will create all the files needed for our **`quotes`** package. <br />
+The code created by `mix new` is:
 [commit/14e7a08](https://github.com/nelsonic/quotes/commit/14e7a084360687510f9bb18925f022065d797ab9)
 
+
+Using the [`tree`](https://rschu.me/list-a-directory-with-tree-command-on-mac-os-x-3b2d4c4a4827)
+command (`-I '.git'` just means "ignore git"):
+```
+tree -a -I '.git'
+```
+We see that our directory/file structure for the project is:
+
+```
+├── .formatter.exs
+├── .gitignore
+├── LICENSE
+├── README.md
+├── lib
+│   └── quotes.ex
+├── mix.exs
+└── test
+    ├── quotes_test.exs
+    └── test_helper.exs
+```
+
+The interesting/relevant files are these four:
+```
+├── lib
+│   └── quotes.ex
+├── mix.exs
+└── test
+    ├── quotes_test.exs
+    └── test_helper.exs
+```
 
 
 `lib/quotes.ex`
@@ -234,11 +260,37 @@ ExUnit.start()
 
 
 
-### Documentation: Doctest
+
+
+### Documentation
 
 The most often overlooked _feature_ in software is documentation.
-People naively think that writing the code is everything,
-but that could not be further from the
+People naively think that writing the code
+is all that needs to be done in software development,
+but that could not be further from the truth.
+Documentation is at least _half_ of the project.
+Even if you are the only person
+who will "consume" the reuseable code,
+it still pays to write _comprehensive_ documentation.
+The small investment pays handsomely
+when you return to the code in a week/month/year
+you don't have to waste _hours_ trying to understand it.
+
+
+> “_Good code is its own best documentation. As you’re about to add a comment,
+ask yourself, ‘How can I improve the code so that this comment isn’t needed?'_”
+~ Steve McConnell
+
+This statement is _partially_ complete.
+
+While it's often tempting to _think_ that code is "_self documenting_",
+and that nobody _reads_ the docs, this is a myopic
+
+
+#### Doctest
+
+
+
 
 > "_Incorrect documentation is often worse than no documentation._"
 ~ [Bertrand Meyer](https://en.wikipedia.org/wiki/Bertrand_Meyer)
