@@ -2,9 +2,9 @@
 
 Once you understand basic Elixir syntax
 you may be wondering how to re-use
-both your own code across projects
+both your own code across projects <br />
 and other people's code in your projects ...
-That's what we are going to learn today!
+That's what we are going to cover today!
 
 <!--
 If you are rewriting the same code
@@ -94,7 +94,7 @@ that displays a different inspiring/motivating/uplifting quote
 each time you view it
 to remind you
 to stay focussed/motivated
-on your goal for the day.<sup>1</sup>
+on your goal for the day.<sup>[*](#example-use-case-momentum-dashboard)</sup>
 
 Our objective with the code is
 to create an Elixir module that returns
@@ -102,9 +102,7 @@ a random quote when `Quotes.random()` is invoked.
 
 # How?
 
-
-
-
+This is a step-by-step example of creating an Elixir package from scratch.
 
 
 ## 1. Write _Useable_ Code
@@ -115,20 +113,31 @@ it first has to be usable._"
 
 
 Our _first step_ is always to write useable code.
+Let's begin by creating a
+
 
 
 
 ### Documentation: Doctest
 
-https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html
-
+The most often overlooked _feature_ in software is documentation.
+People naively think that writing the code is everything,
+but that could not be further from the
 
 > "_Incorrect documentation is often worse than no documentation._"
 ~ [Bertrand Meyer](https://en.wikipedia.org/wiki/Bertrand_Meyer)
 
+Elixir has a superb
+[Doctest](https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html)
+feature that helps ensure documentation is kept current.
+If a function changes and the docs are not updated,
+the doctests will fail and thus prevent releasing the update.
+
+
+
 ### Testing
 
-Given that our principal
+Given that our principal ...
 
 
 ## 2. Reuse Code _Without_ Publishing to Hex.pm
@@ -179,6 +188,10 @@ http://quotes.rest
 
 ![quotes-rest-api](https://user-images.githubusercontent.com/194400/65838802-d125d980-e2fe-11e9-93a4-12026b05932e.png)
 
+
+## Transfer a Package to Another User/Org
+
+https://hex.pm/docs/faq#can-i-transfer-ownership-of-a-package
 
 ## References and Further Reading
 
@@ -240,18 +253,23 @@ of where inspiring quotes are used. https://momentumdash.com
 
 <div align="center">
   <a href="https://momentumdash.com">
-    <img src="https://user-images.githubusercontent.com/194400/66111279-728f8280-e5c0-11e9-9bd0-de6811e7d5f4.png" "momentum dashboard example">
+    <img src="https://user-images.githubusercontent.com/194400/66114469-cd2bdd00-e5c6-11e9-9465-af9a032c700c.png" "momentum dashboard example">
   </a>
 </div>
 
+> Though as far as inspiring quotes go,
+"_Yesterday you said tomorrow_"
+is about as inspiring a direct link to the Netflix homepage. 🙄 <br />
+(_we can do so much better than this!_)
 
-Even if you feel that the idea
-of having a person homepage/dashboard -
+
+Even if you feel that
+having a person homepage/dashboard -
 that reminds you to stay focussed - is not for you,
-you can at least acknowledge that there is a "market" for it:
+you can at least acknowledge that there is a _huge_ "market" for it:
 
 <div align="center">
   <a href="https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca">
-    <img src="https://user-images.githubusercontent.com/194400/66111552-04978b00-e5c1-11e9-8eff-dd7d9153bb23.png" "3.4 Million Chrome Users!">
+    <img src="https://user-images.githubusercontent.com/194400/66114356-93f36d00-e5c6-11e9-9961-f4439760c955.png" "3.4 Million Chrome Users!">
   </a>
 </div>
