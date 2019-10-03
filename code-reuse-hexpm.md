@@ -65,17 +65,24 @@ Along the way we will demonstrate how to:
 
 ## Quotes?
 
-A quotation often abbreviated to quote
-is the repetition of someone else's statement or thought.
+A quotation, often abbreviated to quote,
+is the repetition of someone else's statement or thought. <br />
 Quotes are usually an expression of wisdom in a concise form.
-
 
 In our example we will be focussing on
 a subset of quotes; the inspirational/motivational kind. e.g:
 
 > "_If you think you are too small to make a difference,
 try sleeping with a mosquito._"
-~ [Dalai Lama](https://www.goodreads.com/quotes/7777-if-you-think-you-are-too-small-to-make-a)
+~ [Dalai Lama](https://www.goodreads.com/quotes/7777-if-you-think-you-are-too-small)
+
+> "_Your time is limited,
+so don’t waste it living someone else’s life._"
+~ [Steve Jobs](https://www.goodreads.com/quotes/374630-your-time-is-limited)
+
+> "_If you get tired, learn to rest, not to quit._"
+~ [Banksy](https://www.goodreads.com/quotes/8225454-if-you-get-tired-learn-to-rest)
+
 
 ## Use Case?
 
@@ -87,6 +94,13 @@ that when invoked
 returns a random
 quote to display.
 
+When `Quotes.random()` is invoked
+a `map` will be returned with the following form:
+```elixir
+
+```
+
+
 There are _many_ uses for quotes.
 If you're having trouble thinking of how/why this is useful.
 Imagine a browser home page
@@ -94,11 +108,11 @@ that displays a different inspiring/motivating/uplifting quote
 each time you view it
 to remind you
 to stay focussed/motivated
-on your goal for the day.<sup>[*](#example-use-case-momentum-dashboard)</sup>
+on your goal for the day.<sup>[1](#example-use-case-momentum-dashboard)</sup>
 
 Our objective with the code is
 to create an Elixir module that returns
-a random quote when `Quotes.random()` is invoked.
+a random quote .
 
 # How?
 
@@ -112,9 +126,111 @@ it first has to be usable._"
 ~ Ralph Johnson
 
 
-Our _first step_ is always to write useable code.
-Let's begin by creating a
+### 1.1 Create a GitHub New Repository
 
+Our _first step_ is always to write useable code.
+Let's begin by creating a new repository: https://github.com/new
+
+![quotes-github-repo](https://user-images.githubusercontent.com/194400/66130610-e09c6f80-e5e9-11e9-9252-5edbe6d845fb.png)
+
+
+Once you've created the repository,
+create an issue with the first task.
+e.g:
+
+![quotes-first-issue](https://user-images.githubusercontent.com/194400/66130977-85b74800-e5ea-11e9-9337-f4325736c252.png)
+
+This makes it clear to _yourself_ (_and others_) what the next step is.
+
+### 1.2 Create an Elixir Project
+
+In a terminal window on your `localhost`,
+run the following command:
+
+```sh
+mix new quotes
+```
+
+That will create all the files needed for our **`quotes`** package.
+
+Using the [`tree`] command:
+We see
+
+The code created by this command is:
+[commit/14e7a08](https://github.com/nelsonic/quotes/commit/14e7a084360687510f9bb18925f022065d797ab9)
+
+
+
+`lib/quotes.ex`
+```elixir
+defmodule Quotes do
+  @moduledoc """
+  Documentation for Quotes.
+  """
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Quotes.hello()
+      :world
+
+  """
+  def hello do
+    :world
+  end
+end
+```
+
+`mix.exs`
+```elixir
+defmodule Quotes.MixProject do
+  use Mix.Project
+
+  def project do
+    [
+      app: :quotes,
+      version: "0.1.0",
+      elixir: "~> 1.9",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
+  end
+
+  # Run "mix help compile.app" to learn about applications.
+  def application do
+    [
+      extra_applications: [:logger]
+    ]
+  end
+
+  # Run "mix help deps" to learn about dependencies.
+  defp deps do
+    [
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+    ]
+  end
+end
+```
+
+`test/quotes_test.exs`
+```elixir
+defmodule QuotesTest do
+  use ExUnit.Case
+  doctest Quotes
+
+  test "greets the world" do
+    assert Quotes.hello() == :world
+  end
+end
+```
+
+`test/test_helper.exs`
+```elixir
+ExUnit.start()
+```
 
 
 
@@ -138,6 +254,18 @@ the doctests will fail and thus prevent releasing the update.
 ### Testing
 
 Given that our principal ...
+
+
+
+
+### Which JSON Parsing Dependency?
+
+According to the
+[benchmarks](https://github.com/michalmuskala/jason#benchmarks),
+it's faster.
+[Phoenix](https://github.com/phoenixframework/phoenix/search?q=jason)
+
+
 
 
 ## 2. Reuse Code _Without_ Publishing to Hex.pm
@@ -196,52 +324,12 @@ https://hex.pm/docs/faq#can-i-transfer-ownership-of-a-package
 ## References and Further Reading
 
 + Good background on code reuse: https://en.wikipedia.org/wiki/Code_reuse
-
++ Landscape photos: https://unsplash.com/s/photos/landscape
 
 
 ## Notes
 
 
-![inspirational-quote-tony-robbins](https://user-images.githubusercontent.com/194400/65891570-a68a5e00-e39c-11e9-8cfd-d6fcaeea242f.png)
-
-
-If you are sceptical of motivational quotes,
-or "self-help" in general,
-remember that words have motivated many masses.
-
-
-> “_“Of course motivation is not permanent.
-But then, neither is bathing;
-but it is something you should do on a regular basis_.”
-~ [Zig Ziglar](https://www.goodreads.com/author/quotes/50316.Zig_Ziglar)
-
-> “_I am not young enough to know everything_.”
-~ [Oscar Wilde](https://www.goodreads.com/author/quotes/3565.Oscar_Wilde)
-
-You might not think that motivational quotes _work_ on _you_
-in the same way that _most_ people
-feel they aren't _influenced_ to advertising.
-
-
-
-
-
-Examples of popular quotes
-(_as upvoted or "liked" by the users of goodreads.com_):
-[goodreads.com/quotes](https://www.goodreads.com/quotes)
-
-
-![inspirational-quotes-motivating-helpful](https://user-images.githubusercontent.com/194400/65878472-0f1a1080-e386-11e9-92b5-8337c581d825.png)
-
-
-![words-dont-have-power](https://user-images.githubusercontent.com/194400/65902305-03dcda00-e3b2-11e9-9574-5c0a01f3bd21.png)
-
-
-[![trump-make-america-great-again](https://user-images.githubusercontent.com/194400/66102197-66e49180-e5a9-11e9-87cf-05d3416d7120.png)](https://en.wikipedia.org/wiki/Make_America_Great_Again)
-
-
-
-Landscape photos: https://unsplash.com/s/photos/landscape
 
 ## Example Use Case: Momentum Dashboard
 
@@ -273,3 +361,50 @@ you can at least acknowledge that there is a _huge_ "market" for it:
     <img src="https://user-images.githubusercontent.com/194400/66114356-93f36d00-e5c6-11e9-9961-f4439760c955.png" "3.4 Million Chrome Users!">
   </a>
 </div>
+
+
+
+## Motivational Quotes are Lame
+
+![inspirational-quote-tony-robbins](https://user-images.githubusercontent.com/194400/65891570-a68a5e00-e39c-11e9-8cfd-d6fcaeea242f.png)
+
+
+If you are sceptical of motivational quotes,
+or "self-help" in general,
+remember that words have motivated many masses.
+
+<!--
+
+[![image](https://user-images.githubusercontent.com/194400/66122384-724eb180-e5d7-11e9-8e37-726191e32421.png)](https://youtu.be/TME0xubdHQc "they may take our lives, but they'll never take our freedom!")
+
+-->
+
+
+> “_“Of course motivation is not permanent.
+But then, neither is bathing;
+but it is something you should do on a regular basis_.”
+~ [Zig Ziglar](https://www.goodreads.com/author/quotes/50316.Zig_Ziglar)
+
+> “_I am not young enough to know everything_.”
+~ [Oscar Wilde](https://www.goodreads.com/author/quotes/3565.Oscar_Wilde)
+
+You might not think that motivational quotes _work_ on _you_
+in the same way that _most_ people
+feel they aren't _influenced_ to advertising.
+
+
+
+
+
+Examples of popular quotes
+(_as upvoted or "liked" by the users of goodreads.com_):
+[goodreads.com/quotes](https://www.goodreads.com/quotes)
+
+
+![inspirational-quotes-motivating-helpful](https://user-images.githubusercontent.com/194400/65878472-0f1a1080-e386-11e9-92b5-8337c581d825.png)
+
+
+![words-dont-have-power](https://user-images.githubusercontent.com/194400/65902305-03dcda00-e3b2-11e9-9574-5c0a01f3bd21.png)
+
+
+[![trump-make-america-great-again](https://user-images.githubusercontent.com/194400/66102197-66e49180-e5a9-11e9-87cf-05d3416d7120.png)](https://en.wikipedia.org/wiki/Make_America_Great_Again "Make America Great Again")
