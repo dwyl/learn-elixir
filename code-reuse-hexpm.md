@@ -157,7 +157,8 @@ The code created by `mix new` is:
 
 
 Using the [`tree`](https://rschu.me/list-a-directory-with-tree-command-on-mac-os-x-3b2d4c4a4827)
-command (`-I '.git'` just means "ignore git"):
+command (`tree -a` lists all files the directory tree
+  and `-I '.git'` just means "ignore .git directory"):
 ```
 tree -a -I '.git'
 ```
@@ -209,6 +210,13 @@ defmodule Quotes do
 end
 ```
 
+On creation, the `Quotes` module
+has a `hello` function that
+returns the `:world` atom.
+This is standard in newly created Elixir projects.
+It will eventually contain our `random` function.
+
+
 `mix.exs`
 ```elixir
 defmodule Quotes.MixProject do
@@ -240,6 +248,10 @@ defmodule Quotes.MixProject do
   end
 end
 ```
+
+The `mix.exs` file is the configuration file for the project/package.
++
+
 
 `test/quotes_test.exs`
 ```elixir
