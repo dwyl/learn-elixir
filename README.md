@@ -186,6 +186,13 @@ Elixir has functions, like `and/2`, that *only* work with
 booleans, but also functions that work with these
 truthy/falsy values, like `&&/2` and `!/1`.
 
+The syntax `<function_name>/<number>` is the convention
+used in Elixir to identify a function named
+`<function_name>` that takes `<number>` parameters.
+The value `<number>` is also referred to as the function
+[arity](https://en.wikipedia.org/wiki/Arity).
+In Elixir each function is identified univocally both by
+its name and its arity. More information can be found [here](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
 We can check the truthiness of a value by using the `!/1`
 function twice.
 
