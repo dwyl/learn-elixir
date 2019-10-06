@@ -271,6 +271,34 @@ ExUnit.start()
 ```
 
 
+### Get Quotes!
+
+Now that we have the basics of an Elixir project,
+our next task is to create (_or find_) a database of quotes.
+
+We could _manually_ compile our list of quotes
+by reading through a few quotes websites.
++ Wikiquote: https://en.wikiquote.org/wiki/Motivation
++ Brainyquote: https://www.brainyquote.com/topics/motivational-quotes
++ Goodreads: https://www.goodreads.com/quotes
+
+
+Or we can supply our favourite search engine
+with specific targeted keywords.
+e.g:
+"inspirational quotes database json free"
+
++ https://github.com/public-apis/public-apis
++ https://github.com/JamesFT/Database-Quotes-JSON
++ https://github.com/lukePeavey/quotable
++ https://type.fit/api/quotes
++ https://opendata.stackexchange.com/questions/3488/large-list-of-quotes
+  + https://stackoverflow.com/questions/13762688/wiki-quotes-api
++ [https://github.com/skolakoda/programming-quotes-api](https://github.com/skolakoda/programming-quotes-api/blob/master/backup/quotes.json)
+
+
+
+
 
 
 
