@@ -277,24 +277,89 @@ Now that we have the basics of an Elixir project,
 our next task is to create (_or find_) a database of quotes.
 
 We could _manually_ compile our list of quotes
-by reading through a few quotes websites.
+by combing through a few popular quotes websites.
 + Wikiquote: https://en.wikiquote.org/wiki/Motivation
 + Brainyquote: https://www.brainyquote.com/topics/motivational-quotes
 + Goodreads: https://www.goodreads.com/quotes
 
-
-Or we can supply our favourite search engine
+_Or_ we can supply our favourite search engine
 with specific targeted keywords.
 e.g:
-"inspirational quotes database json free"
+"***inspirational quotes database json free***"
+
+Again there are _many_ results so we need do some sifting ...
 
 + https://github.com/public-apis/public-apis
-+ https://github.com/JamesFT/Database-Quotes-JSON
-+ https://github.com/lukePeavey/quotable
-+ https://type.fit/api/quotes
 + https://opendata.stackexchange.com/questions/3488/large-list-of-quotes
   + https://stackoverflow.com/questions/13762688/wiki-quotes-api
++ https://type.fit/api/quotes
++ https://github.com/JamesFT/Database-Quotes-JSON
++ https://github.com/lukePeavey/quotable
 + [https://github.com/skolakoda/programming-quotes-api](https://github.com/skolakoda/programming-quotes-api/blob/master/backup/quotes.json)
++ [https://github.com/jamesseanwright/ron-swanson-quotes](https://github.com/jamesseanwright/ron-swanson-quotes/blob/master/quotes.js)
+
+Abracadabra!
+
+```JSON
+[
+  {
+    "text": "If I know how you spend your time, then I know what might become of you.",
+    "author": "Goethe",
+    "source": "https://www.goodreads.com/quotes/6774650",
+    "tags": "time, effectiveness"
+  },
+  {
+    "text": "Until we can manage time, we can manage nothing else.",
+    "author": "Peter Drucker",
+    "source": "https://www.goodreads.com/quotes/784267",
+    "tags": "time, management"
+  },
+  {
+    "text": "There is no greater harm than that of time wasted.",
+    "author": "Michelangelo",
+    "source": "https://www.brainyquote.com/quotes/michelangelo_183580",
+    "tags": "time, waste"
+  },
+  {
+    "text": "Those who make the worse use of their time are the first to complain of its shortness",
+    "author": "Jean de la Bruyere",
+    "source": "https://www.brainyquote.com/quotes/jean_de_la_bruyere_104446",
+    "tags": "time, complain"
+  },
+  {
+    "text": "The price of anything is the amount of life you exchange for it.",
+    "author": "Henry David Thoreau",
+    "source": "https://www.brainyquote.com/quotes/henry_david_thoreau_106427",
+    "tags": "price, priorities, life"
+  },
+  {
+    "text": "Life isn't about finding yourself. Life is about creating yourself.",
+    "author": "Bernard Shaw",
+    "source": "https://www.goodreads.com/quotes/8727",
+    "tags": "meaning, creativity"
+  },
+  {
+    "text": "Knowing is not enough, we must apply. Willing is not enough, we must do.",
+    "author": "Bruce Lee",
+    "source": "https://www.goodreads.com/quotes/302319",
+    "tags": "knowledge, action"
+  }
+]
+```
+
+Full file:
+
+
+### Parsing JSON Data
+
+I order to parse JSON data in Elixir,
+we need a dedicated module.
+
+> This might seem tedious
+if you have used other programming languages
+such as Python or JavaScript
+which have _built-in_ JSON parsers,
+but it means we can use a _faster_ parser.
 
 
 
