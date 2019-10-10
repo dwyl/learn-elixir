@@ -1,4 +1,4 @@
-# Reusing Elixir - How to Publish & Use Code on Hex.pm 📦
+# Reusing Elixir - How to Use and Publish Code on Hex.pm 📦
 
 Once you understand basic Elixir syntax
 you may be wondering how to re-use
@@ -46,17 +46,19 @@ that do only one thing.
 + Work can be subdivided among people/teams with clear responsibilities. <br />
 Or if you are solo developer,
 having small chunks of code helps you bitesize your work
-so it is more manageable.
-+ You can use other people's code
+so it's more manageable.
++ Leverage other people's code
 to reduce your own efforts
 and ship faster.
 
 
 # What?
 
-In this example we are going to build a simple Elixir package
+In this example we are going to build a simple Elixir module
 that returns a **random inspiring quote**
-when the main function is invoked. <br />
+when the main function is invoked.
+The functionality of the module is _intentionally_
+simple to illustrate code reuse in the most basic form. <br />
 Along the way we will demonstrate how to:
 1. Write, document and test a basic package.  
 2. Reuse code _without_ publishing to Hex.pm.
@@ -68,9 +70,13 @@ Along the way we will demonstrate how to:
 A quotation, often abbreviated to quote,
 is the repetition of someone else's statement or thought. <br />
 Quotes are usually an expression of wisdom in a concise form.
+They often condense a lifetime of learning into a single sentence
+and as such are worthy of our attention.
 
 In our example we will be focussing on
-a subset of quotes; the inspirational/motivational kind. e.g:
+a subset of quotes; the thought-provoking kind
+(_often called inspirational or motivational_).
+e.g:
 
 > "_If you think you are too small to make a difference,
 try sleeping with a mosquito._"
@@ -84,11 +90,13 @@ so don’t waste it living someone else’s life._"
 ~ [Banksy](https://www.goodreads.com/quotes/8225454-if-you-get-tired-learn-to-rest)
 
 
-## Use Case?
+## Problem Statement
 
 > “First, solve the problem. Then, write the code.” ~ John Johnson
 
 The problem we are solving in this example
+is: we want to display quotes on our app/website
+home screen.<sup>[1](#example-use-case-momentum-dashboard)</sup>
 is creating a module,
 that when invoked
 returns a random
@@ -110,9 +118,6 @@ to remind you
 to stay focussed/motivated
 on your goal for the day.<sup>[1](#example-use-case-momentum-dashboard)</sup>
 
-Our objective with the code is
-to create an Elixir module that returns
-a random quote .
 
 # How?
 
@@ -298,7 +303,7 @@ Again there are _many_ results so we need do some sifting ...
 + [https://github.com/skolakoda/programming-quotes-api](https://github.com/skolakoda/programming-quotes-api/blob/master/backup/quotes.json)
 + [https://github.com/jamesseanwright/ron-swanson-quotes](https://github.com/jamesseanwright/ron-swanson-quotes/blob/master/quotes.js)
 
-Abracadabra!
+Abracadabra hey presto!
 
 ```JSON
 [
@@ -348,6 +353,7 @@ Abracadabra!
 ```
 
 Full file:
+[`quotes.json`](https://github.com/nelsonic/quotes/blob/master/quotes.json)
 
 
 ### Parsing JSON Data
@@ -538,7 +544,7 @@ remember that words have motivated many masses.
 
 
 > “_“Of course motivation is not permanent.
-But then, neither is bathing;
+But then, neither is bathing; <br />
 but it is something you should do on a regular basis_.”
 ~ [Zig Ziglar](https://www.goodreads.com/author/quotes/50316.Zig_Ziglar)
 
