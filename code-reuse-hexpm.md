@@ -27,16 +27,19 @@ you're doing it wrong.
 
 The more (_high quality_) code you are able to reuse,
 the more creative and interesting work you can do
-because you aren't wasting time on
+because you aren't wasting time
+reimplementing basic functionality
+or writing boring
 ["boilerplate"](https://en.wikipedia.org/wiki/Boilerplate_code).
+
 
 
 # Why?
 
-> "Good programmers
+> "_Good programmers
 know what to write.
 Great ones know what
-to rewrite (and reuse).". <br />
+to rewrite_ (_and **reuse**_).". <br />
 ~ Eric S. Raymond (The Cathedral and the Bazaar)
 
 The biggest advantages of code reuse are:
@@ -47,16 +50,24 @@ that do only one thing.
 Or if you are solo developer,
 having small chunks of code helps you bitesize your work
 so it's more manageable.
-+ Leverage other people's code
++ Leverage _other_ people's code
 to reduce your own efforts
 and ship faster.
+
+> "_If I have seen further than others, it is by standing upon the shoulders of giants._" ~ Isaac Newton
+
+We can adapt this quote to a software engineering context as:
+
+> "_If I have shipped faster and more interesting apps
+it is by building on the work of giants._"
+~ Every Experienced Developer
 
 
 # What?
 
 In this example we are going to build a simple Elixir module
 that returns a **random inspiring quote**
-when the main function is invoked.
+when the main function is invoked. <br />
 The functionality of the module is _intentionally_
 simple to illustrate code reuse in the most basic form. <br />
 Along the way we will demonstrate how to:
@@ -75,7 +86,7 @@ and as such are worthy of our attention.
 
 In our example we will be focussing on
 a subset of quotes; the thought-provoking kind
-(_often called inspirational or motivational_).
+(_often called inspirational or motivational_). <br />
 e.g:
 
 > "_If you think you are too small to make a difference,
@@ -92,18 +103,21 @@ so don’t waste it living someone else’s life._"
 
 ## Problem Statement
 
-> “First, solve the problem. Then, write the code.” ~ John Johnson
+> “_First, solve the problem. Then, write the code_.” ~ John Johnson
 
 The problem we are solving in this example
 is: we want to display quotes on our app/website
 home screen.<sup>[1](#example-use-case-momentum-dashboard)</sup>
-is creating a module,
+
+First we will source some quotes.
+Then we will create an Elixir module,
 that when invoked
 returns a random
 quote to display.
 
 When `Quotes.random()` is invoked
 a `map` will be returned with the following form:
+
 ```elixir
 
 ```
@@ -398,7 +412,7 @@ While it's often tempting to _think_ that code is "_self documenting_",
 and that nobody _reads_ the docs, this is a myopic
 
 
-#### Doctest
+#### Doctest
 
 
 
@@ -421,7 +435,7 @@ Given that our principal ...
 
 
 
-### Which JSON Parsing Dependency?
+### Which JSON Parsing Dependency?
 
 According to the
 [benchmarks](https://github.com/michalmuskala/jason#benchmarks),
