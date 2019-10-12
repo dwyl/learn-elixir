@@ -45,16 +45,17 @@ to rewrite_ (_and **reuse**_).". <br />
 The biggest advantages of code reuse are:
 + Independently tested small pieces of code
 that do only one thing.
-([Curly's Law](https://blog.codinghorror.com/curlys-law-do-one-thing))
+([Curly's Law](https://blog.codinghorror.com/curlys-law-do-one-thing)) 🥇
 + Work can be subdivided among people/teams with clear responsibilities. <br />
 Or if you are solo developer,
 having small chunks of code helps you bitesize your work
-so it's more manageable.
+so it's more manageable. 🙌
 + Leverage _other_ people's code
 to reduce your own efforts
-and ship faster.
+and ship faster. 🚀
 
-> "_If I have seen further than others, it is by standing upon the shoulders of giants._" ~ Isaac Newton
+> "_If I have seen further than others, it is by standing upon the shoulders of giants._"
+~ [Isaac Newton](https://en.wikiquote.org/wiki/Isaac_Newton)
 
 We can adapt this quote to a software engineering context as:
 
@@ -101,6 +102,16 @@ so don’t waste it living someone else’s life._"
 ~ [Banksy](https://www.goodreads.com/quotes/8225454-if-you-get-tired-learn-to-rest)
 
 
+There are _many_ uses for quotes.
+If you're having trouble thinking of how/why this is useful.
+Imagine a browser home page
+that displays a different inspiring/motivating/uplifting quote
+each time you view it
+to remind you
+to stay focussed/motivated
+on your goal for the day.<sup>[1](#example-use-case-momentum-dashboard)</sup>
+
+
 ## Problem Statement
 
 > “_First, solve the problem. Then, write the code_.” ~ John Johnson
@@ -119,18 +130,9 @@ When `Quotes.random()` is invoked
 a `map` will be returned with the following form:
 
 ```elixir
-
+# TODO: add doctest example when complete!
 ```
 
-
-There are _many_ uses for quotes.
-If you're having trouble thinking of how/why this is useful.
-Imagine a browser home page
-that displays a different inspiring/motivating/uplifting quote
-each time you view it
-to remind you
-to stay focussed/motivated
-on your goal for the day.<sup>[1](#example-use-case-momentum-dashboard)</sup>
 
 
 # How?
@@ -143,6 +145,8 @@ This is a step-by-step example of creating an Elixir package from scratch.
 > "_Before software can be reusable,
 it first has to be usable._"
 ~ Ralph Johnson
+
+
 
 
 ### 1.1 Create a GitHub New Repository
@@ -366,22 +370,78 @@ Abracadabra hey presto!
 ]
 ```
 
-Full file:
+Full file containing a _curated_ list of quotes:
 [`quotes.json`](https://github.com/nelsonic/quotes/blob/master/quotes.json)
 
 
 ### Parsing JSON Data
 
-I order to parse JSON data in Elixir,
-we need a dedicated module.
+In order to parse JSON data in Elixir,
+we need to import a module.
 
 > This might seem tedious
 if you have used other programming languages
 such as Python or JavaScript
 which have _built-in_ JSON parsers,
 but it means we can use a _faster_ parser.
+And since it all gets compiled
+down to BEAM bytecode
+without any effort from the developer,
+this extra step is _automatic_.
+
+There are several options to chose from on hex.pm
+(_Elixir's package manager_)
+just search for the keyword "**json**":
+https://hex.pm/packages?search=json
+
+![hexpm-search-for-json](https://user-images.githubusercontent.com/194400/66706499-257f7f00-ed2b-11e9-94e9-ef4fd6c5202b.png)
+
+In our case we are going to use
+[**`jason`**](https://hex.pm/packages/jason)
+because we have read the code and benchmarks and know that it's good.
+For a `.json` file containing only a few thousand quotes
+it probably does not matter which parser you use.
+Elixir (_or the Erlang VM "BEAM"_)
+will cache the decoded JSON map in memory
+so any of the options will work.
+Pick one and move on.
+
+#### Add `jason` to dependencies in `mix.exs`
+
+Open the `mix.exs` file in your editor
+and locate the line that starts with
+```elixir
+defp deps do
+```
+In a new Elixir project the list of deps (_dependencies_) is empty.
+Add the following line to the list:
+
+```elixir
+{:jason, "~> 1.1"}
+```
+
+For a snapshot of what the `mix.exs` file should look like at this point,
+see:
+[`quotes/mix.exs`](https://github.com/nelsonic/quotes/blob/0af8108f4b0be8ae9ba58174979bca135945a04d/mix.exs#L24)
+
+#### Run `mix deps.get`
+
+With `jason` added to the list of `deps`,
+you need to run the following command in your terminal:
+
+```sh
+mix deps.get
+```
+
+That will download the dependency from Hex.pm.
 
 
+
+
+## Functions
+
+[quotes/issues/4](https://github.com/nelsonic/quotes/issues/4)
+![functions-issue](https://user-images.githubusercontent.com/194400/66700544-47f0a880-ece9-11e9-8b65-2a0d31453700.png)
 
 
 
