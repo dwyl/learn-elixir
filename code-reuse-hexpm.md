@@ -638,7 +638,7 @@ The functionality for `parse_json` is quite simple:
 
 
 
-#### Write the Docs _First_ for the `parse_json` function
+#### Write the Docs _First_ for the `parse_json` Function
 
 Open the `lib/quotes.ex` file in your editor
 and locate the `hello` function:
@@ -730,9 +730,7 @@ helps activate your brain to solve the problem _much faster_.
 > "_Documentation is a love letter that you write to your future self_."
 ~ [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
 
-
-
-
+<!--
 #### Doctest
 
 > "_Incorrect documentation is often worse than no documentation._"
@@ -741,20 +739,110 @@ helps activate your brain to solve the problem _much faster_.
 Elixir has a superb
 [Doctest](https://elixir-lang.org/getting-started/mix-otp/docs-tests-and-with.html)
 feature that helps ensure documentation is kept current.
-If a function changes and the docs are not updated,
+As we saw above, if a function changes and the docs are not updated,
 the doctests will fail and thus prevent releasing the update.
 
 https://stackoverflow.com/questions/48857468/elixir-doctest-function-that-returns-random-values
+-->
+
+#### Test `parse_json` Function
+
+Open the `test/quotes_test.exs` file and add the following code:
+
+```elixir
+test "parse_json returns a list of maps containing quotes" do
+  list = Quotes.parse_json()
+  assert Enum.count(list) == Utils.count()
+
+  # sample quote we know is in the list
+  sample =  %{
+    "author" => "Albert Einstein",
+    "text" => "A person who never made a mistake never tried anything new."
+  }
+
+  # find the sample quote in the List of Maps:
+  [found] = Enum.map(list, fn q ->
+    if q["author"] == sample["author"] && q["text"] == sample["text"] do
+      q
+    end
+  end)
+  |> Enum.filter(& !is_nil(&1)) # filter out any nil values
+  assert sample == found # sample quote was found in the list
+end
+```
+
+Run the tests in your terminal:
+
+```
+mix test
+```
+
+You should expect to see it fail:
+
+```sh
+1) test parse_json returns a list of maps containing quotes (QuotesTest)
+   test/quotes_test.exs:9
+   ** (UndefinedFunctionError) function Quotes.parse_json/0 is undefined or private
+   code: list = Quotes.parse_json()
+   stacktrace:
+     (quotes) Quotes.parse_json()
+     test/quotes_test.exs:10: (test)
+
+.
+
+Finished in 0.04 seconds
+1 doctest, 2 tests, 1 failure
+```
+
+
+#### Make the `parse_json` Test Pass
+
+Add the following code to the `lib/quotes.ex`
+file below the `@doc` definition
+relevant to the `parse_json` function
+
+```elixir
+def parse_json do
+  File.read!("quotes.json") |> Jason.decode!()
+end
+```
+
+> Note: For the test to pass,
+You will also need to create a file called `lib/utils.ex`
+and add a `count` function.
+See: [`lib/utils.ex`](https://github.com/nelsonic/quotes/blob/38bd7c1b5ed12248a13ffa7f786919e3da5772ac/lib/utils.ex#L30-L39)
+
+
+Re-run the tests:
+
+```sh
+mix test
+```
+You should expect to see the test pass:
+
+```sh
+...
+
+Finished in 0.06 seconds
+1 doctest, 2 tests, 0 failures
+
+Randomized with seed 30116
+```
+
+
+### Document the `Quotes.random()` Function
 
 
 
-### Testing
+
+#### Testing `Quotes.random()`
 
 Given that our principal function is ***`random`***
 [nondeterministic](https://en.wikipedia.org/wiki/Nondeterministic_algorithm)
 it can be _tempting_ to think that there is "no way to test" it.
 
-
+We can still test for the presence of properties.
+https://github.com/dwyl/learn-property-based-testing
 
 
 
