@@ -1,8 +1,8 @@
-# Reusing Elixir - How to Use and Publish Code on Hex.pm 📦
+# _Reusing_ Elixir - How to Use + _Publish_ Code on Hex.pm 📦
 
 Once you understand basic Elixir syntax
-you may be wondering how to re-use
-both your own code across projects <br />
+you may be wondering how to reuse
+both your own code across projects
 and other people's code in your projects ...
 That's what we are going to cover today!
 
@@ -31,6 +31,19 @@ because you aren't wasting time
 reimplementing basic functionality
 or writing boring
 ["boilerplate"](https://en.wikipedia.org/wiki/Boilerplate_code).
+
+
+# TODO: Add Contents List `#helpwanted`
+
+This tutorial has several sections
+because it is a start-to-finish creation,
+publish and consume of a module on Hex.pm.
+We need a simple contents list similar to
+the main `README.md`:
+https://github.com/dwyl/learn-elixir/blame/master/README.md#L3 <br />
+This will help people rapidly navigate
+to the section they are most interested in.
+
 
 
 
@@ -553,7 +566,12 @@ https://hex.pm/packages?search=json
 
 In our case we are going to use
 [**`jason`**](https://hex.pm/packages/jason)
-because we have read the code and benchmarks and know that it's good.
+because we have read the code and
+[benchmarks](https://github.com/michalmuskala/jason#benchmarks)
+and know that it's good.
+[Phoenix](https://github.com/phoenixframework/phoenix/search?q=jason)
+is moving to `jason` from `poison` in the next _major_ release.
+
 For a `.json` file containing only a few thousand quotes
 it probably does not matter which parser you use.
 Elixir (_or the Erlang VM "BEAM"_)
@@ -620,11 +638,52 @@ The functionality for `parse_json` is quite simple:
 
 
 
-
 #### Write the Docs _First_ for the `parse_json` function
 
 Open the `lib/quotes.ex` file in your editor
-and
+and locate the `hello` function:
+
+```elixir
+def hello do
+  :world
+end
+```
+
+> We are _keeping_
+the `hello` function
+as reference for writing our own functions
+for the time being
+because it's a known state
+(_the tests pass_).
+We will remove it -
+and the corresponding tests -
+once the `random` tests are passing.
+
+Below the `hello` function,
+add a new `@doc """` block with the following info:
+
+```elixir
+@doc """
+parse_json returns a list of maps with quotes in the following form:
+[
+  %{
+    "author" => "Albert Einstein",
+    "text" => "Once we accept our limits, we go beyond them."
+  },
+  %{
+    "author" => "Peter Drucker",
+    "source" => "https://www.goodreads.com/quotes/784267",
+    "tags" => "time, management",
+    "text" => "Until we can manage time, we can manage nothing else."
+  }
+  %{...},
+  ...
+]
+
+All quotes MUST have an `author` and `text` field.
+Some quotes have `tags` and `source`, please help to expand/verify others.
+"""
+```
 
 
 
@@ -662,10 +721,10 @@ this is a myopic and leads to huge amounts of wasted time.
 Anyone who has worked as a software engineer
 in a larger company where _some_ developers
 think their code is "_self documenting_",
-knows that functionality gets _re-implmented_
-(_instead of reused_)
-when newer developers
-don't _understand_ what code does.
+knows that newer developers don't _understand_ the code
+they end up _re-implementing_ it
+instead of reusing existing code.
+This happens with _alarming_ frequency.
 
 
 
@@ -686,17 +745,11 @@ https://stackoverflow.com/questions/48857468/elixir-doctest-function-that-return
 
 ### Testing
 
-Given that our principal ...
+Given that our principal function is ***`random`***
+[nondeterministic](https://en.wikipedia.org/wiki/Nondeterministic_algorithm)
+it can be _tempting_ to think that there is "no way to test" it.
 
 
-
-
-### Which JSON Parsing Dependency?
-
-According to the
-[benchmarks](https://github.com/michalmuskala/jason#benchmarks),
-it's faster.
-[Phoenix](https://github.com/phoenixframework/phoenix/search?q=jason)
 
 
 
@@ -805,7 +858,7 @@ you can at least acknowledge that there is a _huge_ "market" for it:
 
 
 
-## Motivational Quotes are Lame
+## Motivational Quotes are _Lame_
 
 ![inspirational-quote-tony-robbins](https://user-images.githubusercontent.com/194400/65891570-a68a5e00-e39c-11e9-8cfd-d6fcaeea242f.png)
 
@@ -832,8 +885,6 @@ but it is something you should do on a regular basis_.”
 You might not think that motivational quotes _work_ on _you_
 in the same way that _most_ people
 feel they aren't _influenced_ to advertising.
-
-
 
 
 
