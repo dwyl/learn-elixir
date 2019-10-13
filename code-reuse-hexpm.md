@@ -293,6 +293,143 @@ end
 ExUnit.start()
 ```
 
+### Run the Tests
+
+Before writing any code,
+run the tests to ensure that everything
+you _expect_ to be working is in fact working:
+
+```sh
+mix test
+```
+
+You should see something like this:
+
+```sh
+==> jason
+Compiling 8 files (.ex)
+Generated jason app
+==> quotes
+Compiling 2 files (.ex)
+Generated quotes app
+..
+
+Finished in 0.02 seconds
+1 doctest, 1 test, 0 failures
+
+Randomized with seed 771068
+```
+
+That informs us that `jason`
+(_the dependncy we downloaded previously_)
+compiled successfully as did the `quotes` app.
+
+It also tells us: **1 doctest, 1 test, 0 failures**.
+The doctest (_see below_)
+which is the "living documentation"
+for the `hello` function
+executed the example successfully.
+
+Recall that the Example in the `@doc` block is:
+```elixir
+@doc """
+Hello world.
+
+## Examples
+
+    iex> Quotes.hello()
+    :world
+
+"""
+def hello do
+  :world
+end
+```
+
+If you open `iex` in your terminal
+by running `iex -S mix`
+and then input the module and function and run it,
+you will see the `:world` atom as the result:
+```elixir
+iex> Quotes.hello()
+:world
+```
+
+Doctests are an _awesome_ way of documenting functions
+because if the function changes
+the doctest _must_ change with it
+to avoid breaking.
+
+If we updated the `hello` function
+to return the atom `:kitty`
+the doctest would fail.
+
+Try it!
+Open the `lib/quotes.ex` file
+and change the `hello` function
+from:
+
+```elixir
+def hello do
+  :world
+end
+```
+
+To:
+
+```elixir
+def hello do
+  :kitty
+end
+```
+(_don't update the Example yet_)
+
+Rerun the tests:
+```sh
+mix test
+```
+
+```
+1) test greets the world (QuotesTest)
+   test/quotes_test.exs:5
+   Assertion with == failed
+   code:  assert Quotes.hello() == :world
+   left:  :kitty
+   right: :world
+   stacktrace:
+     test/quotes_test.exs:6: (test)
+
+
+
+2) doctest Quotes.hello/0 (1) (QuotesTest)
+   test/quotes_test.exs:3
+   Doctest failed
+   doctest:
+     iex> Quotes.hello()
+     :world
+   code:  Quotes.hello() === :world
+   left:  :kitty
+   right: :world
+   stacktrace:
+     lib/quotes.ex:11: Quotes (module)
+
+
+
+Finished in 0.03 seconds
+1 doctest, 1 test, 2 failures
+```
+
+The doctest failed because the function was updated.
+
+> It might seem redundant to have _two_
+(_similar_) tests for the same function.
+In this simplistic example
+both the doctest and ExUnit test
+are testing for the same thing
+`assert Quotes.hello() == :world`
+but the difference is that the doctest
+example will be included in the module/function's documentation.
+
 
 ### Get Quotes!
 
@@ -389,8 +526,10 @@ down to BEAM bytecode
 without any effort from the developer,
 this extra step is _automatic_.
 
-There are several options to chose from on hex.pm
-(_Elixir's package manager_)
+There are several options to chose from
+for parsing JSON data
+on hex.pm
+(_Elixir's package manager_) <br />
 just search for the keyword "**json**":
 https://hex.pm/packages?search=json
 
@@ -436,14 +575,40 @@ mix deps.get
 That will download the dependency from Hex.pm.
 
 
-
-
 ## Functions
 
+As always, our first step is to create the user story issue
+that describes what we are aiming to achieve:
 [quotes/issues/4](https://github.com/nelsonic/quotes/issues/4)
+
 ![functions-issue](https://user-images.githubusercontent.com/194400/66700544-47f0a880-ece9-11e9-8b65-2a0d31453700.png)
 
+The functions we need to create are:
 
++ [ ] `parse_json` - open the `quotes.json` file and parse the contents.
++ [ ] `random` - get a random quote for any author or topic `Quotes.random()`
++ [ ] `tag` - get a quote by a specific tag e.g: `Quotes.tag("time")`
++ [ ] `author` - get a random quote by a specific author
+e.g: `Quotes.author("Einstein")`
+
+Let's start with the _first_ function,
+opening the `quotes.json` file
+and parsing it's content.
+
+### `Quotes.parse_json`
+
+The functionality for `parse_json` is quite simple:
++ open the `quotes.json` file
++ parse the data contained in the file
++ return the parsed data (a List of Maps)
+
+
+
+
+#### Write the Docs _First_ for the `parse_json` function
+
+Open the `lib/quotes.ex` file in your editor
+and
 
 
 
@@ -485,6 +650,8 @@ Elixir has a superb
 feature that helps ensure documentation is kept current.
 If a function changes and the docs are not updated,
 the doctests will fail and thus prevent releasing the update.
+
+https://stackoverflow.com/questions/48857468/elixir-doctest-function-that-returns-random-values
 
 
 
@@ -562,6 +729,8 @@ https://hex.pm/docs/faq#can-i-transfer-ownership-of-a-package
 
 + Good background on code reuse: https://en.wikipedia.org/wiki/Code_reuse
 + Landscape photos: https://unsplash.com/s/photos/landscape
++ Generating Random Numbers in Erlang and Elixir:
+https://hashrocket.com/blog/posts/the-adventures-of-generating-random-numbers-in-erlang-and-elixir
 
 
 ## Notes
