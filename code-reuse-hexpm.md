@@ -685,9 +685,7 @@ Some quotes have `tags` and `source`, please help to expand/verify others.
 """
 ```
 
-
-
-### Documentation
+### Note on Documentation
 
 The most often overlooked _feature_ in software is documentation.
 People naively think that writing the code
@@ -713,7 +711,6 @@ by more than one developer
 can benefit from documentation
 that speeds up understanding/using the code.
 
-
 While can be tempting
 to _think_ that code is "_self documenting_",
 and that nobody _reads_ the docs,
@@ -725,6 +722,14 @@ knows that newer developers don't _understand_ the code
 they end up _re-implementing_ it
 instead of reusing existing code.
 This happens with _alarming_ frequency.
+It's best to get into the habit of documenting _everything_
+**`before`** you write the code.
+Writing out what a function does before writing code
+helps activate your brain to solve the problem _much faster_.
+
+> "_Documentation is a love letter that you write to your future self_."
+~ [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
+
 
 
 
