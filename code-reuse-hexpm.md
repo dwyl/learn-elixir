@@ -360,9 +360,11 @@ because if the function changes
 the doctest _must_ change with it
 to avoid breaking.
 
+### Update the `hello` function
+
 If we updated the `hello` function
-to return the atom `:kitty`
-the doctest would fail.
+to return the atom `:kitty` instead of `:world`
+the doctest will fail.
 
 Try it!
 Open the `lib/quotes.ex` file
@@ -429,20 +431,34 @@ are testing for the same thing
 `assert Quotes.hello() == :world`
 but the difference is that the doctest
 example will be included in the module/function's documentation.
+Always keep in mind that people using your code (_including yourself_)
+might not read the tests,
+but they will rely on the docs
+so writing doctests are an excellent step.
+
+Change the `hello` function back
+to what it was before
+(_returning `:world`_)
+and let's move on.
+
+Before we can return quotes,
+we need _source_ a bank of quotes!
 
 
 ### Get Quotes!
 
 Now that we have the basics of an Elixir project,
-our next task is to create (_or find_) a database of quotes.
+our next task is to create (_or find_) a list of quotes.
 
 We could _manually_ compile our list of quotes
 by combing through a few popular quotes websites.
+e.g:
+
 + Wikiquote: https://en.wikiquote.org/wiki/Motivation
 + Brainyquote: https://www.brainyquote.com/topics/motivational-quotes
 + Goodreads: https://www.goodreads.com/quotes
 
-_Or_ we can supply our favourite search engine
+_Or_ we can feed our favourite search engine
 with specific targeted keywords.
 e.g:
 "***inspirational quotes database json free***"
@@ -632,15 +648,28 @@ ask yourself, ‘How can I improve the code so that this comment isn’t needed?
 ~ Steve McConnell
 
 This statement is _partially_ complete.
+Code should be easy to read, that's _irrefutable_.
+But any function that needs to be used
+by more than one developer
+can benefit from documentation
+that speeds up understanding/using the code.
 
-While it's often tempting to _think_ that code is "_self documenting_",
-and that nobody _reads_ the docs, this is a myopic
+
+While can be tempting
+to _think_ that code is "_self documenting_",
+and that nobody _reads_ the docs,
+this is a myopic and leads to huge amounts of wasted time.
+Anyone who has worked as a software engineer
+in a larger company where _some_ developers
+think their code is "_self documenting_",
+knows that functionality gets _re-implmented_
+(_instead of reused_)
+when newer developers
+don't _understand_ what code does.
+
 
 
 #### Doctest
-
-
-
 
 > "_Incorrect documentation is often worse than no documentation._"
 ~ [Bertrand Meyer](https://en.wikipedia.org/wiki/Bertrand_Meyer)
@@ -731,6 +760,12 @@ https://hex.pm/docs/faq#can-i-transfer-ownership-of-a-package
 + Landscape photos: https://unsplash.com/s/photos/landscape
 + Generating Random Numbers in Erlang and Elixir:
 https://hashrocket.com/blog/posts/the-adventures-of-generating-random-numbers-in-erlang-and-elixir
++ TIL: Margaret Hamilton,
+director of the Software Engineering Division
+of the MIT Instrumentation Laboratory,
+which developed on-board flight software for NASA's Apollo space program.
+(_one of the people who coined the term "software engineering"_)
+https://en.wikipedia.org/wiki/Margaret_Hamilton_(software_engineer)
 
 
 ## Notes
