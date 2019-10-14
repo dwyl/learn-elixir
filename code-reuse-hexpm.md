@@ -143,7 +143,12 @@ When `Quotes.random()` is invoked
 a `map` will be returned with the following form:
 
 ```elixir
-# TODO: add doctest example when complete!
+%{
+  "author" => "Peter Drucker",
+  "source" => "https://www.goodreads.com/quotes/784267",
+  "tags" => "time, management",
+  "text" => "Until we can manage time, we can manage nothing else."
+}
 ```
 
 
