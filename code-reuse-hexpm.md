@@ -1007,7 +1007,8 @@ def random do
 end
 ```
 
-Yep, it's that simple.
+Yep, it's _that_ simple.
+`Elixir` is _awesome_!
 
 Re-run the tests:
 
@@ -1023,6 +1024,90 @@ They should now pass:
 Finished in 0.3 seconds
 1 doctest, 4 tests, 0 failures
 ```
+
+Now that our `Quotes.random` function is working as expected,
+we can move on to _using_ the functionality to display quotes.
+
+#### Tidy Up
+
+Before continuing,
+take a moment to tidy up the `lib/quotes.ex`
+and `test/quotes_test.exs` files.
+
+1. Delete the `@doc` comment and function definition
+for the `hello` function. (_we no longer need it_)
+2. Delete the corresponding test
+for in the `hello` function in `test/quotes_test.exs`
+Your files should now look like
+[`lib/quotes.ex`](https://github.com/nelsonic/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/lib/quotes.ex)
+and
+[`test/quotes_test.exs`](https://github.com/nelsonic/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/test/quotes_test.exs)
+
+Ensure that the remaining tests still pass (_as expected_):
+
+```sh
+mix test
+```
+
+There are fewer tests
+(_because we removed one test and a doctest_)
+but the remaining tests still pass:
+
+```sh
+Generated quotes app
+...
+
+Finished in 0.4 seconds
+3 tests, 0 failures
+```
+
+
+#### Generate Docs
+
+One of the biggest benefits of writing `@doc` comments up-front,
+is that our functions are _already_ documented
+and we don't have to _think_ about going back and doing it.
+Elixir can automatically generate the documentation for us!
+
+Add the following line to your `mix.exs` file in the `deps` section:
+
+```elixir
+{:ex_doc, "~> 0.21", only: :dev},
+```
+
+Then run the following command to download the `ex_doc` dependency.
+
+```sh
+mix deps.get
+```
+
+Now you can run `ex_docs` with the command:
+
+```sh
+mix docs
+```
+
+You will see output similar to this:
+
+```sh
+Compiling 1 file (.ex)
+Docs successfully generated.
+View them at "doc/index.html".
+```
+
+
+In your terminal type the following command:
+
+```sh
+open doc/index.html
+```
+
+That will open the `doc/index.html` file
+in your default web browser.
+e.g:
+
+![quotes-docs](https://user-images.githubusercontent.com/194400/66772514-cea5b100-eeb4-11e9-9f79-244847381dcf.png)
+
 
 
 ## 2. Reuse Code _Without_ Publishing to Hex.pm
