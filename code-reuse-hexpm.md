@@ -730,8 +730,8 @@ helps activate your brain to solve the problem _much faster_.
 > "_Documentation is a love letter that you write to your future self_."
 ~ [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
 
-<!--
-#### Doctest
+
+#### Doctest?
 
 > "_Incorrect documentation is often worse than no documentation._"
 ~ [Bertrand Meyer](https://en.wikipedia.org/wiki/Bertrand_Meyer)
@@ -742,8 +742,12 @@ feature that helps ensure documentation is kept current.
 As we saw above, if a function changes and the docs are not updated,
 the doctests will fail and thus prevent releasing the update.
 
-https://stackoverflow.com/questions/48857468/elixir-doctest-function-that-returns-random-values
--->
+Given that `parse_json` returns a large list of maps,
+it's impractical to add a Doctest example to the `@doc` block;
+the doctest would be _thousands_ of lines
+and would need to be _manually_ updated
+each time someone adds a quote.
+
 
 #### Test `parse_json` Function
 
@@ -829,10 +833,53 @@ Finished in 0.06 seconds
 Randomized with seed 30116
 ```
 
+For good measure,
+let's write a test that ensures all quotes in `quotes.json`
+have an `"author"` and `"text"` fields:
+
+```elixir
+test "all quotes have author and text property" do
+  Quotes.parse_json()
+  |> Enum.each(fn(q) ->
+    assert Map.has_key?(q, "author")
+    assert Map.has_key?(q, "text")
+    assert String.length(q["author"]) > 2 # see: https://git.io/Je8CO
+    assert String.length(q["text"]) > 10
+  end)
+end
+```
+This test might seem redundant,
+but it ensures that people contributing **`new`**
+quotes are not tempted to introduce incomplete data.
+And having a test that runs on CI,
+means that the build will fail if quotes are incomplete,
+which makes the project more reliable.
+
+
 
 ### Document the `Quotes.random()` Function
 
+Now that we have the `parse_json` helper function,
+we can move on to the main course!
 
+Open the `lib/quotes.ex` file (_if you don't already have it open_),
+scroll to the bottom and
+add the following `@doc` comment:
+
+```elixir
+@doc """
+random returns a random quote.
+e.g:
+[
+  %{
+    "author" => "Peter Drucker",
+    "source" => "https://www.goodreads.com/quotes/784267",
+    "tags" => "time, management",
+    "text" => "Until we can manage time, we can manage nothing else."
+  }
+]
+"""
+```
 
 
 #### Testing `Quotes.random()`
@@ -841,8 +888,29 @@ Given that our principal function is ***`random`***
 [nondeterministic](https://en.wikipedia.org/wiki/Nondeterministic_algorithm)
 it can be _tempting_ to think that there is "no way to test" it.
 
+In reality it's quite easy to test for randomness,
+and we can even have a little _fun_ doing it!
+
+
+
+> We aren't going to dive too deep into probability theory or math,
+if you are curious about The
+[Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem),
+read Kalid Azad's article (_and/or watch his video_):
+https://betterexplained.com/articles/understanding-the-birthday-paradox
+
+
+
+
+<!--
 We can still test for the presence of properties.
+
+> @Danwhy wrote a _detailed_ intro to Property Based Testing in `Elixir`:
 https://github.com/dwyl/learn-property-based-testing
+If you are new to this concept
+or get stuck while following the next section,
+please revisit it.
+-->
 
 
 
