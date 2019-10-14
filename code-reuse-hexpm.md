@@ -882,6 +882,7 @@ e.g:
 ```
 
 
+
 #### Testing `Quotes.random()`
 
 Given that our principal function is ***`random`***
@@ -890,7 +891,30 @@ it can be _tempting_ to think that there is "no way to test" it.
 
 In reality it's quite easy to test for randomness,
 and we can even have a little _fun_ doing it!
+We currently have 1565 quotes in `quotes.json`.
+By running the `Quotes.random()` function
+there is a 1 / 1565 x 100 = **0.063% chance**
+of any given quote being returned.
+That's great because it means
+people _using_ the quotes
+will be _highly unlikely_
+to see the _same_ quote twice
+in any given invocation.
 
+But if the person were to keep track
+of the random quotes they see,
+the chance of seeing the same quote twice
+increases with each invocation.
+This is fairly intuitive,
+with a finite set of quotes,
+repetition is _inevitable_.
+What is _less_ obvious
+is how soon the repetition will occur.
+
+Because of a neat feature
+of compound probability
+commonly referred to as the "_Birthday Paradox_",
+we can calculate _exactly_ when the "random" quotes will be repeated.
 
 
 > We aren't going to dive too deep into probability theory or math,
@@ -901,18 +925,104 @@ https://betterexplained.com/articles/understanding-the-birthday-paradox
 
 
 
+##### Birthday Paradox Formula
 
-<!--
-We can still test for the presence of properties.
+We can apply the birthday
 
-> @Danwhy wrote a _detailed_ intro to Property Based Testing in `Elixir`:
-https://github.com/dwyl/learn-property-based-testing
-If you are new to this concept
-or get stuck while following the next section,
-please revisit it.
--->
+people (number of items we have already seen)     = 200
+days (the "population" of available data)         = 1,565
+pairs = (people * (people -1)) / 2                = 20,100
+chance per pair = pairs / days                    = 12.84345047923
+chance different = E^(-chance per pair) * 100     = 0.00026433844
+chance of match = (100 - chance different)        = 99.99973566156
 
+There is a **99.9997% probability**
+that at a quote selected at random
+will match a quote we have already seen
+after the 200 random events.
 
+In other words if we execute `Quotes.random()` multiple times
+and store the result in an List,
+we are almost _certain_
+to see a repeated quote
+**`before`** we reach 200 invocations.
+
+We can translate this into code
+that tests the `Quotes.random` function.
+
+Open `test/quotes_test.exs` file and add the following code:
+
+```elixir
+# This recursive function calls Quotes.random until a quote is repeated
+def get_random_quote_until_collision(random_quotes_list) do
+  random_quote = Quotes.random()
+  if Enum.member?(random_quotes_list, random_quote) do
+    random_quotes_list
+  else
+    get_random_quote_until_collision([random_quote | random_quotes_list])
+  end
+end
+
+test "Quotes.random returns a random quote" do
+  # execute Quotes.random and accoumlate until a collision occurs
+  random_quotes_list = get_random_quote_until_collision([])
+  # this is the birthday paradox at work! ;-)
+  # IO.inspect Enum.count(random_quotes_list)
+  assert Enum.count(random_quotes_list) < 200
+end
+```
+
+If you save the file and run the tests:
+
+```
+mix test
+```
+
+You should expect to see it _fail_:
+
+```sh
+1) test Quotes.random returns a random quote (QuotesTest)
+   test/quotes_test.exs:49
+   ** (UndefinedFunctionError) function Quotes.random/0 is undefined or private
+   code: random_quotes_list = get_random_quote_until_collision([])
+   stacktrace:
+     (quotes) Quotes.random()
+     test/quotes_test.exs:41: QuotesTest.get_random_quote_until_collision/1
+     test/quotes_test.exs:51: (test)
+
+...
+
+Finished in 0.1 seconds
+1 doctest, 4 tests, 1 failure
+```
+
+#### Make the `Quotes.random` Test Pass
+
+In the `lib/quotes.ex`,
+add the following function definition
+below the `@doc` block:
+```elixir
+def random do
+  parse_json() |> Enum.random()
+end
+```
+
+Yep, it's that simple.
+
+Re-run the tests:
+
+```sh
+mix test
+```
+
+They should now pass:
+
+```sh
+.....
+
+Finished in 0.3 seconds
+1 doctest, 4 tests, 0 failures
+```
 
 
 ## 2. Reuse Code _Without_ Publishing to Hex.pm
