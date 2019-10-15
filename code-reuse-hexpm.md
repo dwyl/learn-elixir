@@ -155,7 +155,9 @@ a `map` will be returned with the following form:
 
 # How?
 
-This is a step-by-step example of creating an Elixir package from scratch.
+This is a step-by-step example of creating
+a resuable Elixir package from scratch.
+
 
 
 ## 1. Write _Useable_ Code
@@ -165,11 +167,9 @@ it first has to be usable._"
 ~ Ralph Johnson
 
 
-
-
 ### 1.1 Create a GitHub New Repository
 
-Our _first step_ is always to write useable code.
+Our _first step_ is always to write _useable_ code.
 Let's begin by creating a new repository: https://github.com/new
 
 ![quotes-github-repo](https://user-images.githubusercontent.com/194400/66130610-e09c6f80-e5e9-11e9-9252-5edbe6d845fb.png)
@@ -1122,17 +1122,92 @@ e.g:
 
 ## 3. Publish Package to Hex.pm
 
-
-
 ### What is Hex.pm?
 
-
+Hex.pm is the package manager for the `Elixir` (and `Erlang`) ecosystem.
+It allows you to publish packages free of charge
+and share them with your other projects
+and the community.
 
 ![hex.pm-home-page](https://user-images.githubusercontent.com/194400/65838440-f4e72080-e2fa-11e9-82d4-821187461804.png)
 
-
 ![hex.pm-no-owned-packages](https://user-images.githubusercontent.com/194400/65838879-8c4e7280-e2ff-11e9-8357-c939e3fde78a.png)
 
+Authenticate with hex.pm in the terminal of your `localhost`:
+```
+mix hex.user auth
+```
+
+Publish the package:
+```
+mix hex.publish
+```
+
+```sh
+Building quotes 1.0.0
+  Dependencies:
+    jason ~> 1.1 (app: jason)
+  App: quotes
+  Name: quotes
+  Files:
+    lib
+    lib/index.js
+    lib/quotes.ex
+    lib/utils.ex
+    .formatter.exs
+    mix.exs
+    README.md
+    LICENSE
+  Version: 1.0.0
+  Build tools: mix
+  Description: a collection of inspiring quotes and methods to return them.
+  Licenses: GNU GPL v2.0
+  Links:
+    GitHub: https://github.com/dwyl/quotes
+  Elixir: ~> 1.9
+Before publishing, please read the Code of Conduct: https://hex.pm/policies/codeofconduct
+
+Publishing package to public repository hexpm.
+
+Proceed? [Yn]
+```
+
+Type `y` in your terminal and hit the `[Enter]` key.
+You will see the following output to confirm the docs have been built:
+
+```
+Building docs...
+Compiling 2 files (.ex)
+Generated quotes app
+Docs successfully generated.
+View them at "doc/index.html".
+
+Local password:
+```
+
+Enter the password you defined
+as part of runnig `mix hex.user auth` above.
+
+
+If the package name is available (_which we knew it was_),
+then it will be successfully published:
+
+```
+Publishing package...
+[#########################] 100%
+Package published to https://hex.pm/packages/quotes/1.0.0 (7147b94fa97ee739d8b8a324ed334f7f50566c9ed8632bf07036c31a50bf9c64)
+Publishing docs...
+[#########################] 100%
+Docs published to https://hexdocs.pm/quotes/1.0.0
+```
+
+See: https://hex.pm/packages/quotes
+
+![quotes-hex.pm-published](https://user-images.githubusercontent.com/194400/66844523-54ce0000-ef66-11e9-8301-499b8cb14d71.png)
+
+Docs: https://hexdocs.pm/quotes/Quotes.html
+
+![quotes-hexdocs](https://user-images.githubusercontent.com/194400/66844615-7fb85400-ef66-11e9-8cee-e79c210e177b.png)
 
 ## 4. Use the Package in a New Project
 
