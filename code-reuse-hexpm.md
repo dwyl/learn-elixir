@@ -194,7 +194,7 @@ mix new quotes
 
 That will create all the files needed for our **`quotes`** package. <br />
 The code created by `mix new` is:
-[commit/14e7a08](https://github.com/nelsonic/quotes/commit/14e7a084360687510f9bb18925f022065d797ab9)
+[commit/14e7a08](https://github.com/dwyl/quotes/commit/14e7a084360687510f9bb18925f022065d797ab9)
 
 
 Using the [`tree`](https://rschu.me/list-a-directory-with-tree-command-on-mac-os-x-3b2d4c4a4827)
@@ -542,7 +542,7 @@ Abracadabra hey presto!
 ```
 
 Full file containing a _curated_ list of quotes:
-[`quotes.json`](https://github.com/nelsonic/quotes/blob/master/quotes.json)
+[`quotes.json`](https://github.com/dwyl/quotes/blob/master/quotes.json)
 
 
 ### Parsing JSON Data
@@ -600,7 +600,7 @@ Add the following line to the list:
 
 For a snapshot of what the `mix.exs` file should look like at this point,
 see:
-[`quotes/mix.exs`](https://github.com/nelsonic/quotes/blob/0af8108f4b0be8ae9ba58174979bca135945a04d/mix.exs#L24)
+[`quotes/mix.exs`](https://github.com/dwyl/quotes/blob/0af8108f4b0be8ae9ba58174979bca135945a04d/mix.exs#L24)
 
 #### Run `mix deps.get`
 
@@ -618,7 +618,7 @@ That will download the dependency from Hex.pm.
 
 As always, our first step is to create the user story issue
 that describes what we are aiming to achieve:
-[quotes/issues/4](https://github.com/nelsonic/quotes/issues/4)
+[quotes/issues/4](https://github.com/dwyl/quotes/issues/4)
 
 ![functions-issue](https://user-images.githubusercontent.com/194400/66700544-47f0a880-ece9-11e9-8b65-2a0d31453700.png)
 
@@ -819,7 +819,7 @@ end
 > Note: For the test to pass,
 You will also need to create a file called `lib/utils.ex`
 and add a `count` function.
-See: [`lib/utils.ex`](https://github.com/nelsonic/quotes/blob/38bd7c1b5ed12248a13ffa7f786919e3da5772ac/lib/utils.ex#L30-L39)
+See: [`lib/utils.ex`](https://github.com/dwyl/quotes/blob/38bd7c1b5ed12248a13ffa7f786919e3da5772ac/lib/utils.ex#L30-L39)
 
 
 Re-run the tests:
@@ -932,7 +932,10 @@ https://betterexplained.com/articles/understanding-the-birthday-paradox
 
 ##### Birthday Paradox Formula
 
-We can apply the birthday
+We can apply the birthday paradox formula
+to determin how soon we will
+see the same "random" quote twice:
+(_replace the word people for quote and days for quotes_)
 
 people (number of items we have already seen)     = 200
 days (the "population" of available data)         = 1,565
@@ -946,7 +949,8 @@ that at a quote selected at random
 will match a quote we have already seen
 after the 200 random events.
 
-In other words if we execute `Quotes.random()` multiple times
+In other words
+if we execute `Quotes.random()` multiple times
 and store the result in an List,
 we are almost _certain_
 to see a repeated quote
@@ -1001,6 +1005,12 @@ Finished in 0.1 seconds
 1 doctest, 4 tests, 1 failure
 ```
 
+The test fails
+because we haven't yet implemented
+the `Quotes.random` function.
+
+Let's make the test pass by implementing the function!
+
 #### Make the `Quotes.random` Test Pass
 
 In the `lib/quotes.ex`,
@@ -1013,7 +1023,7 @@ end
 ```
 
 Yep, it's _that_ simple.
-`Elixir` is _awesome_!
+`Elixir` is _awesome_! 🎉
 
 Re-run the tests:
 
@@ -1039,14 +1049,14 @@ Before continuing,
 take a moment to tidy up the `lib/quotes.ex`
 and `test/quotes_test.exs` files.
 
-1. Delete the `@doc` comment and function definition
-for the `hello` function. (_we no longer need it_)
+1. **Delete** the `@doc` comment and function definition
+for the **`hello`** function. (_we no longer need it_)
 2. Delete the corresponding test
 for in the `hello` function in `test/quotes_test.exs`
 Your files should now look like
-[`lib/quotes.ex`](https://github.com/nelsonic/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/lib/quotes.ex)
+[`lib/quotes.ex`](https://github.com/dwyl/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/lib/quotes.ex)
 and
-[`test/quotes_test.exs`](https://github.com/nelsonic/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/test/quotes_test.exs)
+[`test/quotes_test.exs`](https://github.com/dwyl/quotes/blob/f69d551afffee6b15e8f874d6929d8338d92c420/test/quotes_test.exs)
 
 Ensure that the remaining tests still pass (_as expected_):
 
@@ -1172,7 +1182,7 @@ Publishing package to public repository hexpm.
 Proceed? [Yn]
 ```
 
-Type `y` in your terminal and hit the `[Enter]` key.
+Type `y` in your terminal and hit the `[Enter]` key. <br />
 You will see the following output to confirm the docs have been built:
 
 ```
@@ -1209,12 +1219,19 @@ Docs: https://hexdocs.pm/quotes/Quotes.html
 
 ![quotes-hexdocs](https://user-images.githubusercontent.com/194400/66844615-7fb85400-ef66-11e9-8cee-e79c210e177b.png)
 
+
+
 ## 4. Use the Package in a New Project
+
 
 
 ## 4.a Basic Elixir Web Service _Without_ Phoenix
 
+
 ## 4.b Phoenix Web Service
+
+
+
 
 ### Q: If Phoenix is more code, why would I want to use it?
 
