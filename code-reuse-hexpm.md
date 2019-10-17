@@ -178,12 +178,13 @@ Let's begin by creating a new repository: https://github.com/new
 Once you've created the repository,
 create an issue with the first task.
 e.g:
+[quotes/issues/1](https://github.com/dwyl/quotes/issues/1)
 
 ![quotes-first-issue](https://user-images.githubusercontent.com/194400/66130977-85b74800-e5ea-11e9-9337-f4325736c252.png)
 
 This makes it clear to _yourself_ (_and others_) what the next step is.
 
-### 1.2 Create an Elixir Project
+### 1.2 Create a New Elixir Project
 
 In a terminal window on your `localhost`,
 run the following command:
@@ -365,8 +366,8 @@ end
 ```
 
 If you open `iex` in your terminal
-by running `iex -S mix`
-and then input the module and function and run it,
+by running `iex -S mix` <br />
+and then input the module and function and run it, <br />
 you will see the `:world` atom as the result:
 ```elixir
 iex> Quotes.hello()
@@ -378,7 +379,7 @@ because if the function changes
 the doctest _must_ change with it
 to avoid breaking.
 
-### Update the `hello` function
+### Update the `hello` function
 
 If we updated the `hello` function
 to return the atom `:kitty` instead of `:world`
@@ -402,7 +403,7 @@ def hello do
   :kitty
 end
 ```
-(_don't update the Example yet_)
+(_don't update the @doc/Example yet_)
 
 Rerun the tests:
 ```sh
