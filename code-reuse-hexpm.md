@@ -938,12 +938,14 @@ to determin how soon we will
 see the same "random" quote twice:
 (_replace the word people for quote and days for quotes_)
 
+```
 people (number of items we have already seen)     = 200
 days (the "population" of available data)         = 1,565
 pairs = (people * (people -1)) / 2                = 20,100
 chance per pair = pairs / days                    = 12.84345047923
 chance different = E^(-chance per pair) * 100     = 0.00026433844
 chance of match = (100 - chance different)        = 99.99973566156
+```
 
 There is a **99.9997% probability**
 that at a quote selected at random
