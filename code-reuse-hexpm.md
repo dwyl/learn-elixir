@@ -196,7 +196,7 @@ mix new quotes
 That will create all the files needed for our **`quotes`** package. <br />
 The code created by `mix new` is:
 [commit/14e7a08](https://github.com/dwyl/quotes/commit/14e7a084360687510f9bb18925f022065d797ab9)
-
+80 additions.
 
 Using the [`tree`](https://rschu.me/list-a-directory-with-tree-command-on-mac-os-x-3b2d4c4a4827)
 command (`tree -a` lists all files the directory tree
@@ -612,10 +612,10 @@ you need to run the following command in your terminal:
 mix deps.get
 ```
 
-That will download the dependency from Hex.pm.
+This will download the dependency from Hex.pm.
 
 
-## Functions
+## Functions
 
 As always, our first step is to create the user story issue
 that describes what we are aiming to achieve:
@@ -627,8 +627,8 @@ The functions we need to create are:
 
 + [ ] `parse_json` - open the `quotes.json` file and parse the contents.
 + [ ] `random` - get a random quote for any author or topic `Quotes.random()`
-+ [ ] `tag` - get a quote by a specific tag e.g: `Quotes.tag("time")`
-+ [ ] `author` - get a random quote by a specific author
++ [ ] `random_by_tag` - get a quote by a specific tag e.g: `Quotes.tag("time")`
++ [ ] `random_by_author` - get a random quote by a specific author
 e.g: `Quotes.author("Einstein")`
 
 Let's start with the _first_ function,
@@ -697,15 +697,18 @@ The most often overlooked _feature_ in software is documentation.
 People naively think that writing the code
 is all that needs to be done in software development,
 but that could not be further from the truth.
-Documentation is at least _half_ of the project.
+Documentation is at least _30%_ of the project.
 Even if you are the only person
 who will "consume" the reuseable code,
 it still pays to write _comprehensive_ documentation.
-The small investment pays handsomely
+The _relatively small_ investment pays handsomely
 when you return to the code in a week/month/year
 you don't have to waste _hours_ trying to understand it.
 
+> "_Documentation is a love letter that you write to your future self_."
+~ [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
 
+<!--
 > “_Good code is its own best documentation. As you’re about to add a comment,
 ask yourself, ‘How can I improve the code so that this comment isn’t needed?'_”
 ~ Steve McConnell
@@ -732,9 +735,7 @@ It's best to get into the habit of documenting _everything_
 **`before`** you write the code.
 Writing out what a function does before writing code
 helps activate your brain to solve the problem _much faster_.
-
-> "_Documentation is a love letter that you write to your future self_."
-~ [Damian Conway](https://en.wikipedia.org/wiki/Damian_Conway)
+-->
 
 
 #### Doctest?
@@ -976,7 +977,7 @@ def get_random_quote_until_collision(random_quotes_list) do
 end
 
 test "Quotes.random returns a random quote" do
-  # execute Quotes.random and accoumlate until a collision occurs
+  # execute Quotes.random and accumulate until a collision occurs
   random_quotes_list = get_random_quote_until_collision([])
   # this is the birthday paradox at work! ;-)
   # IO.inspect Enum.count(random_quotes_list)
