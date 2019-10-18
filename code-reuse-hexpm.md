@@ -52,14 +52,16 @@ to the section they are most interested in.
 > "_Good programmers
 know what to write.
 Great ones know what
-to rewrite_ (_and **reuse**_).". <br />
-~ Eric S. Raymond (The Cathedral and the Bazaar)
+to rewrite_ (_and **reuse**_)." <br />
+~ [Eric S. Raymond](https://en.wikipedia.org/wiki/Eric_S._Raymond)
+([The Cathedral and the Bazaar](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar))
 
 The biggest advantages of code reuse are:
 + Independently tested small pieces of code
 that do only one thing.
 ([Curly's Law](https://blog.codinghorror.com/curlys-law-do-one-thing)) 🥇
-+ Work can be subdivided among people/teams with clear responsibilities. <br />
++ Work can be subdivided among people/teams
+with clear responsibilities. ✅<br />
 Or if you are solo developer,
 having small chunks of code helps you bitesize your work
 so it's more manageable. 🙌
@@ -77,11 +79,13 @@ it is by building on the work of giants._"
 ~ Every Experienced Developer
 
 
+
+
+
 # What?
 
 In this example we are going to build a simple Elixir module
-that returns a **random inspiring quote**
-when the main function is invoked. <br />
+that returns a **random inspiring quote**. <br />
 The functionality of the module is _intentionally_
 simple to illustrate code reuse in the most basic form. <br />
 Along the way we will demonstrate how to:
@@ -693,9 +697,9 @@ Some quotes have `tags` and `source`, please help to expand/verify others.
 
 ### Note on Documentation
 
-The most often overlooked _feature_ in software is documentation.
-People naively think that writing the code
-is all that needs to be done in software development,
+The most often overlooked _feature_ in software development is documentation.
+People _naively_ think that writing the code
+is all that needs to be done,
 but that could not be further from the truth.
 Documentation is at least _30%_ of the project.
 Even if you are the only person
