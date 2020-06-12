@@ -1312,6 +1312,7 @@ http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions
 + [Elixir School](https://elixirschool.com/), which is available translated at least partially in over 20 languages and functions as a great succinct guide to core concepts.
 + [30 Days of Elixir](https://github.com/seven1m/30-days-of-elixir) is a walk through the Elixir language in 30 exercises.
 + [Learn Elixir - List of Curated Resources](https://hackr.io/tutorials/learn-elixir)
++ [Elixir Courses at Classpert](https://classpert.com/elixir-programming) is a list of free and paid Online Courses
 + [Explanation video of **Pattern Matching** in Elixir](https://www.youtube.com/watch?v=48X5aGwBnzQ)
 + Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
 + List of more [useful resources and sample apps](https://github.com/h4cc/awesome-elixir)
