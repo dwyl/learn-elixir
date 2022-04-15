@@ -81,7 +81,7 @@ Using the [Homebrew](https://brew.sh/) package manager:
 + **Add the Erlang Solutions repo**:
 
 ```
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
 ```
 + **Run**: `sudo apt-get update`
 + **Install the Erlang/OTP platform and all of its applications**:
