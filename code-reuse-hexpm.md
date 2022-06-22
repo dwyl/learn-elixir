@@ -100,7 +100,7 @@ Along the way we will demonstrate how to:
 1. **Write**, document and test a basic package.
 2. **Reuse** code _without_ publishing to Hex.pm.
 3. **Publish** a package to Hex.pm
-4. **Use** the code it in a different project.
+4. **Use** the code in a different project.
 
 ## Quotes?
 
@@ -164,7 +164,7 @@ a `map` will be returned with the following form:
 # How?
 
 This is a step-by-step example of creating
-a resuable Elixir package from scratch.
+a reusable Elixir package from scratch.
 
 ## 1. Write _Useable_ Code
 
@@ -300,7 +300,6 @@ end
 
 The `mix.exs` file is the configuration file for the project/package.
 
--
 
 `test/quotes_test.exs`
 
@@ -349,7 +348,7 @@ Randomized with seed 771068
 ```
 
 That informs us that `jason`
-(_the dependncy we downloaded previously_)
+(_the dependency we downloaded previously_)
 compiled successfully as did the `quotes` app.
 
 It also tells us: **1 doctest, 1 test, 0 failures**.
@@ -392,7 +391,7 @@ to avoid breaking.
 
 ### Update the `hello` function
 
-If we updated the `hello` function
+If we update the `hello` function
 to return the atom `:kitty` instead of `:world`
 the doctest will fail.
 
@@ -494,7 +493,7 @@ with specific targeted keywords.
 e.g:
 "**_inspirational quotes database json free_**"
 
-Again there are _many_ results so we need do some sifting ...
+Again there are _many_ results so we need to do some sifting ...
 
 - https://github.com/public-apis/public-apis
 - https://opendata.stackexchange.com/questions/3488/large-list-of-quotes
@@ -572,7 +571,7 @@ we need to import a module.
 > without any effort from the developer,
 > this extra step is _automatic_.
 
-There are several options to chose from
+There are several options to choose from
 for parsing JSON data
 on hex.pm
 (_Elixir's package manager_) <br />
@@ -645,7 +644,7 @@ The functions we need to create are:
 
 Let's start with the _first_ function,
 opening the `quotes.json` file
-and parsing it's content.
+and parsing its content.
 
 ### `Quotes.parse_json`
 
@@ -710,7 +709,7 @@ is all that needs to be done,
 but that could not be further from the truth.
 Documentation is at least _30%_ of the project.
 Even if you are the only person
-who will "consume" the reuseable code,
+who will "consume" the reusable code,
 it still pays to write _comprehensive_ documentation.
 The _relatively small_ investment pays handsomely
 when you return to the code in a week/month/year
@@ -937,7 +936,7 @@ we can calculate _exactly_ when the "random" quotes will be repeated.
 ##### Birthday Paradox Formula
 
 We can apply the birthday paradox formula
-to determin how soon we will
+to determine how soon we will
 see the same "random" quote twice:
 (_replace the word people for quote and days for quotes_)
 
