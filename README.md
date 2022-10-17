@@ -116,7 +116,7 @@ Using the [Homebrew](https://brew.sh/) package manager:
 + **Add the Erlang Solutions repo**:
 
 ```
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
 ```
 + **Run**: `sudo apt-get update`
 + **Install the Erlang/OTP platform and all of its applications**:
@@ -221,6 +221,13 @@ Elixir has functions, like `and/2`, that *only* work with
 booleans, but also functions that work with these
 truthy/falsy values, like `&&/2` and `!/1`.
 
+The syntax `<function_name>/<number>` is the convention
+used in Elixir to identify a function named
+`<function_name>` that takes `<number>` parameters.
+The value `<number>` is also referred to as the function
+[arity](https://en.wikipedia.org/wiki/Arity).
+In Elixir each function is identified univocally both by
+its name and its arity. More information can be found [here](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
 We can check the truthiness of a value by using the `!/1`
 function twice.
 
@@ -1386,10 +1393,6 @@ Create a new file called `factorial.exs` with the following code:
 
 ```elixir
 defmodule Factorial do
-  def spawn(n) when n < 4 do
-    calc_product(n)
-  end
-
   def spawn(n) do
     1..n
     |> Enum.chunk_every(4)
@@ -1422,6 +1425,18 @@ defmodule Factorial do
     Enum.reduce(list, 1, &(&1 * &2))
   end
 end
+```
+
+The `&` symbol is called the 
+[capture operator](https://hexdocs.pm/elixir/Function.html#module-the-capture-operator),
+which can be used to quickly generate anonymous functions that expect at least one argument.
+The arguments can be accessed inside the _capture operator_ `&()` with `&X`, where
+`X` refers to the input number of the argument.
+
+There is no difference between
+```elixir
+add_capture = &(&1 + &2)
+add_fn = fn a, b -> a + b end
 ```
 
 Before we go any further let's take a quick look at the `calc_product` function.
@@ -1457,25 +1472,37 @@ This sounds good in theory but let's see if we can put it into practice.
 First, let's look through the `spawn` function and try to work out what it is
 doing exactly.
 
-It starts by converting and integer into a range which it then 'chunks' into a
-list of 4 lists (unless `n` < 4, in which case it just runs on a single process).
-The number 4 itself is not important, it could have been 5, 10 or 1000. What is
-important about it, is that it is the number of Processes we will be spawning.
-(Yes we could have spawned 1000 processes if we wanted to)
+The function starts by converting an integer into a range which it then 
+'[chunks](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)' into a list of
+lists with 4 elements.
+The number 4 itself is not important, it could have been 5, 10, or 1000. What is
+important about it, is that it influences the number of processes we will be spawning.
+The larger the size of the 'chunks' the fewer processes are spawned.
 
-Next we map over the now 'chunked' range and call the spawn function. This
-spawns 4 new processes running the `_spawn_function/1`, sends them each a
-message and waits for a response message.
+Next, we map over the 'chunked' range and call the spawn function. This
+spawns a new process for each chunked list running the `_spawn_function/1`. 
+Afterwards, the process running the `spawn/1` function sends the newly
+created process a message and waits for a response message.
 
 The `_spawn_function` function is pretty simple. It uses the exact same pattern
 we used in our `add` function earlier. It receives a message with the senders
 PID and then sends a message back to them. The message it sends back is the
 result of the `calc_product` function.
 
-Once each process in the map function has receive a result back we then call the
-`calc_product` once more to turn the list of results from map into one integer,
-the factorial. In total the `spawn/1` function will end up calling,
-`calc_product` 5 times.
+Once each process in the map function has received a result, we then call the
+`calc_product` once more to turn the list of results from map into a single integer,
+the factorial. 
+In total the `spawn/1` function will end up calling
+`calc_product` for a list with `n` elements: 
+`n % 4 + 1` if `n % 4 == 0` else `n % 4 + 2` times.
+
+Remember, we split the original list into lists of 4 elements.
+The only exception is the last chunk, which may contain fewer elements:
+
+```[1, 2, 3, 4, 5] -> [[1, 2, 3, 4], [5]]```
+
+For each chunked list we call `calc_product` and to calculate the final result,
+the factorial, once.
 
 Now that we have been through the code the only things left are to run the code
 and to time the code.
