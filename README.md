@@ -1,26 +1,61 @@
+<div align="center">
+
 # Learn ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
 
-## Contents
-- [Why?](#why)
-- [What?](#what)
-- [How?](#how)
-- [Learn Elixir](#learn-elixir)
-- [Commands](#commands)
-- [Basic Types](#basic-types)
-- [Functions and Modules](#functions-and-modules)
-- [Generate an Elixir Project](#generating-your-first-elixir-project)
-- [Documentation](#documentation)
-- [Testing](#testing)
-- [Formatting](#formatting )
-- [Publishing](#publishing)
-- [Data Structures](#data-structures)
-  - [Maps](#maps)
-- [Processes](#processes)
-  - [Spawning a process](#spawning-a-process)
-  - [Sending messages between processes](#Sending-messages-between-processes)
-  - [Concurrency](#concurrency)
-- [Further Resources](#further-resources)
+</div>
 
+- [Learn !elixir logo](#learn-)
+  - [*Why*?](#why)
+    - [Key Advantages](#key-advantages)
+  - [*What*?](#what)
+    - [Video Introductions](#video-introductions)
+  - [*How*?](#how)
+    - [Installation:](#installation)
+      - [Mac:](#mac)
+      - [Ubuntu:](#ubuntu)
+      - [Windows:](#windows)
+  - [Learn Elixir](#learn-elixir)
+  - [Commands](#commands)
+  - [Basic Types](#basic-types)
+    - [Numbers](#numbers)
+    - [Booleans](#booleans)
+    - [Truthiness: truthy and falsy values](#truthiness-truthy-and-falsy-values)
+    - [Atoms](#atoms)
+    - [Strings](#strings)
+    - [Lists](#lists)
+    - [Tuples](#tuples)
+    - [Lists or Tuples?](#lists-or-tuples)
+  - [Functions and Modules](#functions-and-modules)
+    - [Anonymous functions](#anonymous-functions)
+    - [Modules](#modules)
+  - [Create Your First `Elixir` Project](#create-your-first-elixir-project)
+    - [Initialise](#initialise)
+    - [Edit `animals.ex`](#edit-animalsex)
+    - [Run the Code](#run-the-code)
+    - [Define Functions](#define-functions)
+    - [Extend Functions](#extend-functions)
+    - [Add More Functions!](#add-more-functions)
+    - [Pattern Matching _Example_](#pattern-matching-example)
+    - [Save Data to File](#save-data-to-file)
+    - [Retrieve Data from File](#retrieve-data-from-file)
+      - [Pipe Operator](#pipe-operator)
+  - [Documentation](#documentation)
+  - [Testing](#testing)
+  - [Formatting](#formatting)
+  - [Publishing](#publishing)
+    - [Congratulations!](#congratulations)
+    - [Want _More_?](#want-more)
+  - [Data Structures](#data-structures)
+    - [Maps](#maps)
+      - [Updating a value inside a map](#updating-a-value-inside-a-map)
+  - [Processes](#processes)
+    - [Spawning a process](#spawning-a-process)
+    - [Sending messages between processes](#sending-messages-between-processes)
+    - [Concurrency](#concurrency)
+  - [tl;dr](#tldr)
+  - [Further resources:](#further-resources)
+
+<br />
 
 ## *Why*?
 
@@ -35,13 +70,13 @@ which are more difficult to manage)
 + [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
 ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
 + **High reliability, availability and fault tolerance** (_because of Erlang_)
-means apps built with elixir are run in production for **years**
+means apps built with **`Elixir`** are run in production for **years**
 without any "_downtime_"!
 + Real-time web apps are "_easy_"
 (_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
 
 Things *will* go wrong with
-code, and Elixir provides supervisors which describe how to restart parts of
+code, and **`Elixir`** provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
 
 ## *What*?
@@ -51,20 +86,20 @@ your system when things don't go as planned.
 
 ### Video Introductions
 
-If you have the time, these videos give a nice contextual introduction into what Elixir is, what it's used for and how it works:
+If you have the time, these videos give a nice contextual introduction into what **`Elixir`** is, what it's used for and how it works:
 
 <!-- note we should update this once we have
-made our *own* intro to Elixir vid! -->
+made our *own* intro to **`Elixir`** vid! -->
 
 - Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
 - Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
 - Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
 
-Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things Elixir :book: :heart:.
+Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things **`Elixir`** :book: :heart:.
 
 ## *How*?
 
-Before you learn Elixir as a language you will need to have it installed on your machine.
+Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
 
 To do so you can go to
 http://elixir-lang.org/install.html or follow our guide here:
@@ -103,8 +138,8 @@ choco install elixir
 
 ## Commands
 
-+ After installing Elixir you can open the interactive shell by typing `iex`.
-This allows you to type in any elixir expression and see the result in the terminal.
++ After installing **`Elixir`** you can open the interactive shell by typing `iex`.
+This allows you to type in any **`Elixir`** expression and see the result in the terminal.
 
 + Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
 something like this:
@@ -176,7 +211,7 @@ false
 
 ### Truthiness: truthy and falsy values
 
-Besides the booleans `true` and `false` Elixir also has the
+Besides the booleans `true` and `false` **`Elixir`** also has the
 concept of a "truthy" or "falsy" value.
 
   *  a value is truthy when it is neither `false` nor `nil`
@@ -232,7 +267,7 @@ false
 
 `true` and `false` are actually atoms in Elixir
 
-Names of _modules_ in Elixir are also atoms. `MyApp.MyModule`
+Names of _modules_ in **`Elixir`** are also atoms. `MyApp.MyModule`
 is a valid atom, even if no such module has been declared yet.
 
 ```elixir
@@ -248,7 +283,7 @@ iex> :crypto.strong_rand_bytes 3
 <<23, 104, 108>>
 ```
 
-One popular use of atoms in Elixir is to use them as messages
+One popular use of atoms in **`Elixir`** is to use them as messages
 for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
 Let's say you have a function which processes an `http` request.
 The outcome of this process is either going to be a success or an error.
@@ -441,9 +476,14 @@ iex> Math.sum(1, 2)
 ```
 
 
-## Generating your first Elixir project
+## Create Your First `Elixir` Project
 
-To get started with your first Elixir project you need to make use of the [Mix](https://hexdocs.pm/mix/Mix.html) build tool that comes straight out of the box. Mix allows you to do a number of things including:
+To get started 
+with your first **`Elixir`** project 
+you need to make use of the 
+[**`Mix`**](https://hexdocs.pm/mix/Mix.html) 
+build tool that comes with **`Elixir`**. 
+Mix allows you to do a number of things including:
 
 - Create projects
 - Compile projects
@@ -454,14 +494,28 @@ To get started with your first Elixir project you need to make use of the [Mix](
 
 To generate a new project follow these steps:
 
-#### Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
+### Initialise
 
-```bash
-> mix new [project_name]
+Initialise a project by typing the following command in your terminal, 
+replacing [project_name] with the name of your project:
+
+```sh
+mix new [project_name]
 ```
+
+e.g:
+
+```sh
+mix new animals
+```
+
+
 We have chosen to call our project 'animals'
 
-This will create a new folder with the given name of your project and should also print something that looks like this to the command line:
+This will create a new folder 
+with the given name of your project 
+and should also print something 
+that looks like this to the command line:
 
 ```bash
 * creating README.md
@@ -487,13 +541,18 @@ Navigate to your newly created directory:
 ```bash
 > cd animals
 ```
-Open the directory in your text editor. You will be able to see that Elixir has
+Open the directory in your text editor. You will be able to see that **`Elixir`** has
 generated a few files for us that are specific to our project:
 
 - `lib/animals.ex`
 - `test/animals_test.ex`
 
-#### Open up the `animals.ex` file in the lib directory. You should already see some `hello-world` boilerplate like this:
+### Edit `animals.ex`
+
+Open up the `animals.ex` file 
+in the lib directory. 
+You should already see some 
+`hello-world` boilerplate like this:
 
 ```elixir
 defmodule Animals do
@@ -515,26 +574,42 @@ defmodule Animals do
   end
 end
 ```
-Elixir has created a module with the name of your project along with a function
-that prints out a `:world` atom when called. It's also added boilerplate for
+
+**`Elixir`** has created a module 
+with the name of your project 
+along with a function
+that prints out a `:world` atom when called. 
+It's also added boilerplate for
 module and function documentation - the first part of the file.
 (*we will go into more detail about documentation later*)
 
-#### Let's test out the boilerplate code. In your project directory type the following command:
-```bash
+### Run the Code
+
+Let's test out the boilerplate code. 
+In your project directory type the following command:
+
+
+```sh
 > iex -S mix
 ```
-What this basically means is, "Start the elixir interactive terminal and compile
-with the context of my current project". This allows you to access modules and
+
+What this means is: 
+"Start the **`Elixir` REPL** 
+and compile with the context of my current project". 
+This allows you to access modules and
 functions created within the file tree.  
-Call the `hello-world` function given to us by Elixir. It should print out the
+Call the `hello-world` function given to us by **`Elixir`**. 
+It should print out the
 `:world` atom to the command line:
 ```bash
 > Animals.hello
 # :world
 ```
 
-#### Let's start to create our own methods in the `Animals` module. Replace the `hello-world` method with the following:
+### Define Functions
+
+Let's start to create our own methods in the `Animals` module. 
+Replace the `hello-world` function with the following:
 
 ```elixir
 @doc """
@@ -550,18 +625,29 @@ def create_zoo do
   ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
 end
 ```
-To run our new code we will first have to recompile our `iex`. This can be done
-by typing:  
-```bash
+
+To run our new code we will first have to recompile our `iex`. 
+This can be done by typing:  
+
+```sh
 > recompile()
 ```
+
 Now we will have access to the `create_zoo` method. Try it out in the command line:
-```bash
+
+```sh
 > Animals.create_zoo
 # ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
 ```
 
-#### Let's _extend_ the `Animals` module. Let's say that you're visiting the zoo but you can't decide which order to view the animals. We can create a `randomise` function before the final `end` that takes a list of animals and returns a new list with a random order:
+### Extend Functions
+
+Let's _extend_ the `Animals` module. 
+Imaging you're visiting the zoo 
+but you can't decide which order to view the animals. 
+We can create a `randomise` function 
+before the final `end` that takes a list of animals 
+and returns a new list with a random order:
 
 ```elixir
 @doc """
@@ -579,11 +665,20 @@ def randomise(zoo) do
   Enum.shuffle(zoo)
 end
 ```
-Note we are making use of a pre-built module called `Enum` which has a list of
-methods that you can use on enumerables such as lists. Documentation for `Enum`
-methods can be found [here](https://hexdocs.pm/elixir/Enum.html)
 
-#### Let's add another method to the `Animals` module. Let's say that we want to find out if our zoo contains an animal:
+> **Note**: we are making use 
+> of a pre-built module called `Enum` 
+> which has a list of functions 
+> that you can use on enumerables such as lists. 
+> Documentation available at: 
+[hexdocs.pm/elixir/Enum.html](https://hexdocs.pm/elixir/Enum.html)
+
+### Add More Functions!
+
+Let's add another function 
+to the `Animals` module. 
+We want to find out 
+if our zoo contains an animal:
 
 ```elixir
 @doc """
@@ -603,7 +698,13 @@ end
 **NOTE:** It's convention when writing a function that returns a boolean to add a question
 mark after the name of the method.
 
-#### Pattern matching example: Let's create a function that takes a list of animals and the number of animals that you'd like to see and then returns a list of animals.
+### Pattern Matching _Example_
+
+Create a function 
+that takes a list of animals 
+and the number of animals 
+that you'd like to see 
+and returns a list of animals:
 
 ```elixir
 @doc """
@@ -624,7 +725,11 @@ def see_animals(zoo, count) do
 end
 ```
 
-#### What if we want to save our list of animals to a file? Let's write a function that will do this for us:
+### Save Data to File
+
+Write a function 
+that will
+save our list of animals to a file:
 
 ```elixir
 @doc """
@@ -644,19 +749,25 @@ def save(zoo, filename) do
 end
 ```
 
-In your command line run the following after recompiling:
+In your command line, 
+run the following after recompiling:
 
-```bash
+```sh
 > zoo = Animals.create_zoo
 > Animals.save(zoo, "my_animals")
 ```
-This will create a new file in your file tree with the name of the file that
-you specified in the function. It will contain some odd characters for example this
-is what gets returned for our animals file:
+
+This will create a new file 
+in your file tree with the name of the file that
+you specified in the function. 
+It will contain some odd characters:
 
 �l\\&#0;&#0;&#0;&#6;m&#0;&#0;&#0;&#4;lionm&#0;&#0;&#0;&#5;tigerm&#0;&#0;&#0;&#7;gorillam&#0;&#0;&#0;&#8;elephantm&#0;&#0;&#0;&#6;monkeym&#0;&#0;&#0;&#7;giraffej
 
-#### Now let's write a function that will allow us to access that information again:
+### Retrieve Data from File
+
+Write a function 
+that will fetch data from the file:
 
 ```elixir
 @doc """
@@ -681,7 +792,10 @@ def load(filename) do
 end
 ```
 
-The [`case` expression](https://elixir-lang.org/getting-started/case-cond-and-if.html) here allows us to pattern match against various options and react accordingly.
+The 
+[`case` expression](https://elixir-lang.org/getting-started/case-cond-and-if.html) 
+allows us to pattern match 
+against various options and react accordingly.
 
 #### Pipe Operator
 
@@ -709,10 +823,10 @@ def selection(number_of_animals) do
 end
 ```
 
-Now that we have the functionality for our module, let's take a look at the documentation
-that we have written and how we can maximise its use.
-
-
+Now that we have the functionality for our module, 
+let's take a look at the documentation
+that we have written 
+and how we can maximise its use.
 
 ## Documentation
 
@@ -739,45 +853,65 @@ end
 Then in the command line quit your `iex` shell and enter the following to install
 the `ex_docs` dependency:
 
-```bash
+```sh
 > mix deps.get
 ```
 
-You might receive an error saying: `Could not find Hex, which is needed to build dependency :ex_doc
-Shall I install Hex? (if running non-interactively, use: "mix local.hex --force") [Yn]`.
-If you do then just enter `y` and then press enter. This will install the
+You might receive an error saying: 
+
+```sh
+Could not find Hex, which is needed to build dependency :ex_doc
+Shall I install Hex? (if running non-interactively, 
+use: "mix local.hex --force") [Yn]
+```
+
+If you do then just enter `y` 
+and then press enter. 
+This will install the
 dependencies that you need.
 
-Once `ex_docs` has been installed then run the following command to generate
+Once `ex_docs` has been installed,
+run run the following command to generate
 documentation (*make sure you're not in `iex`*):
 
-```bash
+```sh
 > mix docs
 ```
 
-This will generate documentation that can be viewed if you copy the file path of
-the `index.html` file within the newly created `doc` folder and then paste it in
-your browser. If you have added documentation to your module and functions as per
-the examples above, you should see something like the following:
+This will generate documentation 
+that can be viewed 
+if you copy the file path 
+of the `index.html` file 
+within the newly created `doc` folder 
+and then paste it in your browser. 
+If you have added documentation 
+to your module and functions 
+as per the examples above, 
+you should see something like the following:
 
 ![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
 
-It looks exactly like the format of the official Elixir docs because they used the
-same tool to create theirs. Here is what the method documentation should look like
-if you click on `Animals`:
+It looks exactly like the format 
+of the official **`Elixir`** docs 
+because they used the same tool to create theirs. 
+Here is what the method documentation 
+should look like if you click on `Animals`:
 
 ![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
+
 ![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
 
-This is an incredibly powerful tool that comes 'baked in' with elixir. It means that
-other developers who are joining the project can be brought up to speed incredibly
-quickly!
+This is an incredibly powerful tool 
+that comes 'baked in' with elixir. 
+It means that other developers 
+who are joining the project 
+can be brought up to speed incredibly quickly!
 
 
 
 ## Testing
 
-When you generate a project with Elixir it automatically gives you a number of
+When you generate a project with **`Elixir`** it automatically gives you a number of
 files and directories. One of these directories is called `test` and it holds two
 files like should have names like:
 - `[project_name]_test.exs`
@@ -820,10 +954,10 @@ end
 ```
 
 **NOTE: You do not need to install and require any external testing frameworks**.
-It all comes with the Elixir package. Simply write `test` followed by a string
+It all comes with the **`Elixir`** package. Simply write `test` followed by a string
 representing what you are trying to test and then write your assertion.
 
-The test above isn't completely air-tight. Elixir provides you with assertions that
+The test above isn't completely air-tight. **`Elixir`** provides you with assertions that
 can help deal with things like this. The test could be re-written like so:
 
 ```elixir
@@ -841,16 +975,16 @@ https://github.com/dwyl/learn-elixir/tree/master/codecov_example
 
 ## Formatting
 
-In Elixir version 1.6 the `mix format` task was introduced.
+In **`Elixir`** version 1.6 the `mix format` task was introduced.
 see: https://github.com/elixir-lang/elixir/issues/6643
 
-`mix format` is a _built-in_ way to format your Elixir code
+`mix format` is a _built-in_ way to format your **`Elixir`** code
 according to the community-agreed consistent style.
 This means _all_ code will look consistent across projects
 (_personal, "work" & hex.pm packages_)
 which makes learning faster and maintainability easier!
 At present, using the formatter is _optional_,
-however _most_ Elixir projects have adopted it.
+however _most_ **`Elixir`** projects have adopted it.
 
 To _use_ the mix task in your project,
 you can either check files _individually_, e.g:
@@ -867,9 +1001,9 @@ will check all the `.ex` and `.exs` files in the `lib/` directory.
 
 Having to type this pattern each time
 you want to check the files is _tedious_.
-Thankfully, Elixir has you covered.
+Thankfully, **`Elixir`** has you covered.
 
-In the root of your Elixir project, you will find a `.formatter.exs`
+In the root of your **`Elixir`** project, you will find a `.formatter.exs`
 config file with the following code:
 ```elixir
 # Used by "mix format"
@@ -892,7 +1026,7 @@ And your code will now follow Elixir's formatting guidelines.
 We recommend installing a plugin in your Text Editor to auto-format:
 + **Atom** Text Editor Auto-formatter:
 https://atom.io/packages/atom-elixir-formatter
-+ Vim Elixir Formatter: https://github.com/mhinz/vim-mix-format
++ Vim **`Elixir`** Formatter: https://github.com/mhinz/vim-mix-format
 + VSCode:
 https://marketplace.visualstudio.com/items?itemName=sammkj.vscode-elixir-formatter
 
@@ -903,8 +1037,9 @@ https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.e
 
 ## Publishing
 
-To publish your Elixir package to [Hex.pm](https://hex.pm/):
-- Check the version in `mix.exs` is up to date and that it follows the [semantic versioning format](https://semver.org/):
+To publish your **`Elixir`** package to [Hex.pm](https://hex.pm/):
+- Check the version in `mix.exs` is up to date and that it follows the 
+[semantic versioning format](https://semver.org/):
 >   MAJOR.MINOR.PATCH  where  
       MAJOR version when you make incompatible API changes
       MINOR version when you add functionality in a backwards-compatible manner
@@ -918,49 +1053,73 @@ To publish your Elixir package to [Hex.pm](https://hex.pm/):
    `mix.exs` file](https://github.com/dwyl/cid/blob/master/mix.exs) where
    you can see this in action
 
-- Create a [Hex.pm](https://hex.pm/) account if you do not have one already.
+- Create a [Hex.pm](https://hex.pm/) account 
+  if you do not have one already.
 
-- Make sure that [ex_doc](https://hex.pm/packages/ex_doc) is added as a dependency in you project
-  ```
-  defp deps do
-  [
-    {:ex_doc, "~> 0.21", only: :dev}
-  ]
-  end
-  ```
+- Make sure that [ex_doc](https://hex.pm/packages/ex_doc) 
+  is added as a dependency in you project
+
+```elixir
+defp deps do
+[
+  {:ex_doc, "~> 0.21", only: :dev}
+]
+end
+```
+
  When publishing a package, the documentation will be automatically generated.
  So if the dependency `ex_doc` is not declared, the package won't be able to be published
 
-- Run `mix hex.publish` and if all the information are correct reply `Y`
+- Run `mix hex.publish` 
+  and if all the information are correct reply `Y`
 
-If you have not logged into your Hex.pm account in your command line before
-running the above command, you will be met with the following...
+If you have not logged into your Hex.pm account 
+in your command line before running the above command, 
+you will be met with the following...
+
 ```sh
 No authenticated user found. Do you want to authenticate now? [Yn]
 ```
-You will need to reply `Y` and follow the on-screen instructions to enter your
-Hex.pm username and password.
 
-After you have been authenticated, Hex will ask you for a local password that
+You will need to reply `Y` 
+and follow the on-screen instructions 
+to enter your Hex.pm username and password.
+
+After you have been authenticated,
+Hex will ask you for a local password that
 applies only to the machine you are using for security purposes.
 
-Create a password for this and follow the onscreen instructions to enter it.
+Create a password for this 
+and follow the onscreen instructions to enter it.
 
 - Now that your package is published you can create a new git tag with the name of the version:
   - `git tag -a 0.1.0 -m "0.1.0 release"`
   - `git push --tags`
 
-#### And that's it, you've generated, formatted and published your first Elixir project :tada:
+### Congratulations!
 
-If you want to keep learning more Elixir, read on.
+That's it, you've generated, formatted 
+and published your first **`Elixir`** project :tada:
+
+### Want _More_?
+
+If you want a more detailed example 
+of publishing a real-world package 
+and re-using it in a real-world project,
+see: 
+[**`code-reuse-hexpm.md`**](https://github.com/dwyl/learn-elixir/blob/main/code-reuse-hexpm.md)
+
 
 <hr/>
 
 ## Data Structures
 
 ### Maps
-Maps are very similar to Object literals in JavaScript. They have almost the same
-syntax except for a `%` sign. They look like this:
+
+Maps are very similar to `Object` literals in `JavaScript`. 
+They have almost the same
+syntax except for a `%` symbol.
+They look like this:
 
 ```elixir
 animal = %{
@@ -969,16 +1128,22 @@ animal = %{
   legs: 4
 }
 ```
-Values can be accessed in a couple of ways. The first is by dot notation just
-like JavaScript:
+
+Values can be accessed in a couple of ways.
+The first is by dot notation just
+like `JavaScript`:
 
 ```elixir
 name = animal.name
 # Rex
 ```
-The second way values can be accessed is by pattern matching. Let's say we wanted
-to assign values to variables for each of the key-value pairs in the map. We
-would write something that looks like this:
+
+The second way values 
+can be accessed is by pattern matching. 
+Let's say we wanted
+to assign values to variables 
+for each of the key-value pairs in the map. 
+We would write something that looks like this:
 
 ```elixir
 iex> %{
@@ -995,8 +1160,11 @@ iex> legs
 # 4
 ```
 #### Updating a value inside a map
-Due to the immutability of Elixir, you cannot update a map using dot notation for
-example:
+
+Due to the immutability of **`Elixir`**, 
+you cannot update a map 
+using dot notation 
+for example:
 
 ```elixir
 iex> animal = %{
@@ -1006,7 +1174,8 @@ iex> animal = %{
 }
 iex> animal.name = "Max" # this cannot be done!
 ```
-In Elixir we can only create new data structures as opposed to manipulating existing
+
+In **`Elixir`** we can only create new data structures as opposed to manipulating existing
 ones. So when we *update* a map, we are creating a new map with our new values.
 This can be done in a couple of ways:
 
@@ -1014,9 +1183,12 @@ This can be done in a couple of ways:
 - Syntax
 
 1. Using a function  
-We can update a map using `Map.put(map, key, value)`. This takes the map you want
-to update followed by the key we want to reassign and lastly the value that we want
+We can update a map using `Map.put(map, key, value)`. 
+This takes the map you want to update 
+followed by the key we want to reassign 
+and lastly the value that we want
 to reassign to the key:
+
 ```elixir
 iex> updatedAnimal = Map.put(animal, :name, "Max")
 iex> updatedAnimal
@@ -1024,37 +1196,54 @@ iex> updatedAnimal
 ```
 
 2. Using syntax  
-We can use a special syntax for updating a map in Elixir. It looks like this:
+We can use a special syntax for updating a map in Elixir. 
+It looks like this:
+
 ```elixir
 iex> %{animals | name: "Max"}
 # %{legs: 4, name: "Max", type: "dog"}
 ```
-**NOTE:** Unlike the function method above, this syntax can only be used to UPDATE
-a current key-value pair inside the map, it cannot add a new key value pair.
+
+> **NOTE:** Unlike the function method above, 
+> this syntax can only be used to UPDATE
+a current key-value pair inside the map, 
+it cannot add a new key value pair.
 
 ## Processes
-When looking into Elixir you may have heard about its
-[processes](https://elixir-lang.org/getting-started/processes.html) and its
-support for concurrency. In fact we even mention processes as one of the key
-advantages elixir offers in this README. If you're anything like me then you
-are probably wondering what this actually means for you and your code. This
-section aims to help you understand what they are and how they can help improve
-your Elixir projects.
 
-Elixir-lang describes processes well with the following...
-```
-In Elixir, all code runs inside processes. Processes are isolated from each
-other, run concurrent to one another and communicate via message passing.
-Processes are not only the basis for concurrency in Elixir, but they also
-provide the means for building distributed and fault-tolerant programs.
-```
+When looking into **`Elixir`** you may have heard about its
+[processes](https://elixir-lang.org/getting-started/processes.html) 
+and its support for concurrency. 
+In fact we even mention processes 
+as one of the key advantages. 
+If you're anything like us,
+you're probably wondering 
+what this actually means for you and your code. 
+This section aims to help you 
+understand what they are 
+and how they can help improve
+your **`Elixir`** projects.
 
-Now that we have a description out of the way, let's start by spawning our first
-process.
+**`Elixir-lang`** describes processes as:
+
+> In **`Elixir`**, all code runs inside processes. 
+Processes are isolated from each other, 
+run concurrent to one another 
+and communicate via message passing.
+Processes are not only the basis 
+for concurrency in **`Elixir`**, 
+but they also provide the means 
+for building distributed and fault-tolerant programs.
+
+
+Now that we have a definition, 
+let's start by spawning our first process.
 
 ### Spawning a process
 
-Create a file called `math.exs` and put the following in...
+Create a file called `math.exs` 
+and insert the following code:
+
 ```elixir
 defmodule Math do
   def add(a, b) do
@@ -1063,37 +1252,64 @@ defmodule Math do
   end
 end
 ```
-Now head over to your terminal and enter the following, `iex math.exs`. This
-will load your `Math` module into your `iex` session. Now in `iex` type
-`spawn(Math, :add, [1,2])`. You will see something that looks like this...
+
+Now head over to your terminal 
+and enter the following, `iex math.exs`. 
+This will load your `Math` module 
+into your `iex` session.
+Now in `iex` type:
+
+```elixir
+spawn(Math, :add, [1,2])
 ```
+
+You will see something similar to:
+
+```elixir
 3
 #PID<0.118.0>
 ```
-This is your log followed by a `process identifier`, PID for short. A PID is a
-unique id for a process. It could be unique among all processes in the world,
+
+This is your log 
+followed by a `process identifier`, PID for short. 
+A PID is a unique id for a process. 
+It could be unique among all processes in the world,
 but here it's just unique for your application.
 
-So what just happened here. We called the
-[spawn/3](https://hexdocs.pm/elixir/Kernel.html#spawn/3) function and passed it
-3 arguments. The module name, the function name (as an atom), and a list of the
-arguments that we want to give to our function. This one line of code spawned
+So what just happened here. 
+We called the 
+[`spawn/`3](https://hexdocs.pm/elixir/Kernel.html#spawn/3) 
+function 
+and passed it 3 arguments. 
+The module name, 
+the function name (as an atom), 
+and a list of the arguments 
+that we want to give to our function. 
+This one line of code spawned
 a process for us 🎉 🥳
 
-Normally we would not see the result of the function (3 in this case). The only
-reason we have is because of the `IO.inspect` in the add function.
+Normally we would not see the result 
+of the function (3 in this case). 
+The only reason we have 
+is because of the `IO.inspect` in the add function.
 If we removed this the only log we would have is the PID itself.
 
-This might make you wonder, what good is spawning a process if I can't get
-access to the data it returns. This is where messages come in.
+This might make you wonder, 
+what good is spawning a process if I can't get
+access to the data it returns. 
+This is where messages come in.
 
 ### Sending messages between processes
 
-Let's start by exiting `iex` and removing the the `IO.inspect` line from our
-code. Now that that is done let's get our add function to send its result in a
-message.
+Let's start by exiting `iex` 
+and removing the the `IO.inspect` line 
+from our code. 
+Now that that is done 
+let's get our add function 
+to send its result in a message.
 
-Update your file to the following...
+Update your file to the following:
+
 ```elixir
 defmodule Math do
   def add(a, b) do
@@ -1121,19 +1337,25 @@ function (as we did in the `iex` shell in the previous example). Remember the
 spawn function returned a PID. We use this PID on the next line with
 `|> send(self())`. [send/2](https://hexdocs.pm/elixir/Kernel.html#send/2) takes
 two arguments, a destination and a message. For us the destination is the PID
-created by the `spawn` function on the line above. The message is [`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0) which returns the PID
+created by the `spawn` function on the line above. The message is 
+[`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0) 
+which returns the PID 
 of the calling process (the PID of double).
 
 We then call
-[receive](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#receive/1) which
-checks if there is a message matching the clauses in the current process. It
-works very similarly to a `case` statement. Our `message` is simple and just
+[`receive/1`](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#receive/1) 
+which checks if there is a message matching the clauses in the current process. 
+It works very similarly to a `case` statement. 
+Our `message` is simple and just
 returns whatever the message was.
 
-We have also updated our `add/2` function so that it also contains a `receive`
-and a `send`. This `receive`, receives the PID of the sender. Once
-it has that message it calls the send function to send a message back to the
-sender. The message it sends is `a+b`.
+We have also updated our `add/2` function 
+so that it also contains a `receive` and a `send`. 
+This `receive`, receives the PID of the sender. 
+Once it has that message 
+it calls the send function 
+to send a message back to the sender. 
+The message it sends is `a+b`.
 
 This will trigger the receive block in our double function. As mentioned
 above, it simply returns the message it receives which is the answer from add.
@@ -1146,10 +1368,13 @@ You should see
 10
 ```
 
-VERY COOL. We just spawned a process which did a task for us and returned the
-data.
+VERY COOL. 
+We just spawned a process 
+which did a task for us 
+and returned the data.
 
 ### Concurrency
+
 Now that we can create processes that can send messages to each other, let's see
 if we can use them for something a little more intensive than doubling an
 integer.
@@ -1164,7 +1389,8 @@ multiple processes.
 (A factorial is the product of an integer and all the integers below it;
 e.g. `factorial(4) (4!)` is equal to `1 * 2 * 3 * 4` or `24`.)
 
-Create a new file called `factorial.exs` and add the following code...
+Create a new file called `factorial.exs` with the following code:
+
 ```elixir
 defmodule Factorial do
   def spawn(n) do
@@ -1281,7 +1507,9 @@ the factorial, once.
 Now that we have been through the code the only things left are to run the code
 and to time the code.
 
-To time the code add the following to your `factorial.exs` file...
+To time the execution of our code,
+add the following to your `factorial.exs` file:
+
 ```elixir
   # just a helper function used to time the other functions
   def run(f_name, args) do
@@ -1318,7 +1546,7 @@ that JavaScript (_with the introduction of ES2015_) now has
 ***Six Ways to Declare a Function***:
 https://rainsoft.io/6-ways-to-declare-javascript-functions/
 which means that there is _ambiguity_ and "_debate_" as to which is
-"_best practice_", Go, Elixir and Rust don't suffer from this problem.
+"_best practice_", Go, **`Elixir`** and Rust don't suffer from this problem.
 Sure there are "_anonymous_" functions in Elixir
 (_required for functional programming_!) but there are still only ***Two Ways***
 to define a `function` (_and both have specific use-cases_),
@@ -1329,19 +1557,23 @@ http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions
 ## Further resources:
 
 + [Crash Course in Elixir](http://elixir-lang.org/crash-course.html)
-+ [Elixir School](https://elixirschool.com/), which is available translated at least partially in over 20 languages and functions as a great succinct guide to core concepts.
-+ [30 Days of Elixir](https://github.com/seven1m/30-days-of-elixir) is a walk through the Elixir language in 30 exercises.
-+ [Learn Elixir - List of Curated Resources](https://hackr.io/tutorials/learn-elixir)
-+ [Elixir Courses at Classpert](https://classpert.com/elixir-programming) is a list of free and paid Online Courses
-+ [Explanation video of **Pattern Matching** in Elixir](https://www.youtube.com/watch?v=48X5aGwBnzQ)
++ [Elixir School](https://elixirschool.com/), 
+  which is available translated at least partially in over **20 languages** 
+  and functions as a great succinct guide to core concepts.
++ [30 Days of Elixir](https://github.com/seven1m/30-days-of-elixir) 
+  is a walk through the **`Elixir`** language in 30 exercises.
++ [Learn **`Elixir`** - List of Curated Resources](https://hackr.io/tutorials/learn-elixir)
++ [Explanation video of **Pattern Matching** in Elixir](http://worldwide.chat/)
 + Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
 + List of more [useful resources and sample apps](https://github.com/h4cc/awesome-elixir)
-+ If you want to know what's _next_ it's worth check out [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
-by **José Valim** (the creator of Elixir)
++ If you want to know what's _next_ it's worth check out 
+  [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
+  by **José Valim** (the creator of Elixir)
 + _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
-https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
+  https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
 + What was "_wrong_" with just writing directly in Erlang? read:
-http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
-+ While Elixir by _itself_ is pretty _amazing_,
-where the language really shines is in the **Phoenix Web Framework**!!
-So once you know the basics of the language [try learning Phoenix](https://github.com/dwyl/learn-phoenix-web-development).
+  http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
++ While **`Elixir`** by _itself_ is pretty _amazing_,
+  where the language really shines is in the **Phoenix Web Framework**!!
+  So once you know the basics of the language 
+  [Learn `Phoenix` Web Development](https://github.com/dwyl/learn-phoenix-web-development).
