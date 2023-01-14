@@ -8,45 +8,41 @@ Mix.install([
 
 ## Introduction
 
-<a href="https://livebook.dev/run?url=https%3A%2F%2Fdwyl-learn-elixir.fly.dev%2F">
-  <img src="https://livebook.dev/badge/v1/blue.svg" alt="Run in Livebook" />
-</a>
-
 <!-- livebook:{"break_markdown":true} -->
 
-### *Why*?
+### _Why_?
 
 #### Key Advantages
 
-* **Scalability**
+- **Scalability**
 
-* **Speed**
+- **Speed**
 
-* **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
+- **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
 
-* Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
+- Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
 
-* Many tiny processes (as opposed to "threads"
+- Many tiny processes (as opposed to "threads"
   which are more difficult to manage)
 
-* **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
+- **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
 
-* [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
+- [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
   ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
 
-* **High reliability, availability and fault tolerance** (_because of Erlang_)
+- **High reliability, availability and fault tolerance** (_because of Erlang_)
   means apps built with **`Elixir`** are run in production for **years**
   without any "_downtime_"!
 
-* Real-time web apps are "_easy_"
+- Real-time web apps are "_easy_"
   (_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
 
-Things *will* go wrong with code, and **`Elixir`** provides supervisors which describe how to restart parts of your system when things don't go as planned.
+Things _will_ go wrong with code, and **`Elixir`** provides supervisors which describe how to restart parts of your system when things don't go as planned.
 
-### *What*?
+### _What_?
 
 [_"Elixir is a dynamic, functional language designed for building scalable and
- maintainable applications."_](http://elixir-lang.org/)
+maintainable applications."_](http://elixir-lang.org/)
 
 #### Video Introductions
 
@@ -54,16 +50,16 @@ If you have the time, these videos give a nice contextual introduction into what
 
 <!--
  note we should update this once we have
-made our *own* intro to **`Elixir`** vid! 
+made our *own* intro to **`Elixir`** vid!
 -->
 
-* Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
-* Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
-* Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
+- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
+- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
 
 Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things **`Elixir`** :book: :heart:.
 
-### *How*?
+### _How_?
 
 Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
 
@@ -79,25 +75,25 @@ Using the [Homebrew](https://brew.sh/) package manager:
 
 #### Ubuntu:
 
-* **Add the Erlang Solutions repo**:
+- **Add the Erlang Solutions repo**:
 
 ```
 wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
 ```
 
-* **Run**: `sudo apt-get update`
-* **Install the Erlang/OTP platform and all of its applications**:
+- **Run**: `sudo apt-get update`
+- **Install the Erlang/OTP platform and all of its applications**:
   `sudo apt-get install esl-erlang`
-* **Install Elixir**: `sudo apt-get install elixir`
+- **Install Elixir**: `sudo apt-get install elixir`
 
 #### Windows:
 
-* **Web installer**
+- **Web installer**
 
-  * [Download the installer](https://repo.hex.pm/elixir-websetup.exe)
-  * Click next, next, ..., finish
+  - [Download the installer](https://repo.hex.pm/elixir-websetup.exe)
+  - Click next, next, ..., finish
 
-* **Chocolatey** (_Package Manager_)
+- **Chocolatey** (_Package Manager_)
 
 ```
 choco install elixir
@@ -113,15 +109,15 @@ You have several ways to run an Elixir script. You can firstly use the REPL (Rea
 
 ### Commands
 
-* After installing **`Elixir`** you can open the interactive shell by typing `iex`.
+- After installing **`Elixir`** you can open the interactive shell by typing `iex`.
   This allows you to type in any **`Elixir`** expression and see the result in the terminal.
 
-* Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
+- Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
   something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
-* Typing `i` followed by the value name will give you information about a value in your code:
+- Typing `i` followed by the value name will give you information about a value in your code:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
 
@@ -141,13 +137,13 @@ documentation and multiple other sources. It will take you through some examples
 
 Elixir's 7 basic types:
 
-* `integers`
-* `floats`
-* `booleans`
-* `atoms`
-* `strings`
-* `lists`
-* `tuples`
+- `integers`
+- `floats`
+- `booleans`
+- `atoms`
+- `strings`
+- `lists`
+- `tuples`
 
 <!-- livebook:{"break_markdown":true} -->
 
@@ -223,10 +219,10 @@ is_boolean(1)
 Besides the booleans `true` and `false` **`Elixir`** also has the
 concept of a "truthy" or "falsy" value.
 
-* a value is truthy when it is neither `false` nor `nil`
-* a value is falsy when it is `false` or `nil`
+- a value is truthy when it is neither `false` nor `nil`
+- a value is falsy when it is `false` or `nil`
 
-Elixir has functions, like `and/2`, that *only* work with
+Elixir has functions, like `and/2`, that _only_ work with
 booleans, but also functions that work with these
 truthy/falsy values, like `&&/2` and `!/1`.
 
@@ -372,7 +368,7 @@ result
 ```
 
 Thus, we can be sure that we will always have the lines returned to us
-and never a *nil* value (because it will throw an error).
+and never a _nil_ value (because it will throw an error).
 This becomes extremely useful when piping multiple methods together.
 
 <!-- livebook:{"break_markdown":true} -->
@@ -469,13 +465,13 @@ If you need to iterate over the values use a list.
 
 When dealing with **large** lists or tuples:
 
-* `Updating` a `list` (adding or removing elements) is **fast**
+- `Updating` a `list` (adding or removing elements) is **fast**
 
-* `Updating` a `tuple` is **slow**
+- `Updating` a `tuple` is **slow**
 
-* `Reading` a `list` (getting its length or selecting an element) is **slow**
+- `Reading` a `list` (getting its length or selecting an element) is **slow**
 
-* `Reading` a `tuple` is **fast**
+- `Reading` a `tuple` is **fast**
 
 > source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
 
@@ -602,22 +598,22 @@ ExMod3.print_input()
 
 ## Create Your First non-Livebook Project
 
-To get started with your first **`Elixir`** project that doesn't use a `Livebook`, you need to make use of the 
-[**`Mix`**](https://hexdocs.pm/mix/Mix.html)  build tool that comes with **`Elixir`**. 
+To get started with your first **`Elixir`** project that doesn't use a `Livebook`, you need to make use of the
+[**`Mix`**](https://hexdocs.pm/mix/Mix.html) build tool that comes with **`Elixir`**.
 Mix allows you to do a number of things including:
 
-* Create projects
-* Compile projects
-* Run tasks
-  * Testing
-  * Generate documentation
-* Manage dependencies
+- Create projects
+- Compile projects
+- Run tasks
+  - Testing
+  - Generate documentation
+- Manage dependencies
 
 To generate a new project follow these steps:
 
 ### Initialize
 
-Initialise a project by typing the following command in your terminal,  replacing [project_name] with the name of your project:
+Initialise a project by typing the following command in your terminal, replacing [project_name] with the name of your project:
 
 ```sh
 mix new [project_name]
@@ -633,9 +629,9 @@ mix new animals
 
 We have chosen to call our project 'animals'
 
-This will create a new folder 
-with the given name of your project 
-and should also print something 
+This will create a new folder
+with the given name of your project
+and should also print something
 that looks like this to the command line:
 
 ```bash
@@ -667,8 +663,8 @@ Navigate to your newly created directory:
 Open the directory in your text editor. You will be able to see that **`Elixir`** has
 generated a few files for us that are specific to our project:
 
-* `lib/animals.ex`
-* `test/animals_test.ex`
+- `lib/animals.ex`
+- `test/animals_test.ex`
 
 ### Edit `animals.ex`
 
@@ -677,8 +673,8 @@ generated a few files for us that are specific to our project:
 Open up the `animals.ex` file in the lib directory. You should already see some `hello` boilerplate.
 
 **`Elixir`** has created a module with the name of your project along with a function
-that prints out a `:world` atom when called. 
-It's also added boilerplate for module and function documentation - the first part of the file. (*we will go into more detail about documentation later*).
+that prints out a `:world` atom when called.
+It's also added boilerplate for module and function documentation - the first part of the file. (_we will go into more detail about documentation later_).
 
 Let's add some functionalities in it:
 
@@ -820,14 +816,14 @@ end
 
 ### Run the Code
 
-Let's test out the boilerplate code. 
+Let's test out the boilerplate code.
 In your project directory type the following command:
 
 ```sh
 > iex -S mix
 ```
 
-What this means is: "Start the **`Elixir` REPL** and compile with the context of my current project". 
+What this means is: "Start the **`Elixir` REPL** and compile with the context of my current project".
 This allows you to access modules and functions created within the file tree.  
 Call the `hello` function given to us by **`Elixir`**. It should print out the `:world` atom to the command line:
 
@@ -840,7 +836,7 @@ Call the `hello` function given to us by **`Elixir`**. It should print out the `
 
 We then added some functions with their documentation: `create_zoo/0`, `randomise/1`, `contains?/2`.
 
-**NOTE**: we are making use of a pre-built module called `Enum` which has a list of functions that you can use on enumerables such as lists. Documentation available at: 
+**NOTE**: we are making use of a pre-built module called `Enum` which has a list of functions that you can use on enumerables such as lists. Documentation available at:
 [hexdocs.pm/elixir/Enum.html](https://hexdocs.pm/elixir/Enum.html)
 
 **NOTE:** It's convention when writing a function that returns a boolean to add a question
@@ -879,8 +875,8 @@ This will create a new file in your file tree with the name of the file that you
 
 You can load back the file with `Animals.load/1`. Note the `case <something> do` switch. The value of `<something>` is returned by the function [`File.read`](https://hexdocs.pm/elixir/1.14.2/File.html#read/1). It returns a tuple whose first element is the atom `:ok` or `:error`, so returns `{:ok, value}` or `{:error, reason}`. You pattern matching on this return, thus have 2 cases:
 
-* the success case, where the first element of the response tuple is `:ok`, you use the pattern matching binding to the second element of it's tuple response to the variable `value` so that we can use it.
-* the error case. In case the first element of the response tuple  is the atom `:error`, you ignore the second element (you underscore it `_reason`) and return an error message.
+- the success case, where the first element of the response tuple is `:ok`, you use the pattern matching binding to the second element of it's tuple response to the variable `value` so that we can use it.
+- the error case. In case the first element of the response tuple is the atom `:error`, you ignore the second element (you underscore it `_reason`) and return an error message.
 
 Note the opposite conversion `:erlang.binary_to_term/1`
 
@@ -902,7 +898,7 @@ recompile()
 
 ### Pipe operator `|>`
 
-What if we wanted to call some of our functions in succession to another? 
+What if we wanted to call some of our functions in succession to another?
 It takes the output of a function as the input of the first variable of the next function. When you "pipe" two functions, you musn't write the first argument of the second function because it is implicit. This way, we can write clean and shorter code.
 
 This is done in the code of the function `Animals.selection/1`.
@@ -932,8 +928,8 @@ project and its dependencies.
 
 At the bottom of the file it gives us a function called `deps` which manages all
 of the dependencies in our project. To install a third party package we need to
-manually write it in the deps function (*accepts a tuple of the package name and
-the version*) and then install it in the command line. Let's install `ex_doc` as
+manually write it in the deps function (_accepts a tuple of the package name and
+the version_) and then install it in the command line. Let's install `ex_doc` as
 an example:
 
 Add the following to the deps function in your `mix.exs` file:
@@ -957,20 +953,20 @@ You might receive an error saying:
 
 ```sh
 Could not find Hex, which is needed to build dependency :ex_doc
-Shall I install Hex? (if running non-interactively, 
+Shall I install Hex? (if running non-interactively,
 use: "mix local.hex --force") [Yn]
 ```
 
 If you do then just enter `y` and then press enter. This will install the dependencies that you need.
 
-Once `ex_docs` has been installed, run run the following command to generate documentation (*make sure you're not in `iex`*):
+Once `ex_docs` has been installed, run run the following command to generate documentation (_make sure you're not in `iex`_):
 
 ```sh
 > mix docs
 ```
 
-This will generate documentation that can be viewed if you copy the file path of the `index.html` file within the newly created `doc` folder and then paste it in your browser. 
-If you have added documentation to your module and functions as per the examples above, 
+This will generate documentation that can be viewed if you copy the file path of the `index.html` file within the newly created `doc` folder and then paste it in your browser.
+If you have added documentation to your module and functions as per the examples above,
 you should see something like the following:
 
 ![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
@@ -989,8 +985,8 @@ When you generate a project with **`Elixir`** it automatically gives you a numbe
 files and directories. One of these directories is called `test` and it holds two
 files like should have names like:
 
-* `[project_name]_test.exs`
-* `test_helper.exs`
+- `[project_name]_test.exs`
+- `test_helper.exs`
 
 We are running this code in a `Livebook`. It is slightly different.
 
@@ -1004,7 +1000,7 @@ ExUnit.start(auto_run: false)
 
 !!!! For the moment, the `doctest` functionality does not work on Fly.io. We can nevertheless run tests.
 
-> **NOTE**: you need to run the command above  and set `async: false` to run test in Livebook.
+> **NOTE**: you need to run the command above and set `async: false` to run test in Livebook.
 
 ```elixir
 defmodule AnimalsTest do
@@ -1094,29 +1090,29 @@ You may also use [`credo`](https://github.com/rrrene/credo), a static code analy
 
 We recommend installing a plugin in your Text Editor to auto-format:
 
-* **Atom** Text Editor Auto-formatter:
+- **Atom** Text Editor Auto-formatter:
   https://atom.io/packages/atom-elixir-formatter
 
-* Vim **`Elixir`** Formatter: https://github.com/mhinz/vim-mix-format
+- Vim **`Elixir`** Formatter: https://github.com/mhinz/vim-mix-format
 
-* VSCode:
+- VSCode:
   https://marketplace.visualstudio.com/items?itemName=sammkj.vscode-elixir-formatter
 
-* Read the `mix/tasks/format.ex` source to _understand_ how it works:
+- Read the `mix/tasks/format.ex` source to _understand_ how it works:
   https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.ex
 
-* https://hashrocket.com/blog/posts/format-your-elixir-code-now
+- https://hashrocket.com/blog/posts/format-your-elixir-code-now
 
-* https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
+- https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
 
 ## Publishing to Hex
 
 To publish your **`Elixir`** package to [Hex.pm](https://hex.pm/):
 
-* Check the version in `mix.exs` is up to date and that it follows the 
+- Check the version in `mix.exs` is up to date and that it follows the
   [semantic versioning format](https://semver.org/):
 
-  > MAJOR.MINOR.PATCH  where
+  > MAJOR.MINOR.PATCH where
 
   ```
   MAJOR version when you make incompatible API changes
@@ -1124,19 +1120,19 @@ To publish your **`Elixir`** package to [Hex.pm](https://hex.pm/):
   PATCH version when you make backwards-compatible bug fixes
   ```
 
-* Check that the main properties of the project are defined in `mix.exs`
+- Check that the main properties of the project are defined in `mix.exs`
 
-  * name: The name of the package
-  * description: A short description of the package
-  * licenses: The names of the licenses of the package
-  * NB. dwyl's `cid` repo contains an [example of a more advanced
+  - name: The name of the package
+  - description: A short description of the package
+  - licenses: The names of the licenses of the package
+  - NB. dwyl's `cid` repo contains an [example of a more advanced
     `mix.exs` file](https://github.com/dwyl/cid/blob/master/mix.exs) where
     you can see this in action
 
-* Create a [Hex.pm](https://hex.pm/) account 
+- Create a [Hex.pm](https://hex.pm/) account
   if you do not have one already.
 
-* Make sure that [ex_doc](https://hex.pm/packages/ex_doc) 
+- Make sure that [ex_doc](https://hex.pm/packages/ex_doc)
   is added as a dependency in you project
 
 <!-- livebook:{"force_markdown":true} -->
@@ -1150,45 +1146,45 @@ end
 ```
 
 When publishing a package, the documentation will be automatically generated.
- So if the dependency `ex_doc` is not declared, the package won't be able to be published
+So if the dependency `ex_doc` is not declared, the package won't be able to be published
 
-* Run `mix hex.publish` 
+- Run `mix hex.publish`
   and if all the information are correct reply `Y`
 
-If you have not logged into your Hex.pm account 
-in your command line before running the above command, 
+If you have not logged into your Hex.pm account
+in your command line before running the above command,
 you will be met with the following...
 
 ```sh
 No authenticated user found. Do you want to authenticate now? [Yn]
 ```
 
-You will need to reply `Y` 
-and follow the on-screen instructions 
+You will need to reply `Y`
+and follow the on-screen instructions
 to enter your Hex.pm username and password.
 
 After you have been authenticated,
 Hex will ask you for a local password that
 applies only to the machine you are using for security purposes.
 
-Create a password for this 
+Create a password for this
 and follow the onscreen instructions to enter it.
 
-* Now that your package is published you can create a new git tag with the name of the version:
-  * `git tag -a 0.1.0 -m "0.1.0 release"`
-  * `git push --tags`
+- Now that your package is published you can create a new git tag with the name of the version:
+  - `git tag -a 0.1.0 -m "0.1.0 release"`
+  - `git push --tags`
 
 <!-- livebook:{"break_markdown":true} -->
 
 ### Congratulations!
 
-That's it, you've generated, formatted 
+That's it, you've generated, formatted
 and published your first **`Elixir`** project.
 
-If you want a more detailed example 
-of publishing a real-world package 
+If you want a more detailed example
+of publishing a real-world package
 and re-using it in a real-world project,
-see: 
+see:
 [**`code-reuse-hexpm.md`**](https://github.com/dwyl/learn-elixir/blob/main/code-reuse-hexpm.md)
 
 ## Data Structures
@@ -1252,16 +1248,16 @@ animal.name = "Max"
 ```
 
 In **`Elixir`** we can only create new data structures as opposed to manipulating existing
-ones. So when we *update* a map, we are creating a new map with our new values.
+ones. So when we _update_ a map, we are creating a new map with our new values.
 This can be done in a couple of ways:
 
-* Function
-* Syntax
+- Function
+- Syntax
 
 1. Using a function  
-   We can update a map using `Map.put(map, key, value)`. 
-   This takes the map you want to update 
-   followed by the key we want to reassign 
+   We can update a map using `Map.put(map, key, value)`.
+   This takes the map you want to update
+   followed by the key we want to reassign
    and lastly the value that we want
    to reassign to the key:
 
@@ -1291,18 +1287,18 @@ animal = %{animal | name: "Max"}
 ## Processes
 
 When looking into **`Elixir`** you may have heard about its
-[processes](https://elixir-lang.org/getting-started/processes.html) and its support for concurrency. 
-In fact we even mention processes as one of the key advantages. If you're anything like us,you're probably wondering what this actually means for you and your code. 
+[processes](https://elixir-lang.org/getting-started/processes.html) and its support for concurrency.
+In fact we even mention processes as one of the key advantages. If you're anything like us,you're probably wondering what this actually means for you and your code.
 This section aims to help you understand what they are and how they can help improve
 your **`Elixir`** projects.
 
 **`Elixir-lang`** describes processes as:
 
-> In **`Elixir`**, all code runs inside processes. 
+> In **`Elixir`**, all code runs inside processes.
 > Processes are isolated from each other, run concurrent to one another and communicate via message passing.
 > Processes are not only the basis for concurrency in **`Elixir`**, but they also provide the means for building distributed and fault-tolerant programs.
 
-Now that we have a definition, 
+Now that we have a definition,
 let's start by spawning our first process.
 
 ### Spawning a process
@@ -1318,8 +1314,8 @@ end
 
 We can `spawn` a process by:
 
-* supplying an anonymous function
-* or via a declarative way `<module>, <function>, <args>`
+- supplying an anonymous function
+- or via a declarative way `<module>, <function>, <args>`
 
 ```elixir
 spawn(Math2, :add, [1, 2]) |> IO.inspect()
@@ -1331,12 +1327,12 @@ The log returns a `process identifier`, PID for short, and the result of the `Ma
 
 A PID is a unique id for a process. It could be unique among all processes in the world, but here it's just unique for your application.
 
-So what just happened here. We called the 
+So what just happened here. We called the
 [`spawn/3`](https://hexdocs.pm/elixir/Kernel.html#spawn/3) function and passed it 3 arguments. The module name, the function name (as an atom), and a list of the arguments that we want to give to our function.
 
 This one line of code spawned a process for us 🎉 🥳
 
-> Normally we would not see the result of the function (3 in this case). 
+> Normally we would not see the result of the function (3 in this case).
 > The only reason we have is because of the `IO.inspect` in the "add" function.
 > If we removed this the only log we would have is the PID itself.
 
@@ -1416,13 +1412,13 @@ Let's go through the code.
 
 We have a function called `double` This function spawns the `Math.add/2` function. Remember the spawn function returnes a PID. We pipe `|>` the "spawn" with a [`send/2`](https://hexdocs.pm/elixir/Kernel.html#send/2). This means the output of the spawn (the PID) is used as the first argument of `send`.
 The function `send/2` takes two arguments, a destination and a message. Because we "pipped" "spawn" with "send", the first argument will be what "spawn" returns, so the destination is the PID
-created by the `spawn` function on the line above. The second argument, the message, is 
+created by the `spawn` function on the line above. The second argument, the message, is
 [`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0), the PID of the calling process (the PID of double).
 
 The last instruction of `double` is to call
 [`receive/1`](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#receive/1). This is a **listener** which checks if there is a message matching the clauses in the current process. It works very similarly to a `case` statement. In this case, the variable `doubled` will match anything, so it will capture anything message sent to this process, and just returns whatever the message was.
 
-The `add/2` function also contains a listener  `receive`. This listener receives a message, supposed to be the PID of the sender. It returns a function that `send` a message. The message is the result of the addition `a+b` and the destination is the process whose PID is the one reiceved, so back to the sender.
+The `add/2` function also contains a listener `receive`. This listener receives a message, supposed to be the PID of the sender. It returns a function that `send` a message. The message is the result of the addition `a+b` and the destination is the process whose PID is the one reiceved, so back to the sender.
 
 This will trigger the receive block in our double function. As mentioned
 above, it simply returns the message it receives which is the answer from add.
@@ -1437,7 +1433,7 @@ VERY COOL. We just spawned a process which did a task for us and returned the da
 
 ### The `&`symbol
 
-The `&` symbol is called the 
+The `&` symbol is called the
 [capture operator](https://hexdocs.pm/elixir/Function.html#module-the-capture-operator),
 which can be used to quickly generate anonymous functions that expect at least one argument.
 The arguments can be accessed inside the _capture operator_ `&()` with `&X`, where
@@ -1466,7 +1462,7 @@ Firstly a quote: [source](https://exercism.org/blog/concurrency-parallelism-in-e
 
 In Elixir, processes are **not OS processes**, and have separate contexts, independant execution contexts (isolation). You can have hundreds of thousands of processes on a single CPU. If your computer has **multiple cores**, Elixir will run processes on each of them in parallel.
 
-Something can run concurrently, but that doesn't mean it will be parallel. If you run 2 CPU-bound concurrent tasks with one CPU core they won't run in parallel. Concurrency doesn't always mean that it will be faster.  However, if something is running in parallel, that means that it is running concurrently."
+Something can run concurrently, but that doesn't mean it will be parallel. If you run 2 CPU-bound concurrent tasks with one CPU core they won't run in parallel. Concurrency doesn't always mean that it will be faster. However, if something is running in parallel, that means that it is running concurrently."
 
 The speedup with concurrency is largely dependent on whether the task is IO- or CPU-bound, and whether there is more than 1 CPU core available.
 
@@ -1523,25 +1519,26 @@ This represents the maximum number of VM processes that can be executing at the 
 
 Now, consider the following module that computes the factorial of a given number. It computes the factorial in 3 differents ways:
 
-* via recursion, `Factorial.facto`,
-* via reduction, `Factorial.calc_product`,
-* and via concurrency, with `Factorial.spawn` and `Factorial.worker`
+- via recursion, `Factorial.facto`,
+- via reduction, `Factorial.calc_product`,
+- and via concurrency, with `Factorial.spawn` and `Factorial.worker`
 
 We added a helper function at the end for the rendering.
 
-* the recursion works simply by using the formula $n! = n\times (n-1)!$. In other words, a function that calls himself:
+- the recursion works simply by using the formula $n! = n\times (n-1)!$. In other words, a function that calls himself:
+
   $$
   \rm{factorial}(n) = n \cdot \rm{factorial}(n-1)
   $$
 
-* the `calc_product` works by **reduction**: sending the function `fn x, acc -> x * acc` to the list, and the result is accumulated in the `acc` variable.
+- the `calc_product` works by **reduction**: sending the function `fn x, acc -> x * acc` to the list, and the result is accumulated in the `acc` variable.
 
-* the concurrent version will calculate concurrently "chunked" subproducts. Given a number $n$, we generate a list $[1,\dots, n]$  and group them by say 4: we get a list of sublists of 4 consecutive numbers. Then we apply an `Enum.map` function to this modified list. It sends a spawned version of a function to compute the  subproduct $n \times n+1 \times n+2 \times n+3$. This function is the reduction `calc_product` that sends back to the sender a subproduct. This is the return of the spawn. Since we ran `Enum.map`, these responses will by collected in a list. It is then sufficient to reduce this new list by again using `calc_product`.
+- the concurrent version will calculate concurrently "chunked" subproducts. Given a number $n$, we generate a list $[1,\dots, n]$ and group them by say 4: we get a list of sublists of 4 consecutive numbers. Then we apply an `Enum.map` function to this modified list. It sends a spawned version of a function to compute the subproduct $n \times n+1 \times n+2 \times n+3$. This function is the reduction `calc_product` that sends back to the sender a subproduct. This is the return of the spawn. Since we ran `Enum.map`, these responses will by collected in a list. It is then sufficient to reduce this new list by again using `calc_product`.
 
 We have 2 concurrent versions:
 
-* one with `spawn` that uses the message passing `receive do` and `send`,
-* one that uses the more elaborate [Task](https://hexdocs.pm/elixir/1.14.2/Task.html) module. We can `receive do` and `send` in one go, and is more robust, handle errors etc...
+- one with `spawn` that uses the message passing `receive do` and `send`,
+- one that uses the more elaborate [Task](https://hexdocs.pm/elixir/1.14.2/Task.html) module. We can `receive do` and `send` in one go, and is more robust, handle errors etc...
 
 ```elixir
 chunk = 4
@@ -1678,7 +1675,7 @@ def spawn(n) do
 end
 ```
 
-The function starts by converting an integer into a range which it then 
+The function starts by converting an integer into a range which it then
 '[chunks](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)' into a list of
 lists with 4 elements.
 The number 4 itself is not important, it could have been 5, 10, or 1000. What is
@@ -1688,7 +1685,7 @@ The larger the size of the 'chunks' the fewer processes are spawned.
 This illustrates this step: we have a list made of sublists of length 4
 
 ```
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] -> 
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] ->
 [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 ```
 
@@ -1734,7 +1731,7 @@ This concurrent version `Factorial.worker/1` uses the [Task](https://elixir-lang
 
 ```elixir
 def worker(n) do
-  1..n 
+  1..n
   |> Enum.chunk_every(@chunk)
   |> Task.async_stream(&calc_product/1)
   |> Enum.reduce(1, fn {:ok,p}, acc -> p*acc end)
