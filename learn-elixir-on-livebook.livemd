@@ -1,0 +1,1892 @@
+# Learn yourself some Elixir
+
+```elixir
+Mix.install([
+  {:kino, "~> 0.7.0"}
+])
+```
+
+## Introduction
+
+<a href="https://livebook.dev/run?url=https%3A%2F%2Fdwyl-learn-elixir.fly.dev%2F">
+  <img src="https://livebook.dev/badge/v1/blue.svg" alt="Run in Livebook" />
+</a>
+
+<!-- livebook:{"break_markdown":true} -->
+
+### *Why*?
+
+#### Key Advantages
+
+* **Scalability**
+
+* **Speed**
+
+* **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
+
+* Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
+
+* Many tiny processes (as opposed to "threads"
+  which are more difficult to manage)
+
+* **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
+
+* [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
+  ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
+
+* **High reliability, availability and fault tolerance** (_because of Erlang_)
+  means apps built with **`Elixir`** are run in production for **years**
+  without any "_downtime_"!
+
+* Real-time web apps are "_easy_"
+  (_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
+
+Things *will* go wrong with code, and **`Elixir`** provides supervisors which describe how to restart parts of your system when things don't go as planned.
+
+### *What*?
+
+[_"Elixir is a dynamic, functional language designed for building scalable and
+ maintainable applications."_](http://elixir-lang.org/)
+
+#### Video Introductions
+
+If you have the time, these videos give a nice contextual introduction into what **`Elixir`** is, what it's used for and how it works:
+
+<!--
+ note we should update this once we have
+made our *own* intro to **`Elixir`** vid! 
+-->
+
+* Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
+* Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
+* Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+
+Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things **`Elixir`** :book: :heart:.
+
+### *How*?
+
+Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
+
+To do so you can go to
+http://elixir-lang.org/install.html or follow our guide here:
+
+### Installation:
+
+#### Mac:
+
+Using the [Homebrew](https://brew.sh/) package manager:
+`brew install elixir`
+
+#### Ubuntu:
+
+* **Add the Erlang Solutions repo**:
+
+```
+wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
+```
+
+* **Run**: `sudo apt-get update`
+* **Install the Erlang/OTP platform and all of its applications**:
+  `sudo apt-get install esl-erlang`
+* **Install Elixir**: `sudo apt-get install elixir`
+
+#### Windows:
+
+* **Web installer**
+
+  * [Download the installer](https://repo.hex.pm/elixir-websetup.exe)
+  * Click next, next, ..., finish
+
+* **Chocolatey** (_Package Manager_)
+
+```
+choco install elixir
+```
+
+## Learn Elixir
+
+`Elixir` is an interpreted language. The script runs in the `BEAM`, the `Erlang` virtual machine.
+
+You have several ways to run an Elixir script. You can firstly use the REPL (Read-Eval-Print Loop) command-line tool to write and run simple `Elixir`. In other words, it is a program running in the console that gives you a shell to run `Elixir` commands
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Commands
+
+* After installing **`Elixir`** you can open the interactive shell by typing `iex`.
+  This allows you to type in any **`Elixir`** expression and see the result in the terminal.
+
+* Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
+  something like this:
+
+![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
+
+* Typing `i` followed by the value name will give you information about a value in your code:
+
+![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Livebook
+
+You can alternatively use `Livebook`. This is an interactive program that runs on top of `Elixir` and lets you run `Elixir` code, write Markdown, draw graphics... You can download it [from the website](https://livebook.dev/) or via the [github repo](https://github.com/livebook-dev/livebook#escript).
+
+This page itself is a `Livebook`.
+
+### Basic Types
+
+This section brings together the key information from Elixir's
+[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
+documentation and multiple other sources. It will take you through some examples to practice using and familiarise yourself with Elixir's 7 basic types.
+
+Elixir's 7 basic types:
+
+* `integers`
+* `floats`
+* `booleans`
+* `atoms`
+* `strings`
+* `lists`
+* `tuples`
+
+<!-- livebook:{"break_markdown":true} -->
+
+#### Numbers
+
+<!-- livebook:{"break_markdown":true} -->
+
+The cell below runs `Elixir` commands, the same way you would do it when you open a console and run `IEx`. It is an editable cell. You just need to click on "evaluate" and you get the result below.
+
+Lets look at two basic numerical operators: `+` and `/`.
+
+```elixir
+1 + 2
+```
+
+When using the [`/`](https://hexdocs.pm/elixir/1.14.2/Kernel.html#//2) with two integers this gives a `float` (5.0).
+
+```elixir
+10 / 3
+```
+
+This operator can be invoke by the `Kernel./` routine:
+
+```elixir
+Kernel./(10, 3)
+```
+
+If you want to do integer division or get the euclidean division remainder you can use the `div` or `rem` functions
+
+```elixir
+d = div(10, 3)
+d
+```
+
+The `rem` is the remainder as in the euclidean division
+
+```elixir
+a = 10
+b = 3
+r = rem(a, b)
+```
+
+```elixir
+r + d * b == a
+```
+
+You can find more information in the [docs](https://hexdocs.pm/elixir/1.14.1/Kernel.html)
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Booleans
+
+Elixir supports `true` and `false` as booleans. We use below the type-checking routine `is_boolean` to check if the input is a boolean or not:
+
+```elixir
+true
+```
+
+```elixir
+false
+```
+
+```elixir
+is_boolean(true)
+```
+
+```elixir
+is_boolean(1)
+```
+
+### Truthiness: truthy and falsy values
+
+Besides the booleans `true` and `false` **`Elixir`** also has the
+concept of a "truthy" or "falsy" value.
+
+* a value is truthy when it is neither `false` nor `nil`
+* a value is falsy when it is `false` or `nil`
+
+Elixir has functions, like `and/2`, that *only* work with
+booleans, but also functions that work with these
+truthy/falsy values, like `&&/2` and `!/1`.
+
+The syntax `<function_name>/<number>` is the convention
+used in Elixir to identify a function named
+`<function_name>` that takes `<number>` parameters.
+The value `<number>` is also referred to as the function
+[arity](https://en.wikipedia.org/wiki/Arity).
+In Elixir each function is identified univocally both by
+its name and its arity. More information can be found [here](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
+We can check the truthiness of a value by using the `!/1`
+function twice.
+
+Truthy values:
+
+```elixir
+!true
+```
+
+```elixir
+!!true
+```
+
+```elixir
+!5
+```
+
+```elixir
+!!5
+```
+
+```elixir
+!false
+```
+
+```elixir
+!!false
+```
+
+```elixir
+!nil
+```
+
+```elixir
+!!nil
+```
+
+### Atoms
+
+Atoms are constants where their name is their own value
+(some other languages call these Symbols).
+
+```elixir
+:hello
+```
+
+```elixir
+!:hello == :world
+```
+
+`true` and `false` are actually atoms in Elixir
+
+Names of _modules_ in **`Elixir`** are also atoms. `MyApp.MyModule`
+is a valid atom, even if no such module has been declared yet.
+
+```elixir
+is_atom(MyApp.MyModule)
+```
+
+Atoms are also used to reference modules from `Erlang` libraries,
+including built-in ones. In fact, `Elixir` can natively run `Erlang` code
+
+```elixir
+pi = :erlang.term_to_binary(3.14)
+```
+
+```elixir
+:erlang.binary_to_term(pi)
+```
+
+```elixir
+:crypto.strong_rand_bytes(3)
+```
+
+> You notice in the example above that the cells are linked in `Livebook`. You declare a variable `pi` and this value is available afterwards. You must evaluate the first cell to be able to use it in the next cell.
+
+One popular use of atoms in **`Elixir`** is to use them as messages for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
+
+You can skip the following example as it introduces concepts that we details further down. Let's say you have a function which processes an `http` request. The outcome of this process is either going to be a success or an error. You could therefore use atoms to indicate whether or not this process is successful.
+
+We build a function below. We need to wrap this function within a **module**. We explain with more details functions and modules in a paragraph further down, but in short, a module "namespaces" the functions. This is mandatory to be able to run a named function.
+
+```elixir
+defmodule Example do
+  def process(http_request) do
+    lines = http_request |> String.split("\n")
+
+    case length(lines) < 2 do
+      false ->
+        {:ok, lines}
+
+      true ->
+        {:error, "failed to process response"}
+    end
+  end
+end
+```
+
+Here we are saying that the method, `Example.process/1` will return a **tuple** response. If the result of our process is successful, it will return `{:ok, lines}`, however if it fails (e.g. returns nil) then it will return an error `{:error, "failed to process response}`. This will allows us to pattern match on this result.
+
+```elixir
+evaluation1 = Example.process("the request response is text.txt\n and is very long")
+```
+
+```elixir
+evaluation2 = Example.process("")
+```
+
+We can "destructurate" the response: tt is called "pattern matching". We wrote our function in such a way that the first element of the returned tuple is the atom `:ok` or `:error`.
+
+```elixir
+{status, result} = evaluation1
+```
+
+```elixir
+result
+```
+
+```elixir
+status
+```
+
+```elixir
+{status, result} = evaluation2
+```
+
+```elixir
+status
+```
+
+```elixir
+result
+```
+
+Thus, we can be sure that we will always have the lines returned to us
+and never a *nil* value (because it will throw an error).
+This becomes extremely useful when piping multiple methods together.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Strings and `IO`
+
+Strings are surrounded by double quotes.
+
+```elixir
+"Hello World"
+```
+
+You can print a string using the `IO` module. You have 2 routines, `IO.puts/1` and `IO.inspect/2`.
+
+```elixir
+IO.puts("hello")
+```
+
+You have **string interpolation** with `#{variable}`. To print it, best is to use `inspect/2` as `IO.puts` may fail
+
+```elixir
+a = "ok"
+IO.puts("#{a}")
+```
+
+```elixir
+IO.inspect(a, label: "the value is: ")
+```
+
+For example, you can't use `IO.puts` to print a list. You need to use `IO.inspect`. The line below doesn't work: it returns nothing.
+
+```elixir
+t = [1, 2]
+IO.puts("#{t}")
+```
+
+```elixir
+IO.puts("#{inspect(t)}")
+```
+
+### Lists
+
+Elixir uses square brackets `[]` to make a list. Lists are [enumerable](https://github.com/dwyl/learn-elixir/issues/39) and can use the [Enum](https://hexdocs.pm/elixir/Enum.html) module to perform iterative functions such as mapping.
+
+```elixir
+my_list = [1, 2]
+```
+
+```elixir
+length(my_list)
+```
+
+You have operators on lists. You can concatenating lists together with the `++`operator and substract lists with `--`
+
+```elixir
+my_list ++ [4, 5, 6]
+```
+
+```elixir
+[1, true, 2, false, 3, true] -- [true, false]
+```
+
+```elixir
+Enum.each([1, 2], fn e -> IO.puts(e) end)
+```
+
+### Tuples
+
+Elixir uses curly brackets to make a tuple. Tuples are [**not** enumerable](https://github.com/dwyl/learn-elixir/issues/39) and there are far fewer functions available in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but [you cannot iterate over them](https://github.com/dwyl/learn-elixir/issues/39).
+If you must treat your tuple as a list, then convert it using `Tuple.to_list(your_tuple)`
+
+Tuples are similar to lists but are
+[not suited to data sets that need to be updated or added to regularly](#lists-or-tuples).
+
+```elixir
+t = {:ok, "hello", "John"}
+```
+
+```elixir
+elem(t, 2)
+```
+
+```elixir
+tuple_size(t)
+```
+
+```elixir
+Tuple.to_list(t)
+```
+
+### Lists or Tuples?
+
+If you need to iterate over the values use a list.
+
+When dealing with **large** lists or tuples:
+
+* `Updating` a `list` (adding or removing elements) is **fast**
+
+* `Updating` a `tuple` is **slow**
+
+* `Reading` a `list` (getting its length or selecting an element) is **slow**
+
+* `Reading` a `tuple` is **fast**
+
+> source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
+
+## Funtions and modules
+
+### Anonymous functions
+
+As every functional language, `Elixir` implements anonymous functions. These start with `fn` and end with `end`, and can be binded to a variable.
+
+```elixir
+add = fn a, b -> a + b end
+add.(1, 2)
+```
+
+> Note a dot `.` between the variable `add` and parenthesis is required to invoke an anonymous function.
+
+In Elixir, functions are `first class citizens` meaning that they can be passed as arguments to other functions the same way integers and strings can.
+
+```elixir
+is_function(add)
+```
+
+This uses the inbuilt function `is_function` which checks to see if the parameter passed is a function and returns a bool.
+
+Anonymous functions are [closures](https://developer.mozilla.org/en/docs/Web/JavaScript/Closures) (_named_ functions are not) and as such they can access variables that are in scope when the function is defined.
+
+You can define a new anonymous function `double` that uses the `add` anonymous function we have previously defined and a variable `b`. Both are in the scope of the new anonymous function `double/1`:
+
+```elixir
+b = 3
+double = fn a -> add.(a, a) end
+double.(b)
+```
+
+These functions can be useful but will no longer be available to you.
+If you want to make something more permanent then you can create a `module`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Modules
+
+With modules you're able to group several functions together. Most of the time it is convenient to write modules into files so they can be compiled and reused.
+
+In order to create your own modules in Elixir, use the `defmodule` macro, then use the `def` macro to define functions in that module. So in this case the module is "Math" and the function is "sum".
+
+```elixir
+defmodule Math do
+  def sum(a, b) do
+    a + b
+  end
+end
+
+Math.sum(1, 2)
+```
+
+### Scope, module attributes
+
+<!-- livebook:{"break_markdown":true} -->
+
+We have seen the anonymous function can access to outer variables within their scope. This is not true for named functions, those declared within a module. Furthermore, only named function are exported from a module, not anonymous functions.
+
+Look at the example below. The outer variable `a`is not accessible within a module. In the cell below, you can see that `a` is underlined in red. If you evaluate this cell, you get an error and a warning on `var`. The variable `b` is not accessible as well.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Bad example:
+
+```elixir
+a = 4
+
+defmodule ExMod do
+  def print_a do
+    a
+  end
+end
+```
+
+```elixir
+ExMod.print_a()
+```
+
+You can get around this via **module attributes**. These are values prepended with `@` that are accessible to any function in the module. Note there is no `=` sign between the variable declaration `@a` and the value.
+
+```elixir
+b = 5
+
+defmodule ExMod2 do
+  @b b
+
+  def print_b do
+    @b
+  end
+end
+```
+
+```elixir
+ExMod2.print_b()
+```
+
+Let's add some interactivity. Thanks to the package `Kino` (declared at the very beginning on this Livebook), we can add a input cell where the user can enter a value (press Enter after).
+
+```elixir
+user_input = Kino.Input.text("Input Label")
+```
+
+The module below simple renders the value. Once it is run, you can change the input above and the value in the adjacent cell will be updated.
+
+```elixir
+input = Kino.Input.read(user_input)
+```
+
+You can now evaluate the function.
+
+```elixir
+defmodule ExMod3 do
+  @input input
+  def print_input do
+    @input
+  end
+end
+
+ExMod3.print_input()
+```
+
+## Create Your First non-Livebook Project
+
+To get started with your first **`Elixir`** project that doesn't use a `Livebook`, you need to make use of the 
+[**`Mix`**](https://hexdocs.pm/mix/Mix.html)  build tool that comes with **`Elixir`**. 
+Mix allows you to do a number of things including:
+
+* Create projects
+* Compile projects
+* Run tasks
+  * Testing
+  * Generate documentation
+* Manage dependencies
+
+To generate a new project follow these steps:
+
+### Initialize
+
+Initialise a project by typing the following command in your terminal,  replacing [project_name] with the name of your project:
+
+```sh
+mix new [project_name]
+```
+
+e.g:
+
+```sh
+mix new animals
+```
+
+<!-- livebook:{"break_markdown":true} -->
+
+We have chosen to call our project 'animals'
+
+This will create a new folder 
+with the given name of your project 
+and should also print something 
+that looks like this to the command line:
+
+```bash
+* creating README.md
+* creating .formatter.exs
+* creating .gitignore
+* creating mix.exs
+* creating lib
+* creating lib/animals.ex
+* creating test
+* creating test/test_helper.exs
+* creating test/animals_test.exs
+
+Your Mix project was created successfully.
+You can use "mix" to compile it, test it, and more:
+
+    cd animals
+    mix test
+
+Run "mix help" for more commands.
+```
+
+Navigate to your newly created directory:
+
+```bash
+> cd animals
+```
+
+Open the directory in your text editor. You will be able to see that **`Elixir`** has
+generated a few files for us that are specific to our project:
+
+* `lib/animals.ex`
+* `test/animals_test.ex`
+
+### Edit `animals.ex`
+
+<!-- livebook:{"break_markdown":true} -->
+
+Open up the `animals.ex` file in the lib directory. You should already see some `hello` boilerplate.
+
+**`Elixir`** has created a module with the name of your project along with a function
+that prints out a `:world` atom when called. 
+It's also added boilerplate for module and function documentation - the first part of the file. (*we will go into more detail about documentation later*).
+
+Let's add some functionalities in it:
+
+```elixir
+defmodule Animals do
+  @moduledoc false
+
+  @doc """
+  Hello world.
+
+  ## Examples
+
+      iex> Animals0.hello()
+      :world
+
+  """
+  def hello do
+    :world
+  end
+
+  @doc """
+  create_zoo returns a list of zoo animals
+
+  ## Examples
+
+      iex> Animals1.create_zoo
+      ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+  """
+
+  def create_zoo do
+    ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+  end
+
+  @doc """
+  randomise takes a list of zoo animals and returns a new randomised list with
+  the same elements as the first.
+
+  ## Examples
+
+      iex> zoo = Animals2.create_zoo
+      iex> Animals2.randomise(zoo)
+  """
+  def randomise(zoo) do
+    Enum.shuffle(zoo)
+  end
+
+  @doc """
+  contains? takes a list of zoo animals and a single animal and returns a boolean
+  as to whether or not the list contains the given animal.
+
+  ## Examples
+
+      iex> zoo = Animals2.create_zoo
+      iex> Animals2.contains?(zoo, "gorilla")
+      true
+  """
+
+  def contains?(zoo, animal) do
+    Enum.member?(zoo, animal)
+  end
+
+  @doc """
+  `see_animals/2` takes a list of zoo animals and the number of animals that
+  you want to see and then returns a list
+
+  ## Examples
+
+      iex> zoo = Animals.create_zoo
+      iex> Animals.see_animals(zoo, 2)
+      ["monkey", "giraffe"]
+  """
+
+  def see_animals(zoo, count) do
+    # Enum.split returns a tuple so we have to pattern match on the result
+    # to get the value we want out
+    {_seen, to_see} = Enum.split(zoo, -count)
+    to_see
+  end
+
+  @doc """
+  save takes a list of zoo animals and a filename and saves the list to that file
+
+  ## Examples
+
+      iex> zoo = Animals.create_zoo
+      iex> Animals.save(zoo, "my_animals")
+      :ok
+  """
+
+  def save(zoo, filename) do
+    # erlang is converting the zoo list to something that can be written to the
+    # file system
+    binary = :erlang.term_to_binary(zoo)
+    File.write(filename, binary)
+  end
+
+  @doc """
+  `load/1` takes filename and returns a list of animals if the file exists
+
+  ## Examples
+
+      iex> Animals.load("my_animals")
+      ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
+      iex> Animals.load("aglkjhdfg")
+      "File does not exist"
+
+  """
+  def load(filename) do
+    # here we are running a case expression on the result of File.read(filename)
+    # if we receive an :ok then we want to return the list
+    # if we receive an error then we want to give the user an error-friendly message
+    case File.read(filename) do
+      {:ok, binary} -> :erlang.binary_to_term(binary)
+      {:error, _reason} -> "File does not exist"
+    end
+  end
+
+  @doc """
+  selection takes a number, creates a zoo, randomises it and then returns a list
+  of animals of length selected
+
+  ## Examples
+
+      iex> Animals.selection(2)
+      ["gorilla", "giraffe"]
+
+  """
+  def selection(number_of_animals) do
+    # We are using the pipe operator here. It takes the value returned from
+    # the expression and passes it down as the first argument in the expression
+    # below. see_animals takes two arguments but only one needs to be specified
+    # as the first is provided by the pipe operator
+    Animals.create_zoo()
+    |> Animals.randomise()
+    |> Animals.see_animals(number_of_animals)
+  end
+end
+```
+
+### Run the Code
+
+Let's test out the boilerplate code. 
+In your project directory type the following command:
+
+```sh
+> iex -S mix
+```
+
+What this means is: "Start the **`Elixir` REPL** and compile with the context of my current project". 
+This allows you to access modules and functions created within the file tree.  
+Call the `hello` function given to us by **`Elixir`**. It should print out the `:world` atom to the command line:
+
+```bash
+> Animals.hello
+# :world
+```
+
+<!-- livebook:{"break_markdown":true} -->
+
+We then added some functions with their documentation: `create_zoo/0`, `randomise/1`, `contains?/2`.
+
+**NOTE**: we are making use of a pre-built module called `Enum` which has a list of functions that you can use on enumerables such as lists. Documentation available at: 
+[hexdocs.pm/elixir/Enum.html](https://hexdocs.pm/elixir/Enum.html)
+
+**NOTE:** It's convention when writing a function that returns a boolean to add a question
+mark after the name of the method.
+
+```elixir
+zoo = Animals.create_zoo()
+shuffled_zoo = Animals.randomise(zoo)
+```
+
+```elixir
+Animals.contains?(shuffled_zoo, "gorilla")
+```
+
+We have a pattern matching example in the module with the function `Animals.see_animals`.
+
+```elixir
+Animals.see_animals(shuffled_zoo, 3)
+```
+
+The function `save/2` writes to the file system. Note the conversion `:erlang.term_to_binary/1` before using the `File` module.
+
+```elixir
+Animals.save(zoo, "zoo.txt")
+```
+
+This will create a new file in your file tree with the name of the file that you specified in the function. It will contain some odd characters:
+
+```
+�l\����m����lionm����tigerm����gorillam����elephantm����monkeym����giraffej
+```
+
+<!-- livebook:{"break_markdown":true} -->
+
+#### Exmaple of pattern matching with the `case do` switch
+
+You can load back the file with `Animals.load/1`. Note the `case <something> do` switch. The value of `<something>` is returned by the function [`File.read`](https://hexdocs.pm/elixir/1.14.2/File.html#read/1). It returns a tuple whose first element is the atom `:ok` or `:error`, so returns `{:ok, value}` or `{:error, reason}`. You pattern matching on this return, thus have 2 cases:
+
+* the success case, where the first element of the response tuple is `:ok`, you use the pattern matching binding to the second element of it's tuple response to the variable `value` so that we can use it.
+* the error case. In case the first element of the response tuple  is the atom `:error`, you ignore the second element (you underscore it `_reason`) and return an error message.
+
+Note the opposite conversion `:erlang.binary_to_term/1`
+
+```elixir
+Animals.load("zoo.txt")
+```
+
+> If you do not use `Livebook` but a code editor instead, each time you modify your module, you need to recompile it:
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+recompile()
+```
+
+> If you use `Livebook`, each time you change the Animals module, you need to "evaluate" the cell.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Pipe operator `|>`
+
+What if we wanted to call some of our functions in succession to another? 
+It takes the output of a function as the input of the first variable of the next function. When you "pipe" two functions, you musn't write the first argument of the second function because it is implicit. This way, we can write clean and shorter code.
+
+This is done in the code of the function `Animals.selection/1`.
+
+```elixir
+Animals.selection(2)
+```
+
+Another example. Consider the two functions below. We can pipe `double/2` with `times/2`. Since `times` receives as first argument the output of `double`, we write only its second argument.
+
+We even piped `inspect` in the middle of the piping sequence to check what `double` is sending to `times`. This can be very usefull.
+
+```elixir
+double = fn x -> x * 2 end
+times = fn x, y -> x * y end
+
+double.(2)
+|> IO.inspect(label: "intermediate add function")
+|> times.(3)
+```
+
+## Documentation
+
+When we created a new project with mix, it created a file for us called `mix.exs`
+which is referred to as the 'MixFile'. This file holds information about our
+project and its dependencies.
+
+At the bottom of the file it gives us a function called `deps` which manages all
+of the dependencies in our project. To install a third party package we need to
+manually write it in the deps function (*accepts a tuple of the package name and
+the version*) and then install it in the command line. Let's install `ex_doc` as
+an example:
+
+Add the following to the deps function in your `mix.exs` file:
+
+```
+def deps do
+  [
+    {:ex_doc, "~> 0.21"}
+  ]
+end
+```
+
+Then in the command line quit your `iex` shell and enter the following to install
+the `ex_docs` dependency:
+
+```sh
+> mix deps.get
+```
+
+You might receive an error saying:
+
+```sh
+Could not find Hex, which is needed to build dependency :ex_doc
+Shall I install Hex? (if running non-interactively, 
+use: "mix local.hex --force") [Yn]
+```
+
+If you do then just enter `y` and then press enter. This will install the dependencies that you need.
+
+Once `ex_docs` has been installed, run run the following command to generate documentation (*make sure you're not in `iex`*):
+
+```sh
+> mix docs
+```
+
+This will generate documentation that can be viewed if you copy the file path of the `index.html` file within the newly created `doc` folder and then paste it in your browser. 
+If you have added documentation to your module and functions as per the examples above, 
+you should see something like the following:
+
+![api](https://cloud.githubusercontent.com/assets/12450298/22835012/260b07f4-efaf-11e6-9704-690c6c245c37.png)
+
+It looks exactly like the format of the official **`Elixir`** docs because they used the same tool to create theirs. Here is what the method documentation should look like if you click on `Animals`:
+
+![doc](https://cloud.githubusercontent.com/assets/12450298/22835092/763c66c8-efaf-11e6-8428-3c2650c64eb8.png)
+
+![functions](https://cloud.githubusercontent.com/assets/12450298/22835113/8607cd72-efaf-11e6-9850-1c7885416b2e.png)
+
+This is an incredibly powerful tool that comes 'baked in' with elixir. It means that other developers who are joining the project can be brought up to speed incredibly quickly!
+
+## Testing
+
+When you generate a project with **`Elixir`** it automatically gives you a number of
+files and directories. One of these directories is called `test` and it holds two
+files like should have names like:
+
+* `[project_name]_test.exs`
+* `test_helper.exs`
+
+We are running this code in a `Livebook`. It is slightly different.
+
+https://www.elixirnewbie.com/blog/writing-tests-in-livebook
+
+Since we are running the code in a `Livebook`, run the following:
+
+```elixir
+ExUnit.start(auto_run: false)
+```
+
+!!!! For the moment, the `doctest` functionality does not work on Fly.io. We can nevertheless run tests.
+
+> **NOTE**: you need to run the command above  and set `async: false` to run test in Livebook.
+
+```elixir
+defmodule AnimalsTest do
+  use ExUnit.Case, async: false
+
+  # doctest Animals
+
+  describe "first test" do
+    test "greets the world" do
+      assert Animals.hello() == :world
+    end
+  end
+
+  describe "test Animal module" do
+    test "contains?" do
+      zoo = Animals.create_zoo()
+      assert true == Animals.contains?(zoo, "gorilla")
+    end
+  end
+end
+
+ExUnit.run()
+```
+
+If you want to learn about code coverage then check out the following tutorial:
+
+https://github.com/dwyl/learn-elixir/tree/master/codecov_example.
+
+A [blog post](https://www.elixirnewbie.com/blog/writing-tests-in-livebook) that explains how to run tests in Livebook.
+
+## Formatting
+
+The following is not a concern for Livebook.
+
+In **`Elixir`** version 1.6 the `mix format` task was introduced.
+See: https://github.com/elixir-lang/elixir/issues/6643
+
+`mix format` is a _built-in_ way to format your **`Elixir`** code according to the community-agreed consistent style.
+This means _all_ code will look consistent across projects (_personal, "work" & hex.pm packages_)
+which makes learning faster and maintainability easier!
+At present, using the formatter is _optional_,
+however _most_ **`Elixir`** projects have adopted it.
+
+To _use_ the mix task in your project, you can either check files _individually_, e.g:
+
+```sh
+mix format path/to/file.ex
+```
+
+Or you can define a _pattern_ for types of files
+you want to check the format of:
+
+```sh
+mix format "lib/**/*.{ex,exs}"
+```
+
+will check all the `.ex` and `.exs` files in the `lib/` directory.
+
+Having to type this pattern each time you want to check the files is _tedious_. Thankfully, **`Elixir`** has you covered.
+
+In the root of your **`Elixir`** project, you will find a `.formatter.exs` config file with the following code:
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+# Used by "mix format"
+[
+  inputs: ["{mix,.formatter}.exs", "{config,lib,test}/**/*.{ex,exs}"]
+]
+```
+
+This means that if you run `mix format` it will check the `mix.exs` file
+and _all_ `.ex` and `.exs` files in the `config`, `lib/` and `test` directories.
+
+This is the most common pattern for running mix format.
+Unless you have a _reason_ to "deviate" from it, it's a good practice to keep it as it is.
+
+Simply run:
+
+```sh
+mix format
+```
+
+And your code will now follow Elixir's formatting guidelines.
+
+You may also use [`credo`](https://github.com/rrrene/credo), a static code analyzer.
+
+We recommend installing a plugin in your Text Editor to auto-format:
+
+* **Atom** Text Editor Auto-formatter:
+  https://atom.io/packages/atom-elixir-formatter
+
+* Vim **`Elixir`** Formatter: https://github.com/mhinz/vim-mix-format
+
+* VSCode:
+  https://marketplace.visualstudio.com/items?itemName=sammkj.vscode-elixir-formatter
+
+* Read the `mix/tasks/format.ex` source to _understand_ how it works:
+  https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/format.ex
+
+* https://hashrocket.com/blog/posts/format-your-elixir-code-now
+
+* https://devonestes.herokuapp.com/everything-you-need-to-know-about-elixirs-new-formatter
+
+## Publishing to Hex
+
+To publish your **`Elixir`** package to [Hex.pm](https://hex.pm/):
+
+* Check the version in `mix.exs` is up to date and that it follows the 
+  [semantic versioning format](https://semver.org/):
+
+  > MAJOR.MINOR.PATCH  where
+
+  ```
+  MAJOR version when you make incompatible API changes
+  MINOR version when you add functionality in a backwards-compatible manner
+  PATCH version when you make backwards-compatible bug fixes
+  ```
+
+* Check that the main properties of the project are defined in `mix.exs`
+
+  * name: The name of the package
+  * description: A short description of the package
+  * licenses: The names of the licenses of the package
+  * NB. dwyl's `cid` repo contains an [example of a more advanced
+    `mix.exs` file](https://github.com/dwyl/cid/blob/master/mix.exs) where
+    you can see this in action
+
+* Create a [Hex.pm](https://hex.pm/) account 
+  if you do not have one already.
+
+* Make sure that [ex_doc](https://hex.pm/packages/ex_doc) 
+  is added as a dependency in you project
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+defp deps do
+  [
+    {:ex_doc, "~> 0.21", only: :dev}
+  ]
+end
+```
+
+When publishing a package, the documentation will be automatically generated.
+ So if the dependency `ex_doc` is not declared, the package won't be able to be published
+
+* Run `mix hex.publish` 
+  and if all the information are correct reply `Y`
+
+If you have not logged into your Hex.pm account 
+in your command line before running the above command, 
+you will be met with the following...
+
+```sh
+No authenticated user found. Do you want to authenticate now? [Yn]
+```
+
+You will need to reply `Y` 
+and follow the on-screen instructions 
+to enter your Hex.pm username and password.
+
+After you have been authenticated,
+Hex will ask you for a local password that
+applies only to the machine you are using for security purposes.
+
+Create a password for this 
+and follow the onscreen instructions to enter it.
+
+* Now that your package is published you can create a new git tag with the name of the version:
+  * `git tag -a 0.1.0 -m "0.1.0 release"`
+  * `git push --tags`
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Congratulations!
+
+That's it, you've generated, formatted 
+and published your first **`Elixir`** project.
+
+If you want a more detailed example 
+of publishing a real-world package 
+and re-using it in a real-world project,
+see: 
+[**`code-reuse-hexpm.md`**](https://github.com/dwyl/learn-elixir/blob/main/code-reuse-hexpm.md)
+
+## Data Structures
+
+### Maps
+
+Maps are very similar to `Object` literals in `JavaScript`. They have almost the samesyntax except for a `%` symbol. They look like this:
+
+```elixir
+animal = %{
+  name: "Rex",
+  type: "dog",
+  legs: 4
+}
+```
+
+Values can be accessed in a couple of ways, exactly like Javascript.The first is by dot notation just like `JavaScript` and the square bracket`[key]`
+
+```elixir
+animal.type
+```
+
+```elixir
+key = :type
+animal[key]
+```
+
+The third way values can be accessed is by **pattern matching**, similar to "destructuring" in Javascript.
+
+Let's say we wanted to assign values to the variables for each of the key-value pairs in the map. We would write something that looks like this:
+
+```elixir
+%{
+  name: var_name,
+  type: var_type,
+  legs: var_legs
+} = animal
+```
+
+You can pattern match on a part of the map. Note that you don't have the Javascript short cut of not writting the value explicitely; you need to write `key: value`.
+
+```elixir
+%{name: name} = animal
+name
+```
+
+We now have access to the values by typing the variable names. We used the **string interpolation** `#{variable}` as seen above to shorten the output. We check that the variables `var_name`, `var_type` and `var_legs` have a value foudn by pattern matching:
+
+```elixir
+IO.puts("#{var_name}, #{var_type}, #{var_legs}")
+```
+
+#### Updating a value inside a map
+
+Due to the **immutability** of **`Elixir`**, you cannot update a map using dot notation.
+
+For example, if we try to reassign a value to the map `animal`, we have an error:
+
+```elixir
+animal.name = "Max"
+```
+
+In **`Elixir`** we can only create new data structures as opposed to manipulating existing
+ones. So when we *update* a map, we are creating a new map with our new values.
+This can be done in a couple of ways:
+
+* Function
+* Syntax
+
+1. Using a function  
+   We can update a map using `Map.put(map, key, value)`. 
+   This takes the map you want to update 
+   followed by the key we want to reassign 
+   and lastly the value that we want
+   to reassign to the key:
+
+```elixir
+updatedAnimal = Map.put(animal, :name, "Max")
+```
+
+1. Using syntax  
+   We can use a special syntax for updating a map in Elixir. It looks like this:
+
+```elixir
+%{animal | legs: 5}
+```
+
+> Remark that it didn't take into account the first change we made to `animal.name`, but only `animal.legs` is changed.
+
+> **NOTE:** Unlike the function method above, this syntax can only be used to UPDATE a current key-value pair inside the map, it cannot add a new key value pair.
+
+If we want to effectively change `animal`, then we have to "re-bind" it. We add `IO.inspect/2` to show the intermediate results. Only the last one should be printed otherwise.
+
+```elixir
+IO.inspect(animal)
+animal = %{animal | legs: 2} |> IO.inspect()
+animal = %{animal | name: "Max"}
+```
+
+## Processes
+
+When looking into **`Elixir`** you may have heard about its
+[processes](https://elixir-lang.org/getting-started/processes.html) and its support for concurrency. 
+In fact we even mention processes as one of the key advantages. If you're anything like us,you're probably wondering what this actually means for you and your code. 
+This section aims to help you understand what they are and how they can help improve
+your **`Elixir`** projects.
+
+**`Elixir-lang`** describes processes as:
+
+> In **`Elixir`**, all code runs inside processes. 
+> Processes are isolated from each other, run concurrent to one another and communicate via message passing.
+> Processes are not only the basis for concurrency in **`Elixir`**, but they also provide the means for building distributed and fault-tolerant programs.
+
+Now that we have a definition, 
+let's start by spawning our first process.
+
+### Spawning a process
+
+```elixir
+defmodule Math2 do
+  def add(a, b) do
+    IO.inspect(self(), label: "add process: ")
+    (a + b) |> IO.inspect()
+  end
+end
+```
+
+We can `spawn` a process by:
+
+* supplying an anonymous function
+* or via a declarative way `<module>, <function>, <args>`
+
+```elixir
+spawn(Math2, :add, [1, 2]) |> IO.inspect()
+
+spawn(fn -> Math2.add(1, 2) end)
+```
+
+The log returns a `process identifier`, PID for short, and the result of the `Math2.add` function.
+
+A PID is a unique id for a process. It could be unique among all processes in the world, but here it's just unique for your application.
+
+So what just happened here. We called the 
+[`spawn/3`](https://hexdocs.pm/elixir/Kernel.html#spawn/3) function and passed it 3 arguments. The module name, the function name (as an atom), and a list of the arguments that we want to give to our function.
+
+This one line of code spawned a process for us 🎉 🥳
+
+> Normally we would not see the result of the function (3 in this case). 
+> The only reason we have is because of the `IO.inspect` in the "add" function.
+> If we removed this the only log we would have is the PID itself.
+
+<!-- livebook:{"break_markdown":true} -->
+
+This might make you wonder, what good is spawning a process if I can't get access to the data it returns ?! This is where messages come in.
+
+But before, let's introduce a useful routine, `self/0`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+#### self()
+
+The function `self/0`; it returns the PID of the running process. In this case, it is the shell, the main process. We see that the returned PID from the `spawn/1` function is different from the main process.
+
+```elixir
+IO.inspect(self(), label: "main process")
+pid = spawn(fn -> Math2.add(2, 2) end)
+IO.puts("spawned process with PID: #{inspect(pid)}")
+```
+
+In a `Livebook`, there is a nice way to visualize the processes with the help of the package `Kino.Process`.
+
+```elixir
+IO.inspect(self())
+Kino.Process.render_seq_trace(fn -> Math2.add(2, 2) end)
+```
+
+```elixir
+IO.inspect(self(), label: "main process: ")
+Kino.Process.render_seq_trace(fn -> spawn(Math2, :add, [2, 3]) end)
+```
+
+### Sending messages between processes
+
+Now let's run the following module. We added a bunch of `IO.inspect/2` to be easier to follow what happens between each step.
+
+```elixir
+defmodule Math3 do
+  def add(a, b) do
+    IO.inspect(self(), label: "'add' PID is: ")
+
+    receive do
+      senders_pid ->
+        IO.inspect(senders_pid, label: "'add' receives this message: ")
+
+        IO.puts(
+          "'add' will 'send' to the process with PID #{inspect(senders_pid)} the message #{a + b}"
+        )
+
+        send(senders_pid, a + b)
+    end
+  end
+
+  def double(n) do
+    IO.inspect(self(), label: "process 'double' PID is: ")
+
+    spawn(Math3, :add, [n, n])
+    |> send(self())
+    |> IO.inspect(label: "double sends his PID in the following message:  ")
+
+    receive do
+      doubled ->
+        IO.inspect(doubled, label: "double received the message: ")
+        doubled
+    end
+  end
+end
+```
+
+```elixir
+IO.inspect(self(), label: "main process: ")
+Math3.double(10)
+```
+
+Let's go through the code.
+
+We have a function called `double` This function spawns the `Math.add/2` function. Remember the spawn function returnes a PID. We pipe `|>` the "spawn" with a [`send/2`](https://hexdocs.pm/elixir/Kernel.html#send/2). This means the output of the spawn (the PID) is used as the first argument of `send`.
+The function `send/2` takes two arguments, a destination and a message. Because we "pipped" "spawn" with "send", the first argument will be what "spawn" returns, so the destination is the PID
+created by the `spawn` function on the line above. The second argument, the message, is 
+[`self/0`](https://hexdocs.pm/elixir/Kernel.html#self/0), the PID of the calling process (the PID of double).
+
+The last instruction of `double` is to call
+[`receive/1`](https://hexdocs.pm/elixir/Kernel.SpecialForms.html#receive/1). This is a **listener** which checks if there is a message matching the clauses in the current process. It works very similarly to a `case` statement. In this case, the variable `doubled` will match anything, so it will capture anything message sent to this process, and just returns whatever the message was.
+
+The `add/2` function also contains a listener  `receive`. This listener receives a message, supposed to be the PID of the sender. It returns a function that `send` a message. The message is the result of the addition `a+b` and the destination is the process whose PID is the one reiceved, so back to the sender.
+
+This will trigger the receive block in our double function. As mentioned
+above, it simply returns the message it receives which is the answer from add.
+
+<!-- livebook:{"break_markdown":true} -->
+
+We used the process tracer `Kino.Process.render_seq_trace/1` to visualize the message passing.
+
+VERY COOL. We just spawned a process which did a task for us and returned the data.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### The `&`symbol
+
+The `&` symbol is called the 
+[capture operator](https://hexdocs.pm/elixir/Function.html#module-the-capture-operator),
+which can be used to quickly generate anonymous functions that expect at least one argument.
+The arguments can be accessed inside the _capture operator_ `&()` with `&X`, where
+`X` refers to the input number of the argument.
+
+There is no difference between:
+
+```elixir
+add_capture = &(&1 + &2)
+add_fn = fn a, b -> a + b end
+
+add_capture.(1, 2) == add_fn.(1, 2)
+```
+
+Now that we can create processes that can send messages to each other, let's see if we can use them for something a little more intensive than doubling an integer.
+
+## Concurrency
+
+#### Concurrency, parallel ?
+
+Parallelism is about using multiple cores, whilst concurrency is about starting multiple tasks at the same time, independantly of the number of cores.
+
+Firstly a quote: [source](https://exercism.org/blog/concurrency-parallelism-in-elixir)
+
+"Concurrency and parallelism are related terms but don't mean precisely the same thing. A concurrent program is one where multiple tasks can be "in progress," but at any single point in time, only one task is executing on the CPU (e.g., executing one task while another is waiting for IO such as reading or writing to the disk or a network). On the other hand, a parallel program is capable of executing multiple tasks at the same time on multiple CPU cores."
+
+In Elixir, processes are **not OS processes**, and have separate contexts, independant execution contexts (isolation). You can have hundreds of thousands of processes on a single CPU. If your computer has **multiple cores**, Elixir will run processes on each of them in parallel.
+
+Something can run concurrently, but that doesn't mean it will be parallel. If you run 2 CPU-bound concurrent tasks with one CPU core they won't run in parallel. Concurrency doesn't always mean that it will be faster.  However, if something is running in parallel, that means that it is running concurrently."
+
+The speedup with concurrency is largely dependent on whether the task is IO- or CPU-bound, and whether there is more than 1 CPU core available.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Let's give an example. In the code below, we use a **[comprehension](https://elixir-lang.org/getting-started/comprehensions.html)** to enumerate over a [range](https://hexdocs.pm/elixir/1.14.2/Range.html). It is an iteration loop and uses the [for](https://hexdocs.pm/elixir/1.14.2/Kernel.SpecialForms.html#for/1) command. In the first loop, we iterate over the range `1..5` and ask to print the index and the present time every 500ms. The index and time will appear sequentially. In the second loop, we run concurrently processes by spawning the function above. As a response, the PIDs will be printed immediately, and then all the processes will end all together 500ms after: **this is concurrency**.
+
+```elixir
+sleep = fn i, t ->
+  Process.sleep(t)
+  IO.puts("#{i}: #{Time.utc_now()}")
+end
+
+# single process
+for i <- 1..5, do: sleep.(i, 500)
+
+# concurrent processes
+for i <- 1..5, do: spawn(fn -> sleep.(i, 500) end)
+```
+
+#### Factorial, example of concurrency
+
+In the example below we will aim to see exactly how **concurrency** can be used to
+speed up a function (and in turn, hopefully a project).
+
+We are going to do this by solving factorials using two different approaches.
+One will solve them on a single process and the other will solve them using
+multiple processes.
+
+> Recall that the factorial of a number $n$ is the product of all the integers below it:
+> e.g.
+
+$$
+\rm{factorial}(4) = 1*2*3*4=24
+$$
+
+It is also note $4!$ in mathematics.
+
+> Note: this livebook is running on fly.io, thus limited in terms of CPU and cores. You are limited to small values, not more than 10_000. You might not fully appreciate this unless you fork this repo and run it on your computer.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Run the cell below. You should see 1, whilst probably the result is at least 4 on your computer. Parallelism on **fly.io** is not possible with this free tier, thus only concurrency can be used. If your computer has more than 1 core, then the BEAM (the Erlang virtual machine that runs the code) will automatically make in run parallel.
+
+```elixir
+:erlang.system_info(:logical_processors_available)
+```
+
+This represents the maximum number of VM processes that can be executing at the same time is given by:
+
+```elixir
+:erlang.system_info(:schedulers_online)
+```
+
+Now, consider the following module that computes the factorial of a given number. It computes the factorial in 3 differents ways:
+
+* via recursion, `Factorial.facto`,
+* via reduction, `Factorial.calc_product`,
+* and via concurrency, with `Factorial.spawn` and `Factorial.worker`
+
+We added a helper function at the end for the rendering.
+
+* the recursion works simply by using the formula $n! = n\times (n-1)!$. In other words, a function that calls himself:
+  $$
+  \rm{factorial}(n) = n \cdot \rm{factorial}(n-1)
+  $$
+
+* the `calc_product` works by **reduction**: sending the function `fn x, acc -> x * acc` to the list, and the result is accumulated in the `acc` variable.
+
+* the concurrent version will calculate concurrently "chunked" subproducts. Given a number $n$, we generate a list $[1,\dots, n]$  and group them by say 4: we get a list of sublists of 4 consecutive numbers. Then we apply an `Enum.map` function to this modified list. It sends a spawned version of a function to compute the  subproduct $n \times n+1 \times n+2 \times n+3$. This function is the reduction `calc_product` that sends back to the sender a subproduct. This is the return of the spawn. Since we ran `Enum.map`, these responses will by collected in a list. It is then sufficient to reduce this new list by again using `calc_product`.
+
+We have 2 concurrent versions:
+
+* one with `spawn` that uses the message passing `receive do` and `send`,
+* one that uses the more elaborate [Task](https://hexdocs.pm/elixir/1.14.2/Task.html) module. We can `receive do` and `send` in one go, and is more robust, handle errors etc...
+
+```elixir
+chunk = 4
+
+defmodule Factorial do
+  @chunk chunk
+
+  # concurrent "elaborated/short" version
+  def worker(n) do
+    1..n
+    |> Enum.chunk_every(@chunk)
+    |> Task.async_stream(&calc_product/1)
+    |> Enum.reduce(1, fn {:ok, p}, acc -> p * acc end)
+  end
+
+  # concurrent "spawn" version
+  def spawn(n) do
+    1..n
+    |> Enum.chunk_every(@chunk)
+    |> Enum.map(fn list ->
+      spawn(Factorial, :_spawn_function, [list])
+      |> send(self())
+
+      receive do
+        chunked_product -> chunked_product
+      end
+    end)
+    |> calc_product()
+  end
+
+  def _spawn_function(list) do
+    receive do
+      sender ->
+        chunked_product = calc_product(list)
+        send(sender, chunked_product)
+    end
+  end
+
+  # used on the single process, the last loop of "spawn"
+  def calc_product(n) when is_integer(n) do
+    Enum.reduce(1..n, 1, fn x, acc -> x * acc end)
+  end
+
+  # used with multiple processes, in the spawned function
+  def calc_product(list) do
+    Enum.reduce(list, 1, &(&1 * &2))
+  end
+
+  ### Recursion
+  def facto(0), do: 1
+
+  def facto(n) do
+    n * facto(n - 1)
+  end
+
+  ### Helper
+  def run(f_name, args) do
+    :timer.tc(Factorial, f_name, args)
+    # only displays the time as I didn't want to log numbers that could have thousands of digits
+    |> elem(0)
+  end
+end
+```
+
+Before we go any further, let's take a quick look at the `calc_product/1` function.
+You will see that there are **2** definitions for this function. One which takes a list and another which takes an integer and turns it into a range. Other than this, the functions work in exactly the same way. They both call `reduce` on an **enumerable** and multiply the current value with the accumulator.
+
+As a side note, recall that we can used the equivalent shorthand notation with `&` instead of the anonymous function being passed to the `reduce`:
+
+```elixir
+prod1 = &(&1 * &2)
+# equivalent to:
+prod2 = fn x, acc -> x * acc end
+
+prod1.(2, 3) == prod2.(2, 3)
+```
+
+> The reason both `calc_product(n)` and `calc_product(list)` work the same way is so that we could see the effect multiple
+> processes running concurrently have on how long it takes for us to get the
+> results of our factorial. I didn't want differences in a functions approach
+> to be the reason for changes in time. Also these factorial functions are not
+> perfect and do not need to be. That is not what we are testing here.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Let's run the two functions below:
+
+```elixir
+Factorial.facto(11)
+```
+
+```elixir
+Factorial.calc_product(11)
+```
+
+You just solved a factorial on a single process.
+
+This works well on a smaller scale but what if we need/want to work out `factorial(100_000)`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+If we use this approach it will take quite some time
+before it we get the answer returned (something we will log a little later).
+The reason for this is because this massive sum is being run on a single
+process.
+
+This is where spawning multiple processes comes in. By spawning multiple
+processes, instead of giving all of the work to a single process, we can share
+the load between any number of processes. This way each process is only handling
+a portion of the work and we should be able to get our solution faster.
+
+This sounds good in theory but let's see if we can put it into practice.
+
+#### Concurrent with `spawn`
+
+First, let's look through the `spawn` function and try to work out what it is
+doing exactly.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def spawn(n) do
+  1..n
+  |> Enum.chunk_every(@nbc)
+  |> Enum.map(fn list ->
+    spawn(Factorial, :_spawn_function, [list])
+    |> send(self())
+
+    receive do
+      chunked_product -> chunked_product
+    end
+  end)
+  |> calc_product()
+end
+```
+
+The function starts by converting an integer into a range which it then 
+'[chunks](https://hexdocs.pm/elixir/Enum.html#chunk_every/4)' into a list of
+lists with 4 elements.
+The number 4 itself is not important, it could have been 5, 10, or 1000. What is
+important about it, is that it influences the number of processes we will be spawning.
+The larger the size of the 'chunks' the fewer processes are spawned.
+
+This illustrates this step: we have a list made of sublists of length 4
+
+```
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] -> 
+[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
+```
+
+> All sublist have length 4 except maybe the last chunk, which may contain fewer elements.
+
+The `Enum.map` will iterate over the list, and apply a function to each element (a sublist). The function that is applied is a `spawn` that calls the function `_spawn_function(sublist)`.
+
+This `_spawned_function` receives a sublist, and computes a subproduct with `calc_product`. Since the main process send a message with his PID, and since `_spawned_function` has a listener (the `receive do`), he will receive this PID. Then we ask to `_spawned_function` to send this PID the subproduct.
+
+The `_spawn_function` function is pretty simple.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def _spawn_function(sublist) do
+  receive do
+    sender ->
+      chunked_product = calc_product(sublist)
+      send(sender, chunked_product)
+  end
+end
+```
+
+The `Enum.map` function ends with a listener (a `receive do`). Whenever this listener receives something, the iteration of `Enum.map` is asked to return this something. Knowing that the returns of each iteration of `Enum.map` is accumulated in a list, we end this step with a new list that contains all the subproducts.
+
+We eventually then call the `calc_product` once more via a reduction: tihs turn the list of subproduct into a single integer, the grand total product, or factorial.
+
+Now that we have been through the code the only things left are to run the code and to time the code.
+
+Let's see how many processes are run when we evaluate `Factorial.spawn(11)` with a chunk size of 4. We saw that we will spawn 3 functions that will compute subproducts.
+
+```elixir
+Kino.Process.render_seq_trace(fn ->
+  Factorial.spawn(10)
+end)
+```
+
+#### Using the `Task` module with `async_stream`
+
+This concurrent version `Factorial.worker/1` uses the [Task](https://elixir-lang.org/getting-started/processes.html#tasks) module, more precisely the routine [Task.async_stream](https://hexdocs.pm/elixir/1.14.2/Task.html#async_stream/3). It is an abstraction over the spawned version. It spawns and receives in one go. It makes writting concurrent code very easy, as compared to the `spawn` version or the more elaborated `Task.asnyc` and `Task.await` version. It takes an enumerable - a list - and for each element of this list (an element is a sublist or chunked list) spawns a function - `calc_product` - that reduces the sublist to a subproduct. It lazily returns a list of functions that are waiting to be used. Each function returns a response in the form `{:ok, subproduct}`. Lazily means that it doesn't returns an immediately usable response but rather a function that returns a response; the returned function will only be run once it is called. In our case, these functions are executed when we further apply a reduction on this list: we there once again run a reduction to accumulate the porduct but on the list of subproducts. This eventually calculates the grand product, the factorial.
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def worker(n) do
+  1..n 
+  |> Enum.chunk_every(@chunk)
+  |> Task.async_stream(&calc_product/1)
+  |> Enum.reduce(1, fn {:ok,p}, acc -> p*acc end)
+end
+```
+
+#### A word about performance
+
+The `spawn` and `_span_function` will still be the most performant method for big numbers, faster than `Task.async_stream` because the latter comes with overhead. When the number to evaluate is small, it might not be more performant. When you are using a single core machine like the one used here on Fly.io, the results might be opposite since there is no chance to run computations in parallel.
+
+Parallelism (mutli-core) is of outmost importance for computations which are heavily CPU-bound operations. Note that IO-bound operations, among which we find web apps with HTTP requests benefit of concurrency only; Javascript is a famous example of a natively concurrent language.
+
+<!-- livebook:{"break_markdown":true} -->
+
+To time the execution of our code, we use the `Factorial.run` function to evaluate the execution time (ms) of the function `Factorial.facto/1`. It is a wrapper of the routine `:timer.tc`.
+
+> Note: the librabry [benchee](https://github.com/bencheeorg/benchee) can be used in `Elixir` scripts (via `IEx`) but the module `Kino_benchee` is not yet available.
+
+> When running on fly.io, there are limitations due to the memory limits so you can't run higher values than 9_000. The fly.io instance has 1 CPU, but probably not your machine so we check the numbers of cores to avoid overflow and process down.
+
+```elixir
+nb_input = Kino.Input.text("You can enter a value Input Label")
+```
+
+```elixir
+max = 9_000
+n = Kino.Input.read(nb_input)
+# avoids blank values and parsing a string into a integer
+n = if n == "", do: 1, else: n |> Integer.parse() |> elem(0)
+
+# prevents from running too high values if running on fly.io
+nb =
+  case n > max && :erlang.system_info(:logical_processors_available) == 1 do
+    true -> max
+    false -> n
+  end
+
+# result
+n_conc = Factorial.run(:spawn, [nb]) / 1_000
+
+# output
+IO.puts("Time (ms) per process for n= #{nb} with a chunk size of #{chunk}")
+IO.puts("- concurrent: #{n_conc}")
+```
+
+```elixir
+# result
+n_async = Factorial.run(:worker, [nb]) / 1_000
+
+# output
+IO.puts("Time (ms) per process for n= #{nb} with a chunk size of #{chunk}")
+IO.puts("- async stream: #{n_async}")
+```
+
+```elixir
+# result
+# n_rec = Factorial.run(:facto, [nb]) / 1_000
+
+## output
+# IO.puts("Time (ms) per process for n= #{nb} with a chunk size of #{chunk}")
+# IO.puts("- recursion: #{n_rec}")
+```
+
+We can play a bit more. In the previous example, we chunked the list to spawn a lot of process to compute subproducts, and then simply computed the grand product by reducing the new list.
+
+We can do better with recursion. Once we get a sublist of products, why not reusing the technic to produce a sub-sublist, and redo this until we get a list of legnth `chunk_length_size`? To better understand, for `n=11` and a chunk size of 2, do something like:
+
+```
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+[2, 12, 30, 56, 90, 11]
+[24, 1680, 990]
+[40320, 990]
+39916800
+```
+
+We can do this quite easily with recursion: just call back the function.
+
+```elixir
+chunk = 10
+
+defmodule FactorialPlus do
+  @chunk chunk
+
+  def spawn(n) when is_integer(n) do
+    Enum.to_list(1..n)
+    |> FactorialPlus.spawn()
+  end
+
+  def spawn(list) when is_list(list) and length(list) == 1 do
+    List.first(list)
+  end
+
+  def spawn(list) when is_list(list) do
+    list
+    |> Enum.chunk_every(@chunk)
+    |> Enum.map(fn list ->
+      spawn(FactorialPlus, :_spawn_function, [list])
+      |> send(self())
+
+      receive do
+        chunked_product -> chunked_product
+      end
+    end)
+    |> FactorialPlus.spawn()
+
+    # |> calc_product()
+  end
+
+  def _spawn_function(list) do
+    receive do
+      sender ->
+        chunked_product = FactorialPlus.calc_product(list)
+        send(sender, chunked_product)
+    end
+  end
+
+  ####### using Task module ############
+
+  def worker(n) when is_integer(n) do
+    Enum.to_list(1..n) |> FactorialPlus.worker()
+  end
+
+  def worker(l) when is_list(l) and length(l) == 1, do: List.first(l)
+
+  def worker(list) when is_list(list) do
+    list
+    |> Enum.chunk_every(@chunk)
+    |> Task.async_stream(&FactorialPlus.calc_product/1)
+    |> Enum.map(fn {:ok, p} -> p end)
+    |> FactorialPlus.worker()
+  end
+
+  def calc_product(list), do: Enum.reduce(list, 1, &(&1 * &2))
+
+  def run(f_name, args) do
+    :timer.tc(FactorialPlus, f_name, args)
+    # only displays the time as I didn't want to log numbers that could have thousands of digits
+    |> elem(0)
+  end
+end
+```
+
+```elixir
+nb = 150_000
+n_spawn_plus = FactorialPlus.run(:spawn, [nb]) / 1_000
+
+# output
+IO.puts("Time (ms) per process for n= #{nb} with a chunk size of #{chunk}")
+IO.puts("- spawn recursion: #{n_spawn_plus}")
+```
+
+```elixir
+n_worker_plus = FactorialPlus.run(:worker, [nb]) / 1_000
+IO.puts("- task recursion: #{n_worker_plus}")
+```
