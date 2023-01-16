@@ -2,8 +2,9 @@
 
 ```elixir
 Mix.install([
-  {:kino, "~> 0.7.0"},
-  {:kino_vega_lite, "~> 0.1.7"}
+  {:kino, "~> 0.7.0", override: true},
+  {:kino_vega_lite, "~> 0.1.7"},
+  {:benchee, "~> 1.1"}
 ])
 ```
 
@@ -1468,6 +1469,51 @@ add_fn = fn a, b -> a + b end
 add_capture.(1, 2) == add_fn.(1, 2)
 ```
 
+#### A word on how to gather informations on processes
+
+You have access to some informations of the VM running `Elixir` (it is called the BEAM). [This video](https://www.youtube.com/watch?v=JvBT4XBdoUE) is very informative.
+
+```elixir
+Process.list()
+```
+
+For each running process, we can get some information
+
+```elixir
+first = Process.list() |> hd() |> Process.info()
+```
+
+We can sort the running processes ranked by the number of reductions (an image of the number of operations this process does)
+
+```elixir
+do_spawn = fn ->
+  spawn(fn ->
+    receive do
+      msg -> msg
+    end
+  end)
+end
+
+pid_do_spawn = do_spawn.()
+
+list =
+  Process.list()
+  |> Enum.map(fn p ->
+    {p, Process.info(p, :reductions)}
+  end)
+  |> Enum.sort(fn {_pid1, red1}, {_pid2, red2} -> red1 >= red2 end)
+```
+
+We can get informations about what a particular process is doing
+
+```elixir
+id =
+  Enum.find_index(list, fn elt -> pid_do_spawn == elem(elt, 0) end)
+  |> IO.inspect()
+
+Process.info(pid_do_spawn, :current_stacktrace)
+```
+
 Now that we can create processes that can send messages to each other, let's see if we can use them for something a little more intensive than doubling an integer.
 
 ## Concurrency
@@ -1763,7 +1809,7 @@ end
 
 #### A word about performance
 
-The concurrent `spawn` will be the most performant method for big numbers, even a bit faster than `Task.async_stream` because the latter comes with some overhead. When the number to evaluate is small, then the simple recursion function will be the most performant.
+The concurrent `spawn` will be the most performant method for big numbers, even a bit faster than `Task.async_stream` because the latter comes with some overhead. When the number to evaluate is small, then the simple recursion function will be the most performant (see the benchmark tests further).
 
 When you are using a single core machine like the one used here on Fly.io, the results might be different as there is no chance to run computations in parallel.
 
@@ -1775,16 +1821,15 @@ Kino.Process.render_seq_trace(fn -> Factorial.worker(8) end)
 
 To time the execution of our code, we use the `Factorial.run` function to evaluate the execution time (ms) of the function `Factorial.facto/1`. It is a wrapper of the routine `:timer.tc`.
 
-> Note: the librabry [benchee](https://github.com/bencheeorg/benchee) can be used in `Elixir` scripts (via `IEx`) but the module `Kino_benchee` is not yet available.
-
 > ❗❗ When running on fly.io, there are limitations due to the memory limits so you can't run higher values than 9_000. The fly.io instance has 1 CPU, but probably not your machine so we check the numbers of cores to avoid overflow and process down.
 
 ```elixir
-nb_input = Kino.Input.text("You can enter a value Input Label")
+nb_input = Kino.Input.text("You can enter a value for n")
 ```
 
 ```elixir
 max = 9_000
+chunk = 4
 n = Kino.Input.read(nb_input)
 # avoids blank values and parsing a string into a integer
 n = if n == "", do: 1, else: n |> Integer.parse() |> elem(0)
@@ -1805,6 +1850,20 @@ IO.puts("Time (ms) per process for n= #{nb} with a chunk size of #{chunk}")
 IO.puts("- concurrent: #{n_conc}")
 IO.puts("- async stream: #{n_async}")
 IO.puts("- recursion: #{n_rec}")
+```
+
+You can use the library [benchee](https://github.com/bencheeorg/benchee) to benchmark the implementations. It compares how fast the implementation is and the memory usage.
+
+```elixir
+Benchee.run(
+  %{
+    "concurrent_spawn" => fn input -> Factorial.spawn(input) end,
+    "concurrent_task" => fn input -> Factorial.worker(input) end,
+    "single_process" => fn input -> Factorial.facto(input) end
+  },
+  memory_time: 2,
+  inputs: [small: 1_000, medium: 10_000]
+)
 ```
 
 #### One step further
@@ -1901,7 +1960,7 @@ end
 ❗❗ Limit yourself to say 8000 if you run this in the cloud!
 
 ```elixir
-form_recursive =
+form =
   Kino.Control.form(
     [
       chunk: Kino.Input.text("Chunk size"),
@@ -1914,7 +1973,7 @@ form_recursive =
 ```elixir
 frame = Kino.Frame.new() |> Kino.render()
 
-Kino.Control.stream(form_recursive)
+Kino.Control.stream(form)
 |> Kino.listen(nil, fn %{data: %{n: n, chunk: chunk}}, _res ->
   n = Integer.parse(n) |> elem(0)
   fps = FactorialPlus.run(:spawn, [n]) / 1_000
@@ -1925,6 +1984,20 @@ Kino.Control.stream(form_recursive)
 
   {:cont, nil}
 end)
+```
+
+We can use again `Benchee` to evaluate the performance of each solution.
+
+```elixir
+Benchee.run(
+  %{
+    "concurrent_spawn_recursive" => fn input -> FactorialPlus.spawn(input) end,
+    "concurrent_task_recursive" => fn input -> FactorialPlus.worker(input) end,
+    "concurrent_non_recursive" => fn input -> Factorial.spawn(input) end
+  },
+  memory_time: 2,
+  inputs: [small: 3_000, medium: 30_000, larger: 300_000]
+)
 ```
 
 ## Plot
@@ -1988,3 +2061,44 @@ VegaLite.new(
   |> VegaLite.encode_field(:y, "y", type: :quantitative)
 ])
 ```
+
+## TL;TR
+
+> ***Note***: this is _definitely **not**_ a "_reason_" to switch programming
+> languages, but _one_ of our (_totally unscientific_) reasons for deciding
+> to _investigate_ other options for programming languages was the fact
+> that JavaScript (_with the introduction of ES2015_) now has
+> ***Six Ways to Declare a Function***:
+> https://rainsoft.io/6-ways-to-declare-javascript-functions/
+> which means that there is _ambiguity_ and "_debate_" as to which is
+> "_best practice_", Go, **`Elixir`** and Rust don't suffer from this problem.
+> Sure there are "_anonymous_" functions in Elixir
+> (_required for functional programming_!) but there are still only ***Two Ways***
+> to define a `function` (_and both have specific use-cases_),
+> which is _way_ easier to explain to a _beginner_ than the JS approach.
+> see:
+> http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir
+
+## Further readings
+
+* [Crash Course in Elixir](http://elixir-lang.org/crash-course.html)
+* [Elixir School](https://elixirschool.com/), 
+  which is available translated at least partially in over **20 languages** 
+  and functions as a great succinct guide to core concepts.
+* [30 Days of Elixir](https://github.com/seven1m/30-days-of-elixir) 
+  is a walk through the **`Elixir`** language in 30 exercises.
+* [Learn **`Elixir`** - List of Curated Resources](https://hackr.io/tutorials/learn-elixir)
+* [Explanation video of **Pattern Matching** in Elixir](http://worldwide.chat/)
+* Sign up to: https://elixirweekly.net/ for regular (_relevant_) updates!
+* List of more [useful resources and sample apps](https://github.com/h4cc/awesome-elixir)
+* If you want to know what's _next_ it's worth check out 
+  [What's Ahead for Elixir?](https://youtu.be/A60nxws_iVs) (53 mins)
+  by **José Valim** (the creator of Elixir)
+* _Interview_ with **José Valim** (the creator of Elixir) on _why_ he made it!
+  https://www.sitepoint.com/an-interview-with-elixir-creator-jose-valim/
+* What was "_wrong_" with just writing directly in Erlang? read:
+  http://www.unlimitednovelty.com/2011/07/trouble-with-erlang-or-erlang-is-ghetto.html
+* While **`Elixir`** by _itself_ is pretty _amazing_,
+  where the language really shines is in the **Phoenix Web Framework**!!
+  So once you know the basics of the language 
+  [Learn `Phoenix` Web Development](https://github.com/dwyl/learn-phoenix-web-development).
