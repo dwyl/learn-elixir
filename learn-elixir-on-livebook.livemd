@@ -4,7 +4,8 @@
 Mix.install([
   {:kino, "~> 0.7.0", override: true},
   {:kino_vega_lite, "~> 0.1.7"},
-  {:benchee, "~> 1.1"}
+  {:benchee, "~> 1.1"},
+  {:hidden_cell, github: "BrooklinJazz/hidden_cell"}
 ])
 ```
 
@@ -165,7 +166,7 @@ When using the [`/`](https://hexdocs.pm/elixir/1.14.2/Kernel.html#//2) with two 
 10 / 3
 ```
 
-This operator can be invoke by the `Kernel./` routine:
+This operator can be invoked by the `Kernel./` routine:
 
 ```elixir
 Kernel./(10, 3)
@@ -174,8 +175,7 @@ Kernel./(10, 3)
 If you want to do integer division or get the euclidean division remainder you can use the `div` or `rem` functions
 
 ```elixir
-d = div(10, 3)
-d
+div(10, 3)
 ```
 
 The `rem` is the remainder as in the euclidean division
@@ -183,11 +183,11 @@ The `rem` is the remainder as in the euclidean division
 ```elixir
 a = 10
 b = 3
-r = rem(a, b)
+rem(a, b)
 ```
 
 ```elixir
-r + d * b == a
+a == div(a, b) * b + rem(a, b)
 ```
 
 You can find more information in the [docs](https://hexdocs.pm/elixir/1.14.1/Kernel.html)
@@ -431,10 +431,6 @@ my_list ++ [4, 5, 6]
 [1, true, 2, false, 3, true] -- [true, false]
 ```
 
-```elixir
-Enum.each([1, 2], fn e -> IO.puts(e) end)
-```
-
 ### Tuples
 
 Elixir uses curly brackets to make a tuple. Tuples are [**not** enumerable](https://github.com/dwyl/learn-elixir/issues/39) and there are far fewer functions available in the [Tuple](http://elixir-lang.org/docs/v1.0/elixir/Tuple.html) module. You can reference tuple values by index but [you cannot iterate over them](https://github.com/dwyl/learn-elixir/issues/39).
@@ -515,17 +511,25 @@ If you want to make something more permanent then you can create a `module`.
 
 With modules you're able to group several functions together. Most of the time it is convenient to write modules into files so they can be compiled and reused.
 
-In order to create your own modules in Elixir, use the `defmodule` macro, then use the `def` macro to define functions in that module. So in this case the module is "Math" and the function is "sum".
+In order to create your own modules in Elixir, use the `defmodule` macro, then use the `def` macro to define functions in that module with the `do ... end`. So in this case the module is "Math" and the function is "sum".
+
+> The first letter of the module name must be in **uppercase**.
 
 ```elixir
 defmodule Math do
   def sum(a, b) do
     a + b
   end
+
+  def mult(a, b), do: a * b
 end
 
 Math.sum(1, 2)
 ```
+
+> Note how we simplified the way we wrote the second function with the `, do:` isntead of the `do ... end`. This is a short cut when the body of the function is simple.
+
+<!-- livebook:{"break_markdown":true} -->
 
 ### Scope, module attributes
 
@@ -561,9 +565,7 @@ b = 5
 defmodule ExMod2 do
   @b b
 
-  def print_b do
-    @b
-  end
+  def print_b, do: @b
 end
 ```
 
@@ -571,29 +573,68 @@ end
 ExMod2.print_b()
 ```
 
-Let's add some interactivity. Thanks to the package `Kino` (declared at the very beginning on this Livebook), we can add a input cell where the user can enter a value (press Enter after).
+The control flow `if` below uses the variable `n`. It is in the scope, accessible. The macro `if`is itself a function that returns something.
 
 ```elixir
-user_input = Kino.Input.text("Input Label")
+n = 5
+
+result = if rem(n, 2) == 0, do: n + 1, else: n + 2
+
+IO.inspect(result, label: "the macro 'if' returns: ")
+IO.inspect(n, label: "the value of n is unchanged: ")
 ```
 
-The module below simple renders the value. Once it is run, you can change the input above and the value in the adjacent cell will be updated.
+We can rebind the variable `n`.
 
 ```elixir
-input = Kino.Input.read(user_input)
+n = if rem(n, 2) == 0, do: n + 1, else: n + 2
+IO.inspect(n, label: "the value of n is now: ")
 ```
 
-You can now evaluate the function.
+### Function clauses
+
+Imagine you have a function that behaves differently depending on a variable. For example, the function adds $1$ to every even number, and adds $2$ to every odd number. You would traditionnally invoque an [`if`](https://elixir-lang.org/getting-started/case-cond-and-if.html#if-and-unless) staetement like this:
 
 ```elixir
-defmodule ExMod3 do
-  @input input
-  def print_input do
-    @input
+defmodule Ex1 do
+  def add(x) do
+    if rem(x, 2) == 0 do
+      x + 1
+    else
+      x + 2
+    end
   end
 end
 
-ExMod3.print_input()
+Ex1.add(5)
+```
+
+We can instead use a [guard clause](https://hexdocs.pm/elixir/1.14.3/Kernel.html#module-guards) and define our function **twice** like this:
+
+```elixir
+defmodule Ex2 do
+  def add(x) when rem(x, 2) == 0 do
+    x + 1
+  end
+
+  def add(x), do: x + 2
+end
+
+Ex2.add(3)
+```
+
+This works again by pattern matching. This means the **order** in which you defined the headers is extremely **important**. If you reverse the order, the second clausewill never match since the first will match all cases.
+
+Recursion is heavily used in functional code. This allows you yo write recursive functions very easily like this:
+
+```elixir
+defmodule Ex3 do
+  def sum(n) when n == 1, do: 1
+
+  def sum(n), do: n + sum(n - 1)
+end
+
+Ex3.sum(3)
 ```
 
 ## Create Your First non-Livebook Project
@@ -871,7 +912,7 @@ This will create a new file in your file tree with the name of the file that you
 
 <!-- livebook:{"break_markdown":true} -->
 
-#### Exmaple of pattern matching with the `case do` switch
+#### Example of pattern matching with the `case do` switch
 
 You can load back the file with `Animals.load/1`. Note the `case <something> do` switch. The value of `<something>` is returned by the function [`File.read`](https://hexdocs.pm/elixir/1.14.2/File.html#read/1). It returns a tuple whose first element is the atom `:ok` or `:error`, so returns `{:ok, value}` or `{:error, reason}`. You pattern matching on this return, thus have 2 cases:
 
@@ -1231,7 +1272,7 @@ You can pattern match on a part of the map. Note that you don't have the Javascr
 name
 ```
 
-We now have access to the values by typing the variable names. We used the **string interpolation** `#{variable}` as seen above to shorten the output. We check that the variables `var_name`, `var_type` and `var_legs` have a value foudn by pattern matching:
+We now have access to the values by typing the variable names. We used the **string interpolation** `#{variable}` as seen above to shorten the output. We check that the variables `var_name`, `var_type` and `var_legs` have a value found by pattern matching:
 
 ```elixir
 IO.puts("#{var_name}, #{var_type}, #{var_legs}")
@@ -1477,13 +1518,15 @@ Now that we can create processes that can send messages to each other, let's see
 
 Parallelism is about using multiple cores, whilst concurrency is about starting multiple tasks at the same time, independantly of the number of cores.
 
+<details>
 Firstly a quote: [source](https://exercism.org/blog/concurrency-parallelism-in-elixir)
 
 "Concurrency and parallelism are related terms but don't mean precisely the same thing. A concurrent program is one where multiple tasks can be "in progress," but at any single point in time, only one task is executing on the CPU (e.g., executing one task while another is waiting for IO such as reading or writing to the disk or a network). On the other hand, a parallel program is capable of executing multiple tasks at the same time on multiple CPU cores."
+</details>
 
-In Elixir, processes are **not OS processes**, and have separate contexts, independant execution contexts (isolation). You can have hundreds of thousands of processes on a single CPU. If your computer has **multiple cores**, Elixir will run processes on each of them in parallel.
+In Elixir, processes are **not OS processes**, and have separate contexts, independant execution contexts (isolation). You can have hundreds of thousands of processes on a single CPU. If your computer has **multiple cores**, the BEAM - the VM that runs the `Elixir` code - will automaticaly run processes on each of them in parallel.
 
-Something can run concurrently, but that doesn't mean it will be parallel. If you run 2 CPU-bound concurrent tasks with one CPU core they won't run in parallel. Concurrency doesn't always mean that it will be faster.  However, if something is running in parallel, that means that it is running concurrently."
+Something can run concurrently, but that doesn't mean it will be parallel. If you run 2 CPU-bound concurrent tasks with one CPU core, they won't run in parallel. Concurrency doesn't always mean that it will be faster.  However, if something is running in parallel, that means that it is running concurrently."
 
 The speedup with concurrency is largely dependent on whether the task is IO- or CPU-bound, and whether there is more than 1 CPU core available.
 
@@ -1516,11 +1559,7 @@ One will solve them on a single process and the other will solve them using
 multiple processes.
 
 > Recall that the factorial of a number $n$ is the product of all the integers below it:
-> e.g.
-
-$$
-\rm{factorial}(4) = 1*2*3*4=24
-$$
+> e.g $\rm{factorial}(4) = 1*2*3*4=24$
 
 It is also note $4!$ in mathematics.
 
@@ -1568,14 +1607,6 @@ chunk = 4
 defmodule Factorial do
   @chunk chunk
 
-  # concurrent "elaborated/short" version
-  def worker(n) do
-    1..n
-    |> Enum.chunk_every(@chunk)
-    |> Task.async_stream(&calc_product/1)
-    |> Enum.reduce(1, fn {:ok, p}, acc -> p * acc end)
-  end
-
   # concurrent "spawn" version
   def spawn(n) do
     1..n
@@ -1605,15 +1636,18 @@ defmodule Factorial do
   end
 
   # used with multiple processes, in the spawned function
-  def calc_product(list) do
-    Enum.reduce(list, 1, &(&1 * &2))
-  end
+  def calc_product(list), do: Enum.reduce(list, 1, &(&1 * &2))
 
-  ### Recursion
+  ### Recursion #########################################
   def facto(0), do: 1
+  def facto(n), do: n * facto(n - 1)
 
-  def facto(n) do
-    n * facto(n - 1)
+  # concurrent with Task module ##########################
+  def worker(n) do
+    1..n
+    |> Enum.chunk_every(@chunk)
+    |> Task.async_stream(&calc_product/1)
+    |> Enum.reduce(1, fn {:ok, p}, acc -> p * acc end)
   end
 
   ### Helper
@@ -1628,13 +1662,14 @@ end
 Before we go any further, let's take a quick look at the `calc_product/1` function.
 You will see that there are **2** definitions for this function. One which takes a list and another which takes an integer and turns it into a range. Other than this, the functions work in exactly the same way. They both call `reduce` on an **enumerable** and multiply the current value with the accumulator.
 
-As a side note, recall that we can used the equivalent shorthand notation with `&` instead of the anonymous function being passed to the `reduce`:
+As a side note, recall that we can used the equivalent shorthand notation with `&` instead of the anonymous function being passed to the `reduce`. In the example below, you create 2 equivalent anonymous functions:
 
 ```elixir
 prod1 = &(&1 * &2)
 # equivalent to:
 prod2 = fn x, acc -> x * acc end
 
+# check:
 prod1.(2, 3) == prod2.(2, 3)
 ```
 
@@ -1747,7 +1782,7 @@ end)
 
 #### Using the `Task` module with `async_stream`
 
-This concurrent version `Factorial.worker/1` uses the [Task](https://elixir-lang.org/getting-started/processes.html#tasks) module, more precisely the routine [Task.async_stream](https://hexdocs.pm/elixir/1.14.2/Task.html#async_stream/3). It is an abstraction over the spawned version. It spawns and receives in one go. It makes writting concurrent code very easy, as compared to the `spawn` version or the more elaborated `Task.asnyc` and `Task.await` version. It takes an enumerable - a list - and for each element of this list (an element is a sublist or chunked list) spawns a function - `calc_product` - that reduces the sublist to a subproduct. It lazily returns a list of functions that are waiting to be used. Each function returns a response in the form `{:ok, subproduct}`. Lazily means that it doesn't returns an immediately usable response but rather a function that returns a response; the returned function will only be run once it is called. In our case, these functions are executed when we further apply a reduction on this list: we there once again run a reduction to accumulate the porduct but on the list of subproducts. This eventually calculates the grand product, the factorial.
+This concurrent version `Factorial.worker/1` uses the [Task](https://elixir-lang.org/getting-started/processes.html#tasks) module, more precisely the routine [Task.async_stream](https://hexdocs.pm/elixir/1.14.2/Task.html#async_stream/3). It is an abstraction over the spawned version. It spawns and receives in one go. It makes writting concurrent code very easy, as compared to the `spawn` version or the more elaborated `Task.asnyc` and `Task.await` version. It takes an enumerable - a list - and for each element of this list (an element is a sublist or chunked list) spawns a function - `calc_product` - that reduces the sublist to a subproduct. It lazily returns a list of functions that are waiting to be used. Each function returns a response in the form `{:ok, subproduct}`. Lazily means that it doesn't returns an immediately usable response but rather a function that returns a response; the returned function will only be run once it is called. In our case, these functions are executed when we further apply a reduction on this list: we there once again run a reduction to accumulate the product but on the list of subproducts. This eventually calculates the grand product, the factorial.
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -1764,9 +1799,9 @@ end
 
 #### A word about performance
 
-The concurrent `spawn` will be the most performant method for big numbers, even a bit faster than `Task.async_stream` because the latter comes with some overhead. When the number to evaluate is small, then the simple recursion function will be the most performant (see the benchmark tests further).
+The concurrent `spawn` will be the most performant method for big numbers, even faster than the `Task.async_stream` because the latter comes with some overhead. When the number to evaluate is small, then the simple recursion function will be the most performant (see the benchmark tests further).
 
-When you are using a single core machine like the one used here on Fly.io, the results might be different as there is no chance to run computations in parallel.
+When you are using a single core machine like the one used here on **Fly.io**, the results might be different as there is no chance to run computations in parallel.
 
 Parallelism (mutli-core) is of outmost importance for computations which are heavily CPU-bound operations. Note that IO-bound operations, among which we find web apps with HTTP requests benefit of concurrency only; Javascript is a famous example of a natively concurrent language.
 
@@ -1778,9 +1813,13 @@ To time the execution of our code, we use the `Factorial.run` function to evalua
 
 > ❗❗ When running on fly.io, there are limitations due to the memory limits so you can't run higher values than 9_000. The fly.io instance has 1 CPU, but probably not your machine so we check the numbers of cores to avoid overflow and process down.
 
+<!-- livebook:{"attrs":{"source":"nb_input = Kino.Input.text(\"You can enter a value for n\")","title":"Hidden input cell"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+
 ```elixir
 nb_input = Kino.Input.text("You can enter a value for n")
 ```
+
+<!-- livebook:{"attrs":{"source":"max = 9_000\nchunk = 4\nn = Kino.Input.read(nb_input)\n# avoids blank values and parsing a string into a integer\nn = if n == \"\", do: 1, else: n |> Integer.parse() |> elem(0)\n\n# prevents from running too high values if running on fly.io\nnb =\n  case n > max && :erlang.system_info(:logical_processors_available) == 1 do\n    true -> max\n    false -> n\n  end\n\n# result\nn_conc = Factorial.run(:spawn, [nb]) / 1_000\nn_async = Factorial.run(:worker, [nb]) / 1_000\nn_rec = Factorial.run(:facto, [nb]) / 1_000\n# output\nIO.puts(\"Time (ms) per process for n= #{nb} with a chunk size of #{chunk}\")\nIO.puts(\"- concurrent: #{n_conc}\")\nIO.puts(\"- async stream: #{n_async}\")\nIO.puts(\"- recursion: #{n_rec}\")","title":"Hidden Cell that computes differents versions of hte factorial"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 max = 9_000
@@ -1834,36 +1873,52 @@ We can do better with recursion. Once we get a sublist of products, why not reus
 
 2                            1
 [362880,                     241969]
+
 1
 87805710720
+
 ```
 
-Given $n$, with the standard computation, we have $n-1$ multiplications. If $n=14$, we have $13$ multiplications. When we chunk, we have the same numbers of multiplications. However, we have $n_1=\rm{div}(n,c)+1 =5$ async processes to compute $p_1=(c-1)\times \rm{div}(n,c)+1$ mutiplications. Let $n=14$ and $c=3$, we have $n_1=\rm{div}(n,c)+1 =5$ processes, thus $n_1$ subproducts and $p_1=2\times 4+1=9$ async multiplications out of $13$.
+Given $n$, with the standard computation, we have $n-1$ multiplications. If $n=14$, we have $13$ multiplications. When we chunk, we have the same numbers of multiplications. However, we have $n_1=\rm{div}(n,c)+ 1=5$ async processes to compute $p_1=(c-1)\times \rm{div}(n,c)+1$ mutiplications of $c$ consecutive numbers. Let $n=14$ and $c=3$, we have $n_1=\rm{div}(n,c)+1 =5$ processes, thus $n_1$ subproducts and $p_1=2\times 4+1=9$ async multiplications out of $13$.
 
-We can repeat: we can make $n_2=\rm{div}(n_1,c)+1$ async processes to compute $p_2=(c-1)\times\rm{div}(n_1,c)+1$ async multiplications. Numerically, $n_2=2$ processes and $p_2=3$ asnyc multiplications. Only one chunk remains, thus $1$ process and $1$ multiplication. In total, we have launched $5+2+1=8$ processes to handle $13$ async multiplications.
+We can repeat: since $\rm{rem}(5,3) \neq 0$, we can make $n_2=\rm{div}(n_1,c)+1$ async processes to compute $p_2=(c-1)\times\rm{div}(n_1,c)+1$ async multiplications. Numerically, $n_2=2$ processes and $p_2=3$ asnyc multiplications. Only one chunk remains, thus $1$ process and $1$ multiplication. In total, we have launched $5+2+1=8$ processes to handle $13$ async multiplications.
 
 #### Example of recursion with `Elixir`
 
-We can compute the number of spawned processes. As the algorithm above suggests, the code is naturally a [recursion](https://elixir-lang.org/getting-started/recursion.html). Note how we need to reuse the header of a function with a **guard clause**: this makes the code stop eventually. Also note that the ordering is important, as you want to hit the stop condition first as the code will pattern match with it first: if we place the stop condition after, then the first header will always match and the recursion never stops.
+We can compute the number of spawned processes. As the algorithm above suggests, the code is naturally a [recursion](https://elixir-lang.org/getting-started/recursion.html). Note how we need to reuse the header of a function with a **guard clause**. This first clause makes the code to stop, the second and third add $1$ or not to the count if the remainder is zero or not. Also note that the ordering is important, as you want to hit the stop condition first as the code will pattern match with it first: if we place the stop condition at the end, then the header with no guard clause will always match and the recursion never stops.
+
+Firstly, this is how you can add an element as the first element of a list:
+
+```elixir
+list = [3, 2, 1]
+[4 | list]
+```
 
 ```elixir
 defmodule Serie do
+  # stop guard clause
   def calc(n, c) when n <= c, do: [1]
 
+  def calc(n, c) when rem(n, c) == 0 do
+    n = div(n, c)
+    [n | calc(n, c)]
+  end
+
+  # recursion to build the list
   def calc(n, c) do
     n = div(n, c) + 1
     [n | calc(n, c)]
   end
 
+  # calculates the sum of the elements of the list by reduction
   def processes(n, c) do
     Serie.calc(n, c)
-    |> IO.inspect(label: "serie of number of async processes")
     |> Enum.reduce(0, &(&1 + &2))
   end
 
+  # calculates how much represents the first step
   def summary(n, c) do
     processes(n, c)
-    |> IO.inspect(label: "total processes")
     |> then(fn d ->
       (div(n, c) / d * 100)
       |> Float.round(0)
@@ -1872,11 +1927,48 @@ defmodule Serie do
 end
 ```
 
+<!-- livebook:{"attrs":{"source":"form =\n  Kino.Control.form(\n    [\n      c: Kino.Input.text(\"Chunk size\"),\n      n: Kino.Input.text(\"Enter a number:\")\n    ],\n    submit: \"Run\"\n  )","title":"Hidden code that renders the form below"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+
 ```elixir
-IO.puts("first step is #{Serie.summary(100_000, 4)}% of all processes")
+form =
+  Kino.Control.form(
+    [
+      c: Kino.Input.text("Chunk size"),
+      n: Kino.Input.text("Enter a number:")
+    ],
+    submit: "Run"
+  )
 ```
 
-The cost is the complication in the code for the compiler and the memory used. Also we see that the first step brings around $80$% of all async computations, so the advantage of this complication is not big. The bigger the number we want to compute, the more efficient this will be.
+Re-evaluate the "hidden" cell below to refresh (you can double-click to see the code)
+
+<!-- livebook:{"attrs":{"source":"frame = Kino.Frame.new() |> Kino.render()\n\nform\n|> Kino.Control.stream()\n|> Kino.listen(fn stream ->\n  %{data: %{n: n, c: c}} = stream\n  n = Integer.parse(n) |> elem(0)\n  c = Integer.parse(c) |> elem(0)\n\n  Kino.Frame.append(frame, \"For n: #{n} and a chunk of #{c}, the serie of async processes are: #{inspect(Serie.calc(n,c))}\")\n  Kino.Frame.append(frame, \"For {#{n}, #{c}}, the total number of processes is:  #{Serie.processes(n,c)}\")\n  Kino.Frame.append(frame, \"The first step represents #{Serie.summary(n,c)}% of all processes\")\nend)","title":"Hidden code that parses the form and computes the series"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+
+```elixir
+frame = Kino.Frame.new() |> Kino.render()
+
+form
+|> Kino.Control.stream()
+|> Kino.listen(fn stream ->
+  %{data: %{n: n, c: c}} = stream
+  n = Integer.parse(n) |> elem(0)
+  c = Integer.parse(c) |> elem(0)
+
+  Kino.Frame.append(
+    frame,
+    "For n: #{n} and a chunk of #{c}, the serie of async processes are: #{inspect(Serie.calc(n, c))}"
+  )
+
+  Kino.Frame.append(
+    frame,
+    "For {#{n}, #{c}}, the total number of processes is:  #{Serie.processes(n, c)}"
+  )
+
+  Kino.Frame.append(frame, "The first step represents #{Serie.summary(n, c)}% of all processes")
+end)
+```
+
+The cost is the complication in the code for the compiler and the memory used. If we take $n=1000$ and a chunk size of $c=5$, we see that the first step brings around $80$% of all async computations, so the advantage of this complication is not big. The bigger the number we want to compute, the more efficient this will be.
 
 Nevertheless, the algorithm above is coded below quite easily with recursion. This is where functional code shines.
 
@@ -1957,6 +2049,8 @@ end
 
 ❗❗ Limit yourself to say 8000 if you run this in the cloud!
 
+<!-- livebook:{"attrs":{"source":"form =\n  Kino.Control.form(\n    [\n      chunk: Kino.Input.text(\"Chunk size\"),\n      n: Kino.Input.text(\"Compute the factorial of:\")\n    ],\n    submit: \"Run\"\n  )","title":"Hidden Cell of the input form (double click to see the code)"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+
 ```elixir
 form =
   Kino.Control.form(
@@ -1967,6 +2061,8 @@ form =
     submit: "Run"
   )
 ```
+
+<!-- livebook:{"attrs":{"source":"frame = Kino.Frame.new() |> Kino.render()\n\nKino.Control.stream(form)\n|> Kino.listen(nil, fn %{data: %{n: n, chunk: chunk}}, _res ->\n  n = Integer.parse(n) |> elem(0)\n  fps = FactorialPlus.run(:spawn, [n]) / 1_000\n  fs = Factorial.run(:spawn, [n]) / 1_000\n\n  Kino.Frame.append(frame, number: n, chunk: chunk, spawn_recursive: fps)\n  Kino.Frame.append(frame, number: n, chunk: chunk, spawn: fs)\n\n  {:cont, nil}\nend)","title":"Click to evaluate / reset the Hidden Cell (double click to see the form"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 frame = Kino.Frame.new() |> Kino.render()
@@ -1994,8 +2090,7 @@ Benchee.run(
     "concurrent_non_recursive" => fn input -> Factorial.spawn(input) end
   },
   memory_time: 2,
-  inputs: [small: 3_000]
-  # inputs: [small: 5_000, larger: 8_000]
+  inputs: [small: 1_000, larger: 8_000]
 )
 ```
 
@@ -2029,37 +2124,41 @@ Using concurrency to run all these functions, some `Task.async_stream(range, fn 
 If you run this on Fly.io, limit $n$ to $8000$ maximum.
 
 ```elixir
-n = 100_000
-max = 8_000
+defmodule Plot do
+  @i 2_000
+  @j 1_000
+  @max 8_000
 
-nb =
-  case n > max && :erlang.system_info(:logical_processors_available) == 1 do
-    true -> max
-    false -> n
+  def guard(n) do
+    case n > @max && :erlang.system_info(:logical_processors_available) == 1 do
+      true -> @max
+      false -> n
+    end
   end
 
-defmodule Plot do
-  @i 10_000
-  @j 2_000
+  def range(f, n) do
+    max = guard(n)
 
-  def plot_async(module, f, n) do
-    @i..n//@i
-    |> Task.async_stream(fn i -> %{number: i, time: module.run(f, [i]) / 1_000, group: f} end)
-    |> Enum.map(fn {:ok, m} -> m end)
+    case f do
+      :calc_product ->
+        0..max//@j
+
+      :spawn ->
+        0..max//@i
+    end
   end
 
   def plot(module, f, n) do
-    range = if f == :calc_product, do: 0..30_000//@j, else: 0..n//@i
-
-    Enum.map(range, fn i ->
+    range(f, n)
+    |> Enum.map(fn i ->
       %{number: i, time: module.run(f, [i]) / 1_000, group: f}
     end)
   end
 end
 
-data_single = Plot.plot(Factorial, :calc_product, n)
-# data_conc = Plot.plot(Factorial, :spawn, n)
+n = 12_000
 data_conc_rec = Plot.plot(FactorialPlus, :spawn, n)
+data_single = Plot.plot(Factorial, :calc_product, n)
 ```
 
 ```elixir
