@@ -1469,51 +1469,6 @@ add_fn = fn a, b -> a + b end
 add_capture.(1, 2) == add_fn.(1, 2)
 ```
 
-#### A word on how to gather informations on processes
-
-You have access to some informations of the VM running `Elixir` (it is called the BEAM). [This video](https://www.youtube.com/watch?v=JvBT4XBdoUE) is very informative.
-
-```elixir
-Process.list()
-```
-
-For each running process, we can get some information
-
-```elixir
-first = Process.list() |> hd() |> Process.info()
-```
-
-We can sort the running processes ranked by the number of reductions (an image of the number of operations this process does)
-
-```elixir
-do_spawn = fn ->
-  spawn(fn ->
-    receive do
-      msg -> msg
-    end
-  end)
-end
-
-pid_do_spawn = do_spawn.()
-
-list =
-  Process.list()
-  |> Enum.map(fn p ->
-    {p, Process.info(p, :reductions)}
-  end)
-  |> Enum.sort(fn {_pid1, red1}, {_pid2, red2} -> red1 >= red2 end)
-```
-
-We can get informations about what a particular process is doing
-
-```elixir
-id =
-  Enum.find_index(list, fn elt -> pid_do_spawn == elem(elt, 0) end)
-  |> IO.inspect()
-
-Process.info(pid_do_spawn, :current_stacktrace)
-```
-
 Now that we can create processes that can send messages to each other, let's see if we can use them for something a little more intensive than doubling an integer.
 
 ## Concurrency
@@ -1866,24 +1821,67 @@ Benchee.run(
 )
 ```
 
-#### One step further
+### One step further: recursion with `Elixir`
 
 We can play a bit more. In the previous example, we chunked the list to spawn a lot of process to compute subproducts, and then simply computed the grand product by reducing the new list.
 
-We can do better with recursion. Once we get a sublist of products, why not reusing the technic to produce a sub-sublist, and redo this until we get a list of legnth `chunk_length_size`? To better understand, take `n=11` and a chunk size of 2; the idea is to do the following:
+We can do better with recursion. Once we get a sublist of products, why not reusing the technic to produce a sub-sublist, and redo this until we get a list of length 1? To better understand, take $n=14$ and a chunk size of $3$; the idea is to do the following:
 
 ```
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-[2, 12, 30, 56, 90, 11]
-[24, 1680, 990]
-[40320, 990]
-[39916800]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+ 2.        2.      2.       2.         1
+[6,        120,    504,     1320,      182]
+
+2                            1
+[362880,                     241969]
+1
+87805710720
 ```
 
-The bigger the number we want to compute, the more efficient this will be. We can do this quite easily with recursion: just call back the function.
+Given $n$, with the standard computation, we have $n-1$ multiplications. If $n=14$, we have $13$ multiplications. When we chunk, we have the same numbers of multiplications. However, we have $n_1=\rm{div}(n,c)+1 =5$ async processes to compute $p_1=(c-1)\times \rm{div}(n,c)+1$ mutiplications. Let $n=14$ and $c=3$, we have $n_1=\rm{div}(n,c)+1 =5$ processes, thus $n_1$ subproducts and $p_1=2\times 4+1=9$ async multiplications out of $13$.
+
+We can repeat: we can make $n_2=\rm{div}(n_1,c)+1$ async processes to compute $p_2=(c-1)\times\rm{div}(n_1,c)+1$ async multiplications. Numerically, $n_2=2$ processes and $p_2=3$ asnyc multiplications. Only one chunk remains, thus $1$ process and $1$ multiplication. In total, we have launched $5+2+1=8$ processes to handle $13$ async multiplications.
+
+#### Example of recursion with `Elixir`
+
+We can compute the number of spawned processes. As the algorithm above suggests, the code is naturally a [recursion](https://elixir-lang.org/getting-started/recursion.html). Note how we need to reuse the header of a function with a **guard clause**: this makes the code stop eventually. Also note that the ordering is important, as you want to hit the stop condition first as the code will pattern match with it first: if we place the stop condition after, then the first header will always match and the recursion never stops.
 
 ```elixir
-chunk = 10
+defmodule Serie do
+  def calc(n, c) when n <= c, do: [1]
+
+  def calc(n, c) do
+    n = div(n, c) + 1
+    [n | calc(n, c)]
+  end
+
+  def processes(n, c) do
+    Serie.calc(n, c)
+    |> IO.inspect(label: "serie of number of async processes")
+    |> Enum.reduce(0, &(&1 + &2))
+  end
+
+  def summary(n, c) do
+    processes(n, c)
+    |> IO.inspect(label: "total processes")
+    |> then(fn d ->
+      (div(n, c) / d * 100)
+      |> Float.round(0)
+    end)
+  end
+end
+```
+
+```elixir
+IO.puts("first step is #{Serie.summary(100_000, 4)}% of all processes")
+```
+
+The cost is the complication in the code for the compiler and the memory used. Also we see that the first step brings around $80$% of all async computations, so the advantage of this complication is not big. The bigger the number we want to compute, the more efficient this will be.
+
+Nevertheless, the algorithm above is coded below quite easily with recursion. This is where functional code shines.
+
+```elixir
+chunk = 5
 
 defmodule FactorialPlus do
   @chunk chunk
@@ -1996,7 +1994,8 @@ Benchee.run(
     "concurrent_non_recursive" => fn input -> Factorial.spawn(input) end
   },
   memory_time: 2,
-  inputs: [small: 3_000, medium: 30_000, larger: 300_000]
+  inputs: [small: 3_000]
+  # inputs: [small: 5_000, larger: 8_000]
 )
 ```
 
@@ -2004,16 +2003,25 @@ Benchee.run(
 
 #### Let's plot
 
-We want to visualize the computation time for a given number. With the Livebook, we can do this easily with the "smart cell" `Chart`. The module `VegaLite` needs data in the form of the map below:
+We want to visualize the computation time for a given number. With the Livebook, we can do this easily with the "smart cell" `Chart`. The module `VegaLite` needs data in the form of the map of lists, or a list of maps as below:
 
 <!-- livebook:{"force_markdown":true} -->
 
 ```elixir
+# map of lists
 %{ 
-  x: [500, 1000, 1500, ..., n],
-  y: [...time_to_compute factorial(n)...]
+  x: [..n..],
+  y: [...time...]
 }
+
+# or list of maps
+
+[
+  %{x: 1, y: 1}, %{x: 2, y: 2}, ...
+]
 ```
+
+> To plots 2 curves and get a legend, add another `key: value` as shnown below.
 
 We need to measure the time taken to compute each factorial from 1 to $n$. We save the data every $1000$ counts.
 Using concurrency to run all these functions, some `Task.async_stream(range, fn i -> time(factorial(i)) end)`, doesn't help as the timer needs to be run as a single process. We will plot concurrent and single process (reduction).
@@ -2021,44 +2029,64 @@ Using concurrency to run all these functions, some `Task.async_stream(range, fn 
 If you run this on Fly.io, limit $n$ to $8000$ maximum.
 
 ```elixir
-n = 20_000
+n = 100_000
+max = 8_000
+
+nb =
+  case n > max && :erlang.system_info(:logical_processors_available) == 1 do
+    true -> max
+    false -> n
+  end
 
 defmodule Plot do
-  @i 1_000
+  @i 10_000
+  @j 2_000
 
-  def plot(f, n) do
-    x = @i..n//@i |> Enum.to_list()
+  def plot_async(module, f, n) do
+    @i..n//@i
+    |> Task.async_stream(fn i -> %{number: i, time: module.run(f, [i]) / 1_000, group: f} end)
+    |> Enum.map(fn {:ok, m} -> m end)
+  end
 
-    y =
-      Enum.map(x, fn i ->
-        Factorial.run(f, [i]) / 1_000
-      end)
+  def plot(module, f, n) do
+    range = if f == :calc_product, do: 0..30_000//@j, else: 0..n//@i
 
-    %{x: x, y: y}
+    Enum.map(range, fn i ->
+      %{number: i, time: module.run(f, [i]) / 1_000, group: f}
+    end)
   end
 end
 
-data_conc = Plot.plot(:worker, n)
-data_single = Plot.plot(:calc_product, n)
+data_single = Plot.plot(Factorial, :calc_product, n)
+# data_conc = Plot.plot(Factorial, :spawn, n)
+data_conc_rec = Plot.plot(FactorialPlus, :spawn, n)
 ```
 
 ```elixir
 VegaLite.new(
   width: 400,
   height: 400,
-  title: "Factorial computation time, concurrent vs single process"
+  title: "Computation time, concurrent(spawn) vs single process (calc_product)"
 )
 |> VegaLite.layers([
   VegaLite.new()
-  |> VegaLite.data_from_values(data_conc, only: ["x", "y"])
+  |> VegaLite.data_from_values(data_single, only: ["number", "time", "group"])
   |> VegaLite.mark(:point)
-  |> VegaLite.encode_field(:x, "x", type: :quantitative)
-  |> VegaLite.encode_field(:y, "y", type: :quantitative),
+  |> VegaLite.encode_field(:x, "number", type: :quantitative, title: "number")
+  |> VegaLite.encode_field(:y, "time", type: :quantitative, title: "time(ms)")
+  |> VegaLite.encode_field(:color, "group", type: :nominal),
+  # VegaLite.new()
+  # |> VegaLite.data_from_values(data_conc, only: ["number", "time", "group"])
+  # |> VegaLite.mark(:point)
+  # |> VegaLite.encode_field(:x, "number", type: :quantitative, title: "number")
+  # |> VegaLite.encode_field(:y, "time", type: :quantitative, title: "time(ms)", scale: [type: :log])
+  # |> VegaLite.encode_field(:color, "group", type: :nominal),
   VegaLite.new()
-  |> VegaLite.data_from_values(data_single, only: ["x", "y"])
+  |> VegaLite.data_from_values(data_conc_rec, only: ["number", "time", "group"])
   |> VegaLite.mark(:line)
-  |> VegaLite.encode_field(:x, "x", type: :quantitative)
-  |> VegaLite.encode_field(:y, "y", type: :quantitative)
+  |> VegaLite.encode_field(:x, "number", type: :quantitative, title: "number")
+  |> VegaLite.encode_field(:y, "time", type: :quantitative)
+  |> VegaLite.encode_field(:color, "group", type: :nominal)
 ])
 ```
 
