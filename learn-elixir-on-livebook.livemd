@@ -2,7 +2,7 @@
 
 ```elixir
 Mix.install([
-  {:kino, "~> 0.7.0", override: true},
+  {:kino, "~> 0.8.0", override: true},
   {:kino_vega_lite, "~> 0.1.7"},
   {:benchee, "~> 1.1"},
   {:hidden_cell, github: "BrooklinJazz/hidden_cell"}
@@ -573,7 +573,9 @@ end
 ExMod2.print_b()
 ```
 
-The control flow `if` below uses the variable `n`. It is in the scope, accessible. The macro `if`is itself a function that returns something.
+#### Example in a controle flow: `if`
+
+The control flow `if` below uses the variable `n`. It is in the scope, accessible. The macro `if` is itself a function that returns something.
 
 ```elixir
 n = 5
@@ -635,6 +637,27 @@ defmodule Ex3 do
 end
 
 Ex3.sum(3)
+```
+
+### Pipe operator `|>`
+
+What if we wanted to chain our functions? We can do this with the pipe `|>` operator.
+
+<!-- livebook:{"break_markdown":true} -->
+
+An example. Consider the two functions below. We can pipe `double/2` with `times/2`. Suppose that `times` receives as first argument the output of `double`, then we can pipe them: `double.(2) |> times.(3)`.
+
+> **Note** we write only the second argument of `times` because his first argument is implicit. If we write it, you get an error.
+
+We even piped `inspect` in the middle of the piping sequence to check what `double` is sending to `times`. This can be very usefull.
+
+```elixir
+double = fn x -> x * 2 end
+times = fn x, y -> x * y end
+
+double.(2)
+|> IO.inspect(label: "intermediate add function")
+|> times.(3)
 ```
 
 ## Create Your First non-Livebook Project
@@ -728,7 +751,7 @@ defmodule Animals do
 
   ## Examples
 
-      iex> Animals0.hello()
+      iex> Animals.hello()
       :world
 
   """
@@ -741,7 +764,7 @@ defmodule Animals do
 
   ## Examples
 
-      iex> Animals1.create_zoo
+      iex> Animals.create_zoo
       ["lion", "tiger", "gorilla", "elephant", "monkey", "giraffe"]
   """
 
@@ -755,8 +778,8 @@ defmodule Animals do
 
   ## Examples
 
-      iex> zoo = Animals2.create_zoo
-      iex> Animals2.randomise(zoo)
+      iex> zoo = Animals.create_zoo
+      iex> Animals.randomise(zoo)
   """
   def randomise(zoo) do
     Enum.shuffle(zoo)
@@ -768,8 +791,8 @@ defmodule Animals do
 
   ## Examples
 
-      iex> zoo = Animals2.create_zoo
-      iex> Animals2.contains?(zoo, "gorilla")
+      iex> zoo = Animals.create_zoo
+      iex> Animals.contains?(zoo, "gorilla")
       true
   """
 
@@ -840,7 +863,6 @@ defmodule Animals do
   ## Examples
 
       iex> Animals.selection(2)
-      ["gorilla", "giraffe"]
 
   """
   def selection(number_of_animals) do
@@ -948,19 +970,6 @@ This is done in the code of the function `Animals.selection/1`.
 Animals.selection(2)
 ```
 
-Another example. Consider the two functions below. We can pipe `double/2` with `times/2`. Since `times` receives as first argument the output of `double`, we write only its second argument.
-
-We even piped `inspect` in the middle of the piping sequence to check what `double` is sending to `times`. This can be very usefull.
-
-```elixir
-double = fn x -> x * 2 end
-times = fn x, y -> x * y end
-
-double.(2)
-|> IO.inspect(label: "intermediate add function")
-|> times.(3)
-```
-
 ## Documentation
 
 When we created a new project with mix, it created a file for us called `mix.exs`
@@ -1047,7 +1056,7 @@ ExUnit.start(auto_run: false)
 defmodule AnimalsTest do
   use ExUnit.Case, async: false
 
-  # doctest Animals
+  doctest Animals
 
   describe "first test" do
     test "greets the world" do
@@ -1353,6 +1362,12 @@ Let's define a function.
 
 ```elixir
 defmodule Math2 do
+  @doc """
+
+    iex> Math2.add(1,2)
+    3
+  """
+
   def add(a, b) do
     (a + b) |> IO.inspect()
   end
@@ -1630,6 +1645,11 @@ defmodule Factorial do
     end
   end
 
+  @doc """
+    iex> Factorial.calc_product(4)
+    24
+  """
+
   # used on the single process, the last loop of "spawn"
   def calc_product(n) when is_integer(n) do
     Enum.reduce(1..n, 1, fn x, acc -> x * acc end)
@@ -1639,10 +1659,20 @@ defmodule Factorial do
   def calc_product(list), do: Enum.reduce(list, 1, &(&1 * &2))
 
   ### Recursion #########################################
+
+  @doc """
+    iex> Factorial.facto(4)
+    24
+  """
   def facto(0), do: 1
   def facto(n), do: n * facto(n - 1)
 
   # concurrent with Task module ##########################
+
+  @doc """
+    iex> Factorial.worker(4)
+    24
+  """
   def worker(n) do
     1..n
     |> Enum.chunk_every(@chunk)
@@ -1896,6 +1926,10 @@ list = [3, 2, 1]
 
 ```elixir
 defmodule Serie do
+  @doc """
+    iex> Serie.calc(14,3)
+    [5, 2, 1]
+  """
   # stop guard clause
   def calc(n, c) when n <= c, do: [1]
 
@@ -1910,18 +1944,25 @@ defmodule Serie do
     [n | calc(n, c)]
   end
 
-  # calculates the sum of the elements of the list by reduction
+  @doc """
+  Calculates the sum of the elements of the list by reduction
+    iex> Serie.processes(14,3)
+    8
+  """
   def processes(n, c) do
     Serie.calc(n, c)
     |> Enum.reduce(0, &(&1 + &2))
   end
 
-  # calculates how much represents the first step
+  @doc """
+  Calculates how much represents the first step
+    iex> Serie.summary(14,3)
+    50.0
+  """
   def summary(n, c) do
     processes(n, c)
     |> then(fn d ->
-      (div(n, c) / d * 100)
-      |> Float.round(0)
+      Float.round(div(n, c) / d * 100, 3)
     end)
   end
 end
@@ -1978,7 +2019,11 @@ chunk = 5
 defmodule FactorialPlus do
   @chunk chunk
 
-  # takes an integer and returns the list version of this function
+  @doc """
+  Takes an integer and returns the list version of this function
+    iex> FactorialPlus.spawn(4)
+    24
+  """
   def spawn(n) when is_integer(n) do
     Enum.to_list(1..n)
     |> FactorialPlus.spawn()
@@ -2016,7 +2061,11 @@ defmodule FactorialPlus do
 
   ####### using Task module ############
 
-  # takes an integer and returns the list version of this function
+  @doc """
+  Takes an integer and returns the list version of this function
+    iex> FactorialPlus.worker(4)
+    24
+  """
   def worker(n, chunk_size \\ @chunk)
 
   def worker(n, chunk_size) when is_integer(n) do
@@ -2036,6 +2085,10 @@ defmodule FactorialPlus do
     |> FactorialPlus.worker(chunk_size)
   end
 
+  @doc """
+    iex> FactorialPlus.calc_product([1,2,3])
+    6
+  """
   def calc_product(list), do: Enum.reduce(list, 1, &(&1 * &2))
 
   # Time measurement helper
