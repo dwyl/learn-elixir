@@ -156,7 +156,7 @@ docker run -p 8080:8080 -p 8081:8081 --pull always -e LIVEBOOK_PASSWORD="secures
 ```
 
 Open you browser and navigate to `localhost:8080`, enter the password "securewecret" :).
-Upload the file **[learn-elixir-on-livebook.livemd]** from this repo, or paste [it's URL](https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd).
+Upload the file **[learn-elixir-on-livebook.livemd]** from this repo, or paste this URL: <https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd>.
 
 - Finally, if you don't have `Docker` nor `Elixir` and `Livebook` installed, you can run a remote version in the cloud. Follow this!
 
