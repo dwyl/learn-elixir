@@ -180,7 +180,7 @@ b = 3
 div(a, b)
 ```
 
-The `rem` is the remainder as in the euclidean division
+The `rem` is the remainder of the euclidean division
 
 ```elixir
 rem(a, b)
@@ -319,6 +319,12 @@ Strings are surrounded by double quotes.
 "Hello World"
 ```
 
+You can use **comments** in the code (and it becomes gray)
+
+```elixir
+# a comment starts with "#"
+```
+
 You can print a string using the `IO` module. You have 2 routines, `IO.puts/1` and `IO.inspect/2`. Both return the atom `:ok`.
 
 ```elixir
@@ -359,7 +365,7 @@ length(my_list)
 ```
 
 ```elixir
-Enum.each(my_list, fn e -> IO.inspect(e) end)
+is_list(my_list)
 ```
 
 You have operators on lists. You can concatenating lists together with the `++`operator and substract lists with `--`
@@ -442,6 +448,10 @@ IO.inspect(third)
 [head | tail] = [1, 2, 3, "four"]
 IO.inspect(head, label: "head: ")
 IO.inspect(tail, label: "tail: ")
+
+# when we don't need a variable, use the underscore "_" and it becomes gray.
+[_h | [_h1 | t]] = [1, :two, 3, "four"]
+IO.puts("t is: #{inspect(t)}")
 ```
 
 A very popular usage of pattern matching is showed further down in the Function paragraph.
@@ -455,6 +465,7 @@ As every functional language, `Elixir` implements anonymous functions. These sta
 ```elixir
 add = fn a, b -> a + b end
 add.(1, 2)
+# beware of the dot "."
 ```
 
 > Note a dot `.` between the variable `add` and parenthesis is required to invoke an anonymous function.
@@ -469,7 +480,7 @@ This uses the inbuilt function `is_function` which checks to see if the paramete
 
 Anonymous functions are [closures](https://developer.mozilla.org/en/docs/Web/JavaScript/Closures) (_named_ functions are not) and as such they can access variables that are in scope when the function is defined.
 
-You can define a new anonymous function `double` that uses the `add` anonymous function we have previously defined and a variable `b`. Both are in the scope of the new anonymous function `double/1`:
+Example: you can define a new anonymous function `double` that uses the `add` anonymous function we have previously defined and a variable `b`. Both are in the scope of the new anonymous function `double/1`:
 
 ```elixir
 b = 3
@@ -496,21 +507,25 @@ defmodule Math do
     a + b
   end
 
-  def mult(a, b), do: a * b
+  def double_sum(a, b), do: sum(a, b) * 2
 end
-
-Math.sum(1, 2)
 ```
 
 > Note how we simplified the way we wrote the second function with the `, do:` isntead of the `do ... end`. This is a short cut when the body of the function is simple.
 
-<!-- livebook:{"break_markdown":true} -->
+```elixir
+Math.sum(1, 2)
+```
+
+```elixir
+Math.double_sum(1, é)
+```
 
 ### Scope, module attributes
 
 <!-- livebook:{"break_markdown":true} -->
 
-We have seen the anonymous function can access to outer variables within their scope. For example, we can apply via the moduel `Enum` an anonymous function to each element of an enumerable - such as a list - as the value of the variable is in the scope.
+We have seen the anonymous function can access to outer variables within their scope. For example, we can apply via the module `Enum` an anonymous function to each element of an enumerable such as a list because the variable is in the scope.
 
 ```elixir
 Enum.map([1, 2], fn x -> x + 2 end)
@@ -546,9 +561,7 @@ defmodule ExMod2 do
 
   def print_b, do: @b
 end
-```
 
-```elixir
 ExMod2.print_b()
 ```
 
@@ -567,7 +580,7 @@ result =
   end
 
 IO.inspect(result, label: "the macro 'if' returns: ")
-IO.inspect(n, label: "the value of n is unchanged: ")
+IO.inspect(n, label: "the value of 'n' is unchanged: ")
 ```
 
 We can rebind the variable `n`.
@@ -580,7 +593,7 @@ n =
     n + 2
   end
 
-IO.inspect(n, label: "the value of n is now: ")
+IO.inspect(n, label: "the value of 'n' is now: ")
 ```
 
 ### Function guards
@@ -613,9 +626,9 @@ end
 Ex2.add(3)
 ```
 
-This works again by **pattern matching**. This means the **order** in which you defined the headers is extremely **important**. If you reverse the order, the second clausewill never match since the first will match all cases.
+This works again by **pattern matching**. This means the **order** in which you defined the headers is extremely **important**. If you reverse the order, the second clause will never match since the first will match all cases.
 
-Recursion is heavily used in functional code. Guards allows you yo write recursive functions very easily like this:
+A use case is recursion, which is heavily used in functional code. Guards allows you yo write recursive functions very easily like this:
 
 ```elixir
 defmodule Ex3 do
@@ -627,24 +640,28 @@ end
 Ex3.sum(4)
 ```
 
+We need to add a "stop" condition in a recursion. This is provided by the first header of the function `sum`. Every recursive function will be written in this form with 2 declarations.
+
+<!-- livebook:{"break_markdown":true} -->
+
 ### Pipe operator `|>`
 
 What if we wanted to chain our functions? We can do this with the pipe `|>` operator.
 
 <!-- livebook:{"break_markdown":true} -->
 
-An example. Consider the two functions below. We can pipe `double/2` with `times/2`. Suppose that `times` receives as first argument the output of `double`, then we can pipe them: `double.(2) |> times.(3)`.
+An example. Consider the two functions below. Suppose that `times` receives as first argument the output of `double`, then we can pipe them: `double.(2) |> times.(3)`.
 
-> **Note** we write only the second argument of `times` because his first argument is implicit. If we write it, you get an error.
+> **Note** we write only the second argument of `times` because his first argument is implicit. If we write it, you get an error because the compiler will consider that `times` has 3 arguments whereas we only defined `times` with 2 arguments. The number of arguments is called the "[arity](https://en.wikipedia.org/wiki/Arity)".
 
-We even piped `inspect` in the middle of the piping sequence to check what `double` is sending to `times`. This can be very usefull.
+We can even pipe `inspect` in the middle of the piping sequence to check what `double` is sending to `times`. This can be very usefull.
 
 ```elixir
 double = fn x -> x * 2 end
 times = fn x, y -> x * y end
 
 double.(2)
-|> IO.inspect(label: "intermediate add function")
+|> IO.inspect(label: "'add' sends")
 |> times.(3)
 ```
 
@@ -689,6 +706,40 @@ case HTTP.process("") do
   {:error, msg} -> msg
 end
 ```
+
+### The `&` operator
+
+The `&` symbol is called the 
+[capture operator](https://hexdocs.pm/elixir/Function.html#module-the-capture-operator),
+which can be used to quickly generate anonymous functions that expect at least one argument.
+The arguments can be accessed inside the _capture operator_ `&()` with `&X`, where
+`X` refers to the input number of the argument.
+
+There is no difference between:
+
+```elixir
+add_capture = &(&1 + &2)
+add_fn = fn a, b -> a + b end
+
+add_capture.(1, 2) == add_fn.(1, 2)
+```
+
+We can use this to pass a short anonymous function on an enumerable. The readability is a matter of taste.
+
+```elixir
+list = [1, 2]
+
+add_one = &(&1 + 1)
+
+eval1 = Enum.map(list, fn x -> x + 1 end) == Enum.map(list, &(&1 + 1))
+eval2 = Enum.map(list, &(&1 + 1)) == Enum.map(list, add_one)
+
+IO.puts("First is: #{eval1}")
+
+IO.puts("Second is: #{eval2}")
+```
+
+> Note that `list` is immutable.
 
 ## Create Your First non-Livebook Project
 
@@ -790,7 +841,7 @@ defmodule Animals do
   end
 
   @doc """
-  create_zoo returns a list of zoo animals
+  `create_zoo/0` returns a list of zoo animals
 
   ## Examples
 
@@ -803,7 +854,7 @@ defmodule Animals do
   end
 
   @doc """
-  randomise takes a list of zoo animals and returns a new randomised list with
+  `randomise/1` takes a list of zoo animals and returns a new randomised list with
   the same elements as the first.
 
   ## Examples
@@ -834,6 +885,9 @@ defmodule Animals do
   `see_animals/2` takes a list of zoo animals and the number of animals that
   you want to see and then returns a list
 
+  > Note: `Enum.split` returns a tuple so we have to pattern match on the result 
+  to get the value we want out.
+
   ## Examples
 
       iex> zoo = Animals.create_zoo
@@ -842,14 +896,12 @@ defmodule Animals do
   """
 
   def see_animals(zoo, count) do
-    # Enum.split returns a tuple so we have to pattern match on the result
-    # to get the value we want out
     {_seen, to_see} = Enum.split(zoo, -count)
     to_see
   end
 
   @doc """
-  save takes a list of zoo animals and a filename and saves the list to that file
+  `save/2` takes a list of zoo animals and a filename and saves the list to that file
 
   ## Examples
 
@@ -859,14 +911,17 @@ defmodule Animals do
   """
 
   def save(zoo, filename) do
-    # erlang is converting the zoo list to something that can be written to the
-    # file system
+    # erlang is converting the zoo list to something that can be written to the file system
     binary = :erlang.term_to_binary(zoo)
     File.write(filename, binary)
   end
 
   @doc """
   `load/1` takes filename and returns a list of animals if the file exists
+
+  > Note: here we are running a case expression on the result of File.read(filename) 
+  - if we receive an :ok then we want to return the list
+  - if we receive an error then we want to give the user an error-friendly message
 
   ## Examples
 
@@ -877,9 +932,6 @@ defmodule Animals do
 
   """
   def load(filename) do
-    # here we are running a case expression on the result of File.read(filename)
-    # if we receive an :ok then we want to return the list
-    # if we receive an error then we want to give the user an error-friendly message
     case File.read(filename) do
       {:ok, binary} -> :erlang.binary_to_term(binary)
       {:error, _reason} -> "File does not exist"
@@ -887,19 +939,19 @@ defmodule Animals do
   end
 
   @doc """
-  selection takes a number, creates a zoo, randomises it and then returns a list
+  `selection/1` takes a number, creates a zoo, randomises it and then returns a list
   of animals of length selected
+
+  > Note:  We are using the pipe operator here. It takes the value returned from the
+  expression and passes it down as the first argument in the expression below. 
+  `see_animals` takes two arguments but only one needs to be specified 
+  as the first is provided by the pipe operator
 
   ## Examples
 
       iex> Animals.selection(2)
-
   """
   def selection(number_of_animals) do
-    # We are using the pipe operator here. It takes the value returned from
-    # the expression and passes it down as the first argument in the expression
-    # below. see_animals takes two arguments but only one needs to be specified
-    # as the first is provided by the pipe operator
     Animals.create_zoo()
     |> Animals.randomise()
     |> Animals.see_animals(number_of_animals)
@@ -940,6 +992,8 @@ zoo = Animals.create_zoo()
 shuffled_zoo = Animals.randomise(zoo)
 ```
 
+> If you run this Livebook locally, you will see the documentation of the function when you pass the cursor above it.
+
 ```elixir
 Animals.contains?(shuffled_zoo, "gorilla")
 ```
@@ -975,6 +1029,10 @@ Note the opposite conversion `:erlang.binary_to_term/1`
 
 ```elixir
 Animals.load("zoo.txt")
+```
+
+```elixir
+Animals.load("blabla")
 ```
 
 > If you do not use `Livebook` but a code editor instead, each time you modify your module, you need to recompile it:
@@ -1538,23 +1596,6 @@ above, it simply returns the message it receives which is the answer from add.
 
 <!-- livebook:{"break_markdown":true} -->
 
-### The `&`symbol
-
-The `&` symbol is called the 
-[capture operator](https://hexdocs.pm/elixir/Function.html#module-the-capture-operator),
-which can be used to quickly generate anonymous functions that expect at least one argument.
-The arguments can be accessed inside the _capture operator_ `&()` with `&X`, where
-`X` refers to the input number of the argument.
-
-There is no difference between:
-
-```elixir
-add_capture = &(&1 + &2)
-add_fn = fn a, b -> a + b end
-
-add_capture.(1, 2) == add_fn.(1, 2)
-```
-
 Now that we can create processes that can send messages to each other, let's see if we can use them for something a little more intensive than doubling an integer.
 
 ## Concurrency
@@ -1906,20 +1947,6 @@ IO.puts("- async stream: #{n_async}")
 IO.puts("- recursion: #{n_rec}")
 ```
 
-You can use the library [benchee](https://github.com/bencheeorg/benchee) to benchmark the implementations. It compares how fast the implementation is and the memory usage.
-
-```elixir
-Benchee.run(
-  %{
-    "concurrent_spawn" => fn input -> Factorial.spawn(input) end,
-    "concurrent_task" => fn input -> Factorial.worker(input) end,
-    "single_process" => fn input -> Factorial.facto(input) end
-  },
-  memory_time: 2,
-  inputs: [small: 1_000, medium: 10_000]
-)
-```
-
 ### One step further: recursion with `Elixir`
 
 We can play a bit more. In the previous example, we chunked the list to spawn a lot of process to compute subproducts, and then simply computed the grand product by reducing the new list.
@@ -1939,15 +1966,19 @@ We can do better with recursion. Once we get a sublist of products, why not reus
 
 ```
 
+<details>
+<summary>Details of the algorithm fo compute the sequence of processes</summary>
 Given $n$, with the standard computation, we have $n-1$ multiplications. If $n=14$, we have $13$ multiplications. When we chunk, we have the same numbers of multiplications. However, we have $n_1=\rm{div}(n,c)+ 1=5$ async processes to compute $p_1=(c-1)\times \rm{div}(n,c)+1$ mutiplications of $c$ consecutive numbers. Let $n=14$ and $c=3$, we have $n_1=\rm{div}(n,c)+1 =5$ processes, thus $n_1$ subproducts and $p_1=2\times 4+1=9$ async multiplications out of $13$.
 
 We can repeat: since $\rm{rem}(5,3) \neq 0$, we can make $n_2=\rm{div}(n_1,c)+1$ async processes to compute $p_2=(c-1)\times\rm{div}(n_1,c)+1$ async multiplications. Numerically, $n_2=2$ processes and $p_2=3$ asnyc multiplications. Only one chunk remains, thus $1$ process and $1$ multiplication. In total, we have launched $5+2+1=8$ processes to handle $13$ async multiplications.
+</Details>
 
-#### Example of recursion with `Elixir`
+#### Example of recursion with `Elixir`: compute the sequence of processes
 
 We can compute the number of spawned processes. As the algorithm above suggests, the code is naturally a [recursion](https://elixir-lang.org/getting-started/recursion.html). Note how we need to reuse the header of a function with a **guard clause**. This first clause makes the code to stop, the second and third add $1$ or not to the count if the remainder is zero or not. Also note that the ordering is important, as you want to hit the stop condition first as the code will pattern match with it first: if we place the stop condition at the end, then the header with no guard clause will always match and the recursion never stops.
 
 Firstly, this is how you can add an element as the first element of a list:
+</details>
 
 ```elixir
 list = [3, 2, 1]
@@ -2163,17 +2194,34 @@ Kino.Control.stream(form)
 end)
 ```
 
-We can use again `Benchee` to evaluate the performance of each solution.
+#### Evaluate performance with Benchee
+
+You can use the library [benchee](https://github.com/bencheeorg/benchee) to benchmark the implementations. It compares how fast the implementation is and the memory usage.
+
+> Note: it might not be relevate on Fly.io due to the single core and memory limitation (no more than 5000 with Fly.io).
+
+> Note: recall that an anonymous function `fn input -> Factorial.spawn(input) end` can be written with the `&` operator: `&Factorial.spawn/1`
+
+<!-- livebook:{"break_markdown":true} -->
+
+We pass a map `%{ "name" => function to evaluate, ...}` to the function `Benchee.run/2`
 
 ```elixir
+test? = true
+max = 15_000
+
+if test?, do:
 Benchee.run(
   %{
-    "concurrent_spawn_recursive" => fn input -> FactorialPlus.spawn(input) end,
-    "concurrent_task_recursive" => fn input -> FactorialPlus.worker(input) end,
-    "concurrent_non_recursive" => fn input -> Factorial.spawn(input) end
+    "concurrent_spawn" => &Factorial.spawn/1,
+    "concurrent_task" => &Factorial.worker/1 end,
+    "single_process" => &Factorial.facto/1 end,
+    "concurrent_spawn_recursive" => &FactorialPlus.spawn/1 end,
+    "concurrent_task_recursive" => &FactorialPlus.worker/1 end,
+    "concurrent_non_recursive" => &Factorial.spawn/1 end
   },
   memory_time: 2,
-  inputs: [small: 1_000, larger: 8_000]
+  inputs: [small: 1_000, larger: max]
 )
 ```
 
@@ -2201,10 +2249,13 @@ We want to visualize the computation time for a given number. With the Livebook,
 
 > To plots 2 curves and get a legend, add another `key: value` as shnown below.
 
-We need to measure the time taken to compute each factorial from 1 to $n$. We save the data every $1000$ counts.
-Using concurrency to run all these functions, some `Task.async_stream(range, fn i -> time(factorial(i)) end)`, doesn't help as the timer needs to be run as a single process. We will plot concurrent and single process (reduction).
+We want to measure the time taken to compute each factorial from 1 to $n$. To save on computations, we save the data every $1000$ or $2000$ counts, depending on the process.
 
-If you run this on Fly.io, limit $n$ to $8000$ maximum.
+Note that using concurrency to run all these functions - some `Task.async_stream(range, fn i -> time(factorial(i)) end)` - doesn't help as the timer needs to be run as a single process.
+
+We will plot concurrent (spawn) and single process (reduction).
+
+> If you run this on Fly.io, limit $n$ to $8000$ maximum.
 
 ```elixir
 defmodule Plot do
