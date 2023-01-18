@@ -175,14 +175,14 @@ Kernel./(10, 3)
 If you want to do integer division or get the euclidean division remainder you can use the `div` or `rem` functions
 
 ```elixir
-div(10, 3)
+a = 10
+b = 3
+div(a, b)
 ```
 
 The `rem` is the remainder as in the euclidean division
 
 ```elixir
-a = 10
-b = 3
 rem(a, b)
 ```
 
@@ -309,68 +309,6 @@ pi = :erlang.term_to_binary(3.14)
 
 > You notice in the example above that the cells are linked in `Livebook`. You declare a variable `pi` and this value is available afterwards. You must evaluate the first cell to be able to use it in the next cell.
 
-One popular use of atoms in **`Elixir`** is to use them as messages for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
-
-You can skip the following example as it introduces concepts that we details further down. Let's say you have a function which processes an `http` request. The outcome of this process is either going to be a success or an error. You could therefore use atoms to indicate whether or not this process is successful.
-
-We build a function below. We need to wrap this function within a **module**. We explain with more details functions and modules in a paragraph further down, but in short, a module "namespaces" the functions. This is mandatory to be able to run a named function.
-
-```elixir
-defmodule Example do
-  def process(http_request) do
-    lines = http_request |> String.split("\n")
-
-    case length(lines) < 2 do
-      false ->
-        {:ok, lines}
-
-      true ->
-        {:error, "failed to process response"}
-    end
-  end
-end
-```
-
-Here we are saying that the method, `Example.process/1` will return a **tuple** response. If the result of our process is successful, it will return `{:ok, lines}`, however if it fails (e.g. returns nil) then it will return an error `{:error, "failed to process response}`. This will allows us to pattern match on this result.
-
-```elixir
-evaluation1 = Example.process("the request response is text.txt\n and is very long")
-```
-
-```elixir
-evaluation2 = Example.process("")
-```
-
-We can "destructurate" the response: tt is called "pattern matching". We wrote our function in such a way that the first element of the returned tuple is the atom `:ok` or `:error`.
-
-```elixir
-{status, result} = evaluation1
-```
-
-```elixir
-result
-```
-
-```elixir
-status
-```
-
-```elixir
-{status, result} = evaluation2
-```
-
-```elixir
-status
-```
-
-```elixir
-result
-```
-
-Thus, we can be sure that we will always have the lines returned to us
-and never a *nil* value (because it will throw an error).
-This becomes extremely useful when piping multiple methods together.
-
 <!-- livebook:{"break_markdown":true} -->
 
 ### Strings and `IO`
@@ -381,29 +319,28 @@ Strings are surrounded by double quotes.
 "Hello World"
 ```
 
-You can print a string using the `IO` module. You have 2 routines, `IO.puts/1` and `IO.inspect/2`.
+You can print a string using the `IO` module. You have 2 routines, `IO.puts/1` and `IO.inspect/2`. Both return the atom `:ok`.
 
 ```elixir
 IO.puts("hello")
 ```
 
-You have **string interpolation** with `#{variable}`. To print it, best is to use `inspect/2` as `IO.puts` may fail
+You have **string interpolation** with `#{variable}`.
 
 ```elixir
 a = "ok"
-IO.puts("#{a}")
-```
-
-```elixir
 IO.inspect(a, label: "the value is: ")
+IO.puts("the value is still: #{a}")
 ```
 
-For example, you can't use `IO.puts` to print a list. You need to use `IO.inspect`. The line below doesn't work: it returns nothing.
+Prefer `inspect/2` to `IO.puts` is you print anything else but a string. For example, you can't use `IO.puts` to print a list. You need to use `IO.inspect`. The line below with `IO.puts` doesn't work - it returns nothing - but `IO.inspect` does work because we are printing a list, which is not a string.
 
 ```elixir
 t = [1, 2]
 IO.puts("#{t}")
 ```
+
+This works:
 
 ```elixir
 IO.puts("#{inspect(t)}")
@@ -421,6 +358,10 @@ my_list = [1, 2]
 length(my_list)
 ```
 
+```elixir
+Enum.each(my_list, fn e -> IO.inspect(e) end)
+```
+
 You have operators on lists. You can concatenating lists together with the `++`operator and substract lists with `--`
 
 ```elixir
@@ -429,6 +370,13 @@ my_list ++ [4, 5, 6]
 
 ```elixir
 [1, true, 2, false, 3, true] -- [true, false]
+```
+
+You can **prepend** to a list with `|`:
+
+```elixir
+list = [2, 3]
+[1 | list]
 ```
 
 ### Tuples
@@ -444,6 +392,10 @@ t = {:ok, "hello", "John"}
 ```
 
 ```elixir
+is_tuple(t)
+```
+
+```elixir
 elem(t, 2)
 ```
 
@@ -452,7 +404,11 @@ tuple_size(t)
 ```
 
 ```elixir
-Tuple.to_list(t)
+l = Tuple.to_list(t)
+```
+
+```elixir
+is_list(l)
 ```
 
 ### Lists or Tuples?
@@ -470,6 +426,25 @@ When dealing with **large** lists or tuples:
 * `Reading` a `tuple` is **fast**
 
 > source: http://stackoverflow.com/questions/31192923/lists-vs-tuples-what-to-use-and-when
+
+<!-- livebook:{"break_markdown":true} -->
+
+### [Pattern matching](https://en.wikipedia.org/wiki/Pattern_matching)
+
+[Pattern matching](https://hexdocs.pm/elixir/main/patterns-and-guards.html) is heavily used in `Elixir`. This is like destructuring in Javascript. The examples below are self explanatory
+
+```elixir
+{first, second, third} = {1, :ok, "fine"}
+IO.inspect(first)
+IO.inspect(second)
+IO.inspect(third)
+
+[head | tail] = [1, 2, 3, "four"]
+IO.inspect(head, label: "head: ")
+IO.inspect(tail, label: "tail: ")
+```
+
+A very popular usage of pattern matching is showed further down in the Function paragraph.
 
 ## Funtions and modules
 
@@ -535,7 +510,13 @@ Math.sum(1, 2)
 
 <!-- livebook:{"break_markdown":true} -->
 
-We have seen the anonymous function can access to outer variables within their scope. This is not true for named functions, those declared within a module. Furthermore, only named function are exported from a module, not anonymous functions.
+We have seen the anonymous function can access to outer variables within their scope. For example, we can apply via the moduel `Enum` an anonymous function to each element of an enumerable - such as a list - as the value of the variable is in the scope.
+
+```elixir
+Enum.map([1, 2], fn x -> x + 2 end)
+```
+
+This is not true for named functions, those declared within a module. Furthermore, only named function are exported from a module, not anonymous functions.
 
 Look at the example below. The outer variable `a`is not accessible within a module. In the cell below, you can see that `a` is underlined in red. If you evaluate this cell, you get an error and a warning on `var`. The variable `b` is not accessible as well.
 
@@ -551,9 +532,7 @@ defmodule ExMod do
     a
   end
 end
-```
 
-```elixir
 ExMod.print_a()
 ```
 
@@ -580,7 +559,12 @@ The control flow `if` below uses the variable `n`. It is in the scope, accessibl
 ```elixir
 n = 5
 
-result = if rem(n, 2) == 0, do: n + 1, else: n + 2
+result =
+  if rem(n, 2) == 0 do
+    n + 1
+  else
+    n + 2
+  end
 
 IO.inspect(result, label: "the macro 'if' returns: ")
 IO.inspect(n, label: "the value of n is unchanged: ")
@@ -589,13 +573,19 @@ IO.inspect(n, label: "the value of n is unchanged: ")
 We can rebind the variable `n`.
 
 ```elixir
-n = if rem(n, 2) == 0, do: n + 1, else: n + 2
+n =
+  if rem(n, 2) == 0 do
+    n + 1
+  else
+    n + 2
+  end
+
 IO.inspect(n, label: "the value of n is now: ")
 ```
 
-### Function clauses
+### Function guards
 
-Imagine you have a function that behaves differently depending on a variable. For example, the function adds $1$ to every even number, and adds $2$ to every odd number. You would traditionnally invoque an [`if`](https://elixir-lang.org/getting-started/case-cond-and-if.html#if-and-unless) staetement like this:
+Imagine you have a function that behaves differently depending on a variable. For example, the function adds $1$ to every even number, and adds $2$ to every odd number. You would traditionnally invoque an [`if`](https://elixir-lang.org/getting-started/case-cond-and-if.html#if-and-unless) statement like this:
 
 ```elixir
 defmodule Ex1 do
@@ -611,13 +601,11 @@ end
 Ex1.add(5)
 ```
 
-We can instead use a [guard clause](https://hexdocs.pm/elixir/1.14.3/Kernel.html#module-guards) and define our function **twice** like this:
+We can instead use a [guard clause](https://hexdocs.pm/elixir/1.14.3/Kernel.html#module-guards). You define our function **twice** like this:
 
 ```elixir
 defmodule Ex2 do
-  def add(x) when rem(x, 2) == 0 do
-    x + 1
-  end
+  def add(x) when rem(x, 2) == 0, do: x + 1
 
   def add(x), do: x + 2
 end
@@ -625,9 +613,9 @@ end
 Ex2.add(3)
 ```
 
-This works again by pattern matching. This means the **order** in which you defined the headers is extremely **important**. If you reverse the order, the second clausewill never match since the first will match all cases.
+This works again by **pattern matching**. This means the **order** in which you defined the headers is extremely **important**. If you reverse the order, the second clausewill never match since the first will match all cases.
 
-Recursion is heavily used in functional code. This allows you yo write recursive functions very easily like this:
+Recursion is heavily used in functional code. Guards allows you yo write recursive functions very easily like this:
 
 ```elixir
 defmodule Ex3 do
@@ -636,7 +624,7 @@ defmodule Ex3 do
   def sum(n), do: n + sum(n - 1)
 end
 
-Ex3.sum(3)
+Ex3.sum(4)
 ```
 
 ### Pipe operator `|>`
@@ -658,6 +646,48 @@ times = fn x, y -> x * y end
 double.(2)
 |> IO.inspect(label: "intermediate add function")
 |> times.(3)
+```
+
+#### Pattern matching on function response
+
+One popular use of atoms in **`Elixir`** is to use them as messages for [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
+
+Let's say you have a function which processes an `http` request. The outcome of this process is either going to be a success or an error. You could therefore use atoms to indicate whether or not this process is successful. If the result of our process is successful, it will return `{:ok, lines}`, however if it fails (e.g. returns nil) then it will return an error `{:error, "failed to process response}`. This will allows us to pattern match on this result.
+
+```elixir
+defmodule HTTP do
+  def process(http_request) do
+    lines = http_request |> String.split("\n")
+
+    case lines == [""] do
+      false ->
+        {:ok, lines}
+
+      true ->
+        {:error, "failed to process response"}
+    end
+  end
+end
+```
+
+We can pattern match on the response:
+
+```elixir
+{status1, response1} = HTTP.process("the request response is text.txt\n and is very long")
+{status2, response2} = HTTP.process("")
+IO.inspect(status1)
+IO.inspect(response1)
+IO.inspect(status2)
+IO.inspect(response2)
+```
+
+The usage of the pattern below is very popular in `Elixir`:
+
+```elixir
+case HTTP.process("") do
+  {:ok, response} -> response
+  {:error, msg} -> msg
+end
 ```
 
 ## Create Your First non-Livebook Project
