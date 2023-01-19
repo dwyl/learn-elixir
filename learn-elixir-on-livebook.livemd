@@ -2310,12 +2310,6 @@ VegaLite.new(
   |> VegaLite.encode_field(:x, "number", type: :quantitative, title: "number")
   |> VegaLite.encode_field(:y, "time", type: :quantitative, title: "time(ms)")
   |> VegaLite.encode_field(:color, "group", type: :nominal),
-  # VegaLite.new()
-  # |> VegaLite.data_from_values(data_conc, only: ["number", "time", "group"])
-  # |> VegaLite.mark(:point)
-  # |> VegaLite.encode_field(:x, "number", type: :quantitative, title: "number")
-  # |> VegaLite.encode_field(:y, "time", type: :quantitative, title: "time(ms)", scale: [type: :log])
-  # |> VegaLite.encode_field(:color, "group", type: :nominal),
   VegaLite.new()
   |> VegaLite.data_from_values(data_conc_rec, only: ["number", "time", "group"])
   |> VegaLite.mark(:line)
