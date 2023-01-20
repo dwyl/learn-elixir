@@ -147,7 +147,7 @@ choco install elixir
 
 Once `Livebook` installed on your machine, just click on the button below (or fork and run it):
 
-[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-elixir-with-livebook%2Fblob%2Fmain%2Flearn-elixir-on-livebook.livemd)
+[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-elixir%2Fblob%2Fmain%2Flearn-elixir-on-livebook.livemd)
 
 - Alternatively, you can run a `Docker` image, no need to install `Elixir` or `Livebook`. Launch `Docker` and run the `Livebook` image:
 
@@ -155,8 +155,11 @@ Once `Livebook` installed on your machine, just click on the button below (or fo
 docker run -p 8080:8080 -p 8081:8081 --pull always -e LIVEBOOK_PASSWORD="securesecret" livebook/livebook
 ```
 
-Open you browser and navigate to `localhost:8080`, enter the password "securewecret" :).
-Upload the file **[learn-elixir-on-livebook.livemd]** from this repo, or paste this URL: <https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd>.
+and in another terminal you launch the browser (you will need to authneticate with "securesecret") with the command:
+
+```
+open http://localhost:8080/import?url=https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd
+```
 
 - Finally, if you don't have `Docker` nor `Elixir` and `Livebook` installed, you can run a remote version in the cloud. Follow this!
 
