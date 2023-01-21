@@ -917,7 +917,7 @@ This will install the
 dependencies that you need.
 
 Once `ex_docs` has been installed,
-run run the following command to generate
+run the following command to generate
 documentation (_make sure you're not in `iex`_):
 
 ```sh
