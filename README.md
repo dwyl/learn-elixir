@@ -917,7 +917,7 @@ This will install the
 dependencies that you need.
 
 Once `ex_docs` has been installed,
-run run the following command to generate
+run the following command to generate
 documentation (_make sure you're not in `iex`_):
 
 ```sh
@@ -957,7 +957,7 @@ can be brought up to speed incredibly quickly!
 
 When you generate a project with **`Elixir`** it automatically gives you a number of
 files and directories. One of these directories is called `test` and it holds two
-files like should have names like:
+files that should have names like:
 
 - `[project_name]_test.exs`
 - `test_helper.exs`
