@@ -4,9 +4,11 @@
 
 </div>
 
-These are the detailed steps for installing
-`Elixir` and `Erlang` on a `Mac` 
+If you have trouble installing `Elixir`
+on your `Mac` 
 with an `M1` (and `M2`, `M3`, etc.) processor.
+using `brew`,
+these are the detailed steps you need!
 
 # `Homebrew`
 
