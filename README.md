@@ -113,6 +113,11 @@ http://elixir-lang.org/install.html or follow our guide here:
 Using the [Homebrew](https://brew.sh/) package manager:
 `brew install elixir`
 
+> If you have any trouble with `ssl` when running an `Elixir` App on your `Mac`,
+> see: 
+> [`/install-mac.md`](https://github.com/dwyl/learn-elixir/blob/main/install-mac.md)
+
+
 #### Ubuntu:
 
 - **Add the Erlang Solutions repo**:
