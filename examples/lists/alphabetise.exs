@@ -38,3 +38,6 @@ defmodule Alpha do
 end
 
 Alpha.descending()
+
+# execute this file by running:
+# elixir examples/lists/alphabetise.ex
