@@ -131,12 +131,23 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
   `sudo apt-get install esl-erlang`
 - **Install Elixir**: `sudo apt-get install elixir`
 
+
 #### Windows:
 
 - **Web installer**
-
-  - [Download the installer](https://repo.hex.pm/elixir-websetup.exe)
-  - Click next, next, ..., finish
+  
+  - **Erlang installer**
+  - Download the Windows installer for Erlang (32 or 64-bit): [erlang.org/downloads](https://www.erlang.org/downloads.html)
+  - Click next, next,..., close
+ 
+  - **Elixir installer**
+  - Download the Elixir installer matching your Erlang version: [github.com/elixir-lang/elixir/releases/download/v1.17.3]https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe
+  - Click next, install, ..., close
+ 
+  - **Check to see if successful**
+  - Run `elixir -v` in your terminal
+  - Should output Erlang & Elixir versions
+    
 
 - **Chocolatey** (_Package Manager_)
 
