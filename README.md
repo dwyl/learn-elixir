@@ -131,6 +131,9 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
   `sudo apt-get install esl-erlang`
 - **Install Elixir**: `sudo apt-get install elixir`
 
+
+#### Windows:
+
 - **Web installer**
   
   - **Erlang installer**
@@ -144,6 +147,7 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
   - **Check to see if successful**
   - Run ```elixir -v``` in terminal
   - Should output Erlang & Elixir versions
+    
 
 - **Chocolatey** (_Package Manager_)
 
