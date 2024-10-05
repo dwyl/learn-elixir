@@ -137,15 +137,15 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
 - **Web installer**
   
   - **Erlang installer**
-  - [Download the corresponding windows installer for erlang (32 or 64-bit)](https://www.erlang.org/downloads.html)
+  - Download the Windows installer for Erlang (32 or 64-bit): [erlang.org/downloads](https://www.erlang.org/downloads.html)
   - Click next, next,..., close
  
   - **Elixir installer**
-  - [Download the elixir installer matching your erlang version](https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe)
+  - Download the Elixir installer matching your Erlang version: [github.com/elixir-lang/elixir/releases/download/v1.17.3]https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe
   - Click next, install, ..., close
  
   - **Check to see if successful**
-  - Run ```elixir -v``` in terminal
+  - Run `elixir -v` in your terminal
   - Should output Erlang & Elixir versions
     
 
