@@ -515,7 +515,7 @@ defmodule Math do
 end
 ```
 
-In order to create your own modules in Elixir, use the `defmodule` [macro](https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=what+is+a+macro&*),
+In order to create your own modules in Elixir, use the `defmodule` [macro](https://hexdocs.pm/elixir/1.12/Macro.html#:~:text=Macros%20are%20compile%2Dtime%20constructs,fun_inspect(value)%20do%20IO.),
 then use the `def` macro to define functions in that module.
 So in this case the module is `Math` and the function is `sum`.
 
