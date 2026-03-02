@@ -27,7 +27,7 @@ to help get you started!
 We hope you enjoy the journey! ❤️
 
 - [_Why_? 🤷‍♀️](#why-️)
-  - [Key Advantages](#key-advantages)
+  - [Key Advantages ✅](#key-advantages-)
 - [_What_?](#what)
   - [Video Introductions](#video-introductions)
 - [_How_?](#how)
@@ -85,10 +85,12 @@ We fell in love with `Elixir`
 after having used
 [_several_ other programming languages](https://github.com/dwyl/learn-elixir/issues/102)
 for many years.
-`Elixir` ticked all the boxes:
+`Elixir` ticked all the boxes. ⤵️
+
+## Key Advantages ✅
 
 + [x] **Beautiful syntax** inspired by `Ruby` and `Python`
-  makes it easy/fast to learn.
+  makes it beginner-friendly and easy/fast to learn.
 + [x] **Functional programming** - no unexpected side-effects; fewer surprises
 + [x] **Excellent documentation** - docs are a first-class citizen
   in the _language_ with `ex_doc` built-in which makes reading code easier/faster.
@@ -100,23 +102,24 @@ for many years.
   [horizontally](https://en.wikipedia.org/wiki/Scalability#Horizontal_or_scale_out)
   and across different datacenters/regions
   to put your app near the people using it.
-
-## Key Advantages
-
-- `Elixir` is a **complete development, deployment and _monitoring_ platform**,
-whereas with other programming languages you need complex deployment & monitoring
-it's all "free" with the **`Erlang VM`**
-- **Scalability** - millions of concurrent connected devices per server
-  and easy to scale to 
-- **Speed**
-- **Compiled** and run on the **Erlang VM** ("BEAM").
+  Millions of concurrent connected devices per server
+  and easy to scale _thousands_ of servers and handle
+  [billions of messages per day](https://newsletter.systemdesign.one/p/whatsapp-engineering)
++ [x] `Elixir` is a **complete development, deployment and _monitoring_ platform**,
+  whereas with other programming languages
+  you need complex deployment & monitoring
+  it's all "free" with the **`Erlang VM`**!
+- [x] **Speed** - fast execution with sub milisecond response times means
+  your code will never be the bottleneck, the Database and Network are.
+- **Compiled** and run on the
+  ["BEAM" Virtual Machine](https://www.erlang-solutions.com/blog/the-beam-erlangs-virtual-machine/)
 [(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
 - Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
 - Many tiny processes (as opposed to "threads"
   which are more difficult to manage)
 - **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
 - [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
-  ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
+  ![jessitron-immutable](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
 - **High reliability, availability and fault tolerance** (_because of Erlang_)
   means apps built with **`Elixir`** are run in production for **years**
   without any "_downtime_"!
@@ -127,7 +130,7 @@ Things _will_ go wrong with
 code, and **`Elixir`** provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
 
-# _What_?
+# _What_? 
 
 [_"Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications."_](http://elixir-lang.org/)
