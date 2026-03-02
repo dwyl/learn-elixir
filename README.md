@@ -1,19 +1,21 @@
 <div align="center">
 
-# Learn ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
+![learn-elixir-intro-image](https://github.com/user-attachments/assets/baa1be60-5144-4acc-853f-ee37d51f470e "Learn Elixir")
+
+<!-- Intro image created using Created using Banana/Flux 
+see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
 </div>
 
-- [Learn ](#learn-)
-  - [_Why_?](#why)
-    - [Key Advantages](#key-advantages)
-  - [_What_?](#what)
-    - [Video Introductions](#video-introductions)
-  - [_How_?](#how)
-    - [Installation:](#installation)
-      - [Mac:](#mac)
-      - [Ubuntu:](#ubuntu)
-      - [Windows:](#windows)
+- [_Why_?](#why)
+  - [Key Advantages](#key-advantages)
+- [_What_?](#what)
+  - [Video Introductions](#video-introductions)
+- [_How_?](#how)
+    - [Installation](#installation)
+      - [Mac](#mac)
+      - [Ubuntu](#ubuntu)
+      - [Windows](#windows)
       - [Livebook:](#livebook)
   - [Learn Elixir](#learn-elixir)
   - [Commands](#commands)
@@ -58,13 +60,16 @@
 
 <br />
 
-## _Why_?
+# _Why_?
 
-### Key Advantages
+
+
+## Key Advantages
 
 - **Scalability**
 - **Speed**
-- **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
+- **Compiled** and run on the **Erlang VM** ("BEAM").
+[(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
 - Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
 - Many tiny processes (as opposed to "threads"
   which are more difficult to manage)
@@ -81,34 +86,48 @@ Things _will_ go wrong with
 code, and **`Elixir`** provides supervisors which describe how to restart parts of
 your system when things don't go as planned.
 
-## _What_?
+# _What_?
 
 [_"Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications."_](http://elixir-lang.org/)
 
-### Video Introductions
+## Video Introductions
 
-If you have the time, these videos give a nice contextual introduction into what **`Elixir`** is, what it's used for and how it works:
+If you have the time,
+these videos give a nice contextual introduction
+into what **`Elixir`** is,
+what it's used for and how it works:
 
 <!-- note we should update this once we have
 made our *own* intro to **`Elixir`** vid! -->
 
-- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
-- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
-- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+- Code School's
+[Try Elixir](https://www.codeschool.com/courses/try-elixir),
+3 videos
+(25mins plus exercises, totalling 90mins ⏳).
+The 'Try' course is free (there is an extended paid for course).
+- Pete Broderick's
+[Intro to Elixir](https://youtu.be/lly-1UYmnFI)
+(41 mins 🎥)
+- Jessica Kerr's
+[Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s)
+(58 mins 😍)
 
-Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things **`Elixir`** :book: :heart:.
+Not a video learner? Looking for a specific learning?
+https://elixirschool.com
+is an excellent, free, open-source resource
+that explains all things **`Elixir`** 📖 ❤️
 
-## _How_?
+# _How_?
 
 Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
 
 To do so you can go to
 http://elixir-lang.org/install.html or follow our guide here:
 
-### Installation:
+### Installation
 
-#### Mac:
+#### Mac
 
 Using the [Homebrew](https://brew.sh/) package manager:
 `brew install elixir`
@@ -118,11 +137,11 @@ Using the [Homebrew](https://brew.sh/) package manager:
 > [`/install-mac.md`](https://github.com/dwyl/learn-elixir/blob/main/install-mac.md)
 
 
-#### Ubuntu:
+#### Ubuntu
 
-- **Add the Erlang Solutions repo**:
+- **Add the Erlang Solutions repo**
 
-```
+```sh
 wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
 ```
 
@@ -132,16 +151,18 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
 - **Install Elixir**: `sudo apt-get install elixir`
 
 
-#### Windows:
+#### Windows
 
 - **Web installer**
   
   - **Erlang installer**
-  - Download the Windows installer for Erlang (32 or 64-bit): [erlang.org/downloads](https://www.erlang.org/downloads.html)
+  - Download the Windows installer for Erlang (32 or 64-bit):
+  [erlang.org/downloads](https://www.erlang.org/downloads.html)
   - Click next, next,..., close
  
   - **Elixir installer**
-  - Download the Elixir installer matching your Erlang version: [github.com/elixir-lang/elixir/releases/download/v1.17.3]https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe
+  - Download the Elixir installer matching your Erlang version:
+  [github.com/elixir-lang/elixir/releases/download/v1.17.3]https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe
   - Click next, install, ..., close
  
   - **Check to see if successful**
