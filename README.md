@@ -5,7 +5,7 @@
 <!-- Intro image created using Created using Banana/Flux 
 see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
-Learn the **`Elixir` programming language**,
+Learn the **`Elixir` programming language**
 to build scalable and maintainable applications.
 
 </div>
@@ -14,16 +14,19 @@ to build scalable and maintainable applications.
 known for creating **low-latency**, **distributed**,
 and **fault-tolerant** systems.
 These capabilities and `Elixir` tooling allow developers
-to be productive in several domains, such as web development,
-embedded software, machine learning, data pipelines,
-and multimedia processing, across a wide range of industries.
+to **be productive** in **several domains**,
+such as **web development**,
+**embedded software**, **machine learning**, data pipelines,
+and multimedia processing,
+across a wide range of industries.
 
 When you're ready to dive-in,
 we've made this beginner-friendly guide
 and 20+ step-by-step example apps
 to help get you started!
+We hope you enjoy the journey! ❤️
 
-- [_Why_?](#why)
+- [_Why_? 🤷‍♀️](#why-️)
   - [Key Advantages](#key-advantages)
 - [_What_?](#what)
   - [Video Introductions](#video-introductions)
@@ -76,14 +79,35 @@ to help get you started!
 
 <br />
 
-# _Why_?
+# _Why_? 🤷‍♀️
 
+We fell in love with `Elixir`
+after having used
+[_several_ other programming languages](https://github.com/dwyl/learn-elixir/issues/102)
+for many years.
+`Elixir` ticked all the boxes:
 
++ [x] **Beautiful syntax** inspired by `Ruby` and `Python`
+  makes it easy/fast to learn.
++ [x] **Functional programming** - no unexpected side-effects; fewer surprises
++ [x] **Excellent documentation** - docs are a first-class citizen
+  in the _language_ with `ex_doc` built-in which makes reading code easier/faster.
++ [x] **Fault-tolerant** - all processes are isolated
+  so one bad process doesn't crash the whole server.
++ [x] **Multi-core** - use as many processors as you have available without any extra orchestration code!
++ [x] **Scalable** - easily scale
+  [vertically](https://en.wikipedia.org/wiki/Scalability#VERTICAL-SCALING),
+  [horizontally](https://en.wikipedia.org/wiki/Scalability#Horizontal_or_scale_out)
+  and across different datacenters/regions
+  to put your app near the people using it.
 
 ## Key Advantages
 
-- `Elixir` is a complete 
-- **Scalability**: 
+- `Elixir` is a **complete development, deployment and _monitoring_ platform**,
+whereas with other programming languages you need complex deployment & monitoring
+it's all "free" with the **`Erlang VM`**
+- **Scalability** - millions of concurrent connected devices per server
+  and easy to scale to 
 - **Speed**
 - **Compiled** and run on the **Erlang VM** ("BEAM").
 [(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
