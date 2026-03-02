@@ -5,18 +5,34 @@
 <!-- Intro image created using Created using Banana/Flux 
 see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
+Learn the **`Elixir` programming language**,
+to build scalable and maintainable applications.
+
 </div>
+
+**`Elixir`** runs on the **`Erlang Virtual Machine`**,
+known for creating **low-latency**, **distributed**,
+and **fault-tolerant** systems.
+These capabilities and `Elixir` tooling allow developers
+to be productive in several domains, such as web development,
+embedded software, machine learning, data pipelines,
+and multimedia processing, across a wide range of industries.
+
+When you're ready to dive-in,
+we've made this beginner-friendly guide
+and 20+ step-by-step example apps
+to help get you started!
 
 - [_Why_?](#why)
   - [Key Advantages](#key-advantages)
 - [_What_?](#what)
   - [Video Introductions](#video-introductions)
 - [_How_?](#how)
-    - [Installation](#installation)
-      - [Mac](#mac)
+  - [Installation](#installation)
+    - [Mac](#mac)
       - [Ubuntu](#ubuntu)
       - [Windows](#windows)
-      - [Livebook:](#livebook)
+      - [Livebook](#livebook)
   - [Learn Elixir](#learn-elixir)
   - [Commands](#commands)
   - [Basic Types](#basic-types)
@@ -66,7 +82,8 @@ see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
 ## Key Advantages
 
-- **Scalability**
+- `Elixir` is a complete 
+- **Scalability**: 
 - **Speed**
 - **Compiled** and run on the **Erlang VM** ("BEAM").
 [(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
@@ -101,6 +118,7 @@ what it's used for and how it works:
 <!-- note we should update this once we have
 made our *own* intro to **`Elixir`** vid! -->
 
+- 
 - Code School's
 [Try Elixir](https://www.codeschool.com/courses/try-elixir),
 3 videos
@@ -120,14 +138,23 @@ that explains all things **`Elixir`** 📖 ❤️
 
 # _How_?
 
+There are several entry points for learning `Elixir`.
+if you just want to try the syntax without installing anything,
+try the `Elixir` Playground:
+[playground.functional-rewire.com](https://playground.functional-rewire.com)
+
+<img alt="elixir playground" src="https://github.com/user-attachments/assets/0c3bc031-e740-4e9e-a6b4-660e5f5d4b4f" />
+
+Type the code from the 
+
 Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
 
 To do so you can go to
 http://elixir-lang.org/install.html or follow our guide here:
 
-### Installation
+## Installation
 
-#### Mac
+### Mac
 
 Using the [Homebrew](https://brew.sh/) package manager:
 `brew install elixir`
@@ -168,15 +195,14 @@ wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo 
   - **Check to see if successful**
   - Run `elixir -v` in your terminal
   - Should output Erlang & Elixir versions
-    
 
 - **Chocolatey** (_Package Manager_)
 
-```
+```sh
 choco install elixir
 ```
 
-#### Livebook:
+#### Livebook
 
 - Easy peasy if you have `Elixir` installed. Just click below
 
