@@ -10,10 +10,11 @@ to build reliable, scalable and maintainable applications.
 
 </div>
 
-**`Elixir`** runs on the **`Erlang` Virtual Machine**,
-known for creating **low-latency**, **distributed**,
+**`Elixir`** is an **elegant** and **modern** programming language
+crafted by people with a passion
+for creating **low-latency**, **distributed**,
 and **fault-tolerant** systems.
-These capabilities and `Elixir` tooling allow developers
+The capabilities and tooling allow developers
 to **be productive** in **several domains**,
 such as **web development**,
 **embedded software**, **machine learning**, data pipelines,
@@ -27,10 +28,11 @@ to help flatten your learning curve!
 We hope you enjoy the journey! ❤️
 
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Contents [click to expand]</summary>
 
 - [_Why_? 🤷‍♀️](#why-️)
   - [Key Advantages ✅](#key-advantages-)
+  - [`Elixir` Unlocks `Phoenix` 🐦‍🔥](#elixir-unlocks-phoenix-)
 - [_What_? 💭](#what-)
   - [Video Introductions 📺](#video-introductions-)
 - [_How_? 👩🏻‍💻](#how-)
@@ -88,11 +90,12 @@ We hope you enjoy the journey! ❤️
 
 # _Why_? 🤷‍♀️
 
-We fell in love with `Elixir`
-after using
+
+After using
 [_several_ other programming languages](https://github.com/dwyl/learn-elixir/issues/102)
-for many years.
-`Elixir` ticked all the boxes. ⤵️
+for many years, we were frustrated by the complexity and noise!<br />
+We fell in love with `Elixir` (and `Phoenix`)
+as it ticked all the boxes we had. ⤵️
 
 ## Key Advantages ✅
 
@@ -133,49 +136,72 @@ for many years.
   deployment and _monitoring_ platform**,
   whereas with other programming languages
   you need complex (or _expensive_) deployment & monitoring
-  it's all "free" with the **`Erlang VM`**! 🚢
-  Things _will_ go wrong with code,
+  it's all "free" with the **`Erlang VM`**! 🚢 <br />
+  Things _will_ go wrong with code in the real world,
   and **`Elixir`** provides **supervisors**
   which describe how to restart parts of
-  your system when things don't go as planned.
+  your system when things don't go as planned. 👌
 - [x] [**Immutable data**](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/)
   so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state)
-  is always **predictable**! <br /><br />
+  is always **predictable**! 🎯 <br /><br />
   ![jessitron-immutable](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png)
+
+## `Elixir` Unlocks `Phoenix` 🐦‍🔥
+
+Learning `Elixir` programming
+unlocks the most "_**most admired web framework**_".
+In the
+[**2025 `StackOverflow` Developer Satisfaction Survey**](https://survey.stackoverflow.co/2025/technology#2-web-frameworks-and-technologies),
+**`Phoenix`** remains the "**most admired**" framework
+for the **3<sup>rd</sup> year running**.
+
+If you want the elegance and power of **`Phoenix`,
+_invest_ a couple of hours learning `Elixir`.
+You'll _never_ want to use another web/application framework.
+
+
+
+Using a framework that **engineers _love_**
+makes it easier to recruit **proactive people** to your team/company.
 
 # _What_? 💭
 
-"_Elixir is a dynamic, functional language designed for building scalable and
-maintainable applications._" ~
-[elixir-lang.org]](http://elixir-lang.org/)
+"_Elixir is a dynamic, functional language
+designed for building scalable
+and maintainable applications._" ~
+[elixir-lang.org](http://elixir-lang.org/)
 
-Whenever you read "functional", you should think "simpler language"
-and easier to reason about when building large scale systems.
+Whenever you read "**functional**", you should think "simpler language"
+and **easier to reason about** when building large scale systems.
 
+**Scalability** is baked into the language and runtime.
+It is _far_ easier to seamlessly connect multiple servers together
+as the BEAM/OTP supervision system was built for this purpose.
+No complex "DevOps" needed.
 
 ## Video Introductions 📺
 
 If you have time,
-these videos give a nice contextual introduction
+these videos give a good contextual introduction
 into what **`Elixir`** is,
 what it's used for and how it works:
 
 <!-- note we should update this once we have
 made our *own* intro to **`Elixir`** vid! -->
 
-- Elixir: The Documentary:
+- **`Elixir`: The Documentary**:
 [youtu.be/lxYFOM3UJzo](https://youtu.be/lxYFOM3UJzo)
 (13 mins 🎥)
-- Code School's
-[Try Elixir](https://www.codeschool.com/courses/try-elixir),
+- Code School's **Try Elixir**:
+[codeschool.com/try-elixir](https://www.codeschool.com/courses/try-elixir),
 3 videos
 (25mins plus exercises, totalling 90mins ⏳).
 The 'Try' course is **free** (there is an extended paid for course).
-- Pete Broderick's
-[Intro to Elixir](https://youtu.be/lly-1UYmnFI)
+- Pete Broderick's "Intro to Elixir":
+  [youtu.be/lly-1UYmnFI](https://youtu.be/lly-1UYmnFI)
 (41 mins 🎥)
-- Jessica Kerr's
-[Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s)
+- Jessica Kerr's "Elixir Should Take Over the World":
+[youtu.be/X25xOhntr6s](https://youtu.be/X25xOhntr6s)
 (58 mins 😍)
 
 Not a video learner? Looking for a specific learning?
