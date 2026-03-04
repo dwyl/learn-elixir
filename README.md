@@ -6,7 +6,7 @@
 see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
 Learn the **`Elixir` programming language**
-to build scalable and maintainable applications.
+to build reliable, scalable and maintainable applications.
 
 </div>
 
@@ -20,24 +20,28 @@ such as **web development**,
 and multimedia processing,
 across a wide range of industries.
 
-When you're ready to dive-in,
-we've made this beginner-friendly guide
-and 20+ step-by-step example apps
-to help get you started!
+When you're ready to get started,
+we've made this **beginner-friendly guide**
+and **20+ step-by-step _example_ apps**
+to help flatten your learning curve!
 We hope you enjoy the journey! ❤️
+
+<details>
+  <summary>Table of Contents</summary>
 
 - [_Why_? 🤷‍♀️](#why-️)
   - [Key Advantages ✅](#key-advantages-)
 - [_What_? 💭](#what-)
   - [Video Introductions 📺](#video-introductions-)
-- [_How_?](#how)
+- [_How_? 👩🏻‍💻](#how-)
   - [Installation ⬇️](#installation-️)
     - [Mac 🍏](#mac-)
     - [Ubuntu 🐧](#ubuntu-)
     - [Windows 🪟](#windows-)
       - [Chocolatey 🍫](#chocolatey-)
-      - [Manual Install](#manual-install)
-    - [Livebook](#livebook)
+      - [Manual Install 🔨](#manual-install-)
+    - [Check Everything Installed Correctly 👌](#check-everything-installed-correctly-)
+    - [Livebook 📘 (Optional)](#livebook--optional)
 - [Start! 🟢](#start-)
   - [Commands 💻](#commands-)
   - [Basic Types](#basic-types)
@@ -80,6 +84,7 @@ We hope you enjoy the journey! ❤️
   - [Further resources:](#further-resources)
 
 <br />
+</details>
 
 # _Why_? 🤷‍♀️
 
@@ -121,28 +126,32 @@ for many years.
 - [x] **Speed**; fast execution with **sub millisecond response times** means
   your code will never be the bottleneck,
   the Database and Network are. 🏎️
+- [x] **Compiled** and run on the
+  ["BEAM" Virtual Machine](https://www.erlang-solutions.com/blog/the-beam-erlangs-virtual-machine/)
+[(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
 - [x] **_Complete_ development,
   deployment and _monitoring_ platform**,
   whereas with other programming languages
   you need complex (or _expensive_) deployment & monitoring
   it's all "free" with the **`Erlang VM`**! 🚢
-- [x] **Compiled** and run on the
-  ["BEAM" Virtual Machine](https://www.erlang-solutions.com/blog/the-beam-erlangs-virtual-machine/)
-[(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
+  Things _will_ go wrong with code,
+  and **`Elixir`** provides **supervisors**
+  which describe how to restart parts of
+  your system when things don't go as planned.
 - [x] [**Immutable data**](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/)
   so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state)
   is always **predictable**! <br /><br />
   ![jessitron-immutable](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png)
 
-Things _will_ go wrong with code,
-and **`Elixir`** provides **supervisors**
-which describe how to restart parts of
-your system when things don't go as planned.
-
 # _What_? 💭
 
-[_"Elixir is a dynamic, functional language designed for building scalable and
-maintainable applications."_](http://elixir-lang.org/)
+"_Elixir is a dynamic, functional language designed for building scalable and
+maintainable applications._" ~
+[elixir-lang.org]](http://elixir-lang.org/)
+
+Whenever you read "functional", you should think "simpler language"
+and easier to reason about when building large scale systems.
+
 
 ## Video Introductions 📺
 
@@ -174,7 +183,7 @@ https://elixirschool.com
 is an excellent, free, open-source resource
 that explains all things **`Elixir`** 📖 ❤️
 
-# _How_?
+# _How_? 👩🏻‍💻
 
 There are several entry points for learning `Elixir`.
 if you just want to try the syntax without installing anything,
@@ -184,7 +193,7 @@ try the `Elixir` Playground:
 <img alt="elixir playground" src="https://github.com/user-attachments/assets/0c3bc031-e740-4e9e-a6b4-660e5f5d4b4f" />
 
 Type the code from the `/examples`
-and run them directly in your browser.
+and run them directly in your browser. ▶️
 
 ## Installation ⬇️
 
@@ -248,7 +257,7 @@ installed already, open your `Terminal` and run:
 choco install elixir
 ```
 
-#### Manual Install
+#### Manual Install 🔨
 
 **Download** the **Windows** installer for `Erlang` (32 or 64-bit):
 [erlang.org/downloads](https://www.erlang.org/downloads.html)
@@ -256,9 +265,9 @@ choco install elixir
 > Click next, next,..., close ⏳
 
 Next, download the `Elixir` installer matching your `Erlang` version:
-[github.com/elixir-lang/elixir/releases](https://github.com/elixir-lang/elixir/releases/)
+[elixir-lang.org/install.html#windows](https://elixir-lang.org/install.html#windows)
 
-**Check if everything installed correctly**:
+### Check Everything Installed Correctly 👌
 
 In your `Terminal` window, run the command:
 ```sh
@@ -267,13 +276,17 @@ elixir -v
 
 Should output `Erlang` & `Elixir` versions.
 
-### Livebook
+### Livebook 📘 (Optional)
 
-- Easy peasy if you have `Elixir` installed. Just click below
+
+
+Easy peasy if you have `Elixir` installed,
+just click below
 
 👉 [<img width="326" alt="Screenshot 2023-01-13 at 10 15 23" src="https://user-images.githubusercontent.com/6793008/212283403-116dbf5c-eea4-4c16-88df-b9aba86e209a.png">](https://livebook.dev/)
 
-Once `Livebook` installed on your machine, just click on the button below (or fork and run it):
+Once `Livebook` installed on your machine,
+just click on the button below (or fork and run it):
 
 [![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-elixir%2Fblob%2Fmain%2Flearn-elixir-on-livebook.livemd)
 
