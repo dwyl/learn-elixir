@@ -6,7 +6,7 @@
 see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
 
 Learn the **`Elixir` programming language**
-to build reliable, scalable and maintainable applications.
+to build **reliable**, **scalable** and **_maintainable_ applications**.
 
 </div>
 
@@ -99,7 +99,8 @@ as it ticked all the boxes we had. ⤵️
 
 ## Key Advantages ✅
 
-- [x] **Beautiful syntax** inspired by `Ruby` and `Python`
+- [x] **Beautiful syntax** inspired by `Ruby` and
+  [`Python`](https://petal.build/blog/Elixir-for-Python-Developers-2lgEonNz)
   makes it beginner-friendly and easy/fast to learn. 😍
 - [x] **Real-time** web apps are _**easy**_
   (_or at least easier than many other languages!_)
@@ -123,8 +124,8 @@ as it ticked all the boxes we had. ⤵️
   [horizontally](https://en.wikipedia.org/wiki/Scalability#Horizontal_or_scale_out)
   and across different datacenters/regions
   to put your app near the people using it.
-  Millions of concurrent connected devices per server
-  and easy to scale _thousands_ of servers and handle
+  **Millions** of **concurrent connected** devices per server
+  and easy to **scale _thousands_ of servers** (if needed) and handle
   [**billions of messages** per day](https://newsletter.systemdesign.one/p/whatsapp-engineering) 🚀
 - [x] **Speed**; fast execution with **sub millisecond response times** means
   your code will never be the bottleneck,
@@ -137,8 +138,8 @@ as it ticked all the boxes we had. ⤵️
   whereas with other programming languages
   you need complex (or _expensive_) deployment & monitoring
   it's all "free" with the **`Erlang VM`**! 🚢 <br />
-  Things _will_ go wrong with code in the real world,
-  and **`Elixir`** provides **supervisors**
+  Things _will_ go wrong with code in the real world.
+  **`Elixir`** provides **supervisors**
   which describe how to restart parts of
   your system when things don't go as planned. 👌
 - [x] [**Immutable data**](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/)
@@ -155,13 +156,11 @@ In the
 **`Phoenix`** remains the "**most admired**" framework
 for the **3<sup>rd</sup> year running**.
 
-If you want the elegance and power of **`Phoenix`,
-_invest_ a couple of hours learning `Elixir`.
-You'll _never_ want to use another web/application framework.
+If you want the elegance and power of **`Phoenix`**,
+_invest_ a couple of hours learning `Elixir`. <br />
+You will _never_ want to use another web/application framework.
 
-
-
-Using a framework that **engineers _love_**
+**Bonus**: using a framework that **engineers _love_**
 makes it easier to recruit **proactive people** to your team/company.
 
 # _What_? 💭
@@ -205,7 +204,7 @@ The 'Try' course is **free** (there is an extended paid for course).
 (58 mins 😍)
 
 Not a video learner? Looking for a specific learning?
-https://elixirschool.com
+[elixirschool.com](https://elixirschool.com)
 is an excellent, free, open-source resource
 that explains all things **`Elixir`** 📖 ❤️
 
@@ -304,33 +303,53 @@ Should output `Erlang` & `Elixir` versions.
 
 ### Livebook 📘 (Optional)
 
+[`Livebook`](https://livebook.dev/)
+is the `Elixir` equivalent of
+[`Jupyter Notebook`](https://jupyter.org/)
+(from the `Python` world);
+an **interactive/executable notebook**
+excellent for sharing knowledge and experiments.
 
+You don't _need_ it for learning `Elixir`,
+but if you want the next level of learning,
+consider trying it.
 
-Easy peasy if you have `Elixir` installed,
-just click below
-
-👉 [<img width="326" alt="Screenshot 2023-01-13 at 10 15 23" src="https://user-images.githubusercontent.com/6793008/212283403-116dbf5c-eea4-4c16-88df-b9aba86e209a.png">](https://livebook.dev/)
+Once you have have **`Elixir` installed**,
+visit:
+[livebook.dev](https://livebook.dev/#install)
+and follow the installation instructions for your machine/platform.
 
 Once `Livebook` installed on your machine,
-just click on the button below (or fork and run it):
+click the button below (or fork and run it):
 
 [![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-elixir%2Fblob%2Fmain%2Flearn-elixir-on-livebook.livemd)
 
-- Alternatively, you can run a `Docker` image, no need to install `Elixir` or `Livebook`. Launch `Docker` and run the `Livebook` image:
+Then just _explore_ the page and click around.
 
-```
+<details>
+  <summary>Docker [click to expand]</summary>
+
+Alternatively, if you're familiar with
+`Docker`,
+you can run image, no need to install `Elixir` or `Livebook`.
+Launch `Docker` and run the `Livebook` image:
+
+```sh
 docker run -p 8080:8080 -p 8081:8081 --pull always -e LIVEBOOK_PASSWORD="securesecret" livebook/livebook
 ```
 
 and in another terminal you launch the browser (you will need to authneticate with "securesecret") with the command:
 
-```
+```sh
 open http://localhost:8080/import?url=https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd
 ```
 
-- Finally, if you don't have `Docker` nor `Elixir` and `Livebook` installed, you can run a remote version in the cloud. Follow this!
+Finally, if you don't have `Docker`
+or `Elixir` and `Livebook` installed,
+you can run a remote version in the cloud.
+Follow this!
 
-You (**right**-)click on the grey button **"Run in Livebook"** below.
+(**Right**-)click on the grey button **"Run in Livebook"** below.
 
 :heavy_exclamation_mark: You **right-click"** to keep this reminder page open 😉 because you will need to remember to do 2 things:
 
@@ -345,21 +364,28 @@ Happy learning! 🥳
 This links to the remote Livebook: 👉
 [![Run in Livebook](https://livebook.dev/badge/v1/gray.svg)](https://livebook.dev/run?url=https%3A%2F%2Fdwyl-learn-elixir.fly.dev%2F)
 
+</details>
+
 # Start! 🟢
 
 ## Commands 💻
 
 After installing **`Elixir`** on your machine,
-you can open the interactive shell in your terminal by typing `iex`.
+you can open the interactive shell in your terminal by typing `iex`
+followed by the <kbd>Return</kbd> key.
 This allows you to type in any **`Elixir`** expression
 and see the result in the terminal.
 
-- Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
-  something like this:
+**Type `h` followed by the `function` name at any time
+to see documentation information about any given built-in function
+and how to use it. 
+e.g If you type `h round` into the (iex) terminal
+you should see something like this:
 
 ![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
 
-- Typing `i` followed by the value name will give you information about a value in your code:
+- Typing `i` followed by the value name
+  will give you information about a value in your code:
 
 ![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
 
@@ -367,9 +393,11 @@ and see the result in the terminal.
 
 This section brings together the key information from Elixir's
 [Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
-documentation and multiple other sources. It will take you through some examples to practice using and familiarise yourself with Elixir's 7 basic types.
+documentation and multiple other sources.
+It will take you through some examples
+to practice using and familiarize yourself.
 
-Elixir's 7 basic types:
+Elixir's **7 basic types**:
 
 - `integers`
 - `floats`
