@@ -2337,8 +2337,9 @@ VegaLite.new(
 > that JavaScript (_with the introduction of ES2015_) now has
 > ***Six Ways to Declare a Function***:
 > https://rainsoft.io/6-ways-to-declare-javascript-functions/
-> which means that there is _ambiguity_ and "_debate_" as to which is
-> "_best practice_", Go, **`Elixir`** and Rust don't suffer from this problem.
+> which means that there is _ambiguity_ 
+> and "_debate_" as to which is "_best practice_".
+> `Go`, **`Elixir`** and `Rust` don't suffer from this problem.
 > Sure there are "_anonymous_" functions in Elixir
 > (_required for functional programming_!) but there are still only ***Two Ways***
 > to define a `function` (_and both have specific use-cases_),

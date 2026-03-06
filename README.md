@@ -1,22 +1,51 @@
 <div align="center">
 
-# Learn ![elixir logo](http://elixir-lang.org/images/logo/logo.png "Elixir Logo")
+![learn-elixir-intro-image](https://github.com/user-attachments/assets/baa1be60-5144-4acc-853f-ee37d51f470e "Learn Elixir")
+
+<!-- Intro image created using Created using Banana/Flux 
+see: https://github.com/nelsonic/nelsonic.github.io/issues/912 -->
+
+Learn the **`Elixir` programming language**
+to build **reliable**, **scalable** and **_maintainable_ applications**.
 
 </div>
 
-- [Learn ](#learn-)
-  - [_Why_?](#why)
-    - [Key Advantages](#key-advantages)
-  - [_What_?](#what)
-    - [Video Introductions](#video-introductions)
-  - [_How_?](#how)
-    - [Installation:](#installation)
-      - [Mac:](#mac)
-      - [Ubuntu:](#ubuntu)
-      - [Windows:](#windows)
-      - [Livebook:](#livebook)
-  - [Learn Elixir](#learn-elixir)
-  - [Commands](#commands)
+**`Elixir`** is an **elegant** and **modern** programming language
+crafted by people with a passion
+for creating **low-latency**, **distributed**,
+and **fault-tolerant** systems.
+The capabilities and tooling allow developers
+to **be productive** in **several domains**,
+such as **web development**,
+**embedded software**, **machine learning**, data pipelines,
+and multimedia processing,
+across a wide range of industries.
+
+When you're ready to get started,
+we've made this **beginner-friendly guide**
+and **20+ step-by-step _example_ apps**
+to help flatten your learning curve!
+We hope you enjoy the journey! ❤️
+
+<details>
+  <summary>Contents [click to expand]</summary>
+
+- [_Why_? 🤷‍♀️](#why-️)
+  - [Key Advantages ✅](#key-advantages-)
+  - [`Elixir` Unlocks `Phoenix` 🐦‍🔥](#elixir-unlocks-phoenix-)
+- [_What_? 💭](#what-)
+  - [Video Introductions 📺](#video-introductions-)
+- [_How_? 👩🏻‍💻](#how-)
+  - [Installation ⬇️](#installation-️)
+    - [Mac 🍏](#mac-)
+    - [Ubuntu 🐧](#ubuntu-)
+    - [Windows 🪟](#windows-)
+      - [Chocolatey 🍫](#chocolatey-)
+      - [Manual Install 🔨](#manual-install-)
+    - [Check Everything Installed Correctly 👌](#check-everything-installed-correctly-)
+    - [Livebook 📘 (Optional)](#livebook--optional)
+- [Start! 🟢](#start-)
+  - [Commands 💻](#commands-)
   - [Basic Types](#basic-types)
     - [Numbers](#numbers)
     - [Booleans](#booleans)
@@ -57,129 +86,269 @@
   - [Further resources:](#further-resources)
 
 <br />
+</details>
 
-## _Why_?
+# _Why_? 🤷‍♀️
 
-### Key Advantages
+After using
+[_several_ other programming languages](https://github.com/dwyl/learn-elixir/issues/102)
+for many years, we were frustrated by the complexity and noise!<br />
+We fell in love with `Elixir` (and `Phoenix`)
+as it ticked all the boxes we had. ⤵️
 
-- **Scalability**
-- **Speed**
-- **Compiled** and run on the **Erlang VM** ("BEAM"). [(Renowned for efficiency)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
-- Much better ["garbage collection"](http://searchstorage.techtarget.com/definition/garbage-collection) than virtually any other VM
-- Many tiny processes (as opposed to "threads"
-  which are more difficult to manage)
-- **Functional** language with [dynamic](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
-- [Immutable data](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/) so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state) is always **predictable**! <br />
-  ![image](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png) <br />
-- **High reliability, availability and fault tolerance** (_because of Erlang_)
-  means apps built with **`Elixir`** are run in production for **years**
-  without any "_downtime_"!
-- Real-time web apps are "_easy_"
-  (_or at least easier than many other languages!_) as **WebSockets & streaming** are baked-in
+## Key Advantages ✅
 
-Things _will_ go wrong with
-code, and **`Elixir`** provides supervisors which describe how to restart parts of
-your system when things don't go as planned.
+- [x] **Beautiful syntax** inspired by `Ruby` and
+  [`Python`](https://petal.build/blog/Elixir-for-Python-Developers-2lgEonNz)
+  makes it beginner-friendly and easy/fast to learn. 😍
+- [x] **Real-time** web apps are _**easy**_
+  (_or at least easier than many other languages!_)
+  as **WebSockets & streaming** are **baked-in**. 💬
+- [x] **Functional programming** - no unexpected side-effects;
+  fewer surprises (bugs). 🧘
+- [x] [**Dynamic**](https://www.sitepoint.com/typing-versus-dynamic-typing/) typing
+  and/or _Optional_
+  [**Static Typing**](https://elixir-lang.org/blog/2025/10/16/elixir-v1-19-0-released/) 🔢
+- [x] **Excellent documentation** - docs are a first-class citizen
+  in the _language_ with `ex_doc` built-in
+  which makes reading code easier/faster. 📖
+- [x] **High reliability + Fault-tolerant** - all processes are isolated
+  so one bad process doesn't crash the whole server.
+  Means apps built with `Elixir` run in production
+  for **_years_ without downtime**! ⏳
+- [x] **Multi-core** - use as many processors as you have available
+  without any extra orchestration code! 💯
+- [x] **Scalable** - easily scale
+  [vertically](https://en.wikipedia.org/wiki/Scalability#VERTICAL-SCALING),
+  [horizontally](https://en.wikipedia.org/wiki/Scalability#Horizontal_or_scale_out)
+  and across different datacenters/regions
+  to put your app near the people using it.
+  **Millions** of **concurrent connected** devices per server
+  and easy to **scale _thousands_ of servers** (if needed) and handle
+  [**billions of messages** per day](https://newsletter.systemdesign.one/p/whatsapp-engineering) 🚀
+- [x] **Speed**; fast execution with **sub millisecond response times** means
+  your code will never be the bottleneck,
+  the Database and Network are. 🏎️
+- [x] **Compiled** and run on the
+  ["BEAM" Virtual Machine](https://www.erlang-solutions.com/blog/the-beam-erlangs-virtual-machine/)
+[(Renowned for efficiency and fault-tolerance)](http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm)
+- [x] **_Complete_ development,
+  deployment and _monitoring_ platform**,
+  whereas with other programming languages
+  you need complex (or _expensive_) deployment & monitoring
+  it's all "free" with the **`Erlang VM`**! 🚢 <br />
+  Things _will_ go wrong with code in the real world.
+  **`Elixir`** provides **supervisors**
+  which describe how to restart parts of
+  your system when things don't go as planned. 👌
+- [x] [**Immutable data**](https://benmccormick.org/2016/06/04/what-are-mutable-and-immutable-data-structures-2/)
+  so ["state"](http://softwareengineering.stackexchange.com/questions/235558/what-is-state-mutable-state-and-immutable-state)
+  is always **predictable**! 🎯 <br /><br />
+  ![jessitron-immutable](https://cloud.githubusercontent.com/assets/194400/22413420/8a538bc2-e6af-11e6-80fd-209deb887820.png)
 
-## _What_?
+## `Elixir` Unlocks `Phoenix` 🐦‍🔥
 
-[_"Elixir is a dynamic, functional language designed for building scalable and
-maintainable applications."_](http://elixir-lang.org/)
+Learning `Elixir` programming
+unlocks the most "_**most admired web framework**_".
+In the
+[**2025 `StackOverflow` Developer Satisfaction Survey**](https://survey.stackoverflow.co/2025/technology#2-web-frameworks-and-technologies),
+**`Phoenix`** remains the "**most admired**" framework
+for the **3<sup>rd</sup> year running**.
 
-### Video Introductions
+If you want the elegance and power of **`Phoenix`**,
+_invest_ a couple of hours learning `Elixir`. <br />
+You will _never_ want to use another web/application framework.
 
-If you have the time, these videos give a nice contextual introduction into what **`Elixir`** is, what it's used for and how it works:
+**Bonus**: using a framework that **engineers _love_**
+makes it easier to recruit **proactive people** to your team/company.
+
+# _What_? 💭
+
+"_Elixir is a dynamic, functional language
+designed for building scalable
+and maintainable applications._" ~
+[elixir-lang.org](http://elixir-lang.org/)
+
+Whenever you read "**functional**", you should think "simpler language"
+and **easier to reason about** when building large scale systems.
+
+**Scalability** is baked into the language and runtime.
+It is _far_ easier to seamlessly connect multiple servers together
+as the BEAM/OTP supervision system was built for this purpose.
+No complex "DevOps" needed.
+
+## Video Introductions 📺
+
+If you have time,
+these videos give a good contextual introduction
+into what **`Elixir`** is,
+what it's used for and how it works:
 
 <!-- note we should update this once we have
 made our *own* intro to **`Elixir`** vid! -->
 
-- Code School's [Try Elixir](https://www.codeschool.com/courses/try-elixir), 3 videos (25mins :movie_camera: plus exercises, totalling 90mins). The 'Try' course is free (there is an extended paid for course).
-- Pete Broderick's [Intro to Elixir](https://youtu.be/lly-1UYmnFI) (41 mins :movie_camera:)
-- Jessica Kerr's [Elixir Should Take Over the World](https://youtu.be/X25xOhntr6s) (58 mins :movie_camera:)
+- **`Elixir`: The Documentary**:
+[youtu.be/lxYFOM3UJzo](https://youtu.be/lxYFOM3UJzo)
+(13 mins 🎥)
+- Code School's **Try Elixir**:
+[codeschool.com/try-elixir](https://www.codeschool.com/courses/try-elixir),
+3 videos
+(25mins plus exercises, totalling 90mins ⏳).
+The 'Try' course is **free** (there is an extended paid for course).
+- Pete Broderick's "Intro to Elixir":
+  [youtu.be/lly-1UYmnFI](https://youtu.be/lly-1UYmnFI)
+(41 mins 🎥)
+- Jessica Kerr's "Elixir Should Take Over the World":
+[youtu.be/X25xOhntr6s](https://youtu.be/X25xOhntr6s)
+(58 mins 😍)
 
-Not a video learner? Looking for a specific learning? https://elixirschool.com/ is an excellent, free, open-source resource that explains all things **`Elixir`** :book: :heart:.
+Not a video learner? Looking for a specific learning?
+[elixirschool.com](https://elixirschool.com)
+is an excellent, free, open-source resource
+that explains all things **`Elixir`** 📖 ❤️
 
-## _How_?
+# _How_? 👩🏻‍💻
 
-Before you learn **`Elixir`** as a language you will need to have it installed on your machine.
+There are several entry points for learning `Elixir`.
+if you just want to try the syntax without installing anything,
+try the `Elixir` Playground:
+[playground.functional-rewire.com](https://playground.functional-rewire.com)
 
-To do so you can go to
-http://elixir-lang.org/install.html or follow our guide here:
+<img alt="elixir playground" src="https://github.com/user-attachments/assets/0c3bc031-e740-4e9e-a6b4-660e5f5d4b4f" />
 
-### Installation:
+Type the code from the `/examples`
+and run them directly in your browser. ▶️
 
-#### Mac:
+## Installation ⬇️
+
+To run more interesting/advanced **`Elixir`** examples on your own machine,
+you will need to have it installed on your machine.
+See: 
+[elixir-lang.org/install](http://elixir-lang.org/install.html)
+or follow our guide here.
+
+### Mac 🍏
 
 Using the [Homebrew](https://brew.sh/) package manager:
-`brew install elixir`
 
-> If you have any trouble with `ssl` when running an `Elixir` App on your `Mac`,
-> see: 
+```sh
+brew install elixir
+```
+
+> If you have any trouble with `ssl`
+> when running an `Elixir` App on your `Mac`,
+> see:
 > [`/install-mac.md`](https://github.com/dwyl/learn-elixir/blob/main/install-mac.md)
 
+### Ubuntu 🐧
 
-#### Ubuntu:
+**Add the Erlang Solutions repo**
 
-- **Add the Erlang Solutions repo**:
-
-```
+```sh
 wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
 ```
 
-- **Run**: `sudo apt-get update`
-- **Install the Erlang/OTP platform and all of its applications**:
-  `sudo apt-get install esl-erlang`
-- **Install Elixir**: `sudo apt-get install elixir`
+**Run** update:
 
-
-#### Windows:
-
-- **Web installer**
-  
-  - **Erlang installer**
-  - Download the Windows installer for Erlang (32 or 64-bit): [erlang.org/downloads](https://www.erlang.org/downloads.html)
-  - Click next, next,..., close
- 
-  - **Elixir installer**
-  - Download the Elixir installer matching your Erlang version: [github.com/elixir-lang/elixir/releases/download/v1.17.3]https://github.com/elixir-lang/elixir/releases/download/v1.17.3/elixir-otp-27.exe
-  - Click next, install, ..., close
- 
-  - **Check to see if successful**
-  - Run `elixir -v` in your terminal
-  - Should output Erlang & Elixir versions
-    
-
-- **Chocolatey** (_Package Manager_)
-
+```sh
+sudo apt-get update
 ```
+
+**Install the Erlang/OTP platform and all of its applications**:
+  
+```sh
+sudo apt-get install esl-erlang
+```
+
+**Install Elixir**:
+
+```sh
+sudo apt-get install elixir
+```
+
+### Windows 🪟
+
+If you're unable to install `Linux` or `OpenBSD`
+on your machine, you can still run `Elixir`. 
+
+#### Chocolatey 🍫
+
+If you have the
+[`chocolatey` package manager](https://chocolatey.org/)
+installed already, open your `Terminal` and run:
+
+```sh
 choco install elixir
 ```
 
-#### Livebook:
+#### Manual Install 🔨
 
-- Easy peasy if you have `Elixir` installed. Just click below
+**Download** the **Windows** installer for `Erlang` (32 or 64-bit):
+[erlang.org/downloads](https://www.erlang.org/downloads.html)
 
-👉 [<img width="326" alt="Screenshot 2023-01-13 at 10 15 23" src="https://user-images.githubusercontent.com/6793008/212283403-116dbf5c-eea4-4c16-88df-b9aba86e209a.png">](https://livebook.dev/)
+> Click next, next,..., close ⏳
 
-Once `Livebook` installed on your machine, just click on the button below (or fork and run it):
+Next, download the `Elixir` installer matching your `Erlang` version:
+[elixir-lang.org/install.html#windows](https://elixir-lang.org/install.html#windows)
+
+### Check Everything Installed Correctly 👌
+
+In your `Terminal` window, run the command:
+```sh
+elixir -v
+```
+
+Should output `Erlang` & `Elixir` versions.
+
+### Livebook 📘 (Optional)
+
+[`Livebook`](https://livebook.dev/)
+is the `Elixir` equivalent of
+[`Jupyter Notebook`](https://jupyter.org/)
+(from the `Python` world);
+an **interactive/executable notebook**
+excellent for sharing knowledge and experiments.
+
+You don't _need_ it for learning `Elixir`,
+but if you want the next level of learning,
+consider trying it.
+
+Once you have have **`Elixir` installed**,
+visit:
+[livebook.dev](https://livebook.dev/#install)
+and follow the installation instructions for your machine/platform.
+
+Once `Livebook` installed on your machine,
+click the button below (or fork and run it):
 
 [![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fdwyl%2Flearn-elixir%2Fblob%2Fmain%2Flearn-elixir-on-livebook.livemd)
 
-- Alternatively, you can run a `Docker` image, no need to install `Elixir` or `Livebook`. Launch `Docker` and run the `Livebook` image:
+Then just _explore_ the page and click around.
 
-```
+<details>
+  <summary>Docker [click to expand]</summary>
+
+Alternatively, if you're familiar with
+`Docker`,
+you can run image, no need to install `Elixir` or `Livebook`.
+Launch `Docker` and run the `Livebook` image:
+
+```sh
 docker run -p 8080:8080 -p 8081:8081 --pull always -e LIVEBOOK_PASSWORD="securesecret" livebook/livebook
 ```
 
 and in another terminal you launch the browser (you will need to authneticate with "securesecret") with the command:
 
-```
+```sh
 open http://localhost:8080/import?url=https://github.com/dwyl/learn-elixir/blob/main/learn-elixir-on-livebook.livemd
 ```
 
-- Finally, if you don't have `Docker` nor `Elixir` and `Livebook` installed, you can run a remote version in the cloud. Follow this!
+Finally, if you don't have `Docker`
+or `Elixir` and `Livebook` installed,
+you can run a remote version in the cloud.
+Follow this!
 
-You (**right**-)click on the grey button **"Run in Livebook"** below.
+(**Right**-)click on the grey button **"Run in Livebook"** below.
 
 :heavy_exclamation_mark: You **right-click"** to keep this reminder page open 😉 because you will need to remember to do 2 things:
 
@@ -194,29 +363,80 @@ Happy learning! 🥳
 This links to the remote Livebook: 👉
 [![Run in Livebook](https://livebook.dev/badge/v1/gray.svg)](https://livebook.dev/run?url=https%3A%2F%2Fdwyl-learn-elixir.fly.dev%2F)
 
-## Learn Elixir
+</details>
 
-## Commands
+# Start! 🟢
 
-- After installing **`Elixir`** you can open the interactive shell by typing `iex`.
-  This allows you to type in any **`Elixir`** expression and see the result in the terminal.
+## Commands 💻
 
-- Type in `h` followed by the `function` name at any time to see documentation information about any given built-in function and how to use it. E.g If you type `h round` into the (iex) terminal you should see
-  something like this:
+After installing **`Elixir`** on your machine,
+you can open the interactive shell in your terminal by typing `iex`
+followed by the <kbd>Return</kbd> key.
+This allows you to type in any **`Elixir`** expression
+and see the result in the terminal.
 
-![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
+**Type `h`** followed by the **`function` name** at any time
+to see documentation information about any given built-in function
+and how to use it.
+e.g: type **`h round`** into the (iex) terminal
+you should see something like this:
 
-- Typing `i` followed by the value name will give you information about a value in your code:
+```elixir
+                          def round(number)
 
-![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
+  @spec round(number()) :: integer()
+
+Rounds a number to the nearest integer.
+
+If the number is equidistant to the two nearest integers, 
+rounds away from zero.
+
+Allowed in guard tests. Inlined by the compiler.
+
+## Examples
+
+    iex> round(5.6)
+    6
+
+    iex> round(5.2)
+    5
+
+    iex> round(-9.9)
+    -10
+
+    iex> round(2.5)
+    3
+
+    iex> round(-2.5)
+    -3
+```
+
+Typing `i` followed by the variable name
+will give you information about a value in your code:
+
+```elixir
+iex(2)> myList = [1, 2, 3, 4, 5]
+
+iex(3)> i myList
+Term
+  [1, 2, 3, 4, 5]
+Data type
+  List
+Reference modules
+  List
+Implemented protocols
+  Collectable, Enumerable, IEx.Info, Inspect, JSON.Encoder, List.Chars, String.Chars
+```
 
 ## Basic Types
 
-This section brings together the key information from Elixir's
-[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
-documentation and multiple other sources. It will take you through some examples to practice using and familiarise yourself with Elixir's 7 basic types.
+This section is compiled from the `Elixir`
+[**Getting Started**](http://elixir-lang.org/getting-started/basic-types.html)
+docs and multiple other sources.
+It takes you through some examples
+to familiarize yourself.
 
-Elixir's 7 basic types:
+`Elixir` **7 basic types**:
 
 - `integers`
 - `floats`
@@ -228,7 +448,7 @@ Elixir's 7 basic types:
 
 ### Numbers
 
-Type `1 + 2` into the terminal (after opening `iex`):
+Type `1 + 2` into the `iex` terminal:
 
 ```elixir
 iex> 1 + 2
@@ -278,17 +498,19 @@ concept of a "truthy" or "falsy" value.
 - a value is truthy when it is neither `false` nor `nil`
 - a value is falsy when it is `false` or `nil`
 
-Elixir has functions, like `and/2`, that _only_ work with
+`Elixir` has functions, like `and/2`, that _only_ work with
 booleans, but also functions that work with these
 truthy/falsy values, like `&&/2` and `!/1`.
 
 The syntax `<function_name>/<number>` is the convention
-used in Elixir to identify a function named
+used in `Elixir` to identify a function named
 `<function_name>` that takes `<number>` parameters.
 The value `<number>` is also referred to as the function
 [arity](https://en.wikipedia.org/wiki/Arity).
-In Elixir each function is identified univocally both by
-its name and its arity. More information can be found [here](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
+In `Elixir` each function is identified unambiguousy both by
+its name and its arity.
+See:
+[Understanding Function Arity in Elixir](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
 We can check the truthiness of a value by using the `!/1`
 function twice.
 
@@ -1652,3 +1874,5 @@ wait of course).
   where the language really shines is in the **Phoenix Web Framework**!!
   So once you know the basics of the language
   [Learn `Phoenix` Web Development](https://github.com/dwyl/learn-phoenix-web-development).
+- Erlang, the Hidden Gem: Solving Problems at Scale for 30+ Years:
+  https://youtu.be/-m31ag9z4VY
