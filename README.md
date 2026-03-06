@@ -90,7 +90,6 @@ We hope you enjoy the journey! ❤️
 
 # _Why_? 🤷‍♀️
 
-
 After using
 [_several_ other programming languages](https://github.com/dwyl/learn-elixir/issues/102)
 for many years, we were frustrated by the complexity and noise!<br />
@@ -376,28 +375,68 @@ followed by the <kbd>Return</kbd> key.
 This allows you to type in any **`Elixir`** expression
 and see the result in the terminal.
 
-**Type `h` followed by the `function` name at any time
+**Type `h`** followed by the **`function` name** at any time
 to see documentation information about any given built-in function
-and how to use it. 
-e.g If you type `h round` into the (iex) terminal
+and how to use it.
+e.g: type **`h round`** into the (iex) terminal
 you should see something like this:
 
-![elixir-h](https://cloud.githubusercontent.com/assets/14013616/20860273/fc801b14-b96b-11e6-9b17-7e26666d5d94.png)
+```elixir
+                          def round(number)
 
-- Typing `i` followed by the value name
-  will give you information about a value in your code:
+  @spec round(number()) :: integer()
 
-![elixir-i](https://cloud.githubusercontent.com/assets/14013616/20860322/3c01d984-b96d-11e6-8cc4-a46c8657f5b4.png)
+Rounds a number to the nearest integer.
+
+If the number is equidistant to the two nearest integers, 
+rounds away from zero.
+
+Allowed in guard tests. Inlined by the compiler.
+
+## Examples
+
+    iex> round(5.6)
+    6
+
+    iex> round(5.2)
+    5
+
+    iex> round(-9.9)
+    -10
+
+    iex> round(2.5)
+    3
+
+    iex> round(-2.5)
+    -3
+```
+
+Typing `i` followed by the variable name
+will give you information about a value in your code:
+
+```elixir
+iex(2)> myList = [1, 2, 3, 4, 5]
+
+iex(3)> i myList
+Term
+  [1, 2, 3, 4, 5]
+Data type
+  List
+Reference modules
+  List
+Implemented protocols
+  Collectable, Enumerable, IEx.Info, Inspect, JSON.Encoder, List.Chars, String.Chars
+```
 
 ## Basic Types
 
-This section brings together the key information from Elixir's
-[Getting Started](http://elixir-lang.org/getting-started/basic-types.html)
-documentation and multiple other sources.
-It will take you through some examples
-to practice using and familiarize yourself.
+This section is compiled from the `Elixir`
+[**Getting Started**](http://elixir-lang.org/getting-started/basic-types.html)
+docs and multiple other sources.
+It takes you through some examples
+to familiarize yourself.
 
-Elixir's **7 basic types**:
+`Elixir` **7 basic types**:
 
 - `integers`
 - `floats`
@@ -409,7 +448,7 @@ Elixir's **7 basic types**:
 
 ### Numbers
 
-Type `1 + 2` into the terminal (after opening `iex`):
+Type `1 + 2` into the `iex` terminal:
 
 ```elixir
 iex> 1 + 2
@@ -459,17 +498,19 @@ concept of a "truthy" or "falsy" value.
 - a value is truthy when it is neither `false` nor `nil`
 - a value is falsy when it is `false` or `nil`
 
-Elixir has functions, like `and/2`, that _only_ work with
+`Elixir` has functions, like `and/2`, that _only_ work with
 booleans, but also functions that work with these
 truthy/falsy values, like `&&/2` and `!/1`.
 
 The syntax `<function_name>/<number>` is the convention
-used in Elixir to identify a function named
+used in `Elixir` to identify a function named
 `<function_name>` that takes `<number>` parameters.
 The value `<number>` is also referred to as the function
 [arity](https://en.wikipedia.org/wiki/Arity).
-In Elixir each function is identified univocally both by
-its name and its arity. More information can be found [here](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
+In `Elixir` each function is identified unambiguousy both by
+its name and its arity.
+See:
+[Understanding Function Arity in Elixir](https://culttt.com/2016/05/02/understanding-function-arity-elixir/).
 We can check the truthiness of a value by using the `!/1`
 function twice.
 
