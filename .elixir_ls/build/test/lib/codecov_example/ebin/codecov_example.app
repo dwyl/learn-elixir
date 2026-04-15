@@ -1,1 +1,0 @@
-{application,codecov_example,[{modules,[]},{optional_applications,[]},{applications,[kernel,stdlib,elixir,logger,excoveralls]},{description,"codecov_example"},{registered,[]},{vsn,"0.1.0"}]}.
