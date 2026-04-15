@@ -9,12 +9,13 @@ defmodule MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      elixirc_paths: ["examples"]
+      elixirc_paths: ["examples"],
+      aliases: aliases()
     ]
   end
 
   def cli do
-    [preferred_envs: [coveralls: :test]]
+    [preferred_envs: [coveralls: :test, "coveralls.json": :test, "coveralls.html": :test]]
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -28,6 +29,12 @@ defmodule MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.10", only: :test}
+    ]
+  end
+
+  defp aliases do
+    [
+      c: ["coveralls.json"]
     ]
   end
 end

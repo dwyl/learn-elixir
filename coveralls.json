@@ -1,0 +1,19 @@
+{
+  "coverage_options": {
+    "minimum_coverage": 100
+  },
+  "skip_files": [
+    "test/",
+    "examples/control/",
+    "examples/exceptions/",
+    "examples/functions/",
+    "examples/macros/",
+    "examples/nodes/",
+    "examples/odds/",
+    "examples/otp-server/",
+    "examples/spawn/",
+    "examples/strings/",
+    "examples/typespecs/",
+    "examples/use/"
+  ]
+}
