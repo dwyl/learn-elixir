@@ -6,18 +6,18 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule FizzBuzz do
+defmodule FizzBuzz2 do
   def upto(n) when n > 0 do
     1..n |> Enum.map(&fizzbuzz/1)
   end
 
   defp fizzbuzz(n) do
     cond do
-      rem(n, 3) == 0 and rem(n, 5) == 0 -> 
+      rem(n, 3) == 0 and rem(n, 5) == 0 ->
         "FizzBuzz"
       rem(n, 3) == 0 ->
         "Fizz"
-      rem(n, 5) == 0 -> 
+      rem(n, 5) == 0 ->
         "Buzz"
       true ->
         n

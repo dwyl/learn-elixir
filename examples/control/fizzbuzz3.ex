@@ -6,7 +6,7 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule FizzBuzz do
+defmodule FizzBuzz3 do
   def upto(n) when n > 0, do:  1..n |> Enum.map(&fizzbuzz/1)
 
   defp fizzbuzz(n), do: _fizzword(n, rem(n, 3), rem(n, 5))
@@ -16,4 +16,3 @@ defmodule FizzBuzz do
   defp _fizzword(_n, _, 0), do: "Buzz"
   defp _fizzword( n, _, _), do: n
 end
-

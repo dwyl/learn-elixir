@@ -6,7 +6,7 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule My do
+defmodule MyEg do
   defmacro macro(code) do
     IO.inspect code
     quote do
@@ -15,8 +15,8 @@ defmodule My do
   end
 end
 
-defmodule Test do
-  require My
+defmodule MyEgTest do
+  require MyEg
 
-  My.macro(1 + 2)
+  MyEg.macro(1 + 2)
 end

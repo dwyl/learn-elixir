@@ -6,7 +6,7 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule My do
+defmodule MyIf do
   defmacro if(condition, clauses) do
     do_clause   = Keyword.get(clauses, :do, nil)
     else_clause = Keyword.get(clauses, :else, nil)
@@ -21,9 +21,9 @@ end
 
 
 
-defmodule Test do
-  require My
-  My.if 1==2 do
+defmodule MyIfTest do
+  require MyIf
+  MyIf.if 1==2 do
     IO.puts "1 == 2"
   else
     IO.puts "1 != 2"

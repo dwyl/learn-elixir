@@ -6,19 +6,19 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule FizzBuzz do
+defmodule FizzBuzz1 do
 
   def upto(n) when n > 0, do: _downto(n, [])
 
   defp _downto(0, result),  do: result
   defp _downto(current, result) do
-    next_answer =    
+    next_answer =
       cond do
-        rem(current, 3) == 0 and rem(current, 5) == 0 -> 
+        rem(current, 3) == 0 and rem(current, 5) == 0 ->
           "FizzBuzz"
         rem(current, 3) == 0 ->
           "Fizz"
-        rem(current, 5) == 0 -> 
+        rem(current, 5) == 0 ->
           "Buzz"
         true ->
           current
