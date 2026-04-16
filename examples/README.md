@@ -3,7 +3,8 @@
 Many (_most?_) of the Examples in this `/examples` dir
 are either derived/adapted from or directly "_borrowed_"
 from the _fantastic_ book:
-Programming Elixir 1.3 by the _brilliant_ Dave Thomas! @pragdave
+Programming Elixir 1.3 by the _brilliant_ Dave Thomas! 
+[@pragdave](https://github.com/pragdave)
 
 ![Programming Elixir 1.3. front cover](https://cloud.githubusercontent.com/assets/194400/22402694/d13148de-e5f8-11e6-92cb-14584a353f7e.png)
 

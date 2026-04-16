@@ -6,8 +6,8 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
-defmodule Tracer do
-  
+defmodule Trace do
+
   def args(arg_list) do
     (for arg <- arg_list, do: (inspect(arg))) |> Enum.join(", ")
   end
@@ -27,9 +27,9 @@ defmodule Tracer do
   defmacro def(definition = {name, _meta, args}, do: contents) do
     quote do
       Kernel.def unquote(definition) do
-        Tracer.log "==>", "call   ", Tracer.call_seq(unquote(name), unquote(args))
+        Trace.log "==>", "call   ", Trace.call_seq(unquote(name), unquote(args))
         result = unquote(contents)
-        Tracer.log "<==", "returns", inspect(result)
+        Trace.log "<==", "returns", inspect(result)
         result
       end
     end
@@ -46,14 +46,14 @@ defmodule Tracer do
 end
 
 
-defmodule Test do
-  use Tracer
+# defmodule TraceTest do
+#   use Trace
 
-  def add_three(a,b,c), do: 99 #a + b + c
-  
-  def add_list(list), do: Enum.reduce(list, 0, &(&1+&2))
+#   def add_three(a,b,c), do: 99 #a + b + c
 
-end
+#   def add_list(list), do: Enum.reduce(list, 0, &(&1+&2))
 
-Test.add_three(1,2,3)
-Test.add_list([5,6,7,8])
+# end
+
+# Test.add_three(1,2,3)
+# Test.add_list([5,6,7,8])

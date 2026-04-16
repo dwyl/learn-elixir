@@ -18,9 +18,9 @@ defmodule Scope do
   end
 end
 
-defmodule Test do
+defmodule ScopeTest do
   require Scope
-  
+
   local = 123
   Scope.update_local("cat")
   IO.puts "On return, local = #{local}"

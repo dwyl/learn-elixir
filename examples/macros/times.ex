@@ -15,11 +15,11 @@ defmodule Times do
   end
 end
 
-defmodule Test do
+defmodule TimesTest do
   require Times
   Times.times_n(3)
   Times.times_n(4)
 end
 
-IO.puts Test.times_3(4)   #=> 12
-IO.puts Test.times_4(5)   #=> 20
+IO.puts TimesTest.times_3(4)   #=> 12
+IO.puts TimesTest.times_4(5)   #=> 20

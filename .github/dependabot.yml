@@ -1,0 +1,24 @@
+version: 2
+updates:
+- package-ecosystem: mix
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "17:00"
+    timezone: Europe/London
+  ignore:
+      # ignore all patch updates in dev dependencies ref: github.com/dwyl/technology-stack/issues/126 [alphabetical list]
+    - dependency-name: "credo"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "dialyxir"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "excoveralls"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "ex_doc"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "esbuild"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "floki"
+      update-types: ["version-update:semver-patch"]
+    - dependency-name: "phoenix_live_reload"
+      update-types: ["version-update:semver-patch"]

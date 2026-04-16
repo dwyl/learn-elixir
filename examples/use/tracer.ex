@@ -7,7 +7,7 @@
 # Visit http://www.pragmaticprogrammer.com/titles/elixir13 for more book information.
 #---
 defmodule Tracer do
-  
+
   def args(arg_list) do
     (for arg <- arg_list, do: (inspect(arg))) |> Enum.join(", ")
   end
@@ -21,7 +21,7 @@ defmodule Tracer do
   end
 
   def log(prefix, msg, param) do
-    IO.ANSI.escape("%{cyan}#{prefix} %{green}#{msg} %{yellow}#{param}") |> IO.puts
+    "#{prefix} #{msg} #{param}" |> IO.puts
   end
 
   defmacro def(definition = {name, _meta, args}, do: contents) do
@@ -45,11 +45,11 @@ defmodule Tracer do
 
 end
 
-defmodule Test do
+defmodule TracerTest do
   use Tracer
   def puts_sum_three(a,b,c), do: IO.inspect(a+b+c)
   def add_list(list),        do: Enum.reduce(list, 0, &(&1+&2))
 end
 
-Test.puts_sum_three(1,2,3)
-Test.add_list([5,6,7,8])
+TracerTest.puts_sum_three(1,2,3)
+TracerTest.add_list([5,6,7,8])

@@ -36,7 +36,7 @@ defmodule Ticker do
   end
 end
 
-defmodule Client do
+defmodule TickerClient do
 
   def start do
     pid = spawn(__MODULE__, :receiver, [])
@@ -47,7 +47,7 @@ defmodule Client do
     receive do
       { :tick } ->
         IO.puts "tock in client"
-        receiver
+        receiver()
     end
   end
 end
